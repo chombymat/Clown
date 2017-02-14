@@ -7,6 +7,6 @@
 <title>Accueil</title>
 </head>
 <body>
-<p>Ceci est un site pour les clownsssss</p>
+<p>Ceci est un site pour les clowns</p>
 </body>
 </html>
