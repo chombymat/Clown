@@ -7,8 +7,6 @@
 <title>Accueil</title>
 </head>
 <body>
-
 <p>Ceci est un site pour les clownszedzdczfvxdwlkjfbfjfhdlbgsdrkjf</p>
-
 </body>
 </html>
