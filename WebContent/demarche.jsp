@@ -25,11 +25,11 @@ function cacher(id){
 <body>
 <p><span class="gauche"><button type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button type="submit" class="btn btn-sample">connexion</button></span><h1>La Démarche</h1></p>
 		<%@include file="/WEB-INF/navbar.jsp"%>
-	<div id="menu_gauche">
+	<div id="menu">
 		<ul>
-			<li><input type="button" value="Le Clown" onclick="affiche_text('[texte] présentation rapide Clown'); change_video('https://www.youtube.com/embed/ZyTw6V5JTwM');"></li>
-			<li><input type="button" value="Pratique et Sensoriel" onclick="affiche_text('[texte] présentation rapide Pratique et sensoriel'); change_video('https://www.youtube.com/embed/v1ixBpdhpeI');"></li>
-			<li><input type="button" value="Expression Corporelle" onclick="affiche_text('[texte] présentation rapide Expression corporelle'); change_video('https://www.youtube.com/embed/uU-d_DN_LZU');"></li>	
+			<input type="button" value="Le Clown" onclick="affiche_text('[texte] présentation rapide Clown'); change_video('https://www.youtube.com/embed/ZyTw6V5JTwM');">
+			<input type="button" value="Pratique et Sensoriel" onclick="affiche_text('[texte] présentation rapide Pratique et sensoriel'); change_video('https://www.youtube.com/embed/v1ixBpdhpeI');">
+			<input type="button" value="Expression Corporelle" onclick="affiche_text('[texte] présentation rapide Expression corporelle'); change_video('https://www.youtube.com/embed/uU-d_DN_LZU');">
 		</ul>
 	</div>
 	<div id="change">
