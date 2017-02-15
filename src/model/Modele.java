@@ -1,9 +1,12 @@
 package model;
 
+import tools.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -135,6 +138,30 @@ public class Modele
 
 		} catch (Exception e){
 			e.printStackTrace();
+		} finally{
+			try{
+				statement.close();
+				ds.getConnection().close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public ArrayList<Article> getArticles(int idProjet){
+		ArrayList<Article> articles = new ArrayList<Article>();
+		try{
+			statement = ds.getConnection().prepareStatement("select id_article, titre, description from article where id_projet = ?");
+			statement.setInt(1, idProjet);
+			result = statement.executeQuery();
+			while(result.next()){
+				articles.add(new Article(result.getInt(1), result.getString(2), result.getString(3)));
+			}
+			return articles;
+			
+		} catch (Exception e){
+			e.printStackTrace();
+			return null;
 		} finally{
 			try{
 				statement.close();
