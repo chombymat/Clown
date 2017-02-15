@@ -19,10 +19,10 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<!-- gauche -->
 			<ul class="nav navbar-nav">
-				<li id="mur"><input class="btn btn-sample" value="Home" href="./"></li>
-				<li id="mur"><input class="btn btn-sample" value="La demarche" href="./"></li>
-				<li id="mur"><input class="btn btn-sample" value="Les ateliers" href="./"></li>
-				<li id="mur"><input class="btn btn-sample" value="Ressources" href="./"></li>
+				<li id="inscription"><a href="index.jsp">Home</a></li>
+				<li id="inscription"><a href="demarche.jsp">La demarche</a></li>
+				<li id="inscription"><a href="atelier.jsp">Les ateliers</a></li>
+				<li id="inscription"><a href="ressources.jsp">Ressources</a></li>
 			</ul>
 		</div>
 	</div>
