@@ -20,7 +20,6 @@ public class Modele
 	protected DataSource ds = null;
 	protected PreparedStatement statement = null;
 	
-	
 	public Modele(){
 		try 
 		{
