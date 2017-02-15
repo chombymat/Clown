@@ -83,4 +83,46 @@ public class Modele
 			}
 		}
 	}
+	
+	public void ajouterArticle(String titre, String description, int idProjet){
+		try{
+			statement = ds.getConnection().prepareStatement("insert into Article (titre, description, id_projet) values(?, ?, ?)");
+			statement.setString(1, titre);
+			statement.setString(2, description);
+			statement.setInt(3, idProjet);
+			statement.executeUpdate();
+			System.out.println("ajout de l'article : " + titre);
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				statement.close();
+				ds.getConnection().close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void modifierArticle(int id, String titre, String description){
+		try{
+			statement = ds.getConnection().prepareStatement("update from Article set titre = ?, description= ? where id_article = ?");
+			statement.setString(1, titre);
+			statement.setString(2, description);
+			statement.setInt(3, id);
+			statement.executeUpdate();
+			System.out.println("modif de l'article : " + titre);
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				statement.close();
+				ds.getConnection().close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
 }
