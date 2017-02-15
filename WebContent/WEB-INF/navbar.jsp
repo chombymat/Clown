@@ -19,10 +19,10 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<!-- gauche -->
 			<ul class="nav navbar-nav">
-				<li id="inscription"><a href="Home">Home</a></li>
-				<li id="inscription"><a href="demarche">La demarche</a></li>
-				<li id="inscription"><a href="ateliers">Les ateliers</a></li>
-				<li id="inscription"><a href="Ressources">Ressources</a></li>
+				<li id="inscription"><a href="index.jsp">Home</a></li>
+				<li id="inscription"><a href="demarche.jsp">La demarche</a></li>
+				<li id="inscription"><a href="atelier.jsp">Les ateliers</a></li>
+				<li id="inscription"><a href="ressources.jsp">Ressources</a></li>
 			</ul>
 		</div>
 	</div>
