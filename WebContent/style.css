@@ -1,1 +1,15 @@
-h1{color: #6D071A;}
+h1{text-align:center;color: #C21950;}
+.btn-sample { 
+  color: #ffffff; 
+  background-color: #C21950; 
+} 
+ 
+.btn-sample:hover, 
+.btn-sample:focus, 
+.btn-sample:active, 
+.btn-sample.active, 
+.open .dropdown-toggle.btn-sample { 
+  color: #ffffff; 
+  background-color: #A11846; 
+  border-color: #130269; 
+} 
