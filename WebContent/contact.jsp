@@ -36,13 +36,5 @@ function cacher(id){
 		OU<br>
 		adresse mail</p>
 	</div>
-	<div id="menu_droite">
-		<ul>
-		  <li><a href="index.jsp">Home</a></li>
-		  <li><a href="demarche.jsp">La Démarche</a></li>
-		  <li><a href="atelier.jsp">Les Ateliers</a></li>
-		  <li><a href="ressources.jsp">Ressources</a></li>
-		</ul>
-	</div>
 </body>
 </html>

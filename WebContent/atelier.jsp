@@ -23,6 +23,8 @@ function cacher(id){
 </script>
 </head>
 <body>
+<p><span class="gauche"><button type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button type="submit" class="btn btn-sample">connexion</button></span><h1>Page d'acceuil</h1></p>
+		<%@include file="/WEB-INF/navbar.jsp"%>
 	<div id="menu_gauche">
 		<ul>
 			<li><input type="button" value="1. Le Pain" onclick="affiche_text('[texte] présentation rapide Clown'); change_video('https://www.youtube.com/embed/ZyTw6V5JTwM');"></li>
@@ -38,12 +40,5 @@ function cacher(id){
 	</div>
 	<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/_TSZe3mfGYg" frameborder="0" allowfullscreen></iframe>[vidéo]
 	<img id="image" width="560" height="315">[photos]</img>
-	<div id="menu_droite">
-		<ul>
-		  <li><a href="index.jsp">coucou</a></li>
-		  <li><a href="atelier.jsp">coucou</a></li>
-		  <li><a href="ressources.jsp">coucou</a></li>
-		</ul>
-	</div>
 </body>
 </html>
