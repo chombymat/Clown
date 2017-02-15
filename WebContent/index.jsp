@@ -7,6 +7,7 @@
 <title>Accueil</title>
 </head>
 <body>
-<p>Ceci est un site pour les clowns.</p>
+<p>Page d'acceuil</p>
+<navbar><ul><li>a</li><li>b</li><li>c</li></ul></navbar>
 </body>
 </html>
