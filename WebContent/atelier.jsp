@@ -23,7 +23,7 @@ function cacher(id){
 </script>
 </head>
 <body>
-<p><span class="gauche"><button type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button type="submit" class="btn btn-sample">connexion</button></span><h1>Page d'acceuil</h1></p>
+<p><span class="gauche"><button type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button type="submit" class="btn btn-sample">connexion</button></span><h1>Les Ateliers</h1></p>
 		<%@include file="/WEB-INF/navbar.jsp"%>
 	<div id="menu_gauche">
 		<ul>

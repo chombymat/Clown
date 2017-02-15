@@ -23,6 +23,8 @@ function cacher(id){
 </script>
 </head>
 <body>
+<p><span class="gauche"><button type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button type="submit" class="btn btn-sample">connexion</button></span><h1>Nous Contacter</h1></p>
+		<%@include file="/WEB-INF/navbar.jsp"%>
 	<div id="menu_gauche">
 		<ul>
 		  <li><img src="http://www.coloriage.tv/dessincolo/clown.png" width="100" height="100" onclick="affiche_text('[diapo photos]');"/></li>
