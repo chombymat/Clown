@@ -25,7 +25,7 @@ ajouterArticleIdProjetPere
 récupérer tous les articles d'un projet
 
 servlet : /ManipulationArticle
-un champ name "ArticlesProjet" avec value "true"
+un champ name "articlesProjet" avec value "true"
 
 champ "name" : 
 
