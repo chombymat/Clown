@@ -1,0 +1,12 @@
+inscription d'un utilisateur
+
+servlet : /Inscription
+champs "name":
+
+inscriptionNom
+inscriptionPrenom
+inscriptionLogin
+inscriptionMail
+inscriptionPass
+
+--------------------------------------------

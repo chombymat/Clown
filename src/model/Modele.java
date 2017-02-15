@@ -12,8 +12,9 @@ import tools.Utilisateur;
 
 public class Modele 
 {
-	DataSource ds = null;
-	PreparedStatement statement = null;
+	protected ResultSet result;
+	protected DataSource ds = null;
+	protected PreparedStatement statement = null;
 	
 	
 	public Modele(){
