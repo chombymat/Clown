@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+<h1>test</h1>
 <%@include file="/WEB-INF/navbar.jsp"%>
 <div class="container">
 <h1>Se connecter</h1>
