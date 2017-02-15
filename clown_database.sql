@@ -41,7 +41,7 @@ create table media(
 
 -- création de la table des utilisateurs :
 -- tous les champs obligatoires
--- 753_pass : mot de passe crypté en sha256 + salt : 'clown'
+-- prima_pass : mot de passe crypté en sha256 + salt : 'clown'
 
 create table utilisateur(
 	id_utilisateur serial primary key,
@@ -49,7 +49,7 @@ create table utilisateur(
 	prenom varchar(100) not null,
 	adresse_mail varchar(100) not null unique,
 	login varchar(20) not null unique,
-	753_pass varchar(100) not null,
+	prima_pass varchar(100) not null
 );
 
 -- création de la table des rôles : 
