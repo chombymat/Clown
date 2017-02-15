@@ -3,22 +3,28 @@ package tools;
 public class Utilisateur {
 	
 	private int id;
-	private String nom, prenom, mail, login;
+	private String nom, prenom, mail, login, role;
 	
-	public Utilisateur(int id, String nom, String prenom, String mail, String login){
+	public String getRole() {
+		return role;
+	}
+
+	public Utilisateur(int id, String nom, String prenom, String mail, String login, String role){
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.mail = mail;
 		this.login = login;
+		this.role = role;
 	}
 	
-	public Utilisateur(int id, String mail, String login){
+	public Utilisateur(int id, String mail, String login, String role){
 		this.id = id;
 		this.nom = null;
 		this.prenom = null;
 		this.mail = mail;
 		this.login = login;
+		this.role = role;
 	}
 
 	public int getId() {

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/ProjetWeb" docBase="ProjetWeb" debug="99">
 
-  <!-- <Resource name="mabase" auth="Container" type="javax.sql.DataSource"
+  <Resource name="mabase" auth="Container" type="javax.sql.DataSource"
   maxActive="8" maxIdle="4" maxWait="10000"
-  username="markeyj" password="moi" driverClassName="org.postgresql.Driver"
-  url="jdbc:postgresql://psqlserv/da2i" />-->
+  username="catricea" password="moi" driverClassName="org.postgresql.Driver"
+  url="jdbc:postgresql://psqlserv/da2i" />
   
   <!-- <Resource name="jdbc/database" auth="Container" type="javax.sql.DataSource"
 		maxActive="8" maxIdle="4" maxWait="10000" driverClassName="org.sqlite.JDBC"
