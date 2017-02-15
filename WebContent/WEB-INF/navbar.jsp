@@ -14,15 +14,15 @@
 		}
 	});
 </script>
-<nav class="navbar navbar-default">
+		<nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<!-- gauche -->
 			<ul class="nav navbar-nav">
-				<li id="inscription"><a href="index.jsp">Home</a></li>
-				<li id="inscription"><a href="demarche.jsp">La demarche</a></li>
-				<li id="inscription"><a href="atelier.jsp">Les ateliers</a></li>
-				<li id="inscription"><a href="ressources.jsp">Ressources</a></li>
+				<li><a href="index.jsp">Home</a></li>
+				<li><a href="demarche.jsp">La demarche</a></li>
+				<li><a href="atelier.jsp">Les ateliers</a></li>
+				<li><a href="ressources.jsp">Ressources</a></li>
 			</ul>
 		</div>
 	</div>
