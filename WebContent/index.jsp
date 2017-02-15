@@ -11,7 +11,8 @@
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<p>Page d'acceuil</p>
+<p><span class="gauche"><button type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button type="submit" class="btn btn-sample">connexion</button></span><h1>Page d'acceuil</h1></p>
+<%@include file="/WEB-INF/navbar.jsp"%>
 <navbar><ul><li>a</li><li>b</li><li>c</li></ul></navbar>
 </body>
 </html>

@@ -3,7 +3,11 @@ h1{text-align:center;color: #C21950;}
   color: #ffffff; 
   background-color: #C21950; 
 } 
- 
+
+body{
+	background-color: #F5F5DC;
+}
+
 .btn-sample:hover, 
 .btn-sample:focus, 
 .btn-sample:active, 
@@ -11,7 +15,6 @@ h1{text-align:center;color: #C21950;}
 .open .dropdown-toggle.btn-sample { 
   color: #ffffff; 
   background-color: #A11846; 
-  border-color: #130269; 
 } 
 
 .navbar .navbar-nav {
@@ -22,4 +25,21 @@ h1{text-align:center;color: #C21950;}
 
 .navbar .navbar-collapse {
   text-align: center;
+  color: #C21950;
 }
+
+.navbar-default{
+	background-color: #F5F5DC;
+	border: none;
+}
+
+p {
+  text-align: center;
+}
+p span.gauche {
+  float: left;
+}
+p span.droite {
+  float: right;
+}
+

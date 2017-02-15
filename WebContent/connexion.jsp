@@ -13,20 +13,19 @@
 </head>
 <body>
 <h1>test</h1>
-<%@include file="/WEB-INF/navbar.jsp"%>
 <div class="container">
 <h1>Se connecter</h1>
- <form class="form-horizontal" method="post" action="j_security_check">
+ <form class="form-horizontal" method="post" action="./connexion">
     <div class="form-group">
       <label class="control-label col-sm-5">Identifiant:</label>
       <div class="col-sm-2 col-md-3">
-        <input type="text" class="form-control" placeholder="Identifiant" name="j_username" required>
+        <input type="text" class="form-control" placeholder="Identifiant" name="login" required>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-5">Mot de passe:</label>
       <div class="col-sm-2 col-md-3">          
-        <input type="password" class="form-control" name="j_password" placeholder="Mot de passe">
+        <input type="password" class="form-control" name="pass" placeholder="Mot de passe">
       </div>
     </div>
    
