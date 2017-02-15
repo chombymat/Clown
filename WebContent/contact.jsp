@@ -4,9 +4,41 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Notre démarche</title>
+<link rel="icon" type="image/png" href="http://www.laprimaporta.com/wp-content/uploads/2016/01/fav.png" />
+<script language="JavaScript">
+function affiche_text(text){
+	document.getElementById("change").innerHTML = text;
+}
+function change_video(url){
+	document.getElementById("video").src = url;
+}
+function cacher(id){
+	document.getElementById(id).style.display = 'none';
+}
+</script>
 </head>
 <body>
-
+	<div id="menu_gauche">
+		<ul>
+		  <li><img src="http://www.coloriage.tv/dessincolo/clown.png" width="100" height="100" onclick="affiche_text('[diapo photos]');"/></li>
+		  <li><img src="http://blog.retif.eu/wp-content/uploads/2014/07/marketing-sensoriel.jpg" width="100" height="100" onclick="affiche_text('[texte] lien vers autres sites');"/></li>
+		  <li><img src="http://www.mjcteyran.fr/images/stories/expression_corporelle.jpg" width="100" height="100" onclick="affiche_text('[texte] présentation Comité Technique / présentation partenaires financiers [lien] vers autres sites');"/></li>
+		</ul>
+	</div>
+	<div id="change">
+		<p>Merci de votre visite<br>
+		Formulaire de contact<br>
+		OU<br>
+		adresse mail</p>
+	</div>
+	<div id="menu_droite">
+		<ul>
+		  <li><a href="index.jsp">Home</a></li>
+		  <li><a href="demarche.jsp">La Démarche</a></li>
+		  <li><a href="atelier.jsp">Les Ateliers</a></li>
+		  <li><a href="ressources.jsp">Ressources</a></li>
+		</ul>
+	</div>
 </body>
 </html>
