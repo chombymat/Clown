@@ -20,7 +20,7 @@
 			<!-- gauche -->
 			<ul class="nav navbar-nav">
 				<li><a href="index.jsp">Home</a></li>
-				<li><a href="demarche.jsp">La demarche</a></li>
+				<li><a href="demarche.jsp">La démarche</a></li>
 				<li><a href="atelier.jsp">Les ateliers</a></li>
 				<li><a href="ressources.jsp">Ressources</a></li>
 			</ul>

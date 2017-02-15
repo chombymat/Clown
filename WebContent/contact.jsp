@@ -23,6 +23,8 @@ function cacher(id){
 </script>
 </head>
 <body>
+<p><span class="gauche"><button type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button type="submit" class="btn btn-sample">connexion</button></span><h1>Nous Contacter</h1></p>
+		<%@include file="/WEB-INF/navbar.jsp"%>
 	<div id="menu_gauche">
 		<ul>
 		  <li><img src="http://www.coloriage.tv/dessincolo/clown.png" width="100" height="100" onclick="affiche_text('[diapo photos]');"/></li>
@@ -35,14 +37,6 @@ function cacher(id){
 		Formulaire de contact<br>
 		OU<br>
 		adresse mail</p>
-	</div>
-	<div id="menu_droite">
-		<ul>
-		  <li><a href="index.jsp">Home</a></li>
-		  <li><a href="demarche.jsp">La Démarche</a></li>
-		  <li><a href="atelier.jsp">Les Ateliers</a></li>
-		  <li><a href="ressources.jsp">Ressources</a></li>
-		</ul>
 	</div>
 </body>
 </html>

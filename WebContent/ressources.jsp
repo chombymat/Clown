@@ -23,6 +23,8 @@
 		</script>
 	</head>
 	<body>
+	<p><span class="gauche"><button type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button type="submit" class="btn btn-sample">connexion</button></span><h1>Ressources</h1></p>
+		<%@include file="/WEB-INF/navbar.jsp"%>
 		<div id="menu_gauche">
 			<ul>
 				<li><input type="button" value="Le Clown" onclick="affiche_text('[diapo photos]'); change_video('https://www.youtube.com/embed/ZyTw6V5JTwM');"></li>
@@ -32,13 +34,6 @@
 		</div>
 		<div id="change">
 			[texte] présentation rapide Ressources
-		</div>
-		<div id="menu_droite">
-			<ul>
-			  <li><a href="index.jsp">Home</a></li>
-			  <li><a href="demarche.jsp">La Démarche</a></li>
-			  <li><a href="atelier.jsp">Ateliers</a></li>
-			</ul>
 		</div>
 	</body>
 </html>
