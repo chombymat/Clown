@@ -1,16 +1,25 @@
 package model;
 
+<<<<<<< HEAD
 import tools.*;
+=======
+import java.security.MessageDigest;
+>>>>>>> ff39a33a056cad0d85d5620058c9148ec817487e
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+import java.util.Base64;
+>>>>>>> ff39a33a056cad0d85d5620058c9148ec817487e
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
 import tools.Utilisateur;
 
 public class Modele 
@@ -31,23 +40,23 @@ public class Modele
 	}
 	public Utilisateur connexion(String login, String pass) throws Exception
 	{
-		//Utilisateur user = new Utilisateur(id, mail, login, role)
+		Utilisateur user = null;
 		Connection con = null;
 
 		try 
 		{
-			ds = (DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase");
+			DataSource ds = (DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase");
 
-			con = ds.getConnection();PreparedStatement ps_connection = con.prepareStatement(
-					"select role, id_utilisateur from utilisateur, role where role.id_utilisateur = utilisateur.id_utilisateur and login = ? and 753_pass = ?");
+			con = ds.getConnection();
+			PreparedStatement ps_connection = con.prepareStatement(
+					"select role, utilisateur.id_utilisateur, nom, prenom, adresse_mail from utilisateur, role where role.id_utilisateur = utilisateur.id_utilisateur and login = ? and prima_pass = ?");
 			ps_connection.setString(1, login);
-			ps_connection.setString(2, pass);
+			ps_connection.setString(2, cryptPass(pass));
 			ResultSet result = ps_connection.executeQuery();
 
 			if(result.next())
 			{
-				/*infos[0] = result.getString("role");
-				infos[1] = result.getString("id_utilisateur");*/
+				user = new Utilisateur(result.getInt("id_utilisateur"), result.getString("nom"), result.getString("prenom"), result.getString("adresse_mail"), login, result.getString("role"));
 			}
 			else
 				throw new Exception();
@@ -61,7 +70,31 @@ public class Modele
 		}
 		finally{try{con.close();}catch(Exception e){}}
 
-		return null;
+		return user;
+	}
+	
+	private String cryptPass(String pass)
+	{
+		byte[] salt = new String("Clown").getBytes();
+
+	    try {
+	      MessageDigest digest = MessageDigest.getInstance("SHA-256");
+	      digest.reset();
+	      digest.update(salt);
+	      byte[] bDigest = digest.digest(pass.getBytes("UTF-8"));
+
+	      for (int i = 0; i < 10; i++) 
+	      {
+	        digest.reset();
+	        bDigest = digest.digest(bDigest);
+	      }
+
+	      return new String(Base64.getEncoder().encode(bDigest));
+	    } catch (java.security.NoSuchAlgorithmException | java.io.UnsupportedEncodingException e) {
+	      e.printStackTrace();
+	    }
+	    
+	    return null;
 	}
 	
 	public void ajoutUtilisateur(String nom, String prenom, String login, String mail, String pass){
