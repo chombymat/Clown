@@ -35,9 +35,9 @@
 			
 			<!--  droite -->
 			<ul class="nav navbar-nav navbar-right" >
-			<li><a class="navbar-brand" href="http://www.univ-lille1.fr/"><img alt="logo de lille 1" src="ulille.svg" width="auto" height="100%"></a></li>
-			<li><a class="navbar-brand" href="http://www.iut.univ-lille1.fr/"><img alt="logo de l'iut a de lille 1" src="logo-iut-lille1.svg" width="auto" height="100%"></a></li>
-			<li><a class="navbar-brand" href="https://da2i.univ-lille1.fr/"><img alt="logo de l'iut a de lille 1" src="logo-da2i.svg" width="auto" height="100%"></a></li>
+			<li><a class="navbar-brand"><img alt="ARS_nord_pas_de_calais" src="ARS_nord_pas_de_calais_modif_A4_MoyDef.jpg" width="auto" height="100%"></a></li>
+			<li><a class="navbar-brand"><img alt="logo de l'iut a de lille 1" src="logo-iut-lille1.svg" width="auto" height="100%"></a></li>
+			<li><a class="navbar-brand"><img alt="logo de l'iut a de lille 1" src="logo-da2i.svg" width="auto" height="100%"></a></li>
 			
 				<%
 				if (request.getUserPrincipal() == null) 
