@@ -13,3 +13,13 @@ h1{text-align:center;color: #C21950;}
   background-color: #A11846; 
   border-color: #130269; 
 } 
+
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
