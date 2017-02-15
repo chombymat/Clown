@@ -7,6 +7,7 @@
 <title>Accueil</title>
 </head>
 <body>
+<%@include file="/WEB-INF/navbar.jsp"%>
 <p>Page d'acceuil</p>
 <navbar><ul><li>a</li><li>b</li><li>c</li></ul></navbar>
 </body>
