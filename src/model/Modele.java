@@ -10,8 +10,21 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 import tools.Utilisateur;
 
-public class Connexion 
+public class Modele 
 {
+	DataSource ds = null;
+	PreparedStatement statement = null;
+	
+	
+	public Modele(){
+		try 
+		{
+			ds = (DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase");
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	public Utilisateur connexion(String login, String pass) throws Exception
 	{
 		//Utilisateur user = new Utilisateur(id, mail, login, role)
@@ -19,7 +32,7 @@ public class Connexion
 
 		try 
 		{
-			DataSource ds = (DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase");
+			ds = (DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase");
 
 			con = ds.getConnection();PreparedStatement ps_connection = con.prepareStatement(
 					"select role, id_utilisateur from utilisateur, role where role.id_utilisateur = utilisateur.id_utilisateur and login = ? and 753_pass = ?");
@@ -45,5 +58,28 @@ public class Connexion
 		finally{try{con.close();}catch(Exception e){}}
 
 		return null;
+	}
+	
+	public void ajoutUtilisateur(String nom, String prenom, String login, String mail, String pass){
+		try{
+			statement = ds.getConnection().prepareStatement("insert into utilisateur (nom, prenom, adresse_mail, login, prima_pass) values(?, ?, ?, ?, ?");
+			statement.setString(1, nom);
+			statement.setString(2, prenom);
+			statement.setString(3, login);
+			statement.setString(4, mail);
+			statement.setString(5,  pass);
+			statement.executeUpdate();
+			System.out.println("ajout de l'utiliateur : " + login);
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				statement.close();
+				ds.getConnection().close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
 	}
 }
