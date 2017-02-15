@@ -10,3 +10,44 @@ inscriptionMail
 inscriptionPass
 
 --------------------------------------------
+créer un Article
+
+servlet : /ManipulationArticle
+un champ name "ajouterArticle" avec value "true"
+
+champs "name":
+
+ajouterArticleTitre
+ajouterArticleDescription
+ajouterArticleIdProjetPere
+
+--------------------------------------------
+récupérer tous les articles d'un projet
+
+servlet : /ManipulationArticle
+un champ name "articlesProjet" avec value "true"
+
+champ "name" : 
+
+idProjetPere
+
+--------------------------------------------
+modifier un article
+
+servlet : /ManipulationArticle
+un champ name "modifierArticle" avec value "true"
+champ "name" : 
+
+modifierArticleId
+modifierArticletitre
+modifierArticleDescription
+
+--------------------------------------------
+supprimer un article
+
+servlet : /ManipulationArticle
+un champ name "supprimerArticle" avec value "true"
+
+champ "name" : 
+
+idSupprimerArticle

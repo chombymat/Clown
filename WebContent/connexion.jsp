@@ -19,6 +19,7 @@
     <div class="form-group">
       <label class="control-label col-sm-5">Identifiant:</label>
       <div class="col-sm-2 col-md-3">
+      ${ requestScope.erreur }
         <input type="text" class="form-control" placeholder="Identifiant" name="login" required>
       </div>
     </div>
