@@ -23,11 +23,17 @@ public class ManipulationArticle extends HttpServlet {
 					(String)request.getParameter("ajouterArticleDescription"),
 					Integer.valueOf(request.getParameter("ajouterArticleIdProjetPere")));
 		}
+		
 		else if(request.getParameter("modifierArticle") != null){
 			new Modele().modifierArticle(
 					Integer.valueOf(request.getParameter("modifierArticleId")),
 					(String)request.getParameter("modifierArticleTitre"),
 					(String)request.getParameter("modifierArticleDescription"));
+		}
+		
+		else if(request.getParameter("supprimerArticle") != null){
+			new Modele().supprimerArticle(
+					Integer.valueOf(request.getParameter("upprimerArticleId")));
 		}
 
 	}

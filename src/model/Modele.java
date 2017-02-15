@@ -125,4 +125,23 @@ public class Modele
 			}
 		}
 	}
+	
+	public void supprimerArticle(int id){
+		try{
+			statement = ds.getConnection().prepareStatement("delete from Article where id_article = ?");
+			statement.setInt(1, id);
+			statement.executeUpdate();
+			System.out.println("suppression de l'article : " + id);
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				statement.close();
+				ds.getConnection().close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
 }
