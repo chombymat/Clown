@@ -7,7 +7,9 @@ body{
 	background-color: #F5F5DC;
 	text-align: center;
 }
-
+h2{
+	color: #C21950;
+}
 .btn-sample:hover, 
 .btn-sample:focus, 
 .btn-sample:active, 
