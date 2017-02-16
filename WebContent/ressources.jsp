@@ -25,13 +25,6 @@
 	<body>
 	<p><span class="gauche"><button type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button type="submit" class="btn btn-sample">connexion</button></span><h1>Ressources</h1></p>
 		<%@include file="/WEB-INF/navbar.jsp"%>
-		<div id="menu_gauche">
-			<ul>
-				<li><input type="button" value="Le Clown" onclick="affiche_text('[diapo photos]'); change_video('https://www.youtube.com/embed/ZyTw6V5JTwM');"></li>
-				<li><input type="button" value="Pratique et Sensoriel" onclick="affiche_text('[texte] lien vers autres sites'); change_video('https://www.youtube.com/embed/v1ixBpdhpeI');"></li>
-				<li><input type="button" value="Expression Corporelle" onclick="affiche_text('[texte] présentation Comité Technique / présentation partenaires financiers [lien] vers autres sites'); change_video('https://www.youtube.com/embed/uU-d_DN_LZU');"></li>	
-			</ul>
-		</div>
 		<div id="change">
 			[texte] présentation rapide Ressources
 		</div>
