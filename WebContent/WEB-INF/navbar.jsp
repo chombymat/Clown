@@ -4,7 +4,7 @@
 		var url = window.location.href;
 		var lastIndexSlash = url.lastIndexOf('/');
 		var page = url.substring(lastIndexSlash + 1, url.lastIndexOf('?') == -1 ? url.length : url.lastIndexOf('?'));
-
+		$("#video").hide();
 		if (page === '')
 		{
 			$("#accueil").attr('class', 'active');
@@ -13,11 +13,38 @@
 			$("#" + page).attr('class', 'active');
 		}
 		
+		var url = window.location.href;
+		var captured = /lib=([^&]+)/.exec(url)[1];
+		var result = captured ? captured : 'myDefaultValue';
+		//Changer ici le contenu des démarches
+		switch(result){
+			case "Clown":
+				document.getElementById("change").innerHTML = "[texte] présentation rapide Clown";
+				//document.getElementById("video").src = "";
+				break;
+			case "Sensoriel":
+				document.getElementById("change").innerHTML = "[texte] présentation rapide Sensoriel";
+				//document.getElementById("video").src = "";
+				break;
+			case "Corporelle":
+				document.getElementById("change").innerHTML = "[texte] présentation rapide Corporelle";
+				//document.getElementById("video").src = "";
+				break;
+			default:
+				document.getElementById("change").innerHTML = "De base";
+				break;
+		}
+		
 		$('ul.nav li.dropdown').hover(function() {
-			  $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeIn(500);
+			  $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeIn(100);
 			}, function() {
-			  $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeOut(500);
+			  $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeOut(100);
 			});
+		function affiche_text(text){
+			document.getElementById("change").innerHTML = text;
+		}
+		
+		
 	});
 
 </script>
@@ -27,17 +54,14 @@
 			<!-- gauche -->
 			<ul class="nav navbar-nav">
 				<li><a href="index.jsp">Home</a></li>
-				<li><a href="demarche.jsp">La démarche</a></li>
 				<li class="dropdown">
 	            <a href="demarche.jsp" class="dropdown-toggle" data-toggle="dropdown">La démarche <b class="caret"></b></a>
 	            <ul class="dropdown-menu">
-	            	<li><a href="#">Le Clown</a></li>
-	                <li><a href="#">Pratique et Sensoriel</a></li>
-	                <li><a href="#">Expression Corporelle</a></li>
+	            	<li><a href="demarche.jsp?lib=Clown" onclick="choice()">Le Clown</a></li>
+	            	<li><a href="demarche.jsp?lib=Sensoriel" onclick="choice()">Pratique et Sensoriel</a></li>
+	            	<li><a href="demarche.jsp?lib=Corporelle" onclick="choice()">Expression Corporelle</a></li>
 	            </ul>
 	            </li>
-				<li><a href="atelier.jsp">Les ateliers</a></li>
-				
 				<li class="dropdown">
 	            <a href="atelier.jsp" class="dropdown-toggle" data-toggle="dropdown">Les ateliers<b class="caret"></b></a>
 	            <ul class="dropdown-menu">

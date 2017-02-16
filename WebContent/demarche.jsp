@@ -10,24 +10,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="style.css" />
-<script language="JavaScript">
-function affiche_text(text){
-	document.getElementById("change").innerHTML = text;
-}
-function change_video(url){
-	document.getElementById("video").src = url;
-}
-function cacher(id){
-	document.getElementById(id).style.display = 'none';
-}
-</script>
 </head>
 <body>
-<p><span class="gauche"><button type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button type="submit" class="btn btn-sample">connexion</button></span><h1>La démarche</h1></p>
-		<%@include file="/WEB-INF/navbar.jsp"%>
+<p><span class="gauche">
+		<button type="submit" class="btn btn-sample">Nous contacter</button>
+	</span>
+	<span class="droite">
+	<button type="submit" class="btn btn-sample">connexion</button></span>
+	<h1>La démarche</h1>
+</p>
+	<%@include file="/WEB-INF/navbar.jsp"%>
 	<div id="change">
-		[texte] présentation rapide Démarche
+		[texte] présentation rapide Démarche<br>
+		<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/sDj72zqZakE" frameborder="0" allowfullscreen></iframe>
 	</div>
-	<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/_TSZe3mfGYg" frameborder="0" allowfullscreen></iframe>
 </body>
 </html>
