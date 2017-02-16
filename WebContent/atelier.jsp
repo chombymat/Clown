@@ -10,7 +10,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="style.css" />
-<script language="JavaScript">
+<script>
+$(document).ready(function(){
+	$('#bt_connexion').on('click', function(){
+		document.location="./connexion.jsp";
+	});
+	$('#bt_contact').on('click', function(){
+		document.location="./contact.jsp";
+	});
+});
 function affiche_text(text){
 	document.getElementById("change").innerHTML = text;
 }
@@ -23,7 +31,7 @@ function cacher(id){
 </script>
 </head>
 <body>
-<p><span class="gauche"><button type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button type="submit" class="btn btn-sample">connexion</button></span><h1>Les Ateliers</h1></p>
+<p><span class="gauche"><button id="bt_contact" type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button id="bt_connexion" type="submit" class="btn btn-sample">connexion</button></span><h1>Les Ateliers</h1></p>
 		<%@include file="/WEB-INF/navbar.jsp"%>
 	<div id="menu_gauche">
 		[texte] présentation générale des 5 ateliers et spectacle

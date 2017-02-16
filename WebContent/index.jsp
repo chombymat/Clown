@@ -16,9 +16,12 @@ $(document).ready(function(){
 	$('#bt_connexion').on('click', function(){
 		document.location="./connexion.jsp";
 	});
+	$('#bt_contact').on('click', function(){
+		document.location="./contact.jsp";
+	});
 });
 </script>
-<p><span class="gauche"><button type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button id="bt_connexion" type="submit" class="btn btn-sample">connexion</button></span><h1>Page d'accueil</h1></p>
+<p><span class="gauche"><button id="bt_contact" type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button id="bt_connexion" type="submit" class="btn btn-sample">connexion</button></span><h1>Page d'accueil</h1></p>
 <%@include file="/WEB-INF/navbar.jsp"%>
 <h2>Le projet</h2>
 <h2>L'association</h2>
