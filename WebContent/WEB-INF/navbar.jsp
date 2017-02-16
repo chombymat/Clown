@@ -14,9 +14,9 @@
 		}
 		
 		$('ul.nav li.dropdown').hover(function() {
-			  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+			  $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeIn(500);
 			}, function() {
-			  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+			  $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeOut(500);
 			});
 	});
 
@@ -31,12 +31,27 @@
 				<li class="dropdown">
 	            <a href="demarche.jsp" class="dropdown-toggle" data-toggle="dropdown">La démarche <b class="caret"></b></a>
 	            <ul class="dropdown-menu">
-	            	<li><a href="#">Action</a></li>
-	                <li><a href="#">Another action</a></li>
-	                <li><a href="#">Something else here</a></li>
+	            	<li><a href="#">Le Clown</a></li>
+	                <li><a href="#">Pratique et Sensoriel</a></li>
+	                <li><a href="#">Expression Corporelle</a></li>
 	            </ul>
 	            </li>
 				<li><a href="atelier.jsp">Les ateliers</a></li>
+				
+				<li class="dropdown">
+	            <a href="atelier.jsp" class="dropdown-toggle" data-toggle="dropdown">Les ateliers<b class="caret"></b></a>
+	            <ul class="dropdown-menu">
+	            	<li><a href="#">Le paint</a></li>
+	                <li><a href="#">Le lait</a></li>
+	                <li><a href="#">Les 7 familles</a></li>
+	                <li><a href="#">Le menu equilibré</a></li>
+	                <li><a href="#">Alimentation et environement</a></li>
+	                <li><a href="#">Le spectacle</a></li>
+	            </ul>
+	            </li>
+				
+				
+				
 				<li><a href="ressources.jsp">Ressources</a></li>
 			</ul>
 		</div>
