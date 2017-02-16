@@ -99,12 +99,18 @@ public class Modele
 	
 	public void ajoutUtilisateur(String nom, String prenom, String login, String mail, String pass){
 		try{
-			statement = ds.getConnection().prepareStatement("insert into utilisateur (nom, prenom, adresse_mail, login, prima_pass) values(?, ?, ?, ?, ?");
+			statement = ds.getConnection().prepareStatement("insert into utilisateur (nom, prenom, adresse_mail, login, prima_pass) values(?, ?, ?, ?, ?)");
 			statement.setString(1, nom);
 			statement.setString(2, prenom);
+<<<<<<< HEAD
 			statement.setString(3, login);
 			statement.setString(4, mail);
 			statement.setString(5, cryptPass(pass));
+=======
+			statement.setString(3, mail);
+			statement.setString(4, login);
+			statement.setString(5,  pass);
+>>>>>>> e1ee8012bd93f8c17402ea0c9cec2c7e2e0bb8a7
 			statement.executeUpdate();
 			System.out.println("ajout de l'utiliateur : " + login);
 
