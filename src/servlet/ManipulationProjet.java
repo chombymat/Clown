@@ -19,27 +19,16 @@ public class ManipulationProjet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		if(request.getParameter("ajouterMedia") != null){
-			String type = "pdf";
-			if(request.getParameter("ajouterMediaTypePhoto") != null)
-				type = "img";
-			else if(request.getParameter("ajouterMediaTypeVideo") != null)
-				type = "vid";
-			new Modele().ajouterMedia(
-					(String)request.getParameter("ajouterMediaChemin"),type, 
-					Integer.valueOf(request.getParameter("ajouterIdArticlePere")));
+		if(request.getParameter("ajouterProjet") != null){
+			new Modele().ajouterProjet(
+					(String)request.getParameter("ajouterProjetTitre"), 
+					(String)request.getParameter("ajouterProjetDescription"));
 		}
 		
 		
 		else if(request.getParameter("supprimerMedia") != null){
-			new Modele().supprimerMedia(
-					Integer.valueOf(request.getParameter("supprimerMediaId")));
-		}
-		
-		
-		else if(request.getParameter("mediasArticle") != null){
-			new Modele().getMedias(
-					Integer.valueOf(request.getParameter("idArticlePere")));
+			new Modele().supprimerProjet(
+					Integer.valueOf(request.getParameter("supprimerProjetId")));
 		}
 
 	}
