@@ -104,7 +104,7 @@ public class Modele
 			statement.setString(2, prenom);
 			statement.setString(3, login);
 			statement.setString(4, mail);
-			statement.setString(5,  pass);
+			statement.setString(5, cryptPass(pass));
 			statement.executeUpdate();
 			System.out.println("ajout de l'utiliateur : " + login);
 

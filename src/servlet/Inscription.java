@@ -20,12 +20,14 @@ public class Inscription extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Modele modele = new Modele();
-		modele.ajoutUtilisateur(
+		if(((String)request.getParameter("inscriptionPass")).equals((String)request.getParameter("inscriptionPass2"))){
+			modele.ajoutUtilisateur(
 			(String)request.getParameter("inscriptionNom"),
 			(String)request.getParameter("inscriptionPrenom"),
 			(String)request.getParameter("inscriptionLogin"),
 			(String)request.getParameter("inscriptionMail"),
 			(String)request.getParameter("inscriptionPass"));
+		}
 	}
 
 }
