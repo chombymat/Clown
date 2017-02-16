@@ -19,7 +19,7 @@
     <div class="form-group">
       <label class="control-label col-sm-5">Identifiant:</label>
       <div class="col-sm-2 col-md-3">
-      ${ requestScope.erreur }
+      	<span class="erreur">${ requestScope.erreur }</span>
         <input type="text" class="form-control" placeholder="Identifiant" name="login" required>
       </div>
     </div>
@@ -31,7 +31,7 @@
     </div>
    
     <div class="form-group">        
-      <div class="col-sm-offset-5 col-sm-8">
+      <div class="col-sm-offset-2 col-sm-8">
         <button type="submit" class="btn btn-sample">Se connecter</button>  <button id="reset" class="btn btn-sample">Mot de passe oublié ?</button>
       </div>
     </div>

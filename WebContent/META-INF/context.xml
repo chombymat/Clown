@@ -10,7 +10,7 @@
 		maxActive="8" maxIdle="4" maxWait="10000" driverClassName="org.sqlite.JDBC"
 		url="jdbc:sqlite:/home/infoetu/markeyj/workspace/ProjetWeb/ProjetWebConnexion.db" />-->
   
-  <!-- <Resource name="mail/Session" auth="Container"
+  <!--<Resource name="mail/Session" auth="Container"
         type="javax.mail.Session"
         mail.smtp.user="tweetbookda2i@gmail.com"
         mail.smtp.password="da2i20162017"

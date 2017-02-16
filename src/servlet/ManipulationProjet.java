@@ -1,8 +1,7 @@
 package servlet;
+
 import model.Modele;
 import java.io.IOException;
-
-import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,24 +9,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/Inscription")
-public class Inscription extends HttpServlet {
+@WebServlet("/ManipulationProjet")
+public class ManipulationProjet extends HttpServlet {
 
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Modele modele = new Modele();
-		if(((String)request.getParameter("inscriptionPass")).equals((String)request.getParameter("inscriptionPass2"))){
-			modele.ajoutUtilisateur(
-			(String)request.getParameter("inscriptionNom"),
-			(String)request.getParameter("inscriptionPrenom"),
-			(String)request.getParameter("inscriptionLogin"),
-			(String)request.getParameter("inscriptionMail"),
-			(String)request.getParameter("inscriptionPass"));
+		
+		
+		if(request.getParameter("ajouterProjet") != null){
+			new Modele().ajouterProjet(
+					(String)request.getParameter("ajouterProjetTitre"), 
+					(String)request.getParameter("ajouterProjetDescription"));
 		}
+		
+		
+		else if(request.getParameter("supprimerMedia") != null){
+			new Modele().supprimerProjet(
+					Integer.valueOf(request.getParameter("supprimerProjetId")));
+		}
+
 	}
 
 }
