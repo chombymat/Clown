@@ -16,7 +16,7 @@
 		<div class="form-group">
 			<label class="control-label col-sm-5">Identifiant:</label>
 			<div class="col-sm-2">
-				<input type="text" class="form-control" placeholder="Identifiant" name="login" required>
+				<input type="text" class="form-control" placeholder="Identifiant" name="inscriptionLogin" required>
 			</div>
 		</div>
 		<div class="form-group">
@@ -46,7 +46,7 @@
 		<div class="form-group">
 			<label class="control-label col-sm-5" for="email">Email:</label>
 			<div class="col-sm-2">
-				<input type="email" class="form-control" name="inscriptionMail" id="email" placeholder="Entrer Email" required>
+				<input type="email" class="form-control" name="inscriptionMail" placeholder="Entrer Email" required>
 			</div>
 		</div>
 		

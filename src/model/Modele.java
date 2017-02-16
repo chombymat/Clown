@@ -102,8 +102,8 @@ public class Modele
 			statement = ds.getConnection().prepareStatement("insert into utilisateur (nom, prenom, adresse_mail, login, prima_pass) values(?, ?, ?, ?, ?)");
 			statement.setString(1, nom);
 			statement.setString(2, prenom);
-			statement.setString(3, login);
-			statement.setString(4, mail);
+			statement.setString(3, mail);
+			statement.setString(4, login);
 			statement.setString(5,  pass);
 			statement.executeUpdate();
 			System.out.println("ajout de l'utiliateur : " + login);
