@@ -1,20 +1,5 @@
 package model;
 
-<<<<<<< HEAD
-import tools.*;
-=======
-import java.security.MessageDigest;
->>>>>>> ff39a33a056cad0d85d5620058c9148ec817487e
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-<<<<<<< HEAD
-import java.util.ArrayList;
-=======
-import java.util.Base64;
->>>>>>> ff39a33a056cad0d85d5620058c9148ec817487e
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
