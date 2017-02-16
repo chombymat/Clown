@@ -26,16 +26,6 @@ function cacher(id){
 <p><span class="gauche"><button type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button type="submit" class="btn btn-sample">connexion</button></span><h1>Les Ateliers</h1></p>
 		<%@include file="/WEB-INF/navbar.jsp"%>
 	<div id="menu_gauche">
-		<ul>
-			<li><input type="button" value="1. Le Pain" onclick="affiche_text('[texte] présentation rapide Clown'); change_video('https://www.youtube.com/embed/ZyTw6V5JTwM');"></li>
-			<li><input type="button" value="2 Le Lait" onclick="affiche_text('[texte] présentation rapide Clown'); change_video('https://www.youtube.com/embed/ZyTw6V5JTwM');"></li>
-			<li><input type="button" value="3. Les 7 Familles" onclick="affiche_text('[texte] présentation rapide Clown'); change_video('https://www.youtube.com/embed/ZyTw6V5JTwM');"></li>
-			<li><input type="button" value="4. Le Menu Equilibré" onclick="affiche_text('[texte] présentation rapide Clown'); change_video('https://www.youtube.com/embed/ZyTw6V5JTwM');"></li>
-			<li><input type="button" value="5. Alimentation et environnement" onclick="affiche_text('[texte] présentation rapide Clown'); change_video('https://www.youtube.com/embed/ZyTw6V5JTwM');"></li>
-			<li><input type="button" value="Le Spectacle" onclick="affiche_text('[texte] présentation rapide Clown'); change_video('https://www.youtube.com/embed/ZyTw6V5JTwM');"></li>
-		</ul>
-	</div>
-	<div id="change">
 		[texte] présentation générale des 5 ateliers et spectacle
 	</div>
 	<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/_TSZe3mfGYg" frameborder="0" allowfullscreen></iframe>[vidéo]
