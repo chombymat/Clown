@@ -11,7 +11,8 @@
 </head>
 <body>
 	<h1>Inscription</h1>
-	<form class="form-horizontal" method="post" action="./inscription">
+	<hr/>
+	<form class="form-horizontal" method="post" action="./Inscription">
 		<div class="form-group">
 			<label class="control-label col-sm-5">Identifiant:</label>
 			<div class="col-sm-2">
