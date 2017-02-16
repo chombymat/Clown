@@ -14,6 +14,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import tools.Article;
+import tools.Media;
 import tools.Utilisateur;
 
 public class Modele 
@@ -90,6 +91,12 @@ public class Modele
 	    return null;
 	}
 	
+	
+	
+	//------------------------------------------------------UTILISATEUR------------------------------------------------------------
+	
+	
+	
 	public void ajoutUtilisateur(String nom, String prenom, String login, String mail, String pass){
 		try{
 			statement = ds.getConnection().prepareStatement("insert into utilisateur (nom, prenom, adresse_mail, login, prima_pass) values(?, ?, ?, ?, ?");
@@ -113,6 +120,12 @@ public class Modele
 		}
 	}
 	
+	
+	
+	//------------------------------------------------------ARTICLE------------------------------------------------------------
+	
+	
+	
 	public void ajouterArticle(String titre, String description, int idProjet){
 		try{
 			statement = ds.getConnection().prepareStatement("insert into Article (titre, description, id_projet) values(?, ?, ?)");
@@ -133,6 +146,8 @@ public class Modele
 			}
 		}
 	}
+	
+	
 	
 	public void modifierArticle(int id, String titre, String description){
 		try{
@@ -155,6 +170,8 @@ public class Modele
 		}
 	}
 	
+	
+	
 	public void supprimerArticle(int id){
 		try{
 			statement = ds.getConnection().prepareStatement("delete from Article where id_article = ?");
@@ -174,6 +191,8 @@ public class Modele
 		}
 	}
 	
+	
+	
 	public ArrayList<Article> getArticles(int idProjet){
 		ArrayList<Article> articles = new ArrayList<Article>();
 		try{
@@ -184,6 +203,77 @@ public class Modele
 				articles.add(new Article(result.getInt(1), result.getString(2), result.getString(3)));
 			}
 			return articles;
+			
+		} catch (Exception e){
+			e.printStackTrace();
+			return null;
+		} finally{
+			try{
+				statement.close();
+				ds.getConnection().close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	//------------------------------------------------------MEDIA------------------------------------------------------------
+	
+	
+	public void ajouterMedia(String chemin, String type, int idArticle){
+		try{
+			statement = ds.getConnection().prepareStatement("insert into Media (chemin, type, id_article) values(?, ?, ?)");
+			statement.setString(1, chemin);
+			statement.setString(2, type);
+			statement.setInt(3, idArticle);
+			statement.executeUpdate();
+			System.out.println("ajout du media : " + chemin);
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				statement.close();
+				ds.getConnection().close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	public void supprimerMedia(int id){
+		try{
+			statement = ds.getConnection().prepareStatement("delete from Media where id_media = ?");
+			statement.setInt(1, id);
+			statement.executeUpdate();
+			System.out.println("suppression du media : " + id);
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				statement.close();
+				ds.getConnection().close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	
+	public ArrayList<Media> getMedias(int idArticle){
+		ArrayList<Media> medias = new ArrayList<Media>();
+		try{
+			statement = ds.getConnection().prepareStatement("select id_media, id_article, chemin, type from media where id_article = ?");
+			statement.setInt(1, idArticle);
+			result = statement.executeQuery();
+			while(result.next()){
+				medias.add(new Media(result.getInt(1), result.getInt(2), result.getString(3), result.getString(4)));
+			}
+			return medias;
 			
 		} catch (Exception e){
 			e.printStackTrace();
