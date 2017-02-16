@@ -38,7 +38,7 @@ public class Modele
 
 		try 
 		{
-			DataSource ds = (DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase");
+			ds = (DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase");
 
 			con = ds.getConnection();
 			PreparedStatement ps_connection = con.prepareStatement(

@@ -26,7 +26,6 @@ public class Inscription extends HttpServlet {
 			(String)request.getParameter("inscriptionLogin"),
 			(String)request.getParameter("inscriptionMail"),
 			(String)request.getParameter("inscriptionPass"));
-
 	}
 
 }
