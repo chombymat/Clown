@@ -107,7 +107,22 @@ public class Modele
 			statement.setString(5, cryptPass(pass));
 
 			statement.executeUpdate();
-			System.out.println("ajout de l'utiliateur : " + login);
+			
+			statement = ds.getConnection().prepareStatement("select id_utilisateur from utilisateur where login = ?");
+			statement.setString(1, login);
+			
+			result = statement.executeQuery();
+			if(result.next()){
+				
+				int id = result.getInt(1);
+		
+				statement = ds.getConnection().prepareStatement("insert into role (id_utilisateur, role) values(?, ?)");
+				statement.setInt(1, id);
+				statement.setString(2, "role2");
+	
+				statement.executeUpdate();
+				System.out.println("ajout de l'utiliateur : " + login);
+			}
 
 		} catch (Exception e){
 			e.printStackTrace();
