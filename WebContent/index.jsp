@@ -11,20 +11,7 @@
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<script>
-$(document).ready(function(){
-	$('#bt_connexion').on('click', function(){
-		document.location="./connexion.jsp";
-	});
-	$('#bt_contact').on('click', function(){
-		document.location="./contact.jsp";
-	});
-	$('#bt_inscription').on('click', function(){
-		document.location="./inscription.jsp";
-	});
-});
-</script>
-<p><span class="gauche"><button id="bt_contact" type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button id="bt_connexion" type="submit" class="btn btn-sample">connexion</button></span><span class="droite"><button id="bt_inscription" type="submit" class="btn btn-sample">inscription</button></span><h1>Page d'accueil</h1></p>
+
 <%@include file="/WEB-INF/navbar.jsp"%>
 <h2>Le projet</h2>
 <h2>L'association</h2>

@@ -24,19 +24,36 @@ function cacher(id){
 </head>
 <body>
 <p><span class="droite"><button type="submit" class="btn btn-sample">connexion</button></span><h1>Nous Contacter</h1></p>
-		<%@include file="/WEB-INF/navbar.jsp"%>
-	<div id="menu_gauche">
-		<ul>
-		  <li><img src="http://www.coloriage.tv/dessincolo/clown.png" width="100" height="100" onclick="affiche_text('[diapo photos]');"/></li>
-		  <li><img src="http://blog.retif.eu/wp-content/uploads/2014/07/marketing-sensoriel.jpg" width="100" height="100" onclick="affiche_text('[texte] lien vers autres sites');"/></li>
-		  <li><img src="http://www.mjcteyran.fr/images/stories/expression_corporelle.jpg" width="100" height="100" onclick="affiche_text('[texte] présentation Comité Technique / présentation partenaires financiers [lien] vers autres sites');"/></li>
-		</ul>
-	</div>
+<%@include file="/WEB-INF/navbar.jsp"%>
 	<div id="change">
-		<p>Merci de votre visite<br>
-		Formulaire de contact<br>
-		OU<br>
-		adresse mail</p>
+		<form class="form-horizontal" method="post" action="./connexion">
+		   <div class="form-group">
+		     <label class="control-label col-sm-5">Civilité:</label>
+		     <div class="col-sm-2 col-md-3">          
+		       <input type="radio" class="btn btn-sample" name="gender">Monsieur<br>
+		       <input type="radio" class="btn btn-sample" name="gender">Madame
+		     </div>
+		   </div>
+		   <div class="form-group">
+		     <label class="control-label col-sm-5">Identifiant:</label>
+		     <div class="col-sm-2 col-md-3">
+		     	<span class="erreur">${ requestScope.erreur }</span>
+		       <input type="text" class="form-control" placeholder="Identifiant" name="login" required>
+		     </div>
+		   </div>
+		   <div class="form-group">
+		     <label class="control-label col-sm-5">Mot de passe:</label>
+		     <div class="col-sm-2 col-md-3">          
+		       <input type="password" class="form-control" name="pass" placeholder="Mot de passe">
+		     </div>
+		   </div>
+		   <div class="form-group">        
+		     <div class="col-sm-offset-2 col-sm-8">
+		       <button type="submit" class="btn btn-sample">Se connecter</button>  <button id="reset" class="btn btn-sample">Mot de passe oublié ?</button>
+		     </div>
+		   </div>
+		</form>
 	</div>
+	<%@include file="/footer.html"%>
 </body>
 </html>

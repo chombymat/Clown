@@ -103,7 +103,22 @@ public class Modele
 			statement.setString(5, cryptPass(pass));
 
 			statement.executeUpdate();
-			System.out.println("ajout de l'utiliateur : " + login);
+			
+			statement = ds.getConnection().prepareStatement("select id_utilisateur from utilisateur where login = ?");
+			statement.setString(1, login);
+			
+			result = statement.executeQuery();
+			if(result.next()){
+				
+				int id = result.getInt(1);
+		
+				statement = ds.getConnection().prepareStatement("insert into role (id_utilisateur, role) values(?, ?)");
+				statement.setInt(1, id);
+				statement.setString(2, "role2");
+	
+				statement.executeUpdate();
+				System.out.println("ajout de l'utiliateur : " + login);
+			}
 
 		} catch (Exception e){
 			e.printStackTrace();
@@ -275,6 +290,49 @@ public class Modele
 		} catch (Exception e){
 			e.printStackTrace();
 			return null;
+		} finally{
+			try{
+				statement.close();
+				ds.getConnection().close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	//------------------------------------------------------PROJET------------------------------------------------------------
+	
+	
+	public void ajouterProjet(String titre, String description){
+		try{
+			statement = ds.getConnection().prepareStatement("insert into Projet (titre, description) values(?, ?)");
+			statement.setString(1, titre);
+			statement.setString(2, description);
+			statement.executeUpdate();
+			System.out.println("ajout du media : " + titre);
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				statement.close();
+				ds.getConnection().close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	public void supprimerProjet(int id){
+		try{
+			statement = ds.getConnection().prepareStatement("delete from Projet where id_projet = ?");
+			statement.setInt(1, id);
+			statement.executeUpdate();
+			System.out.println("suppression du projet : " + id);
+
+		} catch (Exception e){
+			e.printStackTrace();
 		} finally{
 			try{
 				statement.close();
