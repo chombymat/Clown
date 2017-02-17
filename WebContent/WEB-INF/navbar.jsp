@@ -21,15 +21,15 @@
 		});
 		
 		if(window.location.href.indexOf("index.jsp") > -1) {
-		    document.getElementById("header").innerHTML = "Page d'accueil";
+		    $('#header').html("Page d'accueil");
 		} else if(window.location.href.indexOf("ressources.jsp") > -1){
-		    document.getElementById("header").innerHTML = "Ressources";
+			$('#header').html("Ressources");
 		} else if(window.location.href.indexOf("atelier.jsp") > -1){
-		    document.getElementById("header").innerHTML = "Les ateliers";
+			$('#header').html("Les ateliers");
 		} else if(window.location.href.indexOf("demarche.jsp") > -1){
-		    document.getElementById("header").innerHTML = "La démarche";
+			$('#header').html("La démarche");
 		} else if(window.location.href.indexOf("contact.jsp") > -1){
-		    document.getElementById("header").innerHTML = "Nous contacter";
+			$('#header').html("Nous contacter");
 		}
 		
 	});
