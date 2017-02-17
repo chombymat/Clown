@@ -29,6 +29,7 @@
 		} else if(window.location.href.indexOf("demarche.jsp") > -1){
 			$('#header').html("La démarche");
 		} else if(window.location.href.indexOf("contact.jsp") > -1){
+			$('#bt_contact').hide();
 			$('#header').html("Nous contacter");
 		}
 		
