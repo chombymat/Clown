@@ -12,11 +12,11 @@
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-<%@include file="/WEB-INF/navbar.jsp"%>
-<div id="change">
-	[texte] présentation rapide Démarche<br>
-	<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/sDj72zqZakE" frameborder="0" allowfullscreen></iframe>
-</div>
+	<%@include file="/WEB-INF/navbar.jsp"%>
+	<div id="change">
+		[texte] présentation rapide Démarche<br>
+		<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/sDj72zqZakE" frameborder="0" allowfullscreen></iframe>
+	</div>
+	<%@include file="/footer.html"%>
 </body>
 </html>

@@ -11,14 +11,6 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="style.css" />
 		<script language="JavaScript">
-		$(document).ready(function(){
-			$('#bt_connexion').on('click', function(){
-				document.location="./connexion.jsp";
-			});
-			$('#bt_contact').on('click', function(){
-				document.location="./contact.jsp";
-			});
-		});
 		function affiche_text(text){
 			document.getElementById("change").innerHTML = text;
 		}
@@ -32,10 +24,10 @@
 		</script>
 	</head>
 	<body>
-	<p><span class="gauche"><button id="bt_contact" type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button id="bt_connexion" type="submit" class="btn btn-sample">connexion</button></span><h1>Ressources</h1></p>
 		<%@include file="/WEB-INF/navbar.jsp"%>
 		<div id="change">
 			[texte] présentation rapide Ressources
 		</div>
 	</body>
+	<%@include file="/footer.html"%>
 </html>

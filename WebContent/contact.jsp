@@ -54,5 +54,6 @@ function cacher(id){
 		   </div>
 		</form>
 	</div>
+	<%@include file="/footer.html"%>
 </body>
 </html>
