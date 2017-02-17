@@ -34,6 +34,6 @@
       </div>
     </div>
   </form>
-  <%@include file="/footer.html"%>
+  <%@include file="/WEB-INF/footer.html"%>
 </body>
 </html>

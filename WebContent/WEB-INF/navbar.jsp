@@ -28,6 +28,8 @@
 		    document.getElementById("header").innerHTML = "Les ateliers";
 		} else if(window.location.href.indexOf("demarche.jsp") > -1){
 		    document.getElementById("header").innerHTML = "La démarche";
+		} else if(window.location.href.indexOf("contact.jsp") > -1){
+		    document.getElementById("header").innerHTML = "Nous contacter";
 		}
 		
 	});
