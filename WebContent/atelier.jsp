@@ -31,12 +31,12 @@ function cacher(id){
 </script>
 </head>
 <body>
-		<%@include file="/WEB-INF/navbar.jsp"%>
-	<div id="menu_gauche">
-		[texte] présentation générale des 5 ateliers et spectacle
+	<%@include file="/WEB-INF/navbarAteliers.jsp"%>
+	<div id="change">
+		[texte] présentation rapide Démarche<br>
 	</div>
-	<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/_TSZe3mfGYg" frameborder="0" allowfullscreen></iframe>[vidéo]
 	<img id="image" width="560" height="315">[photos]</img>
-<%@include file="/footer.html"%>
+	<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/_TSZe3mfGYg" frameborder="0" allowfullscreen></iframe>[vidéo]
+	<%@include file="/footer.html"%>
 </body>
 </html>
