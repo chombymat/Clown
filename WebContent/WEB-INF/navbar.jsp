@@ -58,12 +58,16 @@
 			document.location="./inscription.jsp";
 		});
 	});
+	
+	function displayResult() {
+	    document.getElementById("ressource").innerHTML = "Have a nice day!";
+	}
 </script>
 
 		<nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<p><span class="gauche"><button id="bt_contact" type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button id="bt_connexion" type="submit" class="btn btn-sample">connexion</button></span><span class="droite"><button id="bt_inscription" type="submit" class="btn btn-sample">inscription</button></span><h1>Ressources</h1></p>
+			<p><span class="gauche"><button id="bt_contact" type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button id="bt_connexion" type="submit" class="btn btn-sample">connexion</button></span><span class="droite"><button id="bt_inscription" type="submit" class="btn btn-sample">inscription</button></span><h1 id="ressource" onload="displayResult()">Ressource</h1></p>
 		
 			<!-- gauche -->
 			<ul class="nav navbar-nav">
@@ -87,9 +91,6 @@
 	                <li><a href="#">Le spectacle</a></li>
 	            </ul>
 	            </li>
-				
-				
-				
 				<li><a href="ressources.jsp">Ressources</a></li>
 			</ul>
 		</div>
