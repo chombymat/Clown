@@ -12,30 +12,27 @@
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<h1>test</h1>
-<div class="container">
-<h1>Se connecter</h1>
+	<h1>Se connecter</h1>
+	<hr/>
  <form class="form-horizontal" method="post" action="./connexion">
     <div class="form-group">
-      <label class="control-label col-sm-5">Identifiant:</label>
-      <div class="col-sm-2 col-md-3">
+      <label class="control-label col-sm-4">Identifiant :</label>
+      <div class="col-sm-4">
       	<span class="erreur">${ requestScope.erreur }</span>
         <input type="text" class="form-control" placeholder="Identifiant" name="login" required>
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-5">Mot de passe:</label>
-      <div class="col-sm-2 col-md-3">          
+      <label class="control-label col-sm-4">Mot de passe :</label>
+      <div class="col-sm-4">          
         <input type="password" class="form-control" name="pass" placeholder="Mot de passe">
       </div>
     </div>
-   
     <div class="form-group">        
-      <div class="col-sm-offset-3 col-sm-7">
+      <div class="col-sm-offset-4 col-sm-4">
         <button type="submit" class="btn btn-sample">Se connecter</button>  <button id="reset" class="btn btn-sample">Mot de passe oublié ?</button>
       </div>
     </div>
   </form>
-</div>
 </body>
 </html>

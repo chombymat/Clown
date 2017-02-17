@@ -29,4 +29,5 @@
 			[texte] présentation rapide Ressources
 		</div>
 	</body>
+	<%@include file="/footer.html"%>
 </html>

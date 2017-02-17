@@ -37,5 +37,6 @@ function cacher(id){
 		OU<br>
 		adresse mail</p>
 	</div>
+	<%@include file="/footer.html"%>
 </body>
 </html>
