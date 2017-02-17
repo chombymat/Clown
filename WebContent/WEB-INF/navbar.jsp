@@ -1,41 +1,6 @@
 <script>
 	$(document).ready(function()
 	{
-		var url = window.location.href;
-		var lastIndexSlash = url.lastIndexOf('/');
-		var page = url.substring(lastIndexSlash + 1, url.lastIndexOf('?') == -1 ? url.length : url.lastIndexOf('?'));
-		$("#video").hide();
-		if (page === '')
-		{
-			$("#accueil").attr('class', 'active');
-		} else
-		{
-			$("#" + page).attr('class', 'active');
-		}
-		
-		var url = window.location.href;
-		var captured = /lib=([^&]+)/.exec(url)[1];
-		var result = captured ? captured : 'myDefaultValue';
-		//Changer ici le contenu des démarches
-		switch(result){
-			case "Clown":
-				document.getElementById("change").innerHTML = "[texte] présentation rapide Clown";
-				document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
-				break;
-			case "Sensoriel":
-				document.getElementById("change").innerHTML = "[texte] présentation rapide Sensoriel";
-				document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
-				break;
-			case "Corporelle":
-				document.getElementById("change").innerHTML = "[texte] présentation rapide Corporelle";
-				document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
-				break;
-			default:
-				document.getElementById("change").innerHTML = "De base";
-				document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
-				break;
-		}
-		
 		$('ul.nav li.dropdown').hover(function() {
 			  $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeIn(100);
 			}, function() {
@@ -45,10 +10,6 @@
 			document.getElementById("change").innerHTML = text;
 		}
 		
-		
-	});
-
-	$(document).ready(function(){
 		$('#bt_connexion').on('click', function(){
 			document.location="./connexion.jsp";
 		});
@@ -58,17 +19,24 @@
 		$('#bt_inscription').on('click', function(){
 			document.location="./inscription.jsp";
 		});
+		
+		if(window.location.href.indexOf("index.jsp") > -1) {
+		    document.getElementById("header").innerHTML = "Page d'accueil";
+		} else if(window.location.href.indexOf("ressources.jsp") > -1){
+		    document.getElementById("header").innerHTML = "Ressources";
+		} else if(window.location.href.indexOf("atelier.jsp") > -1){
+		    document.getElementById("header").innerHTML = "Les ateliers";
+		} else if(window.location.href.indexOf("demarche.jsp") > -1){
+		    document.getElementById("header").innerHTML = "La démarche";
+		}
+		
 	});
-	
-	function displayResult() {
-	    document.getElementById("ressource").innerHTML = "Have a nice day!";
-	}
 </script>
 
 		<nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<p><span class="gauche"><button id="bt_contact" type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button id="bt_connexion" type="submit" class="btn btn-sample">connexion</button></span><span class="droite"><button id="bt_inscription" type="submit" class="btn btn-sample">inscription</button></span><h1 id="ressource" onload="displayResult()">Ressource</h1></p>
+			<p><span class="gauche"><button id="bt_contact" type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button id="bt_connexion" type="submit" class="btn btn-sample">connexion</button></span><span class="droite"><button id="bt_inscription" type="submit" class="btn btn-sample">inscription</button></span><h1 id="header">a</h1></p>
 		
 			<!-- gauche -->
 			<ul class="nav navbar-nav">
