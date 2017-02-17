@@ -90,12 +90,8 @@ public class Modele
 	    
 	    return null;
 	}
-	
-	
-	
-	//------------------------------------------------------UTILISATEUR------------------------------------------------------------
-	
-	
+
+	//------------------------------------------------------UTILISATEUR------------------------------------------------------------	
 	
 	public void ajoutUtilisateur(String nom, String prenom, String login, String mail, String pass){
 		try{
