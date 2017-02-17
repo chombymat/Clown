@@ -20,18 +20,19 @@
 		switch(result){
 			case "Clown":
 				document.getElementById("change").innerHTML = "[texte] présentation rapide Clown";
-				//document.getElementById("video").src = "";
+				document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
 				break;
 			case "Sensoriel":
 				document.getElementById("change").innerHTML = "[texte] présentation rapide Sensoriel";
-				//document.getElementById("video").src = "";
+				document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
 				break;
 			case "Corporelle":
 				document.getElementById("change").innerHTML = "[texte] présentation rapide Corporelle";
-				//document.getElementById("video").src = "";
+				document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
 				break;
 			default:
 				document.getElementById("change").innerHTML = "De base";
+				document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
 				break;
 		}
 		
