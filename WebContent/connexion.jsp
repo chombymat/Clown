@@ -31,7 +31,7 @@
     </div>
    
     <div class="form-group">        
-      <div class="col-sm-offset-2 col-sm-8">
+      <div class="col-sm-offset-3 col-sm-7">
         <button type="submit" class="btn btn-sample">Se connecter</button>  <button id="reset" class="btn btn-sample">Mot de passe oublié ?</button>
       </div>
     </div>

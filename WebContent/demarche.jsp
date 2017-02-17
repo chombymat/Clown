@@ -12,13 +12,6 @@
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<p><span class="gauche">
-		<button type="submit" class="btn btn-sample">Nous contacter</button>
-	</span>
-	<span class="droite">
-	<button type="submit" class="btn btn-sample">connexion</button></span>
-	<h1>La démarche</h1>
-</p>
 	<%@include file="/WEB-INF/navbar.jsp"%>
 	<div id="change">
 		[texte] présentation rapide Démarche<br>

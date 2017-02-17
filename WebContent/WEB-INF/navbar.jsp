@@ -5,12 +5,15 @@
 		var lastIndexSlash = url.lastIndexOf('/');
 		var page = url.substring(lastIndexSlash + 1, url.lastIndexOf('?') == -1 ? url.length : url.lastIndexOf('?'));
 		$("#video").hide();
+		console.log(page);
 		if (page === '')
 		{
 			$("#accueil").attr('class', 'active');
 		} else
 		{
-			$("#" + page).attr('class', 'active');
+			
+			//$("#" + page).attr('class', 'active');
+			$("#" + page).hide();
 		}
 		
 		var url = window.location.href;
@@ -47,10 +50,24 @@
 		
 	});
 
+	$(document).ready(function(){
+		$('#bt_connexion').on('click', function(){
+			document.location="./connexion.jsp";
+		});
+		$('#contact.jsp').on('click', function(){
+			document.location="./contact.jsp";
+		});
+		$('#bt_inscription').on('click', function(){
+			document.location="./inscription.jsp";
+		});
+	});
 </script>
+
 		<nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<p id="contact.jsp"><span class="gauche"><button  type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button id="bt_connexion" type="submit" class="btn btn-sample">connexion</button></span><h1>Ressources</h1></p>
+		
 			<!-- gauche -->
 			<ul class="nav navbar-nav">
 				<li><a href="index.jsp">Home</a></li>

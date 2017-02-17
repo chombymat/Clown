@@ -40,7 +40,7 @@
 		<div class="form-group">
 			<label class="control-label col-sm-5">Confirmation du mot de passe:</label>
 			<div class="col-sm-2">
-				<input type="password" class="form-control" name="inscriptionPass2" placeholder="Confirmer le Mot de passe" minlength="8" maxlength="16" oninput="verifInscription()" required>
+				<input type="password" class="form-control" name="inscriptionPass2" placeholder="Confirmer le Mot de passe" minlength="8" maxlength="16" required>
 			</div>
 		</div>
 		<div class="form-group">
