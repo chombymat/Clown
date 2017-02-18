@@ -1,15 +1,13 @@
-h1{text-align:center;color: #C21950;}
-.btn-sample { 
-  color: #ffffff; 
-  background-color: #C21950; 
-}
-
 body{
 	background-color: #F5F5DC;
 	text-align: center;
 }
-h2{
-	color: #C21950;
+h1{text-align:center;color: #C21950;}
+h2{color: #C21950;}
+
+.btn-sample { 
+  color: #ffffff; 
+  background-color: #C21950; 
 }
 .btn-sample:hover, 
 .btn-sample:focus, 
@@ -25,12 +23,10 @@ h2{
   float: none;
   vertical-align: top;
 }
-
 .navbar .navbar-collapse {
   text-align: center;
   color: #C21950;
 }
-
 .navbar-default{
 	background-color: #F5F5DC;
 	border: none;

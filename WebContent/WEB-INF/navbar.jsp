@@ -32,6 +32,8 @@
 		} else if(window.location.href.indexOf("contact.jsp") > -1){
 			$('#bt_contact').hide();
 			$('#header').html("Nous contacter");
+		} else if(window.location.href.indexOf("legal.jsp") > -1){
+			$('#header').html("Mentions Légales");
 		}
 		
 	});
