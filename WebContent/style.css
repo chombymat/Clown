@@ -50,3 +50,4 @@ h2{color: #C21950;}
 .erreur{
 	color: red;
 }
+#success_message{ display: none;}

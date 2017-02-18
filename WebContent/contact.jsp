@@ -4,55 +4,243 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Notre démarche</title>
+<title>Nous contacter</title>
 <link rel="icon" type="image/png" href="http://www.laprimaporta.com/wp-content/uploads/2016/01/fav.png" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="style.css" />
-<script language="JavaScript">
-function affiche_text(text){
-	document.getElementById("change").innerHTML = text;
-}
-function change_video(url){
-	document.getElementById("video").src = url;
-}
-function cacher(id){
-	document.getElementById(id).style.display = 'none';
-}
+<script>
+$(document).ready(function() {
+    $('#contact_form').bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            nom: {
+                validators: {
+                        stringLength: {
+                        min: 2,
+                    },
+                        notEmpty: {
+                        message: 'veuillez entrer votre nom'
+                    }
+                }
+            },
+             prenom: {
+                validators: {
+                     stringLength: {
+                        min: 2,
+                    },
+                    notEmpty: {
+                        message: 'veuillez entrer votre prénom'
+                    }
+                }
+            },
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: 'veuillez entrer votre addresse email'
+                    },
+                    emailAddress: {
+                        message: 'veuillez entrer une addresse email valide'
+                    }
+                }
+            },
+            message: {
+                validators: {
+                      stringLength: {
+                        min: 10,
+                        max: 1000,
+                        message:'veuillez entrer votre 10 characters au minimum et pas plus de 1000'
+                    },
+                    notEmpty: {
+                        message: 'veuillez entrer votre message'
+                    }
+                    }
+                }
+            }
+        })
+        .on('success.form.bv', function(e) {
+            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                $('#contact_form').data('bootstrapValidator').resetForm();
+
+            // Prevent form submission
+            e.preventDefault();
+
+            // Get the form instance
+            var $form = $(e.target);
+
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+
+            // Use Ajax to submit form data
+            $.post($form.attr('action'), $form.serialize(), function(result) {
+                console.log(result);
+            }, 'json');
+        });
+});
+
+
 </script>
 </head>
 <body>
 <%@include file="/WEB-INF/navbar.jsp"%>
-	<div id="change">
-		<form class="form-horizontal" method="post" action="./connexion">
-		   <div class="form-group">
-		     <label class="control-label col-sm-5">Civilité:</label>
-		     <div class="col-sm-2 col-md-3">          
-		       <input type="radio" class="btn btn-sample" name="gender">Monsieur<br>
-		       <input type="radio" class="btn btn-sample" name="gender">Madame
-		     </div>
-		   </div>
-		   <div class="form-group">
-		     <label class="control-label col-sm-5">Identifiant:</label>
-		     <div class="col-sm-2 col-md-3">
-		     	<span class="erreur">${ requestScope.erreur }</span>
-		       <input type="text" class="form-control" placeholder="Identifiant" name="login" required>
-		     </div>
-		   </div>
-		   <div class="form-group">
-		     <label class="control-label col-sm-5">Mot de passe:</label>
-		     <div class="col-sm-2 col-md-3">          
-		       <input type="password" class="form-control" name="pass" placeholder="Mot de passe">
-		     </div>
-		   </div>
-		   <div class="form-group">        
-		     <div class="col-sm-offset-2 col-sm-8">
-		       <button type="submit" class="btn btn-sample">Se connecter</button>  <button id="reset" class="btn btn-sample">Mot de passe oublié ?</button>
-		     </div>
-		   </div>
-		</form>
-	</div>
+	<div class="container">
+
+    <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Contactez-nous !</legend>
+
+<!-- Text input-->
+
+<div class="form-group">
+  <label class="col-md-4 control-label">Nom *</label>  
+  <div class="col-md-4 inputGroupContainer">
+  <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input  name="nom" placeholder="Nom" class="form-control"  type="text">
+    </div>
+  </div>
+</div>
+
+<!-- Text input-->
+
+<div class="form-group">
+  <label class="col-md-4 control-label" >Prénom *</label> 
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input name="prenom" placeholder="Prénom" class="form-control"  type="text">
+    </div>
+  </div>
+</div>
+
+<!-- Text input-->
+       <div class="form-group">
+  <label class="col-md-4 control-label">E-Mail *</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+  <input name="email" placeholder="Adresse E-Mail" class="form-control"  type="text">
+    </div>
+  </div>
+</div>
+
+
+<!-- Text input-->
+       
+<div class="form-group">
+  <label class="col-md-4 control-label">Téléphone</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+  <input name="telephone" placeholder="03 12 34 56 78 / 06 11 22 33 44" class="form-control" type="text">
+    </div>
+  </div>
+</div>
+
+<!-- Text input-->
+      
+<div class="form-group">
+  <label class="col-md-4 control-label">Addresse</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+  <input name="addresse" placeholder="Addresse" class="form-control" type="text">
+    </div>
+  </div>
+</div>
+
+<!-- Text input-->
+ 
+<div class="form-group">
+  <label class="col-md-4 control-label">Ville</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+  <input name="ville" placeholder="Ville" class="form-control"  type="text">
+    </div>
+  </div>
+</div>
+
+<!-- Select Basic -->
+   
+<div class="form-group"> 
+  <label class="col-md-4 control-label">Département</label>
+    <div class="col-md-4 selectContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+    <select name="state" class="form-control selectpicker" >
+      <option value=" " >Sélectionnez votre région.</option>
+      <option>Auvergne-Rhône-Alpes</option>
+      <option>Bourgogne-Franche-Comté</option>
+      <option >Bretagne</option>
+      <option >Centre-Val de Loire</option>
+      <option >Corse</option>
+      <option >Grand Est</option>
+      <option >Hauts-de-France</option>
+      <option >Île-de-France</option>
+      <option >Normandie</option>
+      <option> Nouvelle-Aquitaine</option>
+      <option >Occitanie</option>
+      <option >Pays de la Loire</option>
+      <option >Provence-Alpes-Côte d'Azur</option>
+    </select>
+  </div>
+</div>
+</div>
+
+
+<!-- radio checks -->
+ <div class="form-group">
+                        <label class="col-md-4 control-label">Sexe ?</label>
+                        <div class="col-md-4">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="sexe" value="homme" /> Homme
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="sexe" value="femme" /> Femme
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+<!-- Text area -->
+  
+<div class="form-group">
+  <label class="col-md-4 control-label">Votre message : *</label>
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+        	<textarea class="form-control" name="message" placeholder="Votre message ici ..."></textarea>
+  </div>
+  </div>
+</div>
+
+<!-- Success message -->
+<div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Merci de nous avoir contactez, nous faisons notre possible pour vous répondre rapidement.</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label"></label>
+  <div class="col-md-4">
+    <button type="submit" class="btn btn-warning" >Envoyer <span class="glyphicon glyphicon-send"></span></button>
+  </div>
+</div>
+* : Champs obligatoires.
+</fieldset>
+</form>
+</div>
+    </div><!-- /.container -->
 	<%@include file="/WEB-INF/footer.html"%>
 </body>
 </html>
