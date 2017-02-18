@@ -9,23 +9,59 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="./javascript/sha256.js"></script>
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+	<script>
+		$(document).ready(function(){
+			$("#form").on('submit', function(e){
+				e.preventDefault();
+				
+				var $form = $(this);
+		        $.ajax({
+		            url: $form.attr('action'),
+		            type: $form.attr('method'),
+		            data: {
+		            	login : $('#login').val(),
+		            	pass : SHA256($('#pass').val())
+		            },
+		            success : function(data, textStatus, jqXHR)
+		            {
+		            	if(data === "ok")
+		            	{
+		            		window.location.replace("./");
+		            	}
+		            	else if(data === "fail")
+		            	{
+		            		$('#erreur').html("Identifiant/mot de passe incorrect");         	
+		            	}
+		            }
+		        });
+			});
+			
+			$('#form').show();
+		});
+	</script>
+	${ user.role }
+	<noscript>
+		<!-- Si pas de javascript pas de formulaire -->
+		<p>Veuillez activer le JavaScript afin de continuer.</p>
+	</noscript>
 	<h1>Se connecter</h1>
 	<hr/>
- <form class="form-horizontal" method="post" action="./connexion">
+ <form id="form" class="form-horizontal" method="post" action="./connexion" style="display:none">
     <div class="form-group">
       <label class="control-label col-sm-4">Identifiant :</label>
       <div class="col-sm-4">
-      	<span class="erreur">${ requestScope.erreur }</span>
-        <input type="text" class="form-control" placeholder="Identifiant" name="login" required>
+      	<span id="erreur" class="erreur"></span>
+        <input id="login" type="text" class="form-control" placeholder="Identifiant" name="login" required>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-4">Mot de passe :</label>
       <div class="col-sm-4">          
-        <input type="password" class="form-control" name="pass" placeholder="Mot de passe">
+        <input id="pass" type="password" class="form-control" name="pass" placeholder="Mot de passe">
       </div>
     </div>
     <div class="form-group">        

@@ -23,12 +23,11 @@ public class Connexion extends HttpServlet
 			HttpSession session = request.getSession();
 			Utilisateur user = new model.Modele().connexion(login, pass);
 			session.setAttribute("user", user);
-			response.sendRedirect("./index.jsp");
+			response.getWriter().print("ok");
 		}
 		catch(Exception e)
 		{
-			request.setAttribute("erreur", "Identifiants/mot de passe incorrect.");
-			request.getRequestDispatcher("/connexion.jsp").forward(request, response);
+			response.getWriter().print("fail");
 		}
 	}
 }

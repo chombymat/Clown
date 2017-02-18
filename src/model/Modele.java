@@ -39,8 +39,6 @@ public class Modele
 
 		try 
 		{
-			ds = (DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase");
-
 			con = ds.getConnection();
 			PreparedStatement ps_connection = con.prepareStatement(
 					"select role, utilisateur.id_utilisateur, nom, prenom, adresse_mail from utilisateur, role where role.id_utilisateur = utilisateur.id_utilisateur and login = ? and prima_pass = ?");
@@ -93,21 +91,32 @@ public class Modele
 
 	//------------------------------------------------------UTILISATEUR------------------------------------------------------------	
 	
-	public void ajoutUtilisateur(String nom, String prenom, String login, String mail, String pass){
+	public void ajoutUtilisateur(String nom, String prenom, String login, String mail, String pass) throws Exception
+	{
 		try{
-			statement = ds.getConnection().prepareStatement("insert into utilisateur (nom, prenom, adresse_mail, login, prima_pass) values(?, ?, ?, ?, ?)");
+			statement = ds.getConnection().prepareStatement("select from utilisateur where adresse_mail = ?");
+			statement.setString(1, mail);
+			result = statement.executeQuery();
+			
+			if(result.next())
+				throw new Exception("mail");
+			
+			statement = ds.getConnection().prepareStatement("select from utilisateur where login = ?");
+			statement.setString(1, login);
+			result = statement.executeQuery();
+			
+			if(result.next())
+				throw new Exception("login");
+			
+			statement = ds.getConnection().prepareStatement("insert into utilisateur (nom, prenom, adresse_mail, login, prima_pass) values(?, ?, ?, ?, ?) returning id_utilisateur");
 			statement.setString(1, nom);
 			statement.setString(2, prenom);
 			statement.setString(3, mail);
 			statement.setString(4, login);
 			statement.setString(5, cryptPass(pass));
 
-			statement.executeUpdate();
-			
-			statement = ds.getConnection().prepareStatement("select id_utilisateur from utilisateur where login = ?");
-			statement.setString(1, login);
-			
 			result = statement.executeQuery();
+			
 			if(result.next()){
 				
 				int id = result.getInt(1);
@@ -120,13 +129,15 @@ public class Modele
 				System.out.println("ajout de l'utiliateur : " + login);
 			}
 
-		} catch (Exception e){
+		}catch (SQLException | NamingException e) 
+		{
 			e.printStackTrace();
+		} catch (Exception e){
+			throw e;
 		} finally{
 			try{
-				statement.close();
-				ds.getConnection().close();
-			} catch(Exception e){
+				statement.getConnection().close();
+			} catch(SQLException e){
 				e.printStackTrace();
 			}
 		}
