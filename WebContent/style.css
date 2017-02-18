@@ -32,13 +32,18 @@ h2{color: #C21950;}
 	border: none;
 }
 
-p {
+.jumbotron{
+	background-color: transparent;
+	text-align:left;
+}
+
+#p_navbar {
   text-align: center;
 }
-p span.gauche {
+#p_navbar span.gauche {
   float: left;
 }
-p span.droite {
+#p_navbar span.droite {
   float: right;
 }
 

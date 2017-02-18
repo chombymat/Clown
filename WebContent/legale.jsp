@@ -13,6 +13,9 @@
 </head>
 <body>
 <%@include file="/WEB-INF/navbar.jsp"%>
+<div class="container">
+
+<div class="jumbotron">
 <p>Compagnie La Prima Porta<br />
 2, all&eacute;e de la Laiterie<br />
 59650 Villeneuve d&rsquo;Ascq</p>
@@ -33,6 +36,10 @@ Mentions relatives &agrave; la protection de la vie priv&eacute;e sur ce site<br
 Les informations collect&eacute;es par le site http://www.laprimaporta.com via les formulaires ne sont c&eacute;d&eacute;s &agrave; aucun tiers. Elles sont conserv&eacute;es durant le temps n&eacute;cessaire &agrave; leurs traitements.</p>
 <p>Dispositions compl&eacute;mentaires<br />
 La prima porta se r&eacute;serve le droit de modifier et/ou compl&eacute;ter les pr&eacute;sentes dispositions &agrave; tout moment et ce sans pr&eacute;avis.</p>
+<p>Conception<br />
+DA2I - Lille 1</p>
+</div>
+</div>
 <%@include file="/WEB-INF/footer.html"%>
 </body>
 </html>
