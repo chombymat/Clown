@@ -20,10 +20,16 @@
 		$('#bt_inscription').on('click', function(){
 			document.location="./inscription.jsp";
 		});
+		$('#bt_deconnexion').on('click', function(){
+			document.location="./Deconnexion";
+		});
 		
-		if(window.location.href.indexOf("index.jsp") > -1) {
+		
+		/*if(window.location.href.indexOf("index.jsp") > -1) {
 		    $('#header').html("Page d'accueil");
-		} else if(window.location.href.indexOf("ressources.jsp") > -1){
+		} else */
+		$('#header').html("Page d'accueil");
+		if(window.location.href.indexOf("ressources.jsp") > -1){
 			$('#header').html("Ressources");
 		} else if(window.location.href.indexOf("atelier.jsp") > -1){
 			$('#header').html("Les ateliers");
@@ -42,7 +48,24 @@
 		<nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<p id="p_navbar"><span class="gauche"><button id="bt_contact" type="submit" class="btn btn-sample">Nous contacter</button></span><%if(session.getAttribute("user") == null) {%><span class="droite"><button id="bt_connexion" type="submit" class="btn btn-sample">connexion</button></span><span class="droite"><button id="bt_inscription" type="submit" class="btn btn-sample">inscription</button></span><%} %><h1 id="header">a</h1></p>
+			<p id="p_navbar"><span class="gauche"><button id="bt_contact" type="submit" class="btn btn-sample">Nous contacter</button></span>
+			<%
+			if(session.getAttribute("user") == null) 
+			{
+				%>
+				<span class="droite"><button id="bt_connexion" type="submit" class="btn btn-sample">connexion</button></span>
+				<span class="droite"><button id="bt_inscription" type="submit" class="btn btn-sample">inscription</button>&nbsp;</span>
+				<%
+			}
+			else
+			{
+				%>
+				<span class="droite"><button id="bt_deconnexion" type="submit" class="btn btn-sample">Déconexion</button></span>
+				<span class="droite">Bonjour ${ user.nom } ${ user.prenom }&nbsp;&nbsp;</span>
+				<%
+			}
+			%>
+			<h1 id="header"></h1></p>
 		
 			<!-- gauche -->
 			<ul class="nav navbar-nav">
