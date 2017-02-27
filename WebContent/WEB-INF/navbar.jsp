@@ -60,7 +60,7 @@
 			else
 			{
 				%>
-				<span class="droite"><button id="bt_deconnexion" type="submit" class="btn btn-sample">Déconexion</button></span>
+				<span class="droite"><button id="bt_deconnexion" type="submit" class="btn btn-sample">Déconnexion</button></span>
 				<span class="droite">Bonjour ${ user.nom } ${ user.prenom }&nbsp;&nbsp;</span>
 				<%
 			}
