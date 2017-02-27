@@ -61,7 +61,7 @@ create table utilisateur(
 create table role(
 	id_utilisateur integer references utilisateur(id_utilisateur) 
 		on update cascade on delete restrict,
-	role varchar(100) default 'role1'
+	role varchar(100) default 'MatthiasLaFerme!'
 );
 
 -- création de la table de contact de l'entreprise : 

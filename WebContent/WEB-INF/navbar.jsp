@@ -1,3 +1,4 @@
+<%@ page import="tools.Utilisateur"%>
 <script>
 function changeClown(){
 	document.getElementById("change").innerHTML = "[texte] présentation rapide Clown";
@@ -51,6 +52,7 @@ function changeSpectacle(){
 /*******/
 	$(document).ready(function()
 	{
+<<<<<<< HEAD
 		var url = window.location.href;
 		var lastIndexSlash = url.lastIndexOf('/');
 		var page = url.substring(lastIndexSlash + 1, url.lastIndexOf('?') == -1 ? url.length : url.lastIndexOf('?'));
@@ -127,6 +129,8 @@ function changeSpectacle(){
 				break;
 		}
 		
+=======
+>>>>>>> f114e81127632c2c112dd6af5761c2a3f178e62a
 		$('ul.nav li.dropdown').hover(function() {
 			  $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeIn(100);
 			}, function() {
@@ -136,10 +140,6 @@ function changeSpectacle(){
 			document.getElementById("change").innerHTML = text;
 		}
 		
-		
-	});
-
-	$(document).ready(function(){
 		$('#bt_connexion').on('click', function(){
 			document.location="./connexion.jsp";
 		});
@@ -149,18 +149,53 @@ function changeSpectacle(){
 		$('#bt_inscription').on('click', function(){
 			document.location="./inscription.jsp";
 		});
+		$('#bt_deconnexion').on('click', function(){
+			document.location="./Deconnexion";
+		});
+		
+		
+		/*if(window.location.href.indexOf("index.jsp") > -1) {
+		    $('#header').html("Page d'accueil");
+		} else */
+		$('#header').html("Page d'accueil");
+		if(window.location.href.indexOf("ressources.jsp") > -1){
+			$('#header').html("Ressources");
+		} else if(window.location.href.indexOf("atelier.jsp") > -1){
+			$('#header').html("Les ateliers");
+		} else if(window.location.href.indexOf("demarche.jsp") > -1){
+			$('#header').html("La démarche");
+		} else if(window.location.href.indexOf("contact.jsp") > -1){
+			$('#bt_contact').hide();
+			$('#header').html("Nous contacter");
+		} else if(window.location.href.indexOf("legale.jsp") > -1){
+			$('#header').html("Mentions Légales");
+		}
+		
 	});
-	
-	function displayResult() {
-	    document.getElementById("ressource").innerHTML = "Have a nice day!";
-	}
 </script>
 
 		<nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<p><span class="gauche"><button id="bt_contact" type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button id="bt_connexion" type="submit" class="btn btn-sample">Connexion</button></span><span class="droite"><button id="bt_inscription" type="submit" class="btn btn-sample">Inscription</button></span><h1 id="ressource" onload="displayResult()">Ressource</h1></p>
-		
+			<p id="p_navbar"><span class="gauche"><button id="bt_contact" type="submit" class="btn btn-sample">Nous contacter</button></span>
+			<%
+			if(session.getAttribute("user") == null) 
+			{
+				%>
+				<span class="droite"><button id="bt_connexion" type="submit" class="btn btn-sample">connexion</button></span>
+				<span class="droite"><button id="bt_inscription" type="submit" class="btn btn-sample">inscription</button>&nbsp;</span>
+				<%
+			}
+			else
+			{
+				%>
+				<span class="droite"><button id="bt_deconnexion" type="submit" class="btn btn-sample">Déconexion</button></span>
+				<span class="droite">Bonjour ${ user.nom } ${ user.prenom }&nbsp;&nbsp;</span>
+				<%
+			}
+			%>
+			<h1 id="header"></h1></p>
 			<!-- gauche -->
 			<ul class="nav navbar-nav">
 				<li><a href="index.jsp">Home</a></li>

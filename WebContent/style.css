@@ -1,15 +1,13 @@
-h1{text-align:center;color: #C21950;}
-.btn-sample { 
-  color: #ffffff; 
-  background-color: #C21950; 
-}
-
 body{
 	background-color: #F5F5DC;
 	text-align: center;
 }
-h2{
-	color: #C21950;
+h1{text-align:center;color: #C21950;}
+h2{color: #C21950;}
+
+.btn-sample { 
+  color: #ffffff; 
+  background-color: #C21950; 
 }
 .btn-sample:hover, 
 .btn-sample:focus, 
@@ -25,27 +23,30 @@ h2{
   float: none;
   vertical-align: top;
 }
-
 .navbar .navbar-collapse {
   text-align: center;
   color: #C21950;
 }
-
 .navbar-default{
 	background-color: #F5F5DC;
 	border: none;
 }
 
-p {
+.jumbotron{
+	background-color: transparent;
+	text-align:left;
+}
+#p_navbar {
   text-align: center;
 }
-p span.gauche {
+#p_navbar span.gauche {
   float: left;
 }
-p span.droite {
+#p_navbar span.droite {
   float: right;
 }
 
 .erreur{
 	color: red;
 }
+#success_message{ display: none;}

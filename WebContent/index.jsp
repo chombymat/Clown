@@ -16,6 +16,6 @@
 <h2>Le projet</h2>
 <h2>L'association</h2>
 <h2>Le film de 26'</h2>
-<%@include file="/footer.html"%>
+<%@include file="/WEB-INF/footer.html"%>
 </body>
 </html>
