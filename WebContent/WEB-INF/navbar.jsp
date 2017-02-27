@@ -172,7 +172,6 @@ $(document).ready(function()
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<p><span class="gauche"><button id="bt_contact" type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button id="bt_connexion" type="submit" class="btn btn-sample">Connexion</button></span><span class="droite"><button id="bt_inscription" type="submit" class="btn btn-sample">Inscription</button></span><h1 id="ressource" onload="displayResult()">Ressource</h1></p>
 			<p id="p_navbar"><span class="gauche"><button id="bt_contact" type="submit" class="btn btn-sample">Nous contacter</button></span>
 			<%
 			if(session.getAttribute("user") == null) 
