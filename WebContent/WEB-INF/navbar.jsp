@@ -50,87 +50,83 @@ function changeSpectacle(){
 	document.getElementById("pdf").src = "1.pdf";
 }
 /*******/
-	$(document).ready(function()
+$(document).ready(function()
+{
+	var url = window.location.href;
+	var lastIndexSlash = url.lastIndexOf('/');
+	var page = url.substring(lastIndexSlash + 1, url.lastIndexOf('?') == -1 ? url.length : url.lastIndexOf('?'));
+	$("#video").hide();
+	if (page === '')
 	{
-<<<<<<< HEAD
-		var url = window.location.href;
-		var lastIndexSlash = url.lastIndexOf('/');
-		var page = url.substring(lastIndexSlash + 1, url.lastIndexOf('?') == -1 ? url.length : url.lastIndexOf('?'));
-		$("#video").hide();
-		if (page === '')
-		{
-			$("#accueil").attr('class', 'active');
-		} else
-		{
-			$("#" + page).attr('class', 'active');
-		}
-		
-		var url = window.location.href;
-		var captured = /lib=([^&]+)/.exec(url)[1];
-		var result = captured ? captured : 'myDefaultValue';
-		//Changer ici le contenu des démarches
-		switch(result){
-			case "Clown":
-				document.getElementById("change").innerHTML = "[texte] présentation rapide Clown";
-				document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
-				break;
-			case "Sensoriel":
-				document.getElementById("change").innerHTML = "[texte] présentation rapide Sensoriel";
-				document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
-				break;
-			case "Corporelle":
-				document.getElementById("change").innerHTML = "[texte] présentation rapide Corporelle";
-				document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
-				break;
-			default:
-				document.getElementById("change").innerHTML = "De base";
-				document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
-				break;
-		}
-		var captured2 = /go=([^&]+)/.exec(url)[1];
-		var result2 = captured ? captured : 'myDefaultValue';
-		//Changer ici le contenu des démarches
-		switch(result2){
-			case "Pain":
-				document.getElementById("change").innerHTML = "[texte] concept de l'atelier Pain";
-				document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
-				document.getElementById("photo").src = "1.jpg";
-				document.getElementById("pdf").src = "1.pdf";
-				break;
-			case "Lait":
-				document.getElementById("change").innerHTML = "[texte] concept de l'atelier Lait";
-				document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
-				document.getElementById("photo").src = "1.jpg";
-				document.getElementById("pdf").src = "1.pdf";
-				break;
-			case "Famille":
-				document.getElementById("change").innerHTML = "[texte] concept de l'atelier Les 7 familles";
-				document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
-				document.getElementById("photo").src = "1.jpg";
-				document.getElementById("pdf").src = "1.pdf";
-				break;
-			case "Menu":
-				document.getElementById("change").innerHTML = "[texte] concept de l'atelier Menu équilibré";
-				document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
-				document.getElementById("photo").src = "1.jpg";
-				document.getElementById("pdf").src = "1.pdf";
-				break;
-			case "Alimentation":
-				document.getElementById("change").innerHTML = "[texte] concept de l'atelier Alimentation";
-				document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
-				document.getElementById("photo").src = "1.jpg";
-				document.getElementById("pdf").src = "1.pdf";
-				break;
-			default:
-				document.getElementById("change").innerHTML = "[texte] concept du spectacle et de ses répétitions";
-				document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
-				document.getElementById("photo").src = "1.jpg";
-				document.getElementById("pdf").src = "1.pdf";
-				break;
-		}
-		
-=======
->>>>>>> f114e81127632c2c112dd6af5761c2a3f178e62a
+		$("#accueil").attr('class', 'active');
+	} else
+	{
+		$("#" + page).attr('class', 'active');
+	}
+	
+	var url = window.location.href;
+	var captured = /lib=([^&]+)/.exec(url)[1];
+	var result = captured ? captured : 'myDefaultValue';
+	//Changer ici le contenu des démarches
+	switch(result){
+		case "Clown":
+			document.getElementById("change").innerHTML = "[texte] présentation rapide Clown";
+			document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
+			break;
+		case "Sensoriel":
+			document.getElementById("change").innerHTML = "[texte] présentation rapide Sensoriel";
+			document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
+			break;
+		case "Corporelle":
+			document.getElementById("change").innerHTML = "[texte] présentation rapide Corporelle";
+			document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
+			break;
+		default:
+			document.getElementById("change").innerHTML = "De base";
+			document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
+			break;
+	}
+	var captured2 = /go=([^&]+)/.exec(url)[1];
+	var result2 = captured ? captured : 'myDefaultValue';
+	//Changer ici le contenu des démarches
+	switch(result2){
+		case "Pain":
+			document.getElementById("change").innerHTML = "[texte] concept de l'atelier Pain";
+			document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
+			document.getElementById("photo").src = "1.jpg";
+			document.getElementById("pdf").src = "1.pdf";
+			break;
+		case "Lait":
+			document.getElementById("change").innerHTML = "[texte] concept de l'atelier Lait";
+			document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
+			document.getElementById("photo").src = "1.jpg";
+			document.getElementById("pdf").src = "1.pdf";
+			break;
+		case "Famille":
+			document.getElementById("change").innerHTML = "[texte] concept de l'atelier Les 7 familles";
+			document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
+			document.getElementById("photo").src = "1.jpg";
+			document.getElementById("pdf").src = "1.pdf";
+			break;
+		case "Menu":
+			document.getElementById("change").innerHTML = "[texte] concept de l'atelier Menu équilibré";
+			document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
+			document.getElementById("photo").src = "1.jpg";
+			document.getElementById("pdf").src = "1.pdf";
+			break;
+		case "Alimentation":
+			document.getElementById("change").innerHTML = "[texte] concept de l'atelier Alimentation";
+			document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
+			document.getElementById("photo").src = "1.jpg";
+			document.getElementById("pdf").src = "1.pdf";
+			break;
+		default:
+			document.getElementById("change").innerHTML = "[texte] concept du spectacle et de ses répétitions";
+			document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
+			document.getElementById("photo").src = "1.jpg";
+			document.getElementById("pdf").src = "1.pdf";
+			break;
+	}
 		$('ul.nav li.dropdown').hover(function() {
 			  $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeIn(100);
 			}, function() {
@@ -173,8 +169,7 @@ function changeSpectacle(){
 		
 	});
 </script>
-
-		<nav class="navbar navbar-default">
+<nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<p><span class="gauche"><button id="bt_contact" type="submit" class="btn btn-sample">Nous contacter</button></span><span class="droite"><button id="bt_connexion" type="submit" class="btn btn-sample">Connexion</button></span><span class="droite"><button id="bt_inscription" type="submit" class="btn btn-sample">Inscription</button></span><h1 id="ressource" onload="displayResult()">Ressource</h1></p>
