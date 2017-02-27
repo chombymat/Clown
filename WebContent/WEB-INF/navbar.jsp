@@ -167,6 +167,7 @@ function changeSpectacle(){
 				<li class="dropdown">
 	            <a href="demarche.jsp" class="dropdown-toggle" data-toggle="dropdown">La démarche <b class="caret"></b></a>
 	            <ul class="dropdown-menu">
+	            	<li><a href="demarche.jsp">Présentation</a></li>
 	            	<li><a href="demarche.jsp?lib=Clown" onclick="choice()">Le Clown</a></li>
 	            	<li><a href="demarche.jsp?lib=Sensoriel" onclick="choice()">Pratique et Sensoriel</a></li>
 	            	<li><a href="demarche.jsp?lib=Corporelle" onclick="choice()">Expression Corporelle</a></li>
@@ -175,6 +176,7 @@ function changeSpectacle(){
 				<li class="dropdown">
 	            <a href="atelier.jsp" class="dropdown-toggle" data-toggle="dropdown">Les ateliers<b class="caret"></b></a>
 	            <ul class="dropdown-menu">
+	            	<li><a href="atelier.jsp">Présentation</a></li>
 	            	<li><a href="atelier.jsp?go=Pain">Le pain</a></li>
 	                <li><a href="atelier.jsp?go=Lait">Le lait</a></li>
 	                <li><a href="atelier.jsp?go=Famille">Les 7 familles</a></li>
