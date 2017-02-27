@@ -142,13 +142,11 @@ function showRessources(){
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			
 			<%
 			if(session.getAttribute("user") == null) 
 			{
 				%>
-				<p><span class="gauche">
-				<h1 id="titre">Accueil h1</h1></p>
+				<p><span class="gauche"><h1 id="titre">Accueil h1</h1></span></p>
 				<p id="p_navbar"><span class="gauche"><button id="bt_contact" type="submit" class="btn btn-sample">Nous contacter</button></span>
 				<span class="droite"><button id="bt_connexion" type="submit" class="btn btn-sample">connexion</button></span>
 				<span class="droite"><button id="bt_inscription" type="submit" class="btn btn-sample">inscription</button>&nbsp;</span>
@@ -157,8 +155,7 @@ function showRessources(){
 			else
 			{
 				%>
-				<p><span class="gauche">
-				<h1 id="titre">Accueil h1</h1></p>
+				<p><span class="gauche"><h1 id="titre">Accueil h1</h1></span></p>
 				<p id="p_navbar"><span class="gauche"><button id="bt_contact" type="submit" class="btn btn-sample">Nous contacter</button></span>
 				<span class="droite"><button id="bt_deconnexion" type="submit" class="btn btn-sample">Déconnexion</button></span>
 				<span class="droite">Bonjour ${ user.nom } ${ user.prenom }&nbsp;&nbsp;</span>
