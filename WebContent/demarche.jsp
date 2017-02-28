@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-	<%@include file="/WEB-INF/navbarDemarche.jsp"%>
+	<%@include file="/WEB-INF/navbar.jsp"%>
 	<div id="change">
 		[texte] présentation rapide Démarche<br>
 	</div>
