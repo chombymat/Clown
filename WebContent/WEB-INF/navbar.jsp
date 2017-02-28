@@ -1,18 +1,8 @@
 <%@ page import="tools.Utilisateur"%>
 <script>
 $(document).ready(function() {
-	//Truc de Jeffrey
-	var url = window.location.href;
-	var lastIndexSlash = url.lastIndexOf('/');
-	var page = url.substring(lastIndexSlash + 1, url.lastIndexOf('?') == -1 ? url.length : url.lastIndexOf('?'));
 	$("#video").hide();
-	if (page === '')
-	{
-		$("#accueil").attr('class', 'active');
-	} else
-	{
-		$("#" + page).attr('class', 'active');
-	}
+
 	//Dropdown
 	$('ul.nav li.dropdown').hover(function() {
 			  $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeIn(100);
@@ -137,6 +127,7 @@ function showRessources(){
 	document.getElementById("photo").src = "1.jpg";
 	document.getElementById("pdf").src = "1.pdf";
 	document.getElementById("ressource").src = "Coucou";
+	$('#header').html("Ressources");
 }
 </script>
 <nav class="navbar navbar-default">
