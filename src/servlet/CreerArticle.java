@@ -1,7 +1,9 @@
 package servlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+
 import org.apache.commons.io.IOUtils;
 
 import tools.Utilisateur;
@@ -35,6 +38,11 @@ public class CreerArticle extends HttpServlet
 		}
 		else
 		{
+			File f = new File(getServletContext().getRealPath("/") + "images/article");
+			
+			if(!f.exists())
+				f.mkdirs();
+			
 			String contenu = request.getParameter("contenu");
 			Collection<Part> media = request.getParts();
 			int i = 0;
