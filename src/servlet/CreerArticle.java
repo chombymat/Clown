@@ -1,10 +1,7 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.StringWriter;
 import java.util.Collection;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -17,8 +14,7 @@ import org.apache.commons.io.IOUtils;
 import tools.Utilisateur;
 
 @WebServlet("/creerArticle")
-@MultipartConfig(maxFileSize=1024*1024*10,
-maxRequestSize=1024*1024*50)
+@MultipartConfig()
 public class CreerArticle extends HttpServlet 
 {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
@@ -41,18 +37,21 @@ public class CreerArticle extends HttpServlet
 		{
 			String contenu = request.getParameter("contenu");
 			Collection<Part> media = request.getParts();
-			
+			int i = 0;
 			for(Part p : media)
 			{
-				if(p.getName().equals("contenu"))
+				if(p.getName().equals("contenu") || p.getName().equals("titre") || p.getName().equals("description"))
 				{
 					String theString = IOUtils.toString(p.getInputStream(), "UTF-8"); 
-					System.out.println(theString);
+					System.out.println(p.getName() + " : " + theString);
 				}
-				
-				//System.out.println(p.getName());
-			}
-			
+				if(p.getName().indexOf("media_") != -1)
+				{
+					System.out.println("Media présent");
+					p.write(getServletContext().getRealPath("/") + "images/article/image" + i + ".jpg");
+					i++;
+				}
+			}			
 		}
 	}
 }
