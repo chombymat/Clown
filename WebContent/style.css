@@ -5,6 +5,10 @@ body{
 h1{text-align:center;color: #C21950;}
 h2{color: #C21950;}
 
+#page{
+	color: #FFFFFF;background-color: #C21950;
+}
+
 .btn-sample { 
   color: #ffffff; 
   background-color: #C21950; 
@@ -60,7 +64,13 @@ h2{color: #C21950;}
     height:150px;
 }
 
-.myImg:hover {opacity: 0.7;}
+.myImg:hover {
+	-moz-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
 
 /* The Modal (background) */
 .modal {
@@ -81,8 +91,7 @@ h2{color: #C21950;}
 .modal-content {
     margin: auto;
     display: block;
-    width: 80%;
-    max-width: 700px;
+    max-width: 50%;
 }
 
 /* Caption of Modal Image (Image Text) - Same Width as the Image */
