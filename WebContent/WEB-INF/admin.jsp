@@ -17,6 +17,7 @@
 	<script>
 		$(document).ready(function(){
 			var files = [];
+			var ii = 1;
 			
 			$('#bt_add_article').on('click', function(){
 				$('#creer_article').show();
@@ -30,7 +31,6 @@
 				files = $.merge(files, $('#media')[0].files);
 				
 				$('#contenu') .val($('#contenu').val() + "\n<photo" + files.length + ">\n");
-				var ii = 1;
 
 				var reader = new FileReader();
 				var current_file = files[files.length - 1];
