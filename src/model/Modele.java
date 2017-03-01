@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Base64;
 
 import javax.mail.Message;
+import javax.mail.Message.RecipientType;
+import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -98,34 +100,30 @@ public class Modele
 	
 	public void envoyerMail(String nom, String prenom, String mail, String  numero_telephone, String adresse, String ville, String departement, String sexe, String message){
 		try{
-			if(sexe.equals("F"))
-				message += "de Madame " + prenom + " " + nom;
-			else if(sexe.equals("H"))
-				message += "de Monsieur " + prenom + " " + nom;
+			if(sexe != null){
+				if(sexe.equals("F"))
+					message += "de Madame " + prenom + " " + nom;
+				else if(sexe.equals("H"))
+					message += "de Monsieur " + prenom + " " + nom;
+			}
 			
 			message += "\nContacter ultérieurement via:\n" + "numero de telephone : " + numero_telephone + "\nadresse mail : "
-					+ mail + "\nadresse : " + adresse + "\n" + ville + "\n" + departement;
+					+ mail + "\nadresse physique : " + adresse + "\n" + ville + "\n" + departement;
 			
 			
-			Context initCtx = new InitialContext();
-			Context envCtx = (Context) initCtx.lookup("java:comp/env");
-			javax.mail.Session mailSession = (javax.mail.Session) envCtx.lookup("mail/Session");
 			
-			//javax.mail.Session mailSession = (javax.mail.Session) ((Context) new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
-			Message content = new MimeMessage(mailSession);
-			content.setFrom(new InternetAddress(mail));
-			InternetAddress to[] = new InternetAddress[1];
-			to[0] = new InternetAddress(mailEntreprise);
-			content.setRecipients(Message.RecipientType.TO, to);
-			content.setSubject("test");
-			content.setContent(message, "text/plain");
-			Transport.send(content);
+			Session session = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
+			Message msg = new MimeMessage(session);
+			msg.setFrom(new InternetAddress("tweetbookda2i@gmail.com"));
+			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mailEntreprise));
+			msg.setSubject("prise de contact " + nom + " " + prenom);
+			msg.setText(message);
+			Transport.send(msg);
 
 		} catch (Exception e){
 			e.printStackTrace();
 		} finally{
 			try{
-				statement.close();
 				ds.getConnection().close();
 			} catch(Exception e){
 				e.printStackTrace();
