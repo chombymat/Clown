@@ -100,15 +100,22 @@ public class Modele
 	
 	public void envoyerMail(String nom, String prenom, String mail, String  numero_telephone, String adresse, String ville, String departement, String sexe, String message){
 		try{
+			
 			if(sexe != null){
 				if(sexe.equals("F"))
-					message += "de Madame " + prenom + " " + nom;
+					message += "\n- - - -\nDe Madame " + prenom + " " + nom;
 				else if(sexe.equals("H"))
-					message += "de Monsieur " + prenom + " " + nom;
-			}
+					message += "\n- - - -\nDe Monsieur " + prenom + " " + nom;
+			} else if(sexe == null)
+				message += "\n- - - -\nDe " + prenom + " " + nom;
 			
-			message += "\nContacter ultérieurement via:\n" + "numero de telephone : " + numero_telephone + "\nadresse mail : "
-					+ mail + "\nadresse physique : " + adresse + "\n" + ville + "\n" + departement;
+			message += "\n- - - -\nPossibilité de contacter ultérieurement via:\n";
+			if(numero_telephone.length() >0)
+				message += "numero de telephone : " + numero_telephone + "\n";
+			if(mail.length() >0)
+				message += "adresse mail : " + mail + "\n";
+			if(adresse.length() >0 && departement.length() >0)
+				message += "adresse physique : " + adresse + "\n" + ville + "\n" + departement;
 			
 			
 			
