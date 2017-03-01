@@ -2,7 +2,7 @@ package tools;
 
 public class Media {
 	
-	private int id, idArticle;
+	private int id;
 	private String chemin, type;
 	
 	public Media(int id, String chemin, String type){
@@ -10,20 +10,9 @@ public class Media {
 		this.chemin = chemin;
 		this.type = type;
 	}
-
-	public Media(int id, int idArticle, String chemin, String type){
-		this.id = id;
-		this.idArticle = idArticle;
-		this.chemin = chemin;
-		this.type = type;
-	}
 	
 	public int getId() {
 		return id;
-	}
-	
-	public int getIdArticle() {
-		return idArticle;
 	}
 
 	public String getChemin() {

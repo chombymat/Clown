@@ -356,11 +356,11 @@ public class Modele
 	public ArrayList<Media> getMedias(int idArticle){
 		ArrayList<Media> medias = new ArrayList<Media>();
 		try{
-			statement = ds.getConnection().prepareStatement("select id_media, id_article, chemin, type from media where id_article = ?");
+			statement = ds.getConnection().prepareStatement("select id_media, chemin, type from media where id_article = ?");
 			statement.setInt(1, idArticle);
 			result = statement.executeQuery();
 			while(result.next()){
-				medias.add(new Media(result.getInt(1), result.getInt(2), result.getString(3), result.getString(4)));
+				medias.add(new Media(result.getInt(1), result.getString(3), result.getString(4)));
 			}
 			return medias;
 			
