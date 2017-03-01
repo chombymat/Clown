@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+<%@include file="/WEB-INF/navbar.jsp" %>
 	<script>
 		$(document).ready(function(){
 			$("#form").on('submit', function(e){
@@ -48,7 +49,6 @@
 		<!-- Si pas de javascript pas de formulaire -->
 		<p>Veuillez activer le JavaScript afin de continuer.</p>
 	</noscript>
-	<h1>Se connecter</h1>
 	<hr/>
  <form id="form" class="form-horizontal" method="post" action="./connexion" style="display:none">
     <div class="form-group">

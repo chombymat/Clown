@@ -30,6 +30,18 @@
 		{
 			$("#name").html("Nos partenaires");
 		}
+		if (page.indexOf('contact.jsp') != -1)
+		{
+			$("#name").html("Nous contacter");
+		}
+		if (page.indexOf('connexion.jsp') != -1)
+		{
+			$("#name").html("Se connecter");
+		}
+		if (page.indexOf('inscription.jsp') != -1)
+		{
+			$("#name").html("S'inscrire");
+		}
 		
 		$('#bt_connexion').on('click', function(){
 			window.location.replace('./connexion.jsp');

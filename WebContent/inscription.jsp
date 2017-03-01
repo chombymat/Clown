@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+	<%@include file="/WEB-INF/navbar.jsp" %>
 	<script>
 		$(document).ready(function()
 		{
@@ -59,7 +60,6 @@
 			$('#form').show();
 		});
 	</script>
-	<h1>Inscription</h1>
 	<hr/>
 	<noscript>
 		<!-- Si pas de javascript pas de formulaire -->
