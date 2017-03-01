@@ -8,7 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="style.css" />
-<title>Administration</title>
+<title>La Prima Porta – Compagnie de clown de théâtre Administration</title>
 </head>
 <body>
 	<%@include file="/WEB-INF/navbar.jsp" %>

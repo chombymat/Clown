@@ -9,6 +9,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="./javascript/sha256.js"></script>
 <link rel="stylesheet" href="style.css" />
+<title>Inscrivez-vous La Prima Porta.com</title>
 </head>
 <body>
 	<%@include file="/WEB-INF/navbar.jsp" %>
