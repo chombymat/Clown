@@ -128,12 +128,41 @@ function showRessources(){
 	document.getElementById("ressource").src = "Coucou";
 	$('#header').html("Ressources");
 }
-		if (page === '')
+		if (page === '' || page.indexOf('index.jsp') != -1)
 		{
-			$("#accueil").attr('class', 'active');
-		} else
+			$("#name").html("Accueil");
+		} 
+		if (page.indexOf('demarche.jsp') != -1)
 		{
-			$("#" + page).attr('class', 'active');
+			$("#name").html("Les démarches");
+		}
+		if (page.indexOf('atelier.jsp') != -1)
+		{
+			$("#name").html("Les ateliers");
+		}
+		if (page.indexOf('galerie.jsp') != -1)
+		{
+			$("#name").html("La galerie");
+		}
+		if (page.indexOf('infosup.jsp') != -1)
+		{
+			$("#name").html("En savoir plus");
+		}
+		if (page.indexOf('partenaires.jsp') != -1)
+		{
+			$("#name").html("Nos partenaires");
+		}
+		if (page.indexOf('contact.jsp') != -1)
+		{
+			$("#name").html("Nous contacter");
+		}
+		if (page.indexOf('connexion.jsp') != -1)
+		{
+			$("#name").html("Se connecter");
+		}
+		if (page.indexOf('inscription.jsp') != -1)
+		{
+			$("#name").html("S'inscrire");
 		}
 		
 		$('#bt_connexion').on('click', function(){
@@ -151,17 +180,17 @@ function showRessources(){
 		$('#bt_contacter').on('click', function(){
 			window.location.replace('./contact.jsp');
 		});
-	});
 </script>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
+	<h2 id="name"></h2>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav navbar-left" >
 			<li><button id="bt_contacter" class="btn btn-sample"href="./contact.jsp">Nous contacter</button></li>
 			</ul>
 			<!-- gauche -->
 			<ul class="nav navbar-nav">
-				<li id="mur"><a href="./">Accueil</a></li>
+				<li><a href="./">Accueil</a></li>
 				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">La démarche<span class="caret"></span></a>
 			      <ul class="dropdown-menu">
 			        <li><a href="./demarche.jsp">Clown</a></li>
@@ -185,7 +214,8 @@ function showRessources(){
 			        <li><a href="./infosup.jsp">Pour en savoir +</a></li>
 			        <li><a href="./partenaires.jsp">Partenaires</a></li>
 			      </ul>
-			    </li>					
+			    </li>
+			    <li><a href="./">Formation</a></li>					
 			</ul>
 			
 			<!--  droite -->
@@ -202,7 +232,10 @@ function showRessources(){
 				} 
 				else 
 				{
-					%><li><button id="bt_deconnexion" class="btn btn-sample" >Déconnexion</button></li><%
+					%>
+					<li>Bonjour ${ sessionScope.user.nom } ${ sessionScope.user.prenom }&nbsp&nbsp</li>
+					<li><button id="bt_deconnexion" class="btn btn-sample" >Déconnexion</button></li>
+					<%
 				}
 				%>
 			</ul>
