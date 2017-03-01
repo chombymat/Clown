@@ -5,11 +5,7 @@
   maxActive="8" maxIdle="4" maxWait="10000"
   username="catricea" password="moi" driverClassName="org.postgresql.Driver"
   url="jdbc:postgresql://psqlserv/da2i" />
-  
-  <!-- <Resource name="jdbc/database" auth="Container" type="javax.sql.DataSource"
-		maxActive="8" maxIdle="4" maxWait="10000" driverClassName="org.sqlite.JDBC"
-		url="jdbc:sqlite:/home/infoetu/markeyj/workspace/ProjetWeb/ProjetWebConnexion.db" />-->
-  
+    
  <Resource name="mail/Session" auth="Container"
 	type="javax.mail.Session"
 	mail.smtp.host="mailserv.etudiant.univ-lille1.fr"
@@ -26,13 +22,6 @@
         mail.smtp.auth= "true"
         mail.smtp.port= "587"
         mail.smtp.starttls.enable="true"/> -->
-
-   <!-- <Realm className="org.apache.catalina.realm.DataSourceRealm"	debug="99" dataSourceName="jdbc/database" localDataSource="true"
-		userTable="user" userNameCol="log" userCredCol="mdp" userRoleTable="role"
-		roleNameCol="role">
-		<CredentialHandler className="org.apache.catalina.realm.MessageDigestCredentialHandler"
-			algorithm="md5" />
-    </Realm>-->
 
   <Valve className="org.apache.catalina.valves.AccessLogValve"
            prefix="clown_access." suffix=".txt"

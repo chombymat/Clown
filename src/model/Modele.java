@@ -119,8 +119,8 @@ public class Modele
 			
 			
 			
-			Session session = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
-			Message msg = new MimeMessage(session);
+			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
+			Message msg = new MimeMessage(session_mail);
 			msg.setFrom(new InternetAddress("tweetbookda2i@gmail.com"));
 			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mailEntreprise));
 			msg.setSubject("prise de contact " + nom + " " + prenom);
