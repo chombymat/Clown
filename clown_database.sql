@@ -24,7 +24,8 @@ create table article(
 	id_projet integer references projet(id_projet) 
 		on update cascade on delete restrict,
 	titre varchar(200) not null,
-	description varchar(1000)
+	description varchar(1000),
+	contenu text not null
 );
 
 -- création de la table des média :

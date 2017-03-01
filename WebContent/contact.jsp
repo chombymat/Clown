@@ -91,7 +91,7 @@ $(document).ready(function() {
 <%@include file="/WEB-INF/navbar.jsp"%>
 	<div class="container">
 
-    <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+    <form class="well form-horizontal" action="./Contact" method="post"  id="contact_form">
 <fieldset>
 
 <!-- Form Name -->
@@ -152,7 +152,7 @@ $(document).ready(function() {
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <input name="addresse" placeholder="Addresse" class="form-control" type="text">
+  <input name="adresse" placeholder="Addresse" class="form-control" type="text">
     </div>
   </div>
 </div>
@@ -176,11 +176,11 @@ $(document).ready(function() {
     <div class="col-md-4 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <select name="state" class="form-control selectpicker" >
+    <select name="departement" class="form-control selectpicker" >
       <option value=" " >Sélectionnez votre région.</option>
-      <option>Auvergne-Rhône-Alpes</option>
-      <option>Bourgogne-Franche-Comté</option>
-      <option >Bretagne</option>
+      <option value="Auvergne" >Auvergne-Rhône-Alpes</option>
+      <option value="Bourgogne" >Bourgogne-Franche-Comté</option>
+      <option value="Bretagne">Bretagne</option>
       <option >Centre-Val de Loire</option>
       <option >Corse</option>
       <option >Grand Est</option>
@@ -203,12 +203,12 @@ $(document).ready(function() {
                         <div class="col-md-4">
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="sexe" value="homme" /> Homme
+                                    <input type="radio" name="sexe" value="H" /> Homme
                                 </label>
                             </div>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="sexe" value="femme" /> Femme
+                                    <input type="radio" name="sexe" value="F" /> Femme
                                 </label>
                             </div>
                         </div>

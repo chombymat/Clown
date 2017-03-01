@@ -8,6 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Base64;
 
+import javax.mail.Message;
+import javax.mail.Message.RecipientType;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -22,6 +28,7 @@ public class Modele
 	protected ResultSet result;
 	protected DataSource ds = null;
 	protected PreparedStatement statement = null;
+	private String mailEntreprise = "aurelia.catrice@etudiant.univ-lille1.fr";
 	
 	public Modele(){
 		try 
@@ -89,6 +96,42 @@ public class Modele
 	    return null;
 	}
 
+	//------------------------------------------------------CONTACT------------------------------------------------------------
+	
+	public void envoyerMail(String nom, String prenom, String mail, String  numero_telephone, String adresse, String ville, String departement, String sexe, String message){
+		try{
+			if(sexe != null){
+				if(sexe.equals("F"))
+					message += "de Madame " + prenom + " " + nom;
+				else if(sexe.equals("H"))
+					message += "de Monsieur " + prenom + " " + nom;
+			}
+			
+			message += "\nContacter ultérieurement via:\n" + "numero de telephone : " + numero_telephone + "\nadresse mail : "
+					+ mail + "\nadresse physique : " + adresse + "\n" + ville + "\n" + departement;
+			
+			
+			
+			Session session = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
+			Message msg = new MimeMessage(session);
+			msg.setFrom(new InternetAddress("tweetbookda2i@gmail.com"));
+			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mailEntreprise));
+			msg.setSubject("prise de contact " + nom + " " + prenom);
+			msg.setText(message);
+			Transport.send(msg);
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				ds.getConnection().close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
 	//------------------------------------------------------UTILISATEUR------------------------------------------------------------	
 	
 	public void ajoutUtilisateur(String nom, String prenom, String login, String mail, String pass) throws Exception
@@ -240,6 +283,29 @@ public class Modele
 		}
 	}
 	
+	public Article getArticle(int id){
+		Article article = null;
+		try{
+			statement = ds.getConnection().prepareStatement("select id_article, titre, description from article where id_article = ?");
+			statement.setInt(1, id);
+			result = statement.executeQuery();
+			if(result.next()){
+				article = new Article(result.getInt(1), result.getString(2), result.getString(3));
+			}
+			return article;
+			
+		} catch (Exception e){
+			e.printStackTrace();
+			return null;
+		} finally{
+			try{
+				statement.close();
+				ds.getConnection().close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	//------------------------------------------------------MEDIA------------------------------------------------------------
 	
