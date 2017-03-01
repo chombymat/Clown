@@ -69,7 +69,7 @@
 			</ul>
 			<!-- gauche -->
 			<ul class="nav navbar-nav">
-				<li id="mur"><a href="./">Accueil</a></li>
+				<li><a href="./">Accueil</a></li>
 				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">La démarche<span class="caret"></span></a>
 			      <ul class="dropdown-menu">
 			        <li><a href="./demarche.jsp">Clown</a></li>
@@ -93,7 +93,8 @@
 			        <li><a href="./infosup.jsp">Pour en savoir +</a></li>
 			        <li><a href="./partenaires.jsp">Partenaires</a></li>
 			      </ul>
-			    </li>					
+			    </li>
+			    <li><a href="./">Formation</a></li>					
 			</ul>
 			
 			<!--  droite -->
