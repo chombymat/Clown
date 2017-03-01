@@ -14,6 +14,8 @@
 <body>
 <%@include file="/WEB-INF/navbar.jsp"%>
 <p>Le développeur : Markey Jeffrey<br>Les incompétents : Matthias Chombart, Aurélia Catrice, Xavier Lamarque</p>
+[texte] présentation Comité Technique / présentation partenaires financiers<br>
+[lien] vers autres sites 
 <%@include file="/WEB-INF/footer.html"%>
 </body>
 </html>

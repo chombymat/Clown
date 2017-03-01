@@ -13,6 +13,8 @@
 </head>
 <body>
 <%@include file="/WEB-INF/navbar.jsp"%>
+[texte] <br>
+[lien] vers autres sites 
 <%@include file="/WEB-INF/footer.html"%>
 </body>
 </html>
