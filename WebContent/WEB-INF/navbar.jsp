@@ -46,7 +46,7 @@ function showHome(){
 	document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
 	document.getElementById("photos").src = "1.jpg";
 	document.getElementById("pdf").src = "1.pdf";
-	document.getElementById("titre")="Index youhouhou";
+	document.getElementById("titre") ="Index youhouhou";
 }
 //Démarches
 function showDemPresentation(){
