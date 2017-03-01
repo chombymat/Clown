@@ -66,7 +66,7 @@
 </script>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
-	<p id="p_navbar"><span class="gauche"><button id="bt_contacter" class="btn btn-sample" href="./contact.jsp">Nous contacter</button></span>
+	<p id="p_navbar"><span class="gauche"><button id="bt_contacter" class="btn btn-sample"href="./contact.jsp">Nous contacter</button></span>
 			<%
 			if(session.getAttribute("user") == null) 
 			{
@@ -79,11 +79,12 @@
 			{
 				%>
 				<span class="droite"><button id="bt_deconnexion" type="submit" class="btn btn-sample">Déconnexion</button></span>
-				<span class="droite">Bonjour ${ user.nom } ${ user.prenom }&nbsp;&nbsp;</span>
+				<span class="droite" id="bonjour">Bonjour ${ user.nom } ${ user.prenom }&nbsp;&nbsp;</span>
 				<%
 			}
 			%>
 			<h1 id="name"></h1></p>
+	<h2 id="name"></h2>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<!-- gauche -->
 			<ul class="nav navbar-nav">
