@@ -19,7 +19,7 @@ $(document).ready(function() {
 		}, function() {
 			  $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeOut(100);
 			});
-	//Plus besoin de redirection
+	//Redirection
 	$('#bt_connexion').on('click', function(){
 		document.location="./connexion.jsp";
 	});
@@ -49,7 +49,6 @@ function azer(){
         x.style.display = 'none';
     }
 }
-
 /*******/
 //Home
 function showHome(){
@@ -57,7 +56,7 @@ function showHome(){
 	document.getElementById("video").src = "https://www.youtube.com/embed/sDj72zqZakE";
 	document.getElementById("photos").src = "1.jpg";
 	document.getElementById("pdf").src = "1.pdf";
-	$('#header').html("Accueil");
+	document.getElementById("titre")="Index youhouhou";
 }
 //Démarches
 function showDemPresentation(){

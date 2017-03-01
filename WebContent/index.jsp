@@ -26,6 +26,7 @@
 	<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/_TSZe3mfGYg" frameborder="0" allowfullscreen></iframe>[vidéo]
 </div>
 <div id="pdfs">
+	<iframe id="pdf" src="http://tadao.fr/upload/circuits_scolaires/39.pdf" width="600" height="800" align="middle"></iframe>
 	Ici le(s) pdf(s)
 </div>
 <%@include file="/WEB-INF/footer.html"%>
