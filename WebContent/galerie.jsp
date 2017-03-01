@@ -1,10 +1,13 @@
+<%@ page import="tools.Media"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Galerie Photos La Prima Porta.com</title>
+<meta name="keywords" content="clown, éducatif, théâtre, prima, porta, primaporta, association, enfants, éducatif, ateliers, expression, corporelle, rire, humour, compagnie" />
+<meta name="description" content="Clown Educatif est une compagnie de clown de théâtre créée en 2010 et implantée à Lille (59)." />
+<title>Galerie Photos ClownEducatif.com</title>
 <link href="assets/css/bootstrap.css" rel="stylesheet">
 <link rel="icon" type="image/png" href="http://www.laprimaporta.com/wp-content/uploads/2016/01/fav.png" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -49,78 +52,42 @@ $(document).ready(function(){
 
 <div class="container">
     <div id="content" class="row ">
-        <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Plage deserte.jpg" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/images/Capture-2.png" alt="Trolltunga, Norway"></div>
+        <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/images/Plage deserte.jpg" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/logo_NordActif_3500x900.jpg" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/images/Capture-2.png" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/images/Plage deserte.jpg" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/logo_NordActif_3500x900.jpg" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/images/Plage deserte.jpg" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/images/Capture-2.png" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/logo_NordActif_3500x900.jpg" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/images/Capture-2.png" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/images/Plage deserte.jpg" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/logo_NordActif_3500x900.jpg" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/images/Plage deserte.jpg" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/images/Capture-2.png" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/logo_NordActif_3500x900.jpg" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/images/Capture-2.png" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/images/Plage deserte.jpg" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/logo_NordActif_3500x900.jpg" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/images/Plage deserte.jpg" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/images/Capture-2.png" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/images/Capture-2.png" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/logo_NordActif_3500x900.jpg" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/images/Plage deserte.jpg" alt="Trolltunga, Norway"></div>
 		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/logo_NordActif_3500x900.jpg" alt="Trolltunga, Norway"></div>
 		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
 		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Plage deserte.jpg" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/images/Plage deserte.jpg" alt="Trolltunga, Norway"></div>
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/images/Capture-2.png" alt="Trolltunga, Norway"></div>
 		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/logo_NordActif_3500x900.jpg" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Plage deserte.jpg" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/logo_NordActif_3500x900.jpg" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Plage deserte.jpg" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/logo_NordActif_3500x900.jpg" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Plage deserte.jpg" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/logo_NordActif_3500x900.jpg" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Plage deserte.jpg" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/logo_NordActif_3500x900.jpg" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Plage deserte.jpg" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/logo_NordActif_3500x900.jpg" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Plage deserte.jpg" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/logo_NordActif_3500x900.jpg" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Capture-2.png" alt="Trolltunga, Norway"></div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2"><img class="myImg img-thumbnail" src="images/logo/Logo_PNA2.png" alt="Trolltunga, Norway"></div>
 	    </div>
     <div id="page_navigation"> </div>
   </div>

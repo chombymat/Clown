@@ -66,7 +66,7 @@
 </script>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
-	<p id="p_navbar"><span class="gauche"><button id="bt_contacter" class="btn btn-sample"href="./contact.jsp">Nous contacter</button></span>
+	<p id="p_navbar"><span class="gauche"><button id="bt_contacter" class="btn btn-sample" href="./contact.jsp">Nous contacter</button></span>
 			<%
 			if(session.getAttribute("user") == null) 
 			{
