@@ -110,7 +110,10 @@
 				} 
 				else 
 				{
-					%><li><button id="bt_deconnexion" class="btn btn-sample" >Déconnexion</button></li><%
+					%>
+					<li>Bonjour ${ sessionScope.user.nom } ${ sessionScope.user.prenom }&nbsp&nbsp</li>
+					<li><button id="bt_deconnexion" class="btn btn-sample" >Déconnexion</button></li>
+					<%
 				}
 				%>
 			</ul>
