@@ -66,11 +66,25 @@
 </script>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
-	<h2 id="name"></h2>
+	<p id="p_navbar"><span class="gauche"><button id="bt_contacter" class="btn btn-sample" href="./contact.jsp">Nous contacter</button></span>
+			<%
+			if(session.getAttribute("user") == null) 
+			{
+				%>
+				<span class="droite"><button id="bt_connexion" type="submit" class="btn btn-sample">connexion</button></span>
+				<span class="droite"><button id="bt_inscription" type="submit" class="btn btn-sample">inscription</button>&nbsp;</span>
+				<%
+			}
+			else
+			{
+				%>
+				<span class="droite"><button id="bt_deconnexion" type="submit" class="btn btn-sample">Déconnexion</button></span>
+				<span class="droite">Bonjour ${ user.nom } ${ user.prenom }&nbsp;&nbsp;</span>
+				<%
+			}
+			%>
+			<h1 id="name"></h1></p>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		<ul class="nav navbar-nav navbar-left" >
-			<li><button id="bt_contacter" class="btn btn-sample"href="./contact.jsp">Nous contacter</button></li>
-			</ul>
 			<!-- gauche -->
 			<ul class="nav navbar-nav">
 				<li><a href="./">Accueil</a></li>
@@ -101,27 +115,6 @@
 			    <li><a href="./formation.jsp">Formation</a></li>					
 			</ul>
 			
-			<!--  droite -->
-			<ul class="nav navbar-nav navbar-right" >
-			<!-- <li><a class="navbar-brand" href="https://da2i.univ-lille1.fr/"><img alt="logo de l'iut a de lille 1" src="logo-da2i.svg" width="auto" height="100%"></a></li>-->
-			
-				<%
-				if (session.getAttribute("user") == null) 
-				{
-					%>
-					<li><button id="bt_connexion" class="btn btn-sample" >Connexion</button></li>
-					<li><button id="bt_inscription" class="btn btn-sample" >Inscription</button></li>
-					<%
-				} 
-				else 
-				{
-					%>
-					<li>Bonjour ${ sessionScope.user.nom } ${ sessionScope.user.prenom }&nbsp&nbsp</li>
-					<li><button id="bt_deconnexion" class="btn btn-sample" >Déconnexion</button></li>
-					<%
-				}
-				%>
-			</ul>
 		</div>
 	</div>
 </nav>
