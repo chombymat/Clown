@@ -10,7 +10,7 @@
 <title>Administration</title>
 </head>
 <body>
-	<%@include file="/WEB-INF/navbar.jsp"%>
+	<%@include file="/WEB-INF/navbar.jsp" %>
 	<script>
 		$(document).ready(function(){
 			var files = [];
@@ -24,60 +24,65 @@
 			});
 			
 			$("#media").on('change', function(e){
-				files = $.merge(files, $('#media')[0].files)
+				files = $.merge(files, $('#media')[0].files);
 				
 				$('#contenu') .val($('#contenu').val() + "\n<photo" + files.length + ">\n");
-				
-				var current_file = this.files[0];
+				var ii = 1;
+
 				var reader = new FileReader();
+				var current_file = files[files.length - 1];
 				if (current_file.type.indexOf('image') == 0) 
 				{
 				  reader.onload = function (event) 
 				  {
 				      var image = new Image();
 				      image.src = event.target.result;
-
+						console.log(current_file);
 				      image.onload = function() 
 				      {
-				        var maxWidth = 200,
-				            maxHeight = 200,
-				            imageWidth = image.width,
-				            imageHeight = image.height;
-
-
-				        if (imageWidth > imageHeight) 
-				        {
-				          if (imageWidth > maxWidth) 
-				          {
-				            imageHeight *= maxWidth / imageWidth;
-				            imageWidth = maxWidth;
-				          }
-				        }
-				        else 
-				        {
-				          if (imageHeight > maxHeight) 
-				          {
-				            imageWidth *= maxHeight / imageHeight;
-				            imageHeight = maxHeight;
-				          }
-				        }
-
-				        var canvas = document.createElement('canvas');
-				        canvas.width = imageWidth;
-				        canvas.height = imageHeight;
-				        image.width = imageWidth;
-				        image.height = imageHeight;
-				        var ctx = canvas.getContext("2d");
-				        ctx.drawImage(this, 0, 0, imageWidth, imageHeight);
-				        $("#preview").prop('src', canvas.toDataURL(current_file.type));
-				        canvas.toBlob(function(blob){
-				        	pp = blob;
-				        }, "image/png");
-				        
+					        var maxWidth = 250,
+					            maxHeight = 250,
+					            imageWidth = image.width,
+					            imageHeight = image.height;
+	
+	
+					        if (imageWidth > imageHeight) 
+					        {
+					          if (imageWidth > maxWidth) 
+					          {
+					            imageHeight *= maxWidth / imageWidth;
+					            imageWidth = maxWidth;
+					          }
+					        }
+					        else 
+					        {
+					          if (imageHeight > maxHeight) 
+					          {
+					            imageWidth *= maxHeight / imageHeight;
+					            imageHeight = maxHeight;
+					          }
+					        }
+	
+					        var canvas = document.createElement('canvas');
+					        canvas.width = imageWidth;
+					        canvas.height = imageHeight;
+					        image.width = imageWidth;
+					        image.height = imageHeight;
+					        var ctx = canvas.getContext("2d");
+					        ctx.drawImage(this, 0, 0, imageWidth, imageHeight);
+						       
+					        var div = document.createElement('div');
+					        var preview = document.createElement('img');
+					        $(preview).attr('src', canvas.toDataURL(current_file.type));
+					        $(div).append("Photo " + ii);
+					        $(div).append(preview);
+					        $('#images').append(div);
+					        console.log(current_file);
+					        ii++;
 				      }
 				    }
 				  reader.readAsDataURL(current_file);
-				}
+				}					
 			});
 			
 			$('#form_creer_article').submit(function(e){
@@ -112,10 +117,7 @@
 			$('#media').hide();
 		});
 	</script>
-	<p>Ceci est la page d'administration</p>
-	<br>
 	<button id="bt_add_article" class="btn btn-sample">Ajouter article</button>
-	
 	<div class="row" id="creer_article">
 		<div class="col-md-8">
 			<form id="form_creer_article" action="./creerArticle" method="post" enctype="multipart/form-data">
@@ -132,9 +134,9 @@
 			</form>
 		</div>
 		<div class="col-md-2">
-		<br>
-		<img id="preview">
-				<!--  <textarea id="contenu" rows="20" cols="50" placeholder="Le contenu de l'article" required></textarea> -->
+			<br>
+			<div id="images" style="overflow-y: scroll; height:550px; overflow-x: hidden; width: 250px">			
+			</div>
 		</div>
 	</div>
 	
