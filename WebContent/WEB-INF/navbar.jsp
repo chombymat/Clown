@@ -83,20 +83,19 @@
 				<%
 			}
 			%>
-			<h1 id="name"></h1></p>
-	<h2 id="name"></h2>
+			<h1 id="name"></h1>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<!-- gauche -->
 			<ul class="nav navbar-nav">
-				<li><a href="./">Accueil</a></li>
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">La démarche<span class="caret"></span></a>
+				<li><a href="./" class="titre">Accueil</a></li>
+				<li class="dropdown"><a class="dropdown-toggle titre" data-toggle="dropdown" >La démarche<span class="caret"></span></a>
 			      <ul class="dropdown-menu">
 			        <li><a href="./demarche.jsp">Clown</a></li>
 			        <li><a href="./demarche.jsp">Pratique et sensoriel</a></li>
 			        <li><a href="./demarche.jsp">Expression corporelle</a></li>
 			      </ul>
 			    </li>
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Les ateliers<span class="caret"></span></a>
+				<li class="dropdown"><a class="dropdown-toggle titre" data-toggle="dropdown">Les ateliers<span class="caret"></span></a>
 			      <ul class="dropdown-menu">
 			        <li><a href="./atelier.jsp">Le pain</a></li>
 			        <li><a href="./atelier.jsp" onclick="showAteLait()">Le lait</a></li>
@@ -106,14 +105,14 @@
 			        <li><a href="./atelier.jsp">Le spectacle</a></li>
 			      </ul>
 			    </li>
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Ressources<span class="caret"></span></a>
+				<li class="dropdown"><a class="dropdown-toggle titre" data-toggle="dropdown">Ressources<span class="caret"></span></a>
 			      <ul class="dropdown-menu">
 			        <li><a href="./galerie.jsp">Galerie</a></li>
 			        <li><a href="./infosup.jsp">Pour en savoir +</a></li>
 			        <li><a href="./partenaires.jsp">Partenaires</a></li>
 			      </ul>
 			    </li>
-			    <li><a href="./formation.jsp">Formation</a></li>					
+			    <li><a href="./formation.jsp" class="titre">Formation</a></li>					
 			</ul>
 			
 		</div>

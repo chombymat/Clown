@@ -15,8 +15,13 @@ h2{color: #C21950;}
 .btn-sample.active, 
 .open .dropdown-toggle.btn-sample { 
   color: #ffffff; 
-  background-color: #A11846; 
+  background-color: #C21950; 
 } 
+
+.titre {
+	color: #C21950;
+	font-size: 17px;
+}
 
 .navbar .navbar-nav {
   display: inline-block;
