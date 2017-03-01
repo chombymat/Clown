@@ -145,7 +145,11 @@ function showRessources(){
 		});
 		
 		$('#bt_deconnexion').on('click', function(){
-			window.location.replace('./deconnexion.jsp');
+			window.location.replace('./Deconnexion');
+		});
+		
+		$('#bt_contacter').on('click', function(){
+			window.location.replace('./contact.jsp');
 		});
 	});
 </script>
@@ -153,7 +157,7 @@ function showRessources(){
 	<div class="container-fluid">
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav navbar-left" >
-			<li><a href="./contact.jsp">Nous contacter</a></li>
+			<li><button id="bt_contacter" class="btn btn-sample"href="./contact.jsp">Nous contacter</button></li>
 			</ul>
 			<!-- gauche -->
 			<ul class="nav navbar-nav">
