@@ -6,12 +6,29 @@
 		var lastIndexSlash = url.lastIndexOf('/');
 		var page = url.substring(lastIndexSlash + 1, url.lastIndexOf('?') == -1 ? url.length : url.lastIndexOf('?'));
 
-		if (page === '')
+		if (page === '' || page.indexOf('index.jsp') != -1)
 		{
-			$("#accueil").attr('class', 'active');
-		} else
+			$("#name").html("Accueil");
+		} 
+		if (page.indexOf('demarche.jsp') != -1)
 		{
-			$("#" + page).attr('class', 'active');
+			$("#name").html("Les démarches");
+		}
+		if (page.indexOf('atelier.jsp') != -1)
+		{
+			$("#name").html("Les ateliers");
+		}
+		if (page.indexOf('galerie.jsp') != -1)
+		{
+			$("#name").html("La galerie");
+		}
+		if (page.indexOf('infosup.jsp') != -1)
+		{
+			$("#name").html("En savoir plus");
+		}
+		if (page.indexOf('partenaires.jsp') != -1)
+		{
+			$("#name").html("Nos partenaires");
 		}
 		
 		$('#bt_connexion').on('click', function(){
@@ -33,6 +50,7 @@
 </script>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
+	<h2 id="name"></h2>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav navbar-left" >
 			<li><button id="bt_contacter" class="btn btn-sample"href="./contact.jsp">Nous contacter</button></li>
