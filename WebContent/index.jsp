@@ -7,8 +7,6 @@
 <title>Accueil</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="icon" type="image/png"
-	href="http://www.laprimaporta.com/wp-content/uploads/2016/01/fav.png" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script

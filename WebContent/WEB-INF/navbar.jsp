@@ -62,6 +62,7 @@
 		$('#bt_contacter').on('click', function(){
 			window.location.replace('./contact.jsp');
 		});
+	});
 </script>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
