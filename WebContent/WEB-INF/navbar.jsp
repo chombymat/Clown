@@ -42,6 +42,10 @@
 		{
 			$("#name").html("S'inscrire");
 		}
+		if (page.indexOf('formation.jsp') != -1)
+		{
+			$("#name").html("Formation");
+		}
 		
 		$('#bt_connexion').on('click', function(){
 			window.location.replace('./connexion.jsp');
@@ -94,7 +98,7 @@
 			        <li><a href="./partenaires.jsp">Partenaires</a></li>
 			      </ul>
 			    </li>
-			    <li><a href="./">Formation</a></li>					
+			    <li><a href="./formation.jsp">Formation</a></li>					
 			</ul>
 			
 			<!--  droite -->

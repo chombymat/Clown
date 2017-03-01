@@ -13,6 +13,7 @@
 </head>
 <body>
 <%@include file="/WEB-INF/navbar.jsp"%>
+<p>Le développeur : Markey Jeffrey<br>Les incompétents : Matthias Chombart, Aurélia Catrice, Xavier Lamarque</p>
 <%@include file="/WEB-INF/footer.html"%>
 </body>
 </html>
