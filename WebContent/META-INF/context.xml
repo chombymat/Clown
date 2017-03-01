@@ -16,7 +16,7 @@
 	type="javax.mail.Session"
 	mail.smtp.host="mailserv.univ-lille1.fr" username="..." password="..." />
   
-  <!--<Resource name="mail/Session" auth="Container"
+  <!-- <Resource name="mail/Session" auth="Container"
         type="javax.mail.Session"
         mail.smtp.user="tweetbookda2i@gmail.com"
         mail.smtp.password="da2i20162017"
@@ -26,7 +26,7 @@
         mail.smtp.host= "smtp.gmail.com"
         mail.smtp.auth= "true"
         mail.smtp.port= "587"
-        mail.smtp.starttls.enable="true"/>-->
+        mail.smtp.starttls.enable="true"/> -->
 
    <!-- <Realm className="org.apache.catalina.realm.DataSourceRealm"	debug="99" dataSourceName="jdbc/database" localDataSource="true"
 		userTable="user" userNameCol="log" userCredCol="mdp" userRoleTable="role"

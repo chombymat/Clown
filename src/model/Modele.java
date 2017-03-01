@@ -26,7 +26,7 @@ public class Modele
 	protected ResultSet result;
 	protected DataSource ds = null;
 	protected PreparedStatement statement = null;
-	private String mailEntreprise = "aur.catrice@gmail.com";
+	private String mailEntreprise = "aurelia.catrice@etudiant.univ-lille1.fr";
 	
 	public Modele(){
 		try 
@@ -103,9 +103,15 @@ public class Modele
 			else if(sexe.equals("H"))
 				message += "de Monsieur " + prenom + " " + nom;
 			
-			message += "\nContacter ultiérieurement via:\n" + "numero de telephone : " + numero_telephone + "\nadresse mail : "
+			message += "\nContacter ultérieurement via:\n" + "numero de telephone : " + numero_telephone + "\nadresse mail : "
 					+ mail + "\nadresse : " + adresse + "\n" + ville + "\n" + departement;
-			javax.mail.Session mailSession = (javax.mail.Session) ((Context) new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
+			
+			
+			Context initCtx = new InitialContext();
+			Context envCtx = (Context) initCtx.lookup("java:comp/env");
+			javax.mail.Session mailSession = (javax.mail.Session) envCtx.lookup("mail/Session");
+			
+			//javax.mail.Session mailSession = (javax.mail.Session) ((Context) new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
 			Message content = new MimeMessage(mailSession);
 			content.setFrom(new InternetAddress(mail));
 			InternetAddress to[] = new InternetAddress[1];
