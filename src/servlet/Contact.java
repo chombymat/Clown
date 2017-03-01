@@ -16,7 +16,7 @@ public class Contact extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try
 		{
-			new model.Modele().envoyerMail(request.getParameter("nom"), request.getParameter("prenom"),
+			new model.Modele().envoyerMailContact(request.getParameter("nom"), request.getParameter("prenom"),
 										   request.getParameter("email"), request.getParameter("telephone"),
 										   request.getParameter("adresse"), request.getParameter("ville"),
 										   request.getParameter("departement"), request.getParameter("sexe"),

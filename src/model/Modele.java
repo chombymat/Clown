@@ -98,7 +98,7 @@ public class Modele
 
 	//------------------------------------------------------CONTACT------------------------------------------------------------
 	
-	public void envoyerMail(String nom, String prenom, String mail, String  numero_telephone, String adresse, String ville, String departement, String sexe, String message){
+	public void envoyerMailContact(String nom, String prenom, String mail, String  numero_telephone, String adresse, String ville, String departement, String sexe, String message){
 		try{
 			
 			if(sexe != null){
@@ -138,6 +138,29 @@ public class Modele
 		}
 	}
 	
+	public void envoyerMailInscription(String nom, String prenom, String mail, String  pseudo){
+		try{
+			
+			String message = "Nouvelle inscription de " + nom + " " + prenom + "\n- - - -\nmail : " + mail + "\nidentifiant : " + pseudo + "\n";
+			
+			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
+			Message msg = new MimeMessage(session_mail);
+			msg.setFrom(new InternetAddress("tweetbookda2i@gmail.com"));
+			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mailEntreprise));
+			msg.setSubject("nouvelle inscription " + nom + " " + prenom);
+			msg.setText(message);
+			Transport.send(msg);
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				ds.getConnection().close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	//------------------------------------------------------UTILISATEUR------------------------------------------------------------	
 	

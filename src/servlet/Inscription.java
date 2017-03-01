@@ -27,6 +27,11 @@ public class Inscription extends HttpServlet {
 					(String)request.getParameter("inscriptionLogin"),
 					(String)request.getParameter("inscriptionMail"),
 					(String)request.getParameter("inscriptionPass"));
+			modele.envoyerMailInscription(	
+					(String)request.getParameter("inscriptionNom"),
+					(String)request.getParameter("inscriptionPrenom"),
+					(String)request.getParameter("inscriptionMail"),
+					(String)request.getParameter("inscriptionLogin"));
 			response.getWriter().print("ok");
 		} catch (Exception e) 
 		{
