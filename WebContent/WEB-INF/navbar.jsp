@@ -172,7 +172,7 @@ function showRessources(){
 				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Les ateliers<span class="caret"></span></a>
 			      <ul class="dropdown-menu">
 			        <li><a href="./atelier.jsp">Le pain</a></li>
-			        <li><a href="./atelier.jsp">Le lait</a></li>
+			        <li><a href="./atelier.jsp" onclick="showAteLait()">Le lait</a></li>
 			        <li><a href="./atelier.jsp">Les 7 familles</a></li>
 			        <li><a href="./atelier.jsp">Le menu equilibré</a></li>
 			        <li><a href="./atelier.jsp">Alimentation et environnement</a></li>

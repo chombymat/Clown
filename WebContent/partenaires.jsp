@@ -13,6 +13,8 @@
 </head>
 <body>
 <%@include file="/WEB-INF/navbar.jsp"%>
+[texte] présentation Comité Technique / présentation partenaires financiers<br>
+[lien] vers autres sites 
 <%@include file="/WEB-INF/footer.html"%>
 </body>
 </html>
