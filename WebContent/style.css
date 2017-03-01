@@ -72,6 +72,11 @@ h2{color: #C21950;}
 	transform: scale(1.1);
 }
 
+.img-thumbnail{
+	background-color: transparent;
+	border-color: transparent;
+}
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */

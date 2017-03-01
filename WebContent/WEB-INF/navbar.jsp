@@ -23,12 +23,9 @@ $(document).ready(function() {
 		document.location="./Deconnexion";
 	});
 	//Cacher de base
-	var x = document.getElementById('photos');
-	x.style.display = 'none';
-	var x = document.getElementById('videos');
-	x.style.display = 'none';
-	var x = document.getElementById('pdfs');
-	x.style.display = 'none';
+	var x = document.getElementById('photos').style.display = 'none';
+	var x = document.getElementById('videos').style.display = 'none';
+	var x = document.getElementById('pdfs').style.display = 'none';
 });
 //Cacher montrer
 function azer(){
