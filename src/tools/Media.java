@@ -3,7 +3,7 @@ package tools;
 public class Media {
 
 	private int id;
-	private String chemin, type;
+	private String chemin, type, nom;
 	private int idArticle;
 
 	public Media(int id, String chemin, String type){
@@ -17,6 +17,11 @@ public class Media {
 		this.idArticle = idArticle;
 		this.chemin = chemin;
 		this.type = type;
+	}
+	
+	public Media(String chemin, String nom){
+		this.chemin = chemin;
+		this.nom = nom;
 	}
 
 	public int getId() {
@@ -41,5 +46,13 @@ public class Media {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+	
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 }

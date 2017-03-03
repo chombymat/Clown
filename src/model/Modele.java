@@ -377,6 +377,29 @@ public class Modele
 		}
 	}
 	
+	public ArrayList<Media> getGalerie(){
+		ArrayList<Media> medias = new ArrayList<Media>();
+		try{
+			statement = ds.getConnection().prepareStatement("select chemin, nom from media where type = 'galerie'");
+			result = statement.executeQuery();
+			while(result.next()){
+				medias.add(new Media(result.getString("chemin"), result.getString("nom")));
+			}
+			return medias;
+			
+		} catch (Exception e){
+			e.printStackTrace();
+			return null;
+		} finally{
+			try{
+				statement.close();
+				ds.getConnection().close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	//------------------------------------------------------PROJET------------------------------------------------------------
 	
 	

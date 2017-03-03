@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Modele;
 import tools.Media;
 
 @SuppressWarnings("serial")
@@ -16,16 +17,20 @@ import tools.Media;
 public class Galerie extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Media> media = new ArrayList<Media>();
-
-		request.setAttribute("media", media);
-		request.getRequestDispatcher("galerie.jsp").forward(request, response);
-		
+		Modele modele = new Modele();
+		try {
+			ArrayList<Media> galerie = modele.getGalerie();
+			request.setAttribute("galerie", galerie);
+			request.getRequestDispatcher("/WEB-INF/galerie.jsp").forward(request, response);
+		} catch (Exception e) 
+		{
+			System.out.println(e.getMessage());
+		}
 		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		
 	}
 
 }

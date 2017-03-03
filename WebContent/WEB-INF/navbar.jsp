@@ -107,7 +107,7 @@
 			    </li>
 				<li class="dropdown"><a class="dropdown-toggle titre" data-toggle="dropdown">Ressources<span class="caret"></span></a>
 			      <ul class="dropdown-menu">
-			        <li><a href="./galerie.jsp">Galerie</a></li>
+			        <li><a href="./Galerie">Galerie</a></li>
 			        <li><a href="./infosup.jsp">Pour en savoir +</a></li>
 			        <li><a href="./partenaires.jsp">Partenaires</a></li>
 			      </ul>
