@@ -18,7 +18,7 @@
 		{
 			$("#name").html("Les ateliers");
 		}
-		if (page.indexOf('galerie.jsp') != -1)
+		if (page.indexOf('Galerie') != -1)
 		{
 			$("#name").html("La galerie");
 		}

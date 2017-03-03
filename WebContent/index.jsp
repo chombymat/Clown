@@ -18,6 +18,7 @@
 <body>
 	<%@include file="/WEB-INF/navbar.jsp"%>
 	<div class="container">
+	<div id="laureat">Le projet &laquo; Je mange mieux &raquo; à été lauréat du ministère de l'agriculture en février 2016.</div>
 		<!-- Example row of columns -->
 		<div class="row">
 			<div class="col-md-6">
