@@ -120,7 +120,7 @@
 			$('#media').hide();
 		});
 	</script>
-	<button id="bt_add_article" class="btn btn-sample">Ajouter article</button>
+	<button id="bt_add_article" class="btn btn-sample">Ajouter article</button>	<button id="bt_add_galerie" class="btn btn-sample">Ajouter à la galerie</button>
 	<div class="row" id="creer_article">
 		<div class="col-md-8">
 			<form id="form_creer_article" action="./creerArticle" method="post" enctype="multipart/form-data">
