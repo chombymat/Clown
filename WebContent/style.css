@@ -155,3 +155,8 @@ h2{color: #C21950;}
         width: 100%;
     }
 }
+
+#header__icon{
+	background-color: transparent;
+	border: none;
+}

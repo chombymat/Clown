@@ -62,10 +62,24 @@
 		$('#bt_contacter').on('click', function(){
 			window.location.replace('./contact.jsp');
 		});
+		
+		(function($) {
+
+			$('#header__icon').click(function(e){
+				e.preventDefault();
+				$('body').toggleClass('with--sidebar');
+			});
+	    
+	    $('#site-cache').click(function(e){
+	      $('body').removeClass('with--sidebar');
+	    });
+
+		})(jQuery);
 	});
 </script>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
+	
 	<p id="p_navbar"><span class="gauche"><button id="bt_contacter" class="btn btn-sample" href="./contact.jsp">Nous contacter</button></span>
 			<%
 			if(session.getAttribute("user") == null) 
@@ -84,11 +98,22 @@
 			}
 			%>
 			<h1 id="name"></h1>
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<!-- gauche -->
-			<ul class="nav navbar-nav">
-				<li><a href="./" class="titre">Accueil</a></li>
-				<li class="dropdown"><a class="dropdown-toggle titre" data-toggle="dropdown" >La démarche<span class="caret"></span></a>
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="./">Accueil</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="dropdown"><a class="dropdown-toggle titre" data-toggle="dropdown" >La démarche<span class="caret"></span></a>
 			      <ul class="dropdown-menu">
 			        <li><a href="./demarche.jsp">Clown</a></li>
 			        <li><a href="./demarche.jsp">Pratique et sensoriel</a></li>
@@ -112,9 +137,11 @@
 			        <li><a href="./partenaires.jsp">Partenaires</a></li>
 			      </ul>
 			    </li>
-			    <li><a href="./formation.jsp" class="titre">Formation</a></li>					
-			</ul>
-			
-		</div>
-	</div>
+			    <li><a href="./formation.jsp" class="titre">Formation</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+
+    </div>
 </nav>
