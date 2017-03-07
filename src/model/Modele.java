@@ -1,5 +1,7 @@
 package model;
 
+import java.io.File;
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Collection;
 
 import javax.mail.Message;
 import javax.mail.Message.RecipientType;
@@ -17,7 +20,10 @@ import javax.mail.internet.MimeMessage;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.http.Part;
 import javax.sql.DataSource;
+
+import org.apache.commons.io.IOUtils;
 
 import tools.Article;
 import tools.Media;
@@ -29,16 +35,17 @@ public class Modele
 	protected DataSource ds = null;
 	protected PreparedStatement statement = null;
 	private String mailEntreprise = "aurelia.catrice@etudiant.univ-lille1.fr";
-	
+
 	public Modele(){
 		try 
 		{
 			ds = (DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase");
-			
+
 		} catch(Exception e){
 			e.printStackTrace();
 		}
 	}
+
 	public Utilisateur connexion(String login, String pass) throws Exception
 	{
 		Utilisateur user = null;
@@ -71,33 +78,33 @@ public class Modele
 
 		return user;
 	}
-	
+
 	private String cryptPass(String pass)
 	{
 		byte[] salt = new String("Clown").getBytes();
 
-	    try {
-	      MessageDigest digest = MessageDigest.getInstance("SHA-256");
-	      digest.reset();
-	      digest.update(salt);
-	      byte[] bDigest = digest.digest(pass.getBytes("UTF-8"));
+		try {
+			MessageDigest digest = MessageDigest.getInstance("SHA-256");
+			digest.reset();
+			digest.update(salt);
+			byte[] bDigest = digest.digest(pass.getBytes("UTF-8"));
 
-	      for (int i = 0; i < 10; i++) 
-	      {
-	        digest.reset();
-	        bDigest = digest.digest(bDigest);
-	      }
+			for (int i = 0; i < 10; i++) 
+			{
+				digest.reset();
+				bDigest = digest.digest(bDigest);
+			}
 
-	      return new String(Base64.getEncoder().encode(bDigest));
-	    } catch (java.security.NoSuchAlgorithmException | java.io.UnsupportedEncodingException e) {
-	      e.printStackTrace();
-	    }
-	    
-	    return null;
+			return new String(Base64.getEncoder().encode(bDigest));
+		} catch (java.security.NoSuchAlgorithmException | java.io.UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 	//------------------------------------------------------CONTACT------------------------------------------------------------
-	
+
 	public void envoyerMail(String nom, String prenom, String mail, String  numero_telephone, String adresse, String ville, String departement, String sexe, String message){
 		try{
 			if(sexe != null){
@@ -106,12 +113,12 @@ public class Modele
 				else if(sexe.equals("H"))
 					message += "de Monsieur " + prenom + " " + nom;
 			}
-			
+
 			message += "\nContacter ultérieurement via:\n" + "numero de telephone : " + numero_telephone + "\nadresse mail : "
 					+ mail + "\nadresse physique : " + adresse + "\n" + ville + "\n" + departement;
-			
-			
-			
+
+
+
 			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
 			Message msg = new MimeMessage(session_mail);
 			msg.setFrom(new InternetAddress("tweetbookda2i@gmail.com"));
@@ -130,27 +137,27 @@ public class Modele
 			}
 		}
 	}
-	
-	
+
+
 	//------------------------------------------------------UTILISATEUR------------------------------------------------------------	
-	
+
 	public void ajoutUtilisateur(String nom, String prenom, String login, String mail, String pass) throws Exception
 	{
 		try{
 			statement = ds.getConnection().prepareStatement("select from utilisateur where adresse_mail = ?");
 			statement.setString(1, mail);
 			result = statement.executeQuery();
-			
+
 			if(result.next())
 				throw new Exception("mail");
-			
+
 			statement = ds.getConnection().prepareStatement("select from utilisateur where login = ?");
 			statement.setString(1, login);
 			result = statement.executeQuery();
-			
+
 			if(result.next())
 				throw new Exception("login");
-			
+
 			statement = ds.getConnection().prepareStatement("insert into utilisateur (nom, prenom, adresse_mail, login, prima_pass) values(?, ?, ?, ?, ?) returning id_utilisateur");
 			statement.setString(1, nom);
 			statement.setString(2, prenom);
@@ -159,15 +166,15 @@ public class Modele
 			statement.setString(5, cryptPass(pass));
 
 			result = statement.executeQuery();
-			
+
 			if(result.next()){
-				
+
 				int id = result.getInt(1);
-		
+
 				statement = ds.getConnection().prepareStatement("insert into role (id_utilisateur, role) values(?, ?)");
 				statement.setInt(1, id);
 				statement.setString(2, "role2");
-	
+
 				statement.executeUpdate();
 				System.out.println("ajout de l'utiliateur : " + login);
 			}
@@ -185,15 +192,17 @@ public class Modele
 			}
 		}
 	}
-	
-	
-	
+
+
+
 	//------------------------------------------------------ARTICLE------------------------------------------------------------
-	
-	
-	
-	public void ajouterArticle(String titre, String description, int idProjet){
-		try{
+
+
+
+	public void ajouterArticle(String titre, String description, int idProjet)
+	{
+		try
+		{
 			statement = ds.getConnection().prepareStatement("insert into Article (titre, description, id_projet) values(?, ?, ?)");
 			statement.setString(1, titre);
 			statement.setString(2, description);
@@ -212,9 +221,9 @@ public class Modele
 			}
 		}
 	}
-	
-	
-	
+
+
+
 	public void modifierArticle(int id, String titre, String description){
 		try{
 			statement = ds.getConnection().prepareStatement("update from Article set titre = ?, description= ? where id_article = ?");
@@ -235,9 +244,9 @@ public class Modele
 			}
 		}
 	}
-	
-	
-	
+
+
+
 	public void supprimerArticle(int id){
 		try{
 			statement = ds.getConnection().prepareStatement("delete from Article where id_article = ?");
@@ -256,9 +265,9 @@ public class Modele
 			}
 		}
 	}
-	
-	
-	
+
+
+
 	public ArrayList<Article> getArticles(int idProjet){
 		ArrayList<Article> articles = new ArrayList<Article>();
 		try{
@@ -269,7 +278,7 @@ public class Modele
 				articles.add(new Article(result.getInt(1), result.getString(2), result.getString(3)));
 			}
 			return articles;
-			
+
 		} catch (Exception e){
 			e.printStackTrace();
 			return null;
@@ -282,7 +291,7 @@ public class Modele
 			}
 		}
 	}
-	
+
 	public Article getArticle(int id){
 		Article article = null;
 		try{
@@ -293,7 +302,7 @@ public class Modele
 				article = new Article(result.getInt(1), result.getString(2), result.getString(3));
 			}
 			return article;
-			
+
 		} catch (Exception e){
 			e.printStackTrace();
 			return null;
@@ -306,10 +315,10 @@ public class Modele
 			}
 		}
 	}
-	
+
 	//------------------------------------------------------MEDIA------------------------------------------------------------
-	
-	
+
+
 	public void ajouterMedia(String chemin, String type, int idArticle){
 		try{
 			statement = ds.getConnection().prepareStatement("insert into Media (chemin, type, id_article) values(?, ?, ?)");
@@ -330,8 +339,8 @@ public class Modele
 			}
 		}
 	}
-	
-	
+
+
 	public void supprimerMedia(int id){
 		try{
 			statement = ds.getConnection().prepareStatement("delete from Media where id_media = ?");
@@ -350,9 +359,9 @@ public class Modele
 			}
 		}
 	}
-	
-	
-	
+
+
+
 	public ArrayList<Media> getMedias(int idArticle){
 		ArrayList<Media> medias = new ArrayList<Media>();
 		try{
@@ -363,7 +372,7 @@ public class Modele
 				medias.add(new Media(result.getInt(1), result.getString(3), result.getString(4)));
 			}
 			return medias;
-			
+
 		} catch (Exception e){
 			e.printStackTrace();
 			return null;
@@ -376,7 +385,7 @@ public class Modele
 			}
 		}
 	}
-	
+
 	public ArrayList<Media> getGalerie(){
 		ArrayList<Media> medias = new ArrayList<Media>();
 		try{
@@ -386,7 +395,7 @@ public class Modele
 				medias.add(new Media(result.getString("chemin"), result.getString("nom")));
 			}
 			return medias;
-			
+
 		} catch (Exception e){
 			e.printStackTrace();
 			return null;
@@ -399,10 +408,25 @@ public class Modele
 			}
 		}
 	}
-	
+
+	public void saveMediaOnDisqk(String chemin, Part media)
+	{
+		File f = new File(chemin);
+
+		if(!f.exists())
+			f.mkdirs();
+
+		try 
+		{
+			media.write(chemin + media.getName() + ".jpg");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	//------------------------------------------------------PROJET------------------------------------------------------------
-	
-	
+
+
 	public void ajouterProjet(String titre, String description){
 		try{
 			statement = ds.getConnection().prepareStatement("insert into Projet (titre, description) values(?, ?)");
@@ -422,8 +446,8 @@ public class Modele
 			}
 		}
 	}
-	
-	
+
+
 	public void supprimerProjet(int id){
 		try{
 			statement = ds.getConnection().prepareStatement("delete from Projet where id_projet = ?");

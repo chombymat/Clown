@@ -14,6 +14,7 @@ import javax.servlet.http.Part;
 
 import org.apache.commons.io.IOUtils;
 
+import model.Modele;
 import tools.Utilisateur;
 
 @WebServlet("/creerArticle")
@@ -38,14 +39,9 @@ public class CreerArticle extends HttpServlet
 		}
 		else
 		{
-			File f = new File(getServletContext().getRealPath("/") + "images/article");
+			Modele model = new Modele();
 			
-			if(!f.exists())
-				f.mkdirs();
-			
-			String contenu = request.getParameter("contenu");
 			Collection<Part> media = request.getParts();
-			int i = 0;
 			for(Part p : media)
 			{
 				if(p.getName().equals("contenu") || p.getName().equals("titre") || p.getName().equals("description"))
@@ -54,11 +50,7 @@ public class CreerArticle extends HttpServlet
 					System.out.println(p.getName() + " : " + theString);
 				}
 				if(p.getName().indexOf("media_") != -1)
-				{
-					System.out.println("Media présent");
-					p.write(getServletContext().getRealPath("/") + "images/article/image" + i + ".jpg");
-					i++;
-				}
+					model.saveMediaOnDisqk(getServletContext().getRealPath("/") + "images/article/", p);
 			}			
 		}
 	}
