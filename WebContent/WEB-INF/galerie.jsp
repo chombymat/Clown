@@ -5,12 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="keywords"
-	content="clown, éducatif, théâtre, prima, porta, primaporta, association, enfants, éducatif, ateliers, expression, corporelle, rire, humour, compagnie" />
-<meta name="description"
-	content="Clown Educatif est une compagnie de clown de théâtre créée en 2010 et implantée à Lille (59)." />
+<meta name="keywords" content="clown, éducatif, théâtre, prima, porta, primaporta, association, enfants, éducatif, ateliers, expression, corporelle, rire, humour, compagnie" />
+<meta name="description" content="Clown Educatif est une compagnie de clown de théâtre créée en 2010 et implantée à Lille (59)." />
 <title>Galerie Photos ClownEducatif.com</title>
-<link href="assets/css/bootstrap.css" rel="stylesheet">
 <link rel="icon" type="image/png"
 	href="http://www.laprimaporta.com/wp-content/uploads/2016/01/fav.png" />
 <link rel="stylesheet"
@@ -24,37 +21,8 @@
 <%@include file="/WEB-INF/navbar.jsp"%>
 </head>
 <body>
-	<script>
-		// Get the modal
 	<%ArrayList<Media> galerie = (ArrayList) request.getAttribute("galerie");%>
-		$(document).ready(function() {
-			var modal = document.getElementById('myModal');
 
-			// Get the image and insert it inside the modal - use its "alt" text as a caption
-
-			$('.myImg').on('click', function() {
-				$('html, body').css({
-					overflow : 'hidden',
-					height : '100%'
-				});
-				$('#myModal').attr('style', 'display: block');
-				$('#img01').attr('src', $(this).attr('src'));
-				$('#caption').html($(this).attr('alt'));
-			});
-			// Get the <span> element that closes the modal
-			var span = document.getElementsByClassName("close")[0];
-
-			// When the user clicks on <span> (x), close the modal
-			span.onclick = function() {
-				$('html, body').css({
-					overflow : 'auto',
-					height : 'auto'
-				});
-				modal.style.display = "none";
-			}
-
-		});
-	</script>
 
 	<div class="container">
 		<div id="content" class="row ">
@@ -68,7 +36,6 @@
 		<div id="page_navigation"></div>
 	</div>
 
-	<script src="assets/js/jquery.js"></script>
 	<script>
 		var show_per_page = 18;
 		var current_page = 0;
@@ -100,6 +67,35 @@
 		$(document)
 				.ready(
 						function() {
+							var modal = document.getElementById('myModal');
+
+							// Get the image and insert it inside the modal - use its "alt" text as a caption
+
+							
+							// Get the <span> element that closes the modal
+							var span = document.getElementsByClassName("close")[0];
+
+							// When the user clicks on <span> (x), close the modal
+							$('.myImg').on('click', function() {
+								$('html, body').css({
+									overflow : 'hidden',
+									height : '100%'
+								});
+								$('#myModal').attr('style', 'display: block');
+								$('#img01').attr('src', $(this).attr('src'));
+								$('#caption').html($(this).attr('alt'));
+								$('#id' + current_page).removeClass('active');
+							});
+							
+							span.onclick = function() {
+								$('html, body').css({
+									overflow : 'auto',
+									height : 'auto'
+								});
+								modal.style.display = "none";
+								$('#id' + current_page).addClass('active');
+							}
+
 
 							var number_of_pages = Math.ceil($('#content')
 									.children().length
