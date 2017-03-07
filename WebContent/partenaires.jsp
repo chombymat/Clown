@@ -15,7 +15,10 @@
 </head>
 <body>
 <%@include file="/WEB-INF/navbar.jsp"%>
-<p>Le développeur : Markey Jeffrey<br>Celui qui casse tout : Xavier Lamarque<br>Le clown : Matthias Chombart<br>Celle qui joue (mal) au lieu de bosser : Aurélia Catrice</p>
+<p>Le développeur : Markey Jeffrey<br>
+Celui qui casse tout : Xavier Lamarque<br>
+Le clown : Matthias Chombart<br>
+Celle qui joue (mal) au lieu de bosser : Aurélia Catrice</p>
 [texte] présentation Comité Technique / présentation partenaires financiers<br>
 [lien] vers autres sites 
 <%@include file="/WEB-INF/footer.html"%>

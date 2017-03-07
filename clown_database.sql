@@ -34,8 +34,7 @@ create table article(
 
 create table media(
 	id_media serial primary key,
-	id_article integer references article(id_article) 
- 		on update cascade on delete restrict,
+	-- id_article integer references article(id_article) on update cascade on delete restrict,
 	chemin varchar(100) not null,
 	nom varchar(50) not null,
 	type varchar(50) not null
