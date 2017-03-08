@@ -272,40 +272,14 @@ public class Modele
 		}
 	}
 
-
-
-	public ArrayList<Article> getArticles(int idProjet){
-		ArrayList<Article> articles = new ArrayList<Article>();
-		try{
-			statement = ds.getConnection().prepareStatement("select id_article, titre, description from article where id_projet = ?");
-			statement.setInt(1, idProjet);
-			result = statement.executeQuery();
-			while(result.next()){
-				articles.add(new Article(result.getInt(1), result.getString(2), result.getString(3)));
-			}
-			return articles;
-
-		} catch (Exception e){
-			e.printStackTrace();
-			return null;
-		} finally{
-			try{
-				statement.close();
-				ds.getConnection().close();
-			} catch(Exception e){
-				e.printStackTrace();
-			}
-		}
-	}
-
 	public Article getArticle(int id){
 		Article article = null;
 		try{
-			statement = ds.getConnection().prepareStatement("select id_article, titre, description from article where id_article = ?");
+			statement = ds.getConnection().prepareStatement("select titre, description, contenu from article where id_article = ?");
 			statement.setInt(1, id);
 			result = statement.executeQuery();
 			if(result.next()){
-				article = new Article(result.getInt(1), result.getString(2), result.getString(3));
+				article = new Article(id, result.getString("titre"), result.getString("description"), result.getString("contenu"));
 			}
 			return article;
 

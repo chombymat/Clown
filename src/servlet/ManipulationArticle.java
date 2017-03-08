@@ -36,8 +36,8 @@ public class ManipulationArticle extends HttpServlet {
 					Integer.valueOf(request.getParameter("supprimerArticleId")));
 		}
 		else if(request.getParameter("articlesProjet") != null){
-			new Modele().getArticles(
-					Integer.valueOf(request.getParameter("idProjetPere")));
+			/*new Modele().getArticles(
+					Integer.valueOf(request.getParameter("idProjetPere")));*/
 		}
 
 	}
