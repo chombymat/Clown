@@ -22,7 +22,7 @@
 			
 			$('#bt_add_article').on('click', function(){
 				$('#remplir_galerie').hide();
-				$('#creer_article').show();
+				$('#page_article').show();
 			});
 			
 			$('#bt_add_photo').on('click', function(){
@@ -31,8 +31,6 @@
 			
 			$("#media").on('change', function(e){
 				files = $.merge(files, $('#media')[0].files);
-				
-				$('#contenu') .val($('#contenu').val() + "\n<photo" + files.length + ">\n");
 
 				var reader = new FileReader();
 				var current_file = files[files.length - 1];
@@ -79,11 +77,11 @@
 					        var div = document.createElement('div');
 					        var preview = document.createElement('img');
 					        $(preview).attr('src', canvas.toDataURL(current_file.type));
-					        $(div).append("Photo " + ii);
+					        $(div).append(current_file.name);
 					        $(div).append(preview);
 					        $('#images').append(div);
-					        console.log(current_file);
 					        ii++;
+							$('#contenu') .val($('#contenu').val() + "\n<" + current_file.name + ">\n");
 				      }
 				    }
 				  reader.readAsDataURL(current_file);
@@ -98,12 +96,13 @@
 				
 				for(var i = 0; i < files.length; i++)
 				{
-					formData.append('media_' + i, files[i]);
+					formData.append('media_' + files[i].name, files[i]);
 				}
 				
 				formData.append('titre', $('#titre').val());
 				formData.append('description', $('#description').val());
 				formData.append('contenu', $('#contenu').val());
+				formData.append('ajax', true);
 		 	
 		        $.ajax({
 		            url: $form.attr('action'),
@@ -112,13 +111,28 @@
 		            contentType: false,
 		            processData: false,
 		            data: formData,
-		            success : function(){
-		            	console.log("Ajout réussi.");
+		            success : function(json){
+		            	var j = JSON.parse(json);
+		            	if(j.article_creer != null)
+		            	{
+		            		$('#success').html(j.article_creer)
+		            		$('#creer_article').hide();
+		           		}
+		            	if(j.erreur_titre == "true")
+		            		$('#erreur_titre').val("Veuillez saisir un titre");
+		            	if(j.erreur_description == "true")
+		            		$('#erreur_description').val("Veuillez saisir une description");
+		            	if(j.erreur_contenu == "true")
+		            		$('#erreur_contenu').val("Veuillez saisir un contenu");
 		            }
 		        });
 			});
-				
-			$('#creer_article').hide();
+			<%
+			if(request.getAttribute("page_article") == null)
+			{
+				%>$('#page_article').hide();<%
+			}
+			%>
 			$('#media').hide();
 			
 			/******************** separation article et galerie *************************/			
@@ -203,24 +217,30 @@
 	
 	<!-- -------------------------------- Créer article -------------------------- -->
 	
-	<div class="row" id="creer_article">
-		<div class="col-md-8">
-			<form id="form_creer_article" action="./creerArticle" method="post" enctype="multipart/form-data">
+	<div class="row" id="page_article">
+		<span id="success" class="success">${ requestScope.article_creer }</span>
+		<div class="row" id="creer_article">
+			<div class="col-md-8">
+				<form id="form_creer_article" action="./creerArticle" method="post" enctype="multipart/form-data">
+					<br>
+					<span id="erreur_titre" class="erreur">${ requestScope.erreur_titre }</span>
+					<textarea id="titre" rows="1" cols="100" placeholder="Le titre de l'article" required></textarea>
+					<br><br>
+					<span id="erreur_description" class="erreur">${ requestScope.erreur_description }</span>
+					<textarea id="description" rows="2" cols="100" placeholder="La description de l'article" required></textarea>
+					<br><br>
+					<span id="erreur_contenu" class="erreur">${ requestScope.erreur_contenu }</span>
+					<textarea id="contenu" rows="20" cols="100" placeholder="Le contenu de l'article" required></textarea>
+					<br>
+					<input id="media" type="file" accept="image/*"/>
+					<button type="button" id="bt_add_photo" class="btn btn-sample">Importer photo</button>
+					<input type="submit" class="btn btn-sample" value="Creer article"/>
+				</form>
+			</div>
+			<div class="col-md-2">
 				<br>
-				<textarea id="titre" rows="1" cols="100" placeholder="Le titre de l'article" required></textarea>
-				<br><br>
-				<textarea id="description" rows="2" cols="100" placeholder="La description de l'article" required></textarea>
-				<br><br>
-				<textarea id="contenu" rows="20" cols="100" placeholder="Le contenu de l'article" required></textarea>
-				<br>
-				<input id="media" type="file" accept="video/*|image/*"/>
-				<button type="button" id="bt_add_photo" class="btn btn-sample">Importer photo</button>
-				<input type="submit" class="btn btn-sample" value="Creer article"/>
-			</form>
-		</div>
-		<div class="col-md-2">
-			<br>
-			<div id="images" style="overflow-y: scroll; height:550px; overflow-x: hidden; width: 250px">			
+				<div id="images" style="overflow-y: scroll; height:550px; overflow-x: hidden; width: 250px">			
+				</div>
 			</div>
 		</div>
 	</div>
