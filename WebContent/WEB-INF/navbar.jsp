@@ -83,7 +83,7 @@
 	});
 </script>
 <nav class="navbar navbar-default">
-	<div id="navbar" class="container-fluid">
+	<div class="container-fluid">
 	
 	<p id="p_navbar"><span class="gauche"><button id="bt_contacter" class="btn btn-sample" href="./contact.jsp">Nous contacter</button></span>
 			<%
@@ -114,7 +114,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="./">Accueil</a>
+            <a class="navbar-brand titre" href="./">Accueil</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -127,11 +127,11 @@
 			    </li>
 				<li class="dropdown"><a class="dropdown-toggle titre" data-toggle="dropdown">Les ateliers<span class="caret"></span></a>
 			      <ul class="dropdown-menu">
-			        <li><a href="./atelier.jsp">Le pain</a></li>
-			        <li><a href="./atelier.jsp" onclick="showAteLait()">Le lait</a></li>
-			        <li><a href="./atelier.jsp">Les 7 familles</a></li>
-			        <li><a href="./atelier.jsp">Le menu equilibré</a></li>
-			        <li><a href="./atelier.jsp">Alimentation et environnement</a></li>
+			        <li><a href="./atelier.jsp">Atelier 1 : Le pain</a></li>
+			        <li><a href="./atelier.jsp" onclick="showAteLait()">Atelier 2 : Le lait</a></li>
+			        <li><a href="./atelier.jsp">Atelier 3 : Les 7 familles</a></li>
+			        <li><a href="./atelier.jsp">Atelier 4 : Le menu equilibré</a></li>
+			        <li><a href="./atelier.jsp">Atelier 5 : Alimentation et environnement</a></li>
 			        <li><a href="./atelier.jsp">Le spectacle</a></li>
 			      </ul>
 			    </li>

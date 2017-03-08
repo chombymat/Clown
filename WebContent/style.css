@@ -1,14 +1,15 @@
 body{background-color: #F5F5DC;text-align: center;font-family: Calibri;font-size: 17px;}
-h1{text-align:center;color: #C21950;}
+h1{text-align:center;color: #C21950;font-family: Serif;}
 h2{color: #C21950; font-family: Serif;font-size: 40px;}
 
 #page{color: #FFFFFF;background-color: #C21950;}
 
-#bonjour{color: #C21950;}
+#bonjour{color: #C21950;font-family: Serif;}
 #laureat{font-style: italic;font-family:LearningCurveProRegular;font-size: 40px;}
 .btn-sample { 
-  color: #ffffff; 
-  background-color: #C21950; 
+	font-family: Serif;
+	color: #ffffff; 
+	background-color: #C21950; 
 }
 .btn-sample:hover, 
 .btn-sample:focus, 
@@ -21,19 +22,19 @@ h2{color: #C21950; font-family: Serif;font-size: 40px;}
 
 
 .titre {
+	font-family: Serif;
 	color: #C21950;
 	font-size: 175%;
 }
 
 .navbar .navbar-nav {
-
-  display: inline-block;
-  float: none;
-  vertical-align: top;
+	display: inline-block;
+	float: none;
+	vertical-align: top;
 }
 .navbar .navbar-collapse {
-  text-align: center;
-  color: #C21950;
+	text-align: center;
+	color: #C21950;
 }
 
 .navbar-default{
