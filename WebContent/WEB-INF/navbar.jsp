@@ -78,7 +78,7 @@
 	});
 </script>
 <nav class="navbar navbar-default">
-	<div class="container-fluid">
+	<div id="navbar" class="container-fluid">
 	
 	<p id="p_navbar"><span class="gauche"><button id="bt_contacter" class="btn btn-sample" href="./contact.jsp">Nous contacter</button></span>
 			<%

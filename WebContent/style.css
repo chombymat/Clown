@@ -1,6 +1,6 @@
-body{background-color: #F5F5DC;text-align: center;}
+body{background-color: #F5F5DC;text-align: center;font-family: Calibri;font-size: 17px;}
 h1{text-align:center;color: #C21950;}
-h2{color: #C21950;}
+h2{color: #C21950; font-family: Serif;font-size: 40px;}
 
 #page{color: #FFFFFF;background-color: #C21950;}
 
@@ -21,10 +21,11 @@ h2{color: #C21950;}
 
 .titre {
 	color: #C21950;
-	font-size: 17px;
+	font-size: 175%;
 }
 
 .navbar .navbar-nav {
+
   display: inline-block;
   float: none;
   vertical-align: top;
@@ -33,6 +34,7 @@ h2{color: #C21950;}
   text-align: center;
   color: #C21950;
 }
+
 .navbar-default{
 	background-color: #F5F5DC;
 	border: none;
@@ -55,6 +57,11 @@ h2{color: #C21950;}
 .erreur{
 	color: red;
 }
+
+.success {
+	color: green;
+}
+
 #success_message{ display: none;}
 
 /* Style the Image Used to Trigger the Modal */

@@ -409,18 +409,22 @@ public class Modele
 		}
 	}
 
-	public void saveMediaOnDisqk(String chemin, Part media)
+	public void saveMediaOnDisk(String chemin, Collection<Part> medias)
 	{
 		File f = new File(chemin);
 
 		if(!f.exists())
 			f.mkdirs();
 
-		try 
+
+		for(Part media : medias)
 		{
-			media.write(chemin + media.getName() + ".jpg");
-		} catch (IOException e) {
-			e.printStackTrace();
+			try 
+			{
+				media.write(chemin + media.getName().substring(media.getName().indexOf("_") + 1));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

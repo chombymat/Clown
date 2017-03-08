@@ -1,0 +1,5 @@
+Logo rond avec bord bordeau sur la page d'index
+Ajouter "La compagnie la Prima Porta" sur la page d'accueil
+Navabar ajouter atelier + numero pour les ateliers
+Pour les ateliers
+Image a gauche, text a droite de l'image, en dessou le pdf en encore en dessou la galerie
