@@ -77,3 +77,6 @@ create table contact(
 	code_postal varchar(5),
 	ville varchar(200)
 );
+
+insert into utilisateur(id_utilisateur, nom, prenom, adresse_mail, login, prima_pass) values(1, 'Markey', 'Jeffrey', 'markey.jeffrey@gmail.com', 'Metarion', 'DH/hPDypUlaFDntpSXvYFCb1HSE6qG1uPMnn61q8YWY=');
+insert into role(id_utilisateur, role) values(1, 'role4');

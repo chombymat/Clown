@@ -18,10 +18,10 @@ public class ManipulationArticle extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("ajouterArticle") != null){
-			new Modele().ajouterArticle(
+			/*new Modele().ajouterArticle(
 					(String)request.getParameter("ajouterArticleTitre"),
 					(String)request.getParameter("ajouterArticleDescription"),
-					Integer.valueOf(request.getParameter("ajouterArticleIdProjetPere")));
+					Integer.valueOf(request.getParameter("ajouterArticleIdProjetPere")));*/
 		}
 		
 		else if(request.getParameter("modifierArticle") != null){

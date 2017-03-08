@@ -270,12 +270,6 @@
 			<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2" id="images_galerie"></div>
 		</div>
 		<div class="col-md-8">
-			<form id="form_galerie" action="./remplirGalerie" method="post" enctype="multipart/form-data">
-				<br>
-				<input id="bt_file_photo" type="file" accept="image/*"/>
-				<button type="button" id="bt_add_photo_galerie" class="btn btn-sample">Importer photo</button>
-				<input type="submit" class="btn btn-sample" value="Ajouter photo"/>
-			</form>
 		</div>
 	</div>
 	

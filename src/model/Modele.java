@@ -199,16 +199,20 @@ public class Modele
 
 
 
-	public void ajouterArticle(String titre, String description, int idProjet)
+	public int ajouterArticle(String titre, String description, String contenu)
 	{
+		int id_article = -1;
+		
 		try
 		{
-			statement = ds.getConnection().prepareStatement("insert into Article (titre, description, id_projet) values(?, ?, ?)");
+			statement = ds.getConnection().prepareStatement("insert into Article (titre, description, contenu) values(?, ?, ?) returning id_article");
 			statement.setString(1, titre);
 			statement.setString(2, description);
-			statement.setInt(3, idProjet);
-			statement.executeUpdate();
-			System.out.println("ajout de l'article : " + titre);
+			statement.setString(3, contenu);
+			ResultSet result = statement.executeQuery();
+			result.next();
+			id_article = result.getInt("id_article");
+			System.out.println("ajout de l'article " + id_article + " : " + titre);
 
 		} catch (Exception e){
 			e.printStackTrace();
@@ -220,6 +224,8 @@ public class Modele
 				e.printStackTrace();
 			}
 		}
+		
+		return id_article;
 	}
 
 
@@ -409,7 +415,7 @@ public class Modele
 		}
 	}
 
-	public void saveMediaOnDisk(String chemin, Collection<Part> medias)
+	public void saveMediaOnDisk(String chemin, Collection<Part> medias, int id)
 	{
 		File f = new File(chemin);
 
