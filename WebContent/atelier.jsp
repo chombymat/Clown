@@ -34,11 +34,7 @@ function cacher(id){
 </head>
 <body>
 	<%@include file="/WEB-INF/navbar.jsp"%>
-	<div id="change">
-		[texte] présentation rapide Ateliers<br>
-	</div>
-	<img id="image" width="560" height="315">[photos]</img>
-	<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/_TSZe3mfGYg" frameborder="0" allowfullscreen></iframe>[vidéo]
+	
 	<%@include file="/WEB-INF/footer.html"%>
 </body>
 </html>
