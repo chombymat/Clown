@@ -46,6 +46,11 @@
 		{
 			$("#name").html("Formation");
 		}
+		if (page.indexOf('Administration') != -1)
+		{
+			$("#name").html("Administration");
+		}
+		
 		
 		$('#bt_connexion').on('click', function(){
 			window.location.replace('./connexion.jsp');
