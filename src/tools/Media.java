@@ -23,6 +23,12 @@ public class Media {
 		this.chemin = chemin;
 		this.nom = nom;
 	}
+	
+	public Media(String chemin, String nom, String type){
+		this.chemin = chemin;
+		this.nom = nom;
+		this.type = type;
+	}
 
 	public int getId() {
 		return id;
