@@ -44,9 +44,6 @@ $(document)
 		.ready(
 				function() {
 					var modal = document.getElementById('myModal');
-
-					// Get the image and insert it inside the modal - use its "alt" text as a caption
-
 					
 					// Get the <span> element that closes the modal
 					var span = document.getElementsByClassName("close")[0];
@@ -99,26 +96,49 @@ $(document)
 <body>
 	<%@include file="/WEB-INF/navbar.jsp"%>
 	<div id="pain">
-	<h2>Le Pain</h2><br>
-	<div class="row">
-		<div class="col-md-6">
-			<img width="85%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN//PHOTO_ILLUSTRATION/pain.jpg" title="image de pain" alt="image de pain">
-		</div>
-		<div class="col-md-5">
-			<p align="justify">Donec id elit non mi porta gravida at eget
-				ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
-				massa justo sit amet risus. Etiam porta sem malesuada magna mollis
-				euismod. Donec sed odio dui.</p>
-			<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
-			<br>
-			<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTOS_ENFANTS/P1070515.JPG" alt="photo enfant - atelier pain">
-			<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTOS_ENFANTS/P1070524.JPG" alt="photo enfant - atelier pain">
-			<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTOS_ENFANTS/P1070533.JPG" alt="photo enfant - atelier pain">
-			<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTOS_ENFANTS/P1070543.JPG" alt="photo enfant - atelier pain">
-			<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTOS_ENFANTS/P1070552.JPG" alt="photo enfant - atelier pain">
-			<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTOS_ENFANTS/P1070554.JPG" alt="photo enfant - atelier pain">
+		<h2>Le Pain</h2><br>
+		<div class="row">
+			<div class="col-md-6">
+				<img width="85%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTO_ILLUSTRATION/pain.jpg" title="image de pain" alt="image de pain">
+			</div>
+			<div class="col-md-5">
+				<p align="justify">Donec id elit non mi porta gravida at eget
+					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+					euismod. Donec sed odio dui.</p>
+				<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
+				<br>
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTOS_ENFANTS/P1070515.JPG" alt="photo enfant - atelier pain">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTOS_ENFANTS/P1070524.JPG" alt="photo enfant - atelier pain">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTOS_ENFANTS/P1070533.JPG" alt="photo enfant - atelier pain">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTOS_ENFANTS/P1070543.JPG" alt="photo enfant - atelier pain">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTOS_ENFANTS/P1070552.JPG" alt="photo enfant - atelier pain">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTOS_ENFANTS/P1070554.JPG" alt="photo enfant - atelier pain">
+			</div>
 		</div>
 	</div>
+	
+	<div id="lait">
+		<h2>Le Lait</h2><br>
+		<div class="row">
+			<div class="col-md-6">
+				<img width="35%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTO_ILLUSTRATION/lait.jpg" title="image de lait" alt="image de lait">
+			</div>
+			<div class="col-md-5">
+				<p align="justify">Donec id elit non mi porta gravida at eget
+					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+					euismod. Donec sed odio dui.</p>
+				<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
+				<br>
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTOS_ENFANTS/P_20170209_144603.jpg" alt="photo enfant - atelier lait">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTOS_ENFANTS/P_20170209_145415.jpg" alt="photo enfant - atelier lait">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTOS_ENFANTS/P_20170209_145430.jpg" alt="photo enfant - atelier lait">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTOS_ENFANTS/P_20170209_145841.jpg" alt="photo enfant - atelier lait">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTOS_ENFANTS/P_20170209_150600.jpg" alt="photo enfant - atelier lait">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTOS_ENFANTS/P_20170209_150818.jpg" alt="photo enfant - atelier lait">
+			</div>
+		</div>
 	</div>
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
