@@ -12,6 +12,86 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="style.css" />
+<script>
+var show_per_page = 18;
+var current_page = 0;
+
+function set_display(first, last) {
+	$('#content').children().css('display', 'none');
+	$('#content').children().slice(first, last).css('display', 'block');
+}
+
+function previous() {
+	if ($('.active').prev('.page_link').length)
+		go_to_page(current_page - 1);
+}
+
+function next() {
+	if ($('.active').next('.page_link').length)
+		go_to_page(current_page + 1);
+}
+
+function go_to_page(page_num) {
+	current_page = page_num;
+	start_from = current_page * show_per_page;
+	end_on = start_from + show_per_page;
+	set_display(start_from, end_on);
+	$('.active').removeClass('active');
+	$('#id' + page_num).addClass('active');
+}
+
+$(document)
+		.ready(
+				function() {
+					var modal = document.getElementById('myModal');
+					
+					// Get the <span> element that closes the modal
+					var span = document.getElementsByClassName("close")[0];
+
+					// When the user clicks on <span> (x), close the modal
+					$('.myImg').on('click', function() {
+						$('html, body').css({
+							overflow : 'hidden',
+							height : '100%'
+						});
+						$('#myModal').attr('style', 'display: block');
+						$('#img01').attr('src', $(this).attr('src'));
+						$('#caption').html($(this).attr('alt'));
+						$('#id' + current_page).removeClass('active');
+					});
+					
+					span.onclick = function() {
+						$('html, body').css({
+							overflow : 'auto',
+							height : 'auto'
+						});
+						modal.style.display = "none";
+						$('#id' + current_page).addClass('active');
+					}
+
+
+					var number_of_pages = Math.ceil($('#content')
+							.children().length
+							/ show_per_page);
+
+					var nav = '<ul class="pagination"><li><a id="page" href="javascript:previous();">&laquo;</a>';
+
+					var i = -1;
+					while (number_of_pages > ++i) {
+						nav += '<li class="page_link'
+						if (!i)
+							nav += ' active';
+						nav += '" id="id' + i + '">';
+						nav += '<a id="page" href="javascript:go_to_page('
+								+ i + ')">' + (i + 1) + '</a>';
+					}
+					nav += '<li><a id="page" href="javascript:next();">&raquo;</a></ul>';
+
+					$('#page_navigation').html(nav);
+					set_display(0, show_per_page);
+
+				});
+</script>
 </head>
 <body>
 	<%@include file="/WEB-INF/navbar.jsp"%>
@@ -35,7 +115,7 @@
 				euismod. Donec sed odio dui.</p>
 			</div>
 	</div>
-	
+	</div>
 	
 	<!------------------------------------- CLOWN ------------------------------------>
 	
@@ -128,7 +208,12 @@
 			</div>
 		</div>
 	</div>
-	
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+		<span class="close">&times;</span> <img class="modal-content"
+			id="img01">
+		<div id="caption"></div>
+	</div>
 	<%@include file="/WEB-INF/footer.html"%>
 </body>
 </html>
