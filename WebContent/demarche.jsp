@@ -108,7 +108,7 @@ $(document)
 		<h2>La Démarche</h2><br>
 		<div class="row">
 		<!-- padding de 30% dans style.css (ligne 62) -->
-			<div class="col-md-6" id="texte_demarche">
+			<div class="col-md-10 col-sm-offset-1">
 				<p align="justify">Donec id elit non mi porta gravida at eget
 				ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
 				massa justo sit amet risus. Etiam porta sem malesuada magna mollis
@@ -123,8 +123,8 @@ $(document)
 		<div class="row">
 			<h2>Les Clowns</h2><br>
 			<div class="col-md-12">
-				<img class="img-circle" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE" width="20%" height="auto">
-				<img class="img-circle" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE_2.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE" width="20%" height="auto">
+				<img class="img-circle" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE" width="400px" height="400px">
+				<img class="img-circle" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE_2.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE" width="400px" height="400px">
 			</div>
 		</div>
 	</div>
