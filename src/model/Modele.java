@@ -48,9 +48,10 @@ public class Modele
 		}
 	}
 
-	public Utilisateur connexion(String login, String pass) throws Exception
-	{
-		Utilisateur user = null;
+	
+	public Utilisateur connexion(String login, String pass) throws Exception {
+
+	Utilisateur user = null;
 		Connection con = null;
 
 		try 
@@ -80,9 +81,8 @@ public class Modele
 
 		return user;
 	}
-
-	private String cryptPass(String pass)
-	{
+	
+	private String cryptPass(String pass){
 		byte[] salt = new String("Clown").getBytes();
 
 		try {
@@ -106,21 +106,26 @@ public class Modele
 	}
 
 	//------------------------------------------------------CONTACT------------------------------------------------------------
-
-	public void envoyerMail(String nom, String prenom, String mail, String  numero_telephone, String adresse, String ville, String departement, String sexe, String message){
+	
+	public void envoyerMailContact(String nom, String prenom, String mail, String  numero_telephone, String adresse, String ville, String departement, String sexe, String message){
 		try{
+			
 			if(sexe != null){
 				if(sexe.equals("F"))
-					message += "de Madame " + prenom + " " + nom;
+					message += "\n- - - -\nDe Madame " + prenom + " " + nom;
 				else if(sexe.equals("H"))
-					message += "de Monsieur " + prenom + " " + nom;
-			}
-
-			message += "\nContacter ultérieurement via:\n" + "numero de telephone : " + numero_telephone + "\nadresse mail : "
-					+ mail + "\nadresse physique : " + adresse + "\n" + ville + "\n" + departement;
-
-
-
+					message += "\n- - - -\nDe Monsieur " + prenom + " " + nom;
+			} else if(sexe == null)
+				message += "\n- - - -\nDe " + prenom + " " + nom;
+			
+			message += "\n- - - -\nPossibilité de contacter ultérieurement via:\n";
+			if(numero_telephone.length() >0)
+				message += "numero de telephone : " + numero_telephone + "\n";
+			if(mail.length() >0)
+				message += "adresse mail : " + mail + "\n";
+			if(adresse.length() >0 && departement.length() >0)
+				message += "adresse physique : " + adresse + "\n" + ville + "\n" + departement;
+	
 			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
 			Message msg = new MimeMessage(session_mail);
 			msg.setFrom(new InternetAddress("tweetbookda2i@gmail.com"));
@@ -139,12 +144,85 @@ public class Modele
 			}
 		}
 	}
+	
+	//-------------------------------------------------------------INFORMATIONS PAR MAIL---------------------------------------------------------------------------
+	
+	public void envoyerMailInscription(String nom, String prenom, String mail, String  pseudo, String lienConfirmation, String lienRefus){
+		try{
+			
+			String message = "Nouvelle demande d'inscription de " + nom + " " + prenom + "\nmail : " + mail + "\nidentifiant : " + pseudo;
+			message += "\nVeuillez cliquer sur ce lien pour confirmer l'inscription : " + lienConfirmation;
+			message += "\nVeuillez cliquez sur celui-ci si vous refusez l'inscription de cet individu : " + lienRefus;
+			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
+			Message msg = new MimeMessage(session_mail);
+			msg.setFrom(new InternetAddress("tweetbookda2i@gmail.com"));
+			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mailEntreprise));
+			msg.setSubject("demande d'inscription " + nom + " " + prenom);
+			msg.setText(message);
+			Transport.send(msg);
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				ds.getConnection().close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void envoyerMailInscriptionRetourUtilisateur(String pseudo, String mail){
+		try{
+			
+			String message = "Votre demande d'inscription sous le login " + pseudo + " a bien été validée par l'administrateur.";
+			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
+			Message msg = new MimeMessage(session_mail);
+			msg.setFrom(new InternetAddress(mailEntreprise));
+			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mail));
+			msg.setSubject("comfirmation d'inscription La Prima Porta");
+			msg.setText(message);
+			Transport.send(msg);
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				ds.getConnection().close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void envoyerMailInscriptionRefusUtilisateur(String pseudo, String mail){
+		try{
+			
+			String message = "Votre demande d'inscription sous le login " + pseudo + " a été refusée par l'administrateur.";
+			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
+			Message msg = new MimeMessage(session_mail);
+			msg.setFrom(new InternetAddress(mailEntreprise));
+			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mail));
+			msg.setSubject("refus d'inscription La Prima Porta");
+			msg.setText(message);
+			Transport.send(msg);
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				ds.getConnection().close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
 
 
 	//------------------------------------------------------UTILISATEUR------------------------------------------------------------	
 
-	public void ajoutUtilisateur(String nom, String prenom, String login, String mail, String pass) throws Exception
-	{
+	public void ajoutUtilisateur(String nom, String prenom, String login, String mail, String pass) throws Exception {
 		try{
 			statement = ds.getConnection().prepareStatement("select from utilisateur where adresse_mail = ?");
 			statement.setString(1, mail);
@@ -167,24 +245,11 @@ public class Modele
 			statement.setString(4, login);
 			statement.setString(5, cryptPass(pass));
 
-			result = statement.executeQuery();
-
-			if(result.next()){
-
-				int id = result.getInt(1);
-
-				statement = ds.getConnection().prepareStatement("insert into role (id_utilisateur, role) values(?, ?)");
-				statement.setInt(1, id);
-				statement.setString(2, "role2");
-
-				statement.executeUpdate();
-				System.out.println("ajout de l'utiliateur : " + login);
-			}
-
-		}catch (SQLException | NamingException e) 
-		{
+			statement.executeQuery();
+			
+		} catch (SQLException | NamingException e) {
 			e.printStackTrace();
-		} catch (Exception e){
+		} catch (Exception e) {
 			throw e;
 		} finally{
 			try{
@@ -194,9 +259,94 @@ public class Modele
 			}
 		}
 	}
+			
+	public void ajoutRoleUtilisateur(String login) throws Exception {
+		try {	
+			
+			statement = ds.getConnection().prepareStatement("select id_utilisateur from utilisateur where login = ?");
+			statement.setString(1,login);
+			result = statement.executeQuery();
+			
+			if(result.next()){
+				int id = result.getInt(1);
 
+				statement = ds.getConnection().prepareStatement("insert into role (id_utilisateur, role) values(?, ?)");
+				statement.setInt(1, id);
+				statement.setString(2, "role2");
 
+				statement.executeUpdate();
+				System.out.println("ajout confirmé de l'utiliateur : " + login);
+			}
 
+		}catch (SQLException e) {
+			e.printStackTrace();
+			
+		} catch (Exception e){
+			throw e;
+			
+		} finally{
+			try{
+				statement.getConnection().close();
+				
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	public void suprimerUtilisateur(String login) throws Exception {
+		try {	
+			
+			statement = ds.getConnection().prepareStatement("delete from utilisateur where login = ?");
+			statement.setString(1,login);
+
+			statement.executeUpdate();
+			System.out.println("suppression confirmée de l'utiliateur : " + login);
+
+		}catch (SQLException e) {
+			e.printStackTrace();
+			
+		} catch (Exception e){
+			throw e;
+			
+		} finally{
+			try{
+				statement.getConnection().close();
+				
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	public String getMailUtilisateur(String login) throws Exception {
+		String mail = null;
+		try {	
+			statement = ds.getConnection().prepareStatement("select adresse_mail from utilisateur where login = ?");
+			statement.setString(1,login);
+
+			result = statement.executeQuery();
+			if(result.next())
+				mail = result.getString(1);
+			return mail;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return mail;
+			
+		} catch (Exception e){
+			throw e;
+			
+		} finally{
+			try{
+				statement.getConnection().close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+				return mail;
+			}
+		}
+	}
 	//------------------------------------------------------ARTICLE------------------------------------------------------------
 
 
