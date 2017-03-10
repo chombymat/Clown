@@ -16,17 +16,59 @@
 	<%@include file="/WEB-INF/navbar.jsp" %>
 	<script>
 		$(document).ready(function(){
+			var showDivUrl = 0;
+			var showDivAddArticle = 0;
+			var showDivAddGalerie = 0;
+			var showDivModifArticle = 0;
+			
+			/*********************************** Ajouter article ***********************************/
+			
 			var files = [];
 			var filesGalerie = [];
 			var ii = 1;
 			
 			$('#bt_add_article').on('click', function(){
-				$('#remplir_galerie').hide();
-				$('#page_article').show();
+				if(showDivAddGalerie == 1)
+				{
+					showDivAddGalerie = 0;				
+					$('#remplir_galerie').hide();
+				}
+				
+				if(showDivAddArticle == 0)
+				{
+					showDivAddArticle = 1;					
+					$('#page_article').show();
+				}
+				else
+				{
+					showDivAddArticle = 0;					
+					$('#page_article').hide();
+				}
 			});
 			
 			$('#bt_add_photo').on('click', function(){
 				$('#media').click();
+			});
+			
+			$('#bt_url').on('click', function(){
+				if(showDivUrl == 0)
+				{
+					showDivUrl = 1;				
+					$('#saisir_url').show();
+				}
+				else
+				{
+					showDivUrl = 0;				
+					$('#saisir_url').hide();
+				}
+			});
+			
+			$('#bt_add_url').on('click', function(){
+				var lien = "<a href=\"" + $('#lien_url').val() + "\">" + $('#text_url').val() + "</a>";
+				$('#contenu') .val($('#contenu').val() + " " + lien + " ");
+				showDivUrl = 0;				
+				$('#saisir_url').hide();
+				
 			});
 			
 			$("#media").on('change', function(e){
@@ -81,7 +123,7 @@
 					        $(div).append(preview);
 					        $('#images').append(div);
 					        ii++;
-							$('#contenu') .val($('#contenu').val() + "\n<" + current_file.name + ">\n");
+							$('#contenu') .val($('#contenu').val() + "\n< " + current_file.name + " >\n");
 				      }
 				    }
 				  reader.readAsDataURL(current_file);
@@ -134,12 +176,56 @@
 			}
 			%>
 			$('#media').hide();
+			$('#saisir_url').hide();
+			
+			/*********************************** Modifier article ***********************************/
+			
+			$('#bt_modif_article').on('click', function(){
+				if(showDivAddArticle == 1)
+				{
+					showDivAddArticle = 0;					
+					$('#page_article').hide();
+				}
+				
+				if(showDivAddGalerie == 1)
+				{
+					showDivAddGalerie = 0;				
+					$('#remplir_galerie').hide();
+				}
+				
+				if(showDivModifArticle == 0)
+				{
+					showDivModifArticle = 1;				
+					$('#page_modif_article').show();
+				}
+				else
+				{
+					showDivModifArticle = 0;				
+					$('#page_modif_article').hide();
+				}
+			});
+			
+			$('#page_modif_article').hide();
 			
 			/******************** separation article et galerie *************************/			
 
 			$('#bt_add_galerie').on('click', function(){
-				$('#creer_article').hide();
-				$('#remplir_galerie').show();
+				if(showDivAddArticle == 1)
+				{
+					showDivAddArticle = 0;					
+					$('#page_article').hide();
+				}
+				
+				if(showDivAddGalerie == 1)
+				{
+					showDivAddGalerie = 0;				
+					$('#remplir_galerie').hide();
+				}
+				else
+				{
+					showDivAddGalerie = 1;				
+					$('#remplir_galerie').show();
+				}
 			});
 			
 			$('#bt_add_photo_galerie').on('click', function(){
@@ -209,11 +295,9 @@
 			
 			$('#remplir_galerie').hide();
 			$('#bt_file_photo').hide();
-			
-			
 		});
 	</script>
-	<button id="bt_add_article" class="btn btn-sample">Ajouter article</button>	<button id="bt_add_galerie" class="btn btn-sample">Ajouter à la galerie</button>
+	<button id="bt_add_article" class="btn btn-sample">Ajouter article</button> <button id="bt_modif_article" class="btn btn-sample">Modifier article</button>	<button id="bt_add_galerie" class="btn btn-sample">Ajouter à la galerie</button>
 	
 	<!-- -------------------------------- Créer article -------------------------- -->
 	
@@ -230,12 +314,21 @@
 					<textarea id="description" rows="2" cols="100" placeholder="La description de l'article" required></textarea>
 					<br><br>
 					<span id="erreur_contenu" class="erreur">${ requestScope.erreur_contenu }</span>
-					<textarea id="contenu" rows="20" cols="100" placeholder="Le contenu de l'article" required></textarea>
+					<textarea id="contenu" rows="15" cols="100" placeholder="Le contenu de l'article" required></textarea>
 					<br>
 					<input id="media" type="file" accept="image/*"/>
 					<button type="button" id="bt_add_photo" class="btn btn-sample">Importer photo</button>
+					<button type="button" id="bt_url" class="btn btn-sample">Ajouter lien</button>
 					<input type="submit" class="btn btn-sample" value="Creer article"/>
 				</form>
+				<div id="saisir_url">
+					<br>
+					 <label for="lien_url">Lien : </label>
+					<input type="text" id="lien_url">
+					<label for="text_url">Texte : </label>
+					<input type="text" id="text_url">
+					<button type="button" id="bt_add_url" class="btn btn-sample">Ajouter</button>
+				</div>
 			</div>
 			<div class="col-md-2">
 				<br>
@@ -246,6 +339,14 @@
 	</div>
 	
 	<!-- -------------------------------- Fin créer article -------------------------- -->
+	
+	<!-- -------------------------------- Modifier article -------------------------- -->
+	
+	<div class="row" id="page_modif_article">
+		modif article
+	</div>
+	
+	<!-- -------------------------------- Fin modifier article -------------------------- -->
 	
 	<!-- -------------------------------- Ajouter image -------------------------- -->
 	<!-- 

@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import org.apache.commons.io.IOUtils;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import model.Modele;

@@ -436,10 +436,10 @@ public class Modele
 			else
 				return null;
 
-			String regex = "<(.+)>";
+			String regex = "<\\s(.+)\\s>";
 			String regex2 = "\\r";
 			
-			String subst = "<img src=\"images/article/" + id + "/$1\" width=\"50%\" height=\"auto\"/>";
+			String subst = "<a href=\"images/article/" + id + "/$1\"><img src=\"images/article/" + id + "/$1\" width=\"50%\" height=\"auto\"/></a>";
 			
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(article.getContenu());
