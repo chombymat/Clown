@@ -57,13 +57,6 @@ h3{color: #C21950; font-family: Serif;}
   float: right;
 }
 
-#texte_spectacle{
-	padding-left: 5%;
-}
-#texte_demarche{
-	padding-left: 20%;
-}
-
 .erreur{
 	color: red;
 }
