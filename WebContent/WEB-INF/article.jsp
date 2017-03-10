@@ -17,8 +17,10 @@
 </head>
 <body>
 	<% Article article = (Article) request.getAttribute("article");	%>
-	<%= article.getTitre() %><br><br>
-	<%= article.getDescription() %><br><br>
+	<%@include file="/WEB-INF/navbar.jsp" %>
+	<h2><%= article.getTitre() %></h2><br><br>
+	<h3><%= article.getDescription() %></h3><br><br>
 	<%= article.getContenu() %><br><br>
+	<%@include file="/WEB-INF/footer.html" %>
 </body>
 </html>
