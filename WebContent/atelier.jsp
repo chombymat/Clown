@@ -95,6 +95,9 @@ $(document)
 </head>
 <body>
 	<%@include file="/WEB-INF/navbar.jsp"%>
+	
+	
+	<!----------------------------------- PAIN ---------------------------------------->
 	<div id="pain">
 		<h2>Le Pain</h2><br>
 		<div class="row">
@@ -118,6 +121,8 @@ $(document)
 		</div>
 	</div>
 	
+	
+	<!----------------------------------- LAIT ---------------------------------------->
 	<div id="lait">
 		<h2>Le Lait</h2><br>
 		<div class="row">
@@ -140,6 +145,103 @@ $(document)
 			</div>
 		</div>
 	</div>
+	
+	
+	<!----------------------------------- 7 FAMILLES ---------------------------------------->
+	<div id="familles">
+		<h2>Les 7 Familles</h2><br>
+		<div class="row">
+			<div class="col-md-6">
+				<img width="85%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image des 7 familles" alt="image des 7 familles">
+			</div>
+			<div class="col-md-5">
+				<p align="justify">Donec id elit non mi porta gravida at eget
+					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+					euismod. Donec sed odio dui.</p>
+				<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
+				<br>
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTOS_ENFANTS/P_20170302_144319.jpg" alt="photo enfant - atelier 7 familles">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTOS_ENFANTS/P_20170302_144509.jpg" alt="photo enfant - atelier 7 familles">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTOS_ENFANTS/P_20170302_145849.jpg" alt="photo enfant - atelier 7 familles">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTOS_ENFANTS/P_20170302_151218.jpg" alt="photo enfant - atelier 7 familles">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTOS_ENFANTS/P_20170302_153058.jpg" alt="photo enfant - atelier 7 familles">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTOS_ENFANTS/P_20170302_153734.jpg" alt="photo enfant - atelier 7 familles">
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<!----------------------------------- MENU EQUILIBRE ---------------------------------------->
+	<div id="menu">
+		<h2>Le Menu Equilibré</h2><br>
+		<div class="row">
+			<div class="col-md-6">
+				<img width="85%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_4_UN_MENU_EQUILIBRE/PHOTO_ILLUSTRATION/Fotolia_135759645_S-1.jpg" title="image de fruits et légumes" alt="image de fruits et légumes">
+			</div>
+			<div class="col-md-5">
+				<p align="justify">Donec id elit non mi porta gravida at eget
+					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+					euismod. Donec sed odio dui.</p>
+				<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	<!----------------------------------- ALIMENTATION ---------------------------------------->
+	<div id="alimentation">
+		<h2>Alimentation et Environnement</h2><br>
+		<div class="row">
+			<div class="col-md-6">
+				<img width="85%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_5_LE_PARCOURS_DU_YAOURT_A_LA_FRAISE/PHOTO_ILLUSTRATION/Fotolia_139412392_S-1.jpg" title="image de yaourt et fraise" alt="image de yaourt et fraise">
+			</div>
+			<div class="col-md-5">
+				<p align="justify">Donec id elit non mi porta gravida at eget
+					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+					euismod. Donec sed odio dui.</p>
+				<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	<!----------------------------------- SPECTACLE ---------------------------------------->
+	<div id="spectacle">
+		<h2>Le Spectacle</h2><br>
+		<div class="row">
+			<!-- padding de 5% dans style.css (ligne 59) -->
+			<div class="col-md-6" id="texte_spectacle">
+					<p align="justify">Donec id elit non mi porta gravida at eget
+					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+					euismod. Donec sed odio dui.</p>
+			</div>
+			<div class="col-md-5">
+				<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
+				<br>
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/10687385_1007352505978324_2895073862515994972_o.jpg" alt="photo enfant - le spectacle">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/12604844_1007352812644960_4199858945908434600_o.jpg" alt="photo enfant - le spectacle">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/P1060829.JPG" alt="photo enfant - le spectacle">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/P1060885.JPG" alt="photo enfant - le spectacle">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/P1070230.JPG" alt="photo enfant - le spectacle">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/P1070249.JPG" alt="photo enfant - le spectacle">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/P1070276.JPG" alt="photo enfant - le spectacle">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/P1070230.JPG" alt="photo enfant - le spectacle">
+			
+			</div>
+		</div>
+	</div>
+	
+	
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
 		<span class="close">&times;</span> <img class="modal-content"
