@@ -40,9 +40,67 @@ function go_to_page(page_num) {
 	$('#id' + page_num).addClass('active');
 }
 
-$(document)
-		.ready(
-				function() {
+$(document).ready(function() {
+					$('#pain').hide();
+					$('#lait').hide();
+					$('#familles').hide();
+					$('#menu').hide();
+					$('#alimentation').hide();
+					$('#spectacle').hide();
+					if(location.search == "?page=pain"){
+						$('#pain').show();
+						$('#lait').hide();
+						$('#familles').hide();
+						$('#menu').hide();
+						$('#alimentation').hide();
+						$('#spectacle').hide();
+
+					}
+					if(location.search == "?page=lait"){
+						$('#lait').show();
+						$('#pain').hide();
+						$('#familles').hide();
+						$('#menu').hide();
+						$('#alimentation').hide();
+						$('#spectacle').hide();
+
+					}
+					if(location.search == "?page=famille"){
+						$('#familles').show();
+						$('#pain').hide();
+						$('#lait').hide();
+						$('#menu').hide();
+						$('#alimentation').hide();
+						$('#spectacle').hide();
+
+					}
+					if(location.search == "?page=menu"){
+						$('#menu').show();
+						$('#pain').hide();
+						$('#lait').hide();
+						$('#familles').hide();
+						$('#alimentation').hide();
+						$('#spectacle').hide();
+
+					}
+					if(location.search == "?page=alimentation"){
+						$('#alimentation').show();
+						$('#pain').hide();
+						$('#lait').hide();
+						$('#familles').hide();
+						$('#menu').hide();
+						$('#spectacle').hide();
+
+					}
+					if(location.search == "?page=spectacle"){
+						$('#spectacle').show();
+						$('#pain').hide();
+						$('#lait').hide();
+						$('#familles').hide();
+						$('#menu').hide();
+						$('#alimentation').hide();
+
+					}
 					var modal = document.getElementById('myModal');
 					
 					// Get the <span> element that closes the modal
@@ -96,6 +154,16 @@ $(document)
 <body>
 	<%@include file="/WEB-INF/navbar.jsp"%>
 	
+	<!----------------------------------- categorie ---------------------------------------->
+	<div class="row">
+	<a href="./atelier.jsp?page=pain"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTO_ILLUSTRATION/pain.jpg" title="Le pain" alt="image de pain" width="254" height="186"></a>
+	<a href="./atelier.jsp?page=lait"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTO_ILLUSTRATION/lait.jpg" title="Le lait" alt="image de lait" width="254" height="186"></a>
+	<a href="./atelier.jsp?page=famille"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Les 7 familles" alt="image des 7 familles" width="254" height="186"></a>
+	<a href="./atelier.jsp?page=menu"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_4_UN_MENU_EQUILIBRE/PHOTO_ILLUSTRATION/Fotolia_135759645_S-1.jpg" title="Le menu &eacute;quilibr&eacute;" alt="image de fruit et legumes" width="254" height="186"></a>
+	<a href="./atelier.jsp?page=alimentation"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_5_LE_PARCOURS_DU_YAOURT_A_LA_FRAISE/PHOTO_ILLUSTRATION/Fotolia_139412392_S-1.jpg" title="Alimentation et environnement" alt="image de yaourt et fraise" width="254" height="186"></a>
+	<a href="./atelier.jsp?page=spectacle"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTO_ILLUSTRATION/clown-1678004_1920.jpg" title="Le spectacle" alt="image de spectacle" width="254" height="186"></a>
+	</div>
+	<!----------------------------------- fin de categorie ---------------------------------------->
 	
 	<!----------------------------------- PAIN ---------------------------------------->
 	<div id="pain">
@@ -218,6 +286,9 @@ $(document)
 	<div id="spectacle">
 		<h2>Le Spectacle</h2><br>
 		<div class="row">
+			<div class="col-md-6">
+				<img width="85%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTO_ILLUSTRATION/clown-1678004_1920.jpg" title="Le spectacle" alt="image de spectacle et fraise">
+			</div>
 			<!-- padding de 5% dans style.css (ligne 59) -->
 			<div class="col-md-6" id="texte_spectacle">
 					<p align="justify">Donec id elit non mi porta gravida at eget
