@@ -106,7 +106,7 @@ $(document).ready(function() {
   <div class="col-md-4 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  name="nom" placeholder="Nom" class="form-control"  type="text">
+  <input name="nom" placeholder="Nom" class="form-control"  type="text">
     </div>
   </div>
 </div>
@@ -142,7 +142,7 @@ $(document).ready(function() {
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-  <input name="telephone" placeholder="03 12 34 56 78 / 06 11 22 33 44" class="form-control" type="text">
+  <input name="telephone" placeholder="03 12 34 56 78" class="form-control" type="text">
     </div>
   </div>
 </div>
@@ -242,7 +242,6 @@ $(document).ready(function() {
 </fieldset>
 </form>
 </div>
-    </div><!-- /.container -->
 	<%@include file="/WEB-INF/footer.html"%>
 </body>
 </html>

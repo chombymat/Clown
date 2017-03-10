@@ -17,10 +17,12 @@
 	<script>
 		$(document).ready(function(){
 			var files = [];
+			var filesGalerie = [];
 			var ii = 1;
 			
 			$('#bt_add_article').on('click', function(){
-				$('#creer_article').show();
+				$('#remplir_galerie').hide();
+				$('#page_article').show();
 			});
 			
 			$('#bt_add_photo').on('click', function(){
@@ -29,8 +31,6 @@
 			
 			$("#media").on('change', function(e){
 				files = $.merge(files, $('#media')[0].files);
-				
-				$('#contenu') .val($('#contenu').val() + "\n<photo" + files.length + ">\n");
 
 				var reader = new FileReader();
 				var current_file = files[files.length - 1];
@@ -77,11 +77,11 @@
 					        var div = document.createElement('div');
 					        var preview = document.createElement('img');
 					        $(preview).attr('src', canvas.toDataURL(current_file.type));
-					        $(div).append("Photo " + ii);
+					        $(div).append(current_file.name);
 					        $(div).append(preview);
 					        $('#images').append(div);
-					        console.log(current_file);
 					        ii++;
+							$('#contenu') .val($('#contenu').val() + "\n<" + current_file.name + ">\n");
 				      }
 				    }
 				  reader.readAsDataURL(current_file);
@@ -96,12 +96,13 @@
 				
 				for(var i = 0; i < files.length; i++)
 				{
-					formData.append('media_' + i, files[i]);
+					formData.append('media_' + files[i].name, files[i]);
 				}
 				
 				formData.append('titre', $('#titre').val());
 				formData.append('description', $('#description').val());
 				formData.append('contenu', $('#contenu').val());
+				formData.append('ajax', true);
 		 	
 		        $.ajax({
 		            url: $form.attr('action'),
@@ -110,41 +111,171 @@
 		            contentType: false,
 		            processData: false,
 		            data: formData,
-		            success : function(){
-		            	console.log("Ajout réussi.");
+		            success : function(json){
+		            	var j = JSON.parse(json);
+		            	if(j.article_creer != null)
+		            	{
+		            		$('#success').html(j.article_creer)
+		            		$('#creer_article').hide();
+		           		}
+		            	if(j.erreur_titre == "true")
+		            		$('#erreur_titre').val("Veuillez saisir un titre");
+		            	if(j.erreur_description == "true")
+		            		$('#erreur_description').val("Veuillez saisir une description");
+		            	if(j.erreur_contenu == "true")
+		            		$('#erreur_contenu').val("Veuillez saisir un contenu");
 		            }
 		        });
 			});
-				
-			$('#creer_article').hide();
+			<%
+			if(request.getAttribute("page_article") == null)
+			{
+				%>$('#page_article').hide();<%
+			}
+			%>
 			$('#media').hide();
+			
+			/******************** separation article et galerie *************************/			
+
+			$('#bt_add_galerie').on('click', function(){
+				$('#creer_article').hide();
+				$('#remplir_galerie').show();
+			});
+			
+			$('#bt_add_photo_galerie').on('click', function(){
+				$('#bt_file_photo').click();
+			});
+			
+			$("#bt_file_photo").on('change', function(e){
+				filesGalerie = $.merge(filesGalerie, $('#bt_file_photo')[0].files);
+				
+				var reader = new FileReader();
+				var current_file = filesGalerie[filesGalerie.length - 1];
+				if (current_file.type.indexOf('image') == 0) 
+				{
+				  reader.onload = function (event) 
+				  {
+				      var image = new Image();
+				      image.src = event.target.result;
+						console.log(current_file);
+				      image.onload = function() 
+				      {
+					        var maxWidth = 250,
+					            maxHeight = 250,
+					            imageWidth = image.width,
+					            imageHeight = image.height;
+	
+	
+					        if (imageWidth > imageHeight) 
+					        {
+					          if (imageWidth > maxWidth) 
+					          {
+					            imageHeight *= maxWidth / imageWidth;
+					            imageWidth = maxWidth;
+					          }
+					        }
+					        else 
+					        {
+					          if (imageHeight > maxHeight) 
+					          {
+					            imageWidth *= maxHeight / imageHeight;
+					            imageHeight = maxHeight;
+					          }
+					        }
+
+					        var canvas = document.createElement('canvas');
+					        canvas.width = imageWidth;
+					        canvas.height = imageHeight;
+					        image.width = imageWidth;
+					        image.height = imageHeight;
+					        var ctx = canvas.getContext("2d");
+					        ctx.drawImage(this, 0, 0, imageWidth, imageHeight);
+						       
+					        var div = document.createElement('div');
+					        var preview = document.createElement('img');
+					        var desc = document.createElement('textArea');
+					        $(desc).attr('placeholder', 'test');
+					        $(preview).attr('src', canvas.toDataURL(current_file.type));
+					        $(div).append(desc);
+					        $(div).append(preview);
+					        $('#images_galerie').append(div);
+					        console.log(current_file);
+				      }
+				    }
+				  reader.readAsDataURL(current_file);
+				}					
+			});
+			
+			
+			$('#remplir_galerie').hide();
+			$('#bt_file_photo').hide();
+			
+			
 		});
 	</script>
-	<button id="bt_add_article" class="btn btn-sample">Ajouter article</button>
-	<div class="row" id="creer_article">
-		<div class="col-md-8">
-			<form id="form_creer_article" action="./creerArticle" method="post" enctype="multipart/form-data">
+	<button id="bt_add_article" class="btn btn-sample">Ajouter article</button>	<button id="bt_add_galerie" class="btn btn-sample">Ajouter à la galerie</button>
+	
+	<!-- -------------------------------- Créer article -------------------------- -->
+	
+	<div class="row" id="page_article">
+		<span id="success" class="success">${ requestScope.article_creer }</span>
+		<div class="row" id="creer_article">
+			<div class="col-md-8">
+				<form id="form_creer_article" action="./creerArticle" method="post" enctype="multipart/form-data">
+					<br>
+					<span id="erreur_titre" class="erreur">${ requestScope.erreur_titre }</span>
+					<textarea id="titre" rows="1" cols="100" placeholder="Le titre de l'article" required></textarea>
+					<br><br>
+					<span id="erreur_description" class="erreur">${ requestScope.erreur_description }</span>
+					<textarea id="description" rows="2" cols="100" placeholder="La description de l'article" required></textarea>
+					<br><br>
+					<span id="erreur_contenu" class="erreur">${ requestScope.erreur_contenu }</span>
+					<textarea id="contenu" rows="20" cols="100" placeholder="Le contenu de l'article" required></textarea>
+					<br>
+					<input id="media" type="file" accept="image/*"/>
+					<button type="button" id="bt_add_photo" class="btn btn-sample">Importer photo</button>
+					<input type="submit" class="btn btn-sample" value="Creer article"/>
+				</form>
+			</div>
+			<div class="col-md-2">
 				<br>
-				<textarea id="titre" rows="1" cols="100" placeholder="Le titre de l'article" required></textarea>
-				<br><br>
-				<textarea id="description" rows="2" cols="100" placeholder="La description de l'article" required></textarea>
-				<br><br>
-				<textarea id="contenu" rows="20" cols="100" placeholder="Le contenu de l'article" required></textarea>
-				<br>
-				<input id="media" type="file" accept="video/*|image/*"/>
-				<button type="button" id="bt_add_photo" class="btn btn-sample">Importer photo</button>
-				<input type="submit" class="btn btn-sample" value="Creer article"/>
-			</form>
-		</div>
-		<div class="col-md-2">
-			<br>
-			<div id="images" style="overflow-y: scroll; height:550px; overflow-x: hidden; width: 250px">			
+				<div id="images" style="overflow-y: scroll; height:550px; overflow-x: hidden; width: 250px">			
+				</div>
 			</div>
 		</div>
 	</div>
 	
-	<div>
-	<%@include file="/WEB-INF/footer.html"%>
+	<!-- -------------------------------- Fin créer article -------------------------- -->
+	
+	<!-- -------------------------------- Ajouter image -------------------------- -->
+	<!-- 
+	<div class="row" id="remplir_galerie">
+		<div class="col-md-8">
+			<form id="form_galerie" action="./remplirGalerie" method="post" enctype="multipart/form-data">
+				<br>
+				<input id="bt_file_photo" type="file" accept="image/*"/>
+				<button type="button" id="bt_add_photo_galerie" class="btn btn-sample">Importer photo</button>
+				<input type="submit" class="btn btn-sample" value="Ajouter photo"/>
+			</form>
+		</div>
+		<div class="col-md-2">
+			<br>
+			<div id="images_galerie" style="overflow-y: scroll; height:550px; overflow-x: hidden; width: 250px">			
+			</div>
+		</div>
+	</div> -->
+	
+	<div class="container">
+		<div id="remplir_galerie" class="row">
+			<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2" id="images_galerie"></div>
+		</div>
+		<div class="col-md-8">
+		</div>
 	</div>
+	
+	
+	<!-- -------------------------------- Fin d'image -------------------------- -->
+	
+	<%@include file="/WEB-INF/footer.html"%>
 </body>
 </html>

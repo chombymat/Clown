@@ -21,8 +21,8 @@ create table projet(
 
 create table article(
 	id_article serial primary key,
-	id_projet integer references projet(id_projet) 
-		on update cascade on delete restrict,
+	--id_projet integer references projet(id_projet) 
+		--on update cascade on delete restrict,
 	titre varchar(200) not null,
 	description varchar(1000),
 	contenu text not null
@@ -34,8 +34,9 @@ create table article(
 
 create table media(
 	id_media serial primary key,
+	-- id_article integer references article(id_article) on update cascade on delete restrict,
 	chemin varchar(100) not null,
-	nom varchar(50) not null, 
+	nom varchar(50) not null,
 	type varchar(50) not null
 );
 
@@ -76,3 +77,6 @@ create table contact(
 	code_postal varchar(5),
 	ville varchar(200)
 );
+
+insert into utilisateur(id_utilisateur, nom, prenom, adresse_mail, login, prima_pass) values(1, 'Markey', 'Jeffrey', 'markey.jeffrey@gmail.com', 'Metarion', 'DH/hPDypUlaFDntpSXvYFCb1HSE6qG1uPMnn61q8YWY=');
+insert into role(id_utilisateur, role) values(1, 'role4');
