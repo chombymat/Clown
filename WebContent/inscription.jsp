@@ -37,7 +37,8 @@
 			            	inscriptionPass : SHA256($('#pass').val()),
 			            	inscriptionNom : $('#inscriptionNom').val(),
 			            	inscriptionPrenom : $('#inscriptionPrenom').val(),
-			            	inscriptionMail : $('#mail').val()
+			            	inscriptionMail : $('#mail').val(),
+			            	initialisation : "true"
 			            },
 			            success : function(data, textStatus, jqXHR)
 			            {
