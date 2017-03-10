@@ -121,17 +121,18 @@ $(document)
 	
 	<div id="presentation_clown">
 		<div class="row">
-		<h2>Les Clowns</h2><br>
-		<div class="col-md-6">
-			<img width="50%" height="50%" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE_2.JPG" alt="photo clown">
-		</div>
+			<h2>Les Clowns</h2><br>
+			<div class="col-md-12">
+				<img class="img-circle" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE" width="20%" height="auto">
+				<img class="img-circle" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE_2.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE" width="20%" height="auto">
+			</div>
 		</div>
 	</div>
 	
 	<div id="les clowns">
 		<div class="row">
 			<div class="col-md-6">
-				<h3>Claire</h3><br>
+				<br><h3>Claire</h3><br>
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/Deambulation-clowns-prima-porta-bien-etre-21.jpg" alt="photo clown">
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/Deambulation-clowns-prima-porta-bien-etre-32.jpg" alt="photo clown">
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/MG_4032.jpg" alt="photo clown">
@@ -140,7 +141,7 @@ $(document)
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/MG_4211.jpg" alt="photo clown">
 			</div>
 			<div class="col-md-5">
-				<h3>Virginie</h3><br>
+				<br><h3>Virginie</h3><br>
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE/P_20170209_141428.jpg" alt="photo clown">
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE/P_20170209_142253.jpg" alt="photo clown">
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE/P_20170209_142753.jpg" alt="photo clown">
