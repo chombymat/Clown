@@ -1,4 +1,4 @@
-<%@ page import="tools.Utilisateur"%>
+<%@ page import="tools.Utilisateur,tools.Article"%>
 <script>
 	$(document).ready(function()
 	{
@@ -50,7 +50,11 @@
 		{
 			$("#name").html("Administration");
 		}
-		
+		if (page.indexOf('Article') != -1)
+		{
+
+			$("#name").html("${ requestScope.article.getTitre() }");
+		}
 		
 		$('#bt_connexion').on('click', function(){
 			window.location.replace('./connexion.jsp');

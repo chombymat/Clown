@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collection;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.mail.Message;
 import javax.mail.Message.RecipientType;
@@ -202,7 +204,7 @@ public class Modele
 	public int ajouterArticle(String titre, String description, String contenu)
 	{
 		int id_article = -1;
-		
+
 		try
 		{
 			statement = ds.getConnection().prepareStatement("insert into Article (titre, description, contenu) values(?, ?, ?) returning id_article");
@@ -224,7 +226,7 @@ public class Modele
 				e.printStackTrace();
 			}
 		}
-		
+
 		return id_article;
 	}
 
@@ -281,6 +283,23 @@ public class Modele
 			if(result.next()){
 				article = new Article(id, result.getString("titre"), result.getString("description"), result.getString("contenu"));
 			}
+			else
+				return null;
+
+			String regex = "<(.+)>";
+			String regex2 = "\\r";
+			
+			String subst = "<img src=\"images/article/" + id + "/$1\" width=\"50%\" height=\"auto\"/>";
+			
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher(article.getContenu());
+			article.setContenu(matcher.replaceAll(subst));
+			
+			pattern = Pattern.compile(regex2);
+			matcher = pattern.matcher(article.getContenu());
+			article.setContenu(matcher.replaceAll("<br>"));
+
+
 			return article;
 
 		} catch (Exception e){
