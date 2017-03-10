@@ -59,6 +59,9 @@ h2{color: #C21950; font-family: Serif;font-size: 40px;}
 #texte_spectacle{
 	padding-left: 5%;
 }
+#texte_demarche{
+	padding-left: 20%;
+}
 
 .erreur{
 	color: red;
