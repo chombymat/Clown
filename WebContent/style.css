@@ -170,3 +170,7 @@ h3{color: #C21950; font-family: Serif;}
 	background-color: transparent;
 	border: none;
 }
+
+#presentationAtelier, #textAtelier{
+	padding-top: 50px;
+}

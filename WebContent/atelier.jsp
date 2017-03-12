@@ -54,7 +54,7 @@ $(document).ready(function() {
 						$('#menu').hide();
 						$('#alimentation').hide();
 						$('#spectacle').hide();
-
+						$('#textAtelier').hide();
 					}
 					if(location.search == "?page=lait"){
 						$('#lait').show();
@@ -63,6 +63,7 @@ $(document).ready(function() {
 						$('#menu').hide();
 						$('#alimentation').hide();
 						$('#spectacle').hide();
+						$('#textAtelier').hide();
 
 					}
 					if(location.search == "?page=famille"){
@@ -72,6 +73,7 @@ $(document).ready(function() {
 						$('#menu').hide();
 						$('#alimentation').hide();
 						$('#spectacle').hide();
+						$('#textAtelier').hide();
 
 					}
 					if(location.search == "?page=menu"){
@@ -81,6 +83,7 @@ $(document).ready(function() {
 						$('#familles').hide();
 						$('#alimentation').hide();
 						$('#spectacle').hide();
+						$('#textAtelier').hide();
 
 					}
 					if(location.search == "?page=alimentation"){
@@ -90,6 +93,7 @@ $(document).ready(function() {
 						$('#familles').hide();
 						$('#menu').hide();
 						$('#spectacle').hide();
+						$('#textAtelier').hide();
 
 					}
 					if(location.search == "?page=spectacle"){
@@ -99,6 +103,7 @@ $(document).ready(function() {
 						$('#familles').hide();
 						$('#menu').hide();
 						$('#alimentation').hide();
+						$('#textAtelier').hide();
 
 					}
 					var modal = document.getElementById('myModal');
@@ -156,13 +161,31 @@ $(document).ready(function() {
 	
 	<!----------------------------------- categorie ---------------------------------------->
 	<div class="row">
-	<a href="./atelier.jsp?page=pain"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTO_ILLUSTRATION/pain.jpg" title="Le pain" alt="image de pain" width="156" height="156"></a>
-	<a href="./atelier.jsp?page=lait"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTO_ILLUSTRATION/lait.jpg" title="Le lait" alt="image de lait" width="156" height="156"></a>
-	<a href="./atelier.jsp?page=famille"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Les 7 familles" alt="image des 7 familles" width="156" height="156"></a>
-	<a href="./atelier.jsp?page=menu"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_4_UN_MENU_EQUILIBRE/PHOTO_ILLUSTRATION/Fotolia_135759645_S-1.jpg" title="Le menu &eacute;quilibr&eacute;" alt="image de fruit et legumes" width="156" height="156"></a>
-	<a href="./atelier.jsp?page=alimentation"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_5_LE_PARCOURS_DU_YAOURT_A_LA_FRAISE/PHOTO_ILLUSTRATION/Fotolia_139412392_S-1.jpg" title="Alimentation et environnement" alt="image de yaourt et fraise" width="156" height="156"></a>
+	<a href="./atelier.jsp?page=pain"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTO_ILLUSTRATION/pain.jpg" title="Atelier 1 : Le pain" alt="image de pain" width="156" height="156"></a>
+	<a href="./atelier.jsp?page=lait"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTO_ILLUSTRATION/lait.jpg" title="Atelier 2 : Le lait" alt="image de lait" width="156" height="156"></a>
+	<a href="./atelier.jsp?page=famille"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Atelier 3 : Les 7 familles" alt="image des 7 familles" width="156" height="156"></a>
+	<a href="./atelier.jsp?page=menu"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_4_UN_MENU_EQUILIBRE/PHOTO_ILLUSTRATION/Fotolia_135759645_S-1.jpg" title="Atelier 4 : Le menu &eacute;quilibr&eacute;" alt="image de fruit et legumes" width="156" height="156"></a>
+	<a href="./atelier.jsp?page=alimentation"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_5_LE_PARCOURS_DU_YAOURT_A_LA_FRAISE/PHOTO_ILLUSTRATION/Fotolia_139412392_S-1.jpg" title="Atelier 5 : Alimentation et environnement" alt="image de yaourt et fraise" width="156" height="156"></a>
 	<a href="./atelier.jsp?page=spectacle"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTO_ILLUSTRATION/clown-1678004_1920.jpg" title="Le spectacle" alt="image de spectacle" width="156" height="156"></a>
 	</div>
+	<div class="row col-md-10 col-sm-offset-1" id="textAtelier">
+					<p align="justify">Donec id elit non mi porta gravida at eget
+					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+					euismod. Donec sed odio dui.Donec id elit non mi porta gravida at eget
+					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+					euismod. Donec sed odio dui.Donec id elit non mi porta gravida at eget
+					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+					euismod. Donec sed odio dui.Donec id elit non mi porta gravida at eget
+					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+					euismod. Donec sed odio dui.Donec id elit non mi porta gravida at eget
+					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+					euismod. Donec sed odio dui.</p>
+			</div>
 	<!----------------------------------- fin de categorie ---------------------------------------->
 	
 	<!----------------------------------- PAIN ---------------------------------------->
@@ -312,6 +335,7 @@ $(document).ready(function() {
 		</div>
 	</div>
 	
+	<div id="presentationAtelier"><a href="./atelier.jsp"><button class="btn btn-sample">Pr&eacutesentation des ateliers</button></a></div>
 	
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
