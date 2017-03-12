@@ -40,9 +40,33 @@ function go_to_page(page_num) {
 	$('#id' + page_num).addClass('active');
 }
 
-$(document)
-		.ready(
-				function() {
+$(document).ready(function() {
+					$('#presentation_clown').hide();
+					$('#les_clowns').hide();
+					$('#pratique').hide();
+					$('#expression').hide();
+					if(location.search == "?page=clown"){
+						$('#presentation_clown').show();
+						$('#les_clowns').show();
+						$('#presentation_demarche').hide();
+						$('#pratique').hide();
+						$('#expression').hide();
+					}
+					if(location.search == "?page=pratique"){
+						$('#presentation_clown').hide();
+						$('#presentation_demarche').hide();
+						$('#les_clowns').hide();
+						$('#pratique').show();
+						$('#expression').hide();
+					}
+					if(location.search == "?page=expression"){
+						$('#presentation_clown').hide();
+						$('#presentation_demarche').hide();
+						$('#les_clowns').hide();
+						$('#pratique').hide();
+						$('#expression').show();
+					}
+	
 					var modal = document.getElementById('myModal');
 					
 					// Get the <span> element that closes the modal
@@ -114,7 +138,7 @@ $(document)
 				massa justo sit amet risus. Etiam porta sem malesuada magna mollis
 				euismod. Donec sed odio dui.</p>
 			</div>
-	</div>
+		</div>
 	</div>
 	
 	<!------------------------------------- CLOWN ------------------------------------>
@@ -123,16 +147,16 @@ $(document)
 		<div class="row">
 			<h2>Les Clowns</h2><br>
 			<div class="col-md-12">
-				<img class="img-circle" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE" width="400px" height="400px">
-				<img class="img-circle" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE_2.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE" width="400px" height="400px">
+				<img class="img-circle" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE" width="300px" height="300px">
+				<img class="img-circle" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE_2.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE" width="300px" height="300px">
 			</div>
 		</div>
 	</div>
 	
-	<div id="les clowns">
+	<div id="les_clowns">
 		<div class="row">
 			<div class="col-md-6">
-				<br><h3>Claire</h3><br>
+				<h3>Claire</h3><br>
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/Deambulation-clowns-prima-porta-bien-etre-21.jpg" alt="photo clown">
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/Deambulation-clowns-prima-porta-bien-etre-32.jpg" alt="photo clown">
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/MG_4032.jpg" alt="photo clown">
@@ -141,7 +165,7 @@ $(document)
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/MG_4211.jpg" alt="photo clown">
 			</div>
 			<div class="col-md-5">
-				<br><h3>Virginie</h3><br>
+				<h3>Virginie</h3><br>
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE/P_20170209_141428.jpg" alt="photo clown">
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE/P_20170209_142253.jpg" alt="photo clown">
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE/P_20170209_142753.jpg" alt="photo clown">
