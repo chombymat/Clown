@@ -185,7 +185,7 @@ $(document).ready(function() {
 					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
 					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
 					euismod. Donec sed odio dui.</p>
-			</div>
+	</div>
 	<!----------------------------------- fin de categorie ---------------------------------------->
 	
 	<!----------------------------------- PAIN ---------------------------------------->
@@ -335,7 +335,7 @@ $(document).ready(function() {
 		</div>
 	</div>
 	
-	<div id="presentationAtelier"><a href="./atelier.jsp"><button class="btn btn-sample">Pr&eacutesentation des ateliers</button></a></div>
+	<div id="presentationAtelier"><a href="./atelier.jsp"><button class="btn btn-sample">Pr&eacute;sentation des ateliers</button></a></div>
 	
 	<!-- The Modal -->
 	<div id="myModal" class="modal">

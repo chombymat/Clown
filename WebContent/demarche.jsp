@@ -48,20 +48,20 @@ $(document).ready(function() {
 					if(location.search == "?page=clown"){
 						$('#presentation_clown').show();
 						$('#les_clowns').show();
-						$('#presentation_demarche').hide();
+						$('#textDemarche').hide();
 						$('#pratique').hide();
 						$('#expression').hide();
 					}
 					if(location.search == "?page=pratique"){
 						$('#presentation_clown').hide();
-						$('#presentation_demarche').hide();
+						$('#textDemarche').hide();
 						$('#les_clowns').hide();
 						$('#pratique').show();
 						$('#expression').hide();
 					}
 					if(location.search == "?page=expression"){
 						$('#presentation_clown').hide();
-						$('#presentation_demarche').hide();
+						$('#textDemarche').hide();
 						$('#les_clowns').hide();
 						$('#pratique').hide();
 						$('#expression').show();
@@ -120,26 +120,31 @@ $(document).ready(function() {
 <body>
 	<%@include file="/WEB-INF/navbar.jsp"%>
 	
-	<!-- 
-	<div id="change">
-		[texte] présentation rapide Démarche<br>
+	<!----------------------------------- categorie ---------------------------------------->
+	<div class="row">
+	<a href="./demarche.jsp?page=clown" class="bulle"><img class="img-circle" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE.JPG" title="Les clowns" alt="image de CLaire et Viginie" width="156" height="156"></a>
+	<a href="./demarche.jsp?page=pratique" class="bulle"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Pratique et sensorielle" alt="Pratique et sensorielle" width="156" height="156"></a>
+	<a href="./demarche.jsp?page=expression" class="bulle"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Expression corporelle" alt="Expression corporelle" width="156" height="156"></a>
 	</div>
-	<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/sDj72zqZakE" frameborder="0" allowfullscreen></iframe> 
-	-->
-	
-	
-	<div id="presentation_demarche">
-		<h2>La Démarche</h2><br>
-		<div class="row">
-		<!-- padding de 30% dans style.css (ligne 62) -->
-			<div class="col-md-10 col-sm-offset-1">
-				<p align="justify">Donec id elit non mi porta gravida at eget
-				ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
-				massa justo sit amet risus. Etiam porta sem malesuada magna mollis
-				euismod. Donec sed odio dui.</p>
-			</div>
-		</div>
+	<div class="row col-md-10 col-sm-offset-1" id="textDemarche">
+					<p align="justify">Donec id elit non mi porta gravida at eget
+					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+					euismod. Donec sed odio dui.Donec id elit non mi porta gravida at eget
+					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+					euismod. Donec sed odio dui.Donec id elit non mi porta gravida at eget
+					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+					euismod. Donec sed odio dui.Donec id elit non mi porta gravida at eget
+					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+					euismod. Donec sed odio dui.Donec id elit non mi porta gravida at eget
+					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+					euismod. Donec sed odio dui.</p>
 	</div>
+	<!----------------------------------- fin de categorie ---------------------------------------->
 	
 	<!------------------------------------- CLOWN ------------------------------------>
 	
@@ -233,6 +238,9 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
+	
+	<div id="presentationDemarche"><a href="./demarche.jsp"><button class="btn btn-sample">Pr&eacute;sentation de la d&eacute;marche</button></a></div>
+	
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
 		<span class="close">&times;</span> <img class="modal-content"
