@@ -105,6 +105,7 @@
 			{
 				%>
 				<span class="droite"><button id="bt_deconnexion" type="submit" class="btn btn-sample">Déconnexion</button></span>
+				<span class="droite"><button id="bt_deconnexion" type="submit" class="btn btn-sample">Administration</button></span>
 				<span class="droite" id="bonjour">Bonjour ${ user.nom } ${ user.prenom }&nbsp;&nbsp;</span>
 				<%
 			}

@@ -207,94 +207,6 @@
 			
 			$('#page_modif_article').hide();
 			
-			/******************** separation article et galerie *************************/			
-
-			$('#bt_add_galerie').on('click', function(){
-				if(showDivAddArticle == 1)
-				{
-					showDivAddArticle = 0;					
-					$('#page_article').hide();
-				}
-				
-				if(showDivAddGalerie == 1)
-				{
-					showDivAddGalerie = 0;				
-					$('#remplir_galerie').hide();
-				}
-				else
-				{
-					showDivAddGalerie = 1;				
-					$('#remplir_galerie').show();
-				}
-			});
-			
-			$('#bt_add_photo_galerie').on('click', function(){
-				$('#bt_file_photo').click();
-			});
-			
-			$("#bt_file_photo").on('change', function(e){
-				filesGalerie = $.merge(filesGalerie, $('#bt_file_photo')[0].files);
-				
-				var reader = new FileReader();
-				var current_file = filesGalerie[filesGalerie.length - 1];
-				if (current_file.type.indexOf('image') == 0) 
-				{
-				  reader.onload = function (event) 
-				  {
-				      var image = new Image();
-				      image.src = event.target.result;
-						console.log(current_file);
-				      image.onload = function() 
-				      {
-					        var maxWidth = 250,
-					            maxHeight = 250,
-					            imageWidth = image.width,
-					            imageHeight = image.height;
-	
-	
-					        if (imageWidth > imageHeight) 
-					        {
-					          if (imageWidth > maxWidth) 
-					          {
-					            imageHeight *= maxWidth / imageWidth;
-					            imageWidth = maxWidth;
-					          }
-					        }
-					        else 
-					        {
-					          if (imageHeight > maxHeight) 
-					          {
-					            imageWidth *= maxHeight / imageHeight;
-					            imageHeight = maxHeight;
-					          }
-					        }
-
-					        var canvas = document.createElement('canvas');
-					        canvas.width = imageWidth;
-					        canvas.height = imageHeight;
-					        image.width = imageWidth;
-					        image.height = imageHeight;
-					        var ctx = canvas.getContext("2d");
-					        ctx.drawImage(this, 0, 0, imageWidth, imageHeight);
-						       
-					        var div = document.createElement('div');
-					        var preview = document.createElement('img');
-					        var desc = document.createElement('textArea');
-					        $(desc).attr('placeholder', 'test');
-					        $(preview).attr('src', canvas.toDataURL(current_file.type));
-					        $(div).append(desc);
-					        $(div).append(preview);
-					        $('#images_galerie').append(div);
-					        console.log(current_file);
-				      }
-				    }
-				  reader.readAsDataURL(current_file);
-				}					
-			});
-			
-			
-			$('#remplir_galerie').hide();
-			$('#bt_file_photo').hide();
 		});
 	</script>
 	<button id="bt_add_article" class="btn btn-sample">Ajouter article</button> <button id="bt_modif_article" class="btn btn-sample">Modifier article</button>	<button id="bt_add_galerie" class="btn btn-sample">Ajouter à la galerie</button>
@@ -347,36 +259,7 @@
 	</div>
 	
 	<!-- -------------------------------- Fin modifier article -------------------------- -->
-	
-	<!-- -------------------------------- Ajouter image -------------------------- -->
-	<!-- 
-	<div class="row" id="remplir_galerie">
-		<div class="col-md-8">
-			<form id="form_galerie" action="./remplirGalerie" method="post" enctype="multipart/form-data">
-				<br>
-				<input id="bt_file_photo" type="file" accept="image/*"/>
-				<button type="button" id="bt_add_photo_galerie" class="btn btn-sample">Importer photo</button>
-				<input type="submit" class="btn btn-sample" value="Ajouter photo"/>
-			</form>
-		</div>
-		<div class="col-md-2">
-			<br>
-			<div id="images_galerie" style="overflow-y: scroll; height:550px; overflow-x: hidden; width: 250px">			
-			</div>
-		</div>
-	</div> -->
-	
-	<div class="container">
-		<div id="remplir_galerie" class="row">
-			<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2" id="images_galerie"></div>
-		</div>
-		<div class="col-md-8">
-		</div>
-	</div>
-	
-	
-	<!-- -------------------------------- Fin d'image -------------------------- -->
-	
+		
 	<%@include file="/WEB-INF/footer.html"%>
 </body>
 </html>

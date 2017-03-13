@@ -160,7 +160,7 @@ $(document).ready(function() {
 	
 	<div id="les_clowns">
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-sm-offset-1 col-md-5">
 				<h3>Claire</h3><br>
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/Deambulation-clowns-prima-porta-bien-etre-21.jpg" alt="photo clown">
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/Deambulation-clowns-prima-porta-bien-etre-32.jpg" alt="photo clown">
@@ -198,7 +198,6 @@ $(document).ready(function() {
 					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
 					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
 					euismod. Donec sed odio dui.</p>
-				<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
 				<br>
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_ATELIER_PRATIQUE_ET_SENSORIEL/2015-12-17_15.43.00.jpg" alt="photo enfant - pratique et sensoriel">
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_ATELIER_PRATIQUE_ET_SENSORIEL/2015-12-17_15.30.53.jpg" alt="photo enfant - pratique et sensoriel">
@@ -224,7 +223,6 @@ $(document).ready(function() {
 					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
 					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
 					euismod. Donec sed odio dui.</p>
-				<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
 				<br>
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_EXPRESSION_CORPORELLE/Capture_lenny_2.PNG" alt="photo enfant - expression corporelle">
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_EXPRESSION_CORPORELLE/2015-12-17_15.47.33.jpg" alt="photo enfant - expression corporelle">
