@@ -12,6 +12,14 @@ h3{color: #C21950; font-family: Serif;}
 	color: #ffffff; 
 	background-color: #C21950; 
 }
+
+
+#logopp{
+	float: left;
+	border: solid 3px;
+	border-color: #C21950;
+	margin-left: 4%;
+}
 .btn-sample:hover, 
 .btn-sample:focus, 
 .btn-sample:active, 
