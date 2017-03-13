@@ -17,6 +17,24 @@ h3{color: #C21950; font-family: Serif;}
 	background-color: #C21950; 
 }
 
+#page_article{
+	text-align: center;
+	background-color: #121251;
+	left: 100%;
+	margin-left: 30%;
+	margin-right: 30%;
+
+	
+}
+#images{
+	height:100%;
+	width: 100%;
+	resize:none;
+	overflow-x: scroll;
+}
+#titre, #contenu, #description, #form_creer_article {
+	width: 100%;
+}
 
 #logopp{
 	float: left;

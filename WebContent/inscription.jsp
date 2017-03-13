@@ -44,14 +44,17 @@
 			            {
 			            	if(data === "ok")
 			            	{
-			            		window.location.replace("./");
+			            		if(request.getAttribute("retourInscription") == "inscription ok")
+			            			window.location.replace("./");
 			            	}
 			            	else if(data === "mail")
 			            	{
-			            		$('#erreur_mail').html("Adresse email déjà existante.");         	
+			            		if(request.getAttribute("retourInscription") == "mail existant")
+			            			$('#erreur_mail').html("Adresse email déjà existante.");         	
 			            	}else if(data === "login")
 			            	{
-			            		$('#erreur_login').html("Identifiant déjà existant.");         	
+			            		if(request.getAttribute("retourInscription") == "login existant")
+			            			$('#erreur_login').html("Identifiant déjà existant.");         	
 			            	}
 			            }
 			        });
