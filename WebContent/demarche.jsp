@@ -171,15 +171,15 @@ $(document).ready(function() {
 			</div>
 			<div class="col-md-5">
 				<h3>Virginie</h3><br>
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE/P_20170209_141428.jpg" alt="photo clown">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE/P_20170209_142253.jpg" alt="photo clown">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE/P_20170209_142753.jpg" alt="photo clown">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE/P1060614.JPG" alt="photo clown">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE/P1060617.JPG" alt="photo clown">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE/P1060691.JPG" alt="photo clown">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE/P1060700.JPG" alt="photo clown">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE/P1070070.JPG" alt="photo clown">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE/P1070097.JPG" alt="photo clown">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P_20170209_141428.jpg" alt="photo clown">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P_20170209_142253.jpg" alt="photo clown">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P_20170209_142753.jpg" alt="photo clown">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1060614.JPG" alt="photo clown">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1060617.JPG" alt="photo clown">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1060691.JPG" alt="photo clown">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1060700.JPG" alt="photo clown">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1070070.JPG" alt="photo clown">
+				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1070097.JPG" alt="photo clown">
 			</div>
 		</div>
 	</div>
