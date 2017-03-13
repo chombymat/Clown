@@ -17,7 +17,9 @@ h3{color: #C21950; font-family: Serif;}
 	background-color: #C21950; 
 }
 
-
+.form-group, .control-label{font-family: Serif;}
+.footer{color: #C21950;font-family: Serif;}
+#footer{color: #C21950;font-family: Serif;}
 #logopp{
 	float: left;
 	border: solid 3px;
