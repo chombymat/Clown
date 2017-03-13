@@ -21,10 +21,9 @@ create table projet(
 
 create table article(
 	id_article serial primary key,
-	--id_projet integer references projet(id_projet) 
-		--on update cascade on delete restrict,
+	onglet varchar(60) unique,
 	titre varchar(200) not null,
-	description varchar(1000),
+	description varchar(1000) not null,
 	contenu text not null
 );
 
@@ -77,3 +76,15 @@ create table contact(
 	code_postal varchar(5),
 	ville varchar(200)
 );
+
+insert into utilisateur(id_utilisateur, nom, prenom, adresse_mail, login, prima_pass) values(1, 'Markey', 'Jeffrey', 'markey.jeffrey@gmail.com', 'Metarion', 'DH/hPDypUlaFDntpSXvYFCb1HSE6qG1uPMnn61q8YWY=');
+insert into role(id_utilisateur, role) values(1, 'role4');
+insert into article(onglet, titre, description, contenu) values('pain', '', '', 'Ceci est du pain. Vous pouvez voir sur la gauche une image acheté pour la modique somme de xx,xx€.');
+insert into article(onglet, titre, description, contenu) values('lait', '', '', 'Ceci est du lait. Vous pouvez voir sur la gauche une image acheté pour la modique somme de xx,xx€.');
+insert into article(onglet, titre, description, contenu) values('famille', '', '', 'Ne regardé pas cette onglet lorque vous avez faim. Vous pouvez voir sur la gauche une image acheté pour la modique somme de xx,xx€.');
+insert into article(onglet, titre, description, contenu) values('menu', '', '', 'Ici je vous présente un nouveau métier : docteur pour aliments. Vous pouvez voir sur la gauche une image acheté pour la modique somme de xx,xx€.');
+insert into article(onglet, titre, description, contenu) values('alimentation', '', '', '/!\ Ci vous faites un régime passé votre chemin.<br><br> Ici il y a un superbe désert.  Vous pouvez voir sur la gauche une image acheté pour la modique somme de xx,xx€.');
+insert into article(onglet, titre, description, contenu) values('spectacle', '', '', 'Voici un spectacle (oui je sais il n''est pas présent ayez un peu d''imagination).  Vous pouvez voir sur la gauche une image acheté pour la modique somme de xx,xx€.');
+
+
+

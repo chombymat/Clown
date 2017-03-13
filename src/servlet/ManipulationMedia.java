@@ -38,8 +38,7 @@ public class ManipulationMedia extends HttpServlet {
 		
 		
 		else if(request.getParameter("mediasArticle") != null){
-			new Modele().getMedias(
-					Integer.valueOf(request.getParameter("idArticlePere")));
+			new Modele().getMedias(Integer.valueOf(request.getParameter("idArticlePere")));
 		}
 
 	}

@@ -1,4 +1,4 @@
-<%@ page import="tools.Utilisateur"%>
+<%@ page import="tools.Utilisateur,tools.Article"%>
 <script>
 	$(document).ready(function()
 	{
@@ -8,7 +8,7 @@
 
 		if (page === '' || page.indexOf('index.jsp') != -1)
 		{
-			$("#name").html("Accueil");
+			$("#name").html("La compagnie la Prima Porta");
 		} 
 		if (page.indexOf('demarche.jsp') != -1)
 		{
@@ -46,6 +46,19 @@
 		{
 			$("#name").html("Formation");
 		}
+		if (page.indexOf('Administration') != -1)
+		{
+			$("#name").html("Administration");
+		}
+		if (page.indexOf('legale.jsp') != -1)
+		{
+			$("#name").html("Mentions l&eacute;gales");
+		}
+		if (page.indexOf('Article') != -1)
+		{
+
+			$("#name").html("${ requestScope.article.getTitre() }");
+		}
 		
 		$('#bt_connexion').on('click', function(){
 			window.location.replace('./connexion.jsp');
@@ -79,7 +92,6 @@
 </script>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
-	
 	<p id="p_navbar"><span class="gauche"><button id="bt_contacter" class="btn btn-sample" href="./contact.jsp">Nous contacter</button></span>
 			<%
 			if(session.getAttribute("user") == null) 
@@ -110,25 +122,25 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="./">Accueil</a>
+            <a class="navbar-brand titre" href="./">Accueil</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li class="dropdown"><a class="dropdown-toggle titre" data-toggle="dropdown" >La démarche<span class="caret"></span></a>
 			      <ul class="dropdown-menu">
-			        <li><a href="./demarche.jsp">Clown</a></li>
-			        <li><a href="./demarche.jsp">Pratique et sensoriel</a></li>
-			        <li><a href="./demarche.jsp">Expression corporelle</a></li>
+			        <li><a href="./demarche.jsp?page=clown">Clown</a></li>
+			        <li><a href="./demarche.jsp?page=pratique">Pratique et sensoriel</a></li>
+			        <li><a href="./demarche.jsp?page=expression">Expression corporelle</a></li>
 			      </ul>
 			    </li>
 				<li class="dropdown"><a class="dropdown-toggle titre" data-toggle="dropdown">Les ateliers<span class="caret"></span></a>
 			      <ul class="dropdown-menu">
-			        <li><a href="./atelier.jsp">Le pain</a></li>
-			        <li><a href="./atelier.jsp" onclick="showAteLait()">Le lait</a></li>
-			        <li><a href="./atelier.jsp">Les 7 familles</a></li>
-			        <li><a href="./atelier.jsp">Le menu equilibré</a></li>
-			        <li><a href="./atelier.jsp">Alimentation et environnement</a></li>
-			        <li><a href="./atelier.jsp">Le spectacle</a></li>
+			        <li><a href="./atelier.jsp?page=pain">Atelier 1 : Le pain</a></li>
+			        <li><a href="./atelier.jsp?page=lait">Atelier 2 : Le lait</a></li>
+			        <li><a href="./atelier.jsp?page=famille">Atelier 3 : Les 7 familles</a></li>
+			        <li><a href="./atelier.jsp?page=menu">Atelier 4 : Le menu equilibré</a></li>
+			        <li><a href="./atelier.jsp?page=alimentation">Atelier 5 : Alimentation et environnement</a></li>
+			        <li><a href="./atelier.jsp?page=spectacle">Le spectacle</a></li>
 			      </ul>
 			    </li>
 				<li class="dropdown"><a class="dropdown-toggle titre" data-toggle="dropdown">Ressources<span class="caret"></span></a>

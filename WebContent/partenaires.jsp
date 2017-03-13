@@ -15,10 +15,8 @@
 </head>
 <body>
 <%@include file="/WEB-INF/navbar.jsp"%>
-<p>Le développeur : Markey Jeffrey<br>
-Celui qui casse tout : Xavier Lamarque<br>
-Le clown : Matthias Chombart<br>
-Celle qui joue (mal) au lieu de bosser : Aurélia Catrice</p>
+<p>Les développeurs :  <br>
+<a href="https://github.com/Metarion">Markey Jeffrey</a> - <a href="https://github.com/Lundil">Lamarque Xavier</a> - <a href="https://github.com/Chombymat">Chombart Matthias</a> - <a href="https://github.com/catricea">Catrice Aurélia</a><br><br>
 [texte] présentation Comité Technique / présentation partenaires financiers<br>
 [lien] vers autres sites 
 <%@include file="/WEB-INF/footer.html"%>

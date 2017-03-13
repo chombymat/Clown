@@ -1,14 +1,24 @@
-body{background-color: #F5F5DC;text-align: center;}
-h1{text-align:center;color: #C21950;}
-h2{color: #C21950;}
+body{background-color: #F5F5DC;text-align: center;font-family: Calibri;font-size: 17px;}
+h1{text-align:center;color: #C21950;font-family: Serif;}
+h2{color: #C21950; font-family: Serif;font-size: 40px;}
+h3{color: #C21950; font-family: Serif;}
 
 #page{color: #FFFFFF;background-color: #C21950;}
 
-#bonjour{color: #C21950;}
+#bonjour{color: #C21950;font-family: Serif;}
 #laureat{font-style: italic;font-family:LearningCurveProRegular;font-size: 40px;}
 .btn-sample { 
-  color: #ffffff; 
-  background-color: #C21950; 
+	font-family: Serif;
+	color: #ffffff; 
+	background-color: #C21950; 
+}
+
+
+#logopp{
+	float: left;
+	border: solid 3px;
+	border-color: #C21950;
+	margin-left: 4%;
 }
 .btn-sample:hover, 
 .btn-sample:focus, 
@@ -19,20 +29,23 @@ h2{color: #C21950;}
   background-color: #C21950; 
 } 
 
+
 .titre {
+	font-family: Serif;
 	color: #C21950;
-	font-size: 17px;
+	font-size: 175%;
 }
 
 .navbar .navbar-nav {
-  display: inline-block;
-  float: none;
-  vertical-align: top;
+	display: inline-block;
+	float: none;
+	vertical-align: top;
 }
 .navbar .navbar-collapse {
-  text-align: center;
-  color: #C21950;
+	text-align: center;
+	color: #C21950;
 }
+
 .navbar-default{
 	background-color: #F5F5DC;
 	border: none;
@@ -55,6 +68,11 @@ h2{color: #C21950;}
 .erreur{
 	color: red;
 }
+
+.success {
+	color: green;
+}
+
 #success_message{ display: none;}
 
 /* Style the Image Used to Trigger the Modal */
@@ -159,4 +177,12 @@ h2{color: #C21950;}
 #header__icon{
 	background-color: transparent;
 	border: none;
+}
+
+#presentationAtelier, #textAtelier, #presentationDemarche, #textDemarche{
+	padding-top: 50px;
+}
+
+.bulle{
+	padding-left: 10px;padding-right: 10px;
 }

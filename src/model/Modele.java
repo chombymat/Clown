@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collection;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.mail.Message;
 import javax.mail.Message.RecipientType;
@@ -46,9 +48,10 @@ public class Modele
 		}
 	}
 
-	public Utilisateur connexion(String login, String pass) throws Exception
-	{
-		Utilisateur user = null;
+	
+	public Utilisateur connexion(String login, String pass) throws Exception {
+
+	Utilisateur user = null;
 		Connection con = null;
 
 		try 
@@ -78,9 +81,8 @@ public class Modele
 
 		return user;
 	}
-
-	private String cryptPass(String pass)
-	{
+	
+	private String cryptPass(String pass){
 		byte[] salt = new String("Clown").getBytes();
 
 		try {
@@ -104,21 +106,26 @@ public class Modele
 	}
 
 	//------------------------------------------------------CONTACT------------------------------------------------------------
-
-	public void envoyerMail(String nom, String prenom, String mail, String  numero_telephone, String adresse, String ville, String departement, String sexe, String message){
+	
+	public void envoyerMailContact(String nom, String prenom, String mail, String  numero_telephone, String adresse, String ville, String departement, String sexe, String message){
 		try{
+			
 			if(sexe != null){
 				if(sexe.equals("F"))
-					message += "de Madame " + prenom + " " + nom;
+					message += "\n- - - -\nDe Madame " + prenom + " " + nom;
 				else if(sexe.equals("H"))
-					message += "de Monsieur " + prenom + " " + nom;
-			}
-
-			message += "\nContacter ultérieurement via:\n" + "numero de telephone : " + numero_telephone + "\nadresse mail : "
-					+ mail + "\nadresse physique : " + adresse + "\n" + ville + "\n" + departement;
-
-
-
+					message += "\n- - - -\nDe Monsieur " + prenom + " " + nom;
+			} else if(sexe == null)
+				message += "\n- - - -\nDe " + prenom + " " + nom;
+			
+			message += "\n- - - -\nPossibilité de contacter ultérieurement via:\n";
+			if(numero_telephone.length() >0)
+				message += "numero de telephone : " + numero_telephone + "\n";
+			if(mail.length() >0)
+				message += "adresse mail : " + mail + "\n";
+			if(adresse.length() >0 && departement.length() >0)
+				message += "adresse physique : " + adresse + "\n" + ville + "\n" + departement;
+	
 			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
 			Message msg = new MimeMessage(session_mail);
 			msg.setFrom(new InternetAddress("tweetbookda2i@gmail.com"));
@@ -137,12 +144,85 @@ public class Modele
 			}
 		}
 	}
+	
+	//-------------------------------------------------------------INFORMATIONS PAR MAIL---------------------------------------------------------------------------
+	
+	public void envoyerMailInscription(String nom, String prenom, String mail, String  pseudo, String lienConfirmation, String lienRefus){
+		try{
+			
+			String message = "Nouvelle demande d'inscription de " + nom + " " + prenom + "\nmail : " + mail + "\nidentifiant : " + pseudo;
+			message += "\nVeuillez cliquer sur ce lien pour confirmer l'inscription : " + lienConfirmation;
+			message += "\nVeuillez cliquez sur celui-ci si vous refusez l'inscription de cet individu : " + lienRefus;
+			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
+			Message msg = new MimeMessage(session_mail);
+			msg.setFrom(new InternetAddress("tweetbookda2i@gmail.com"));
+			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mailEntreprise));
+			msg.setSubject("demande d'inscription " + nom + " " + prenom);
+			msg.setText(message);
+			Transport.send(msg);
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				ds.getConnection().close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void envoyerMailInscriptionRetourUtilisateur(String pseudo, String mail){
+		try{
+			
+			String message = "Votre demande d'inscription sous le login " + pseudo + " a bien été validée par l'administrateur.";
+			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
+			Message msg = new MimeMessage(session_mail);
+			msg.setFrom(new InternetAddress(mailEntreprise));
+			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mail));
+			msg.setSubject("comfirmation d'inscription La Prima Porta");
+			msg.setText(message);
+			Transport.send(msg);
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				ds.getConnection().close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void envoyerMailInscriptionRefusUtilisateur(String pseudo, String mail){
+		try{
+			
+			String message = "Votre demande d'inscription sous le login " + pseudo + " a été refusée par l'administrateur.";
+			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
+			Message msg = new MimeMessage(session_mail);
+			msg.setFrom(new InternetAddress(mailEntreprise));
+			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mail));
+			msg.setSubject("refus d'inscription La Prima Porta");
+			msg.setText(message);
+			Transport.send(msg);
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				ds.getConnection().close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
 
 
 	//------------------------------------------------------UTILISATEUR------------------------------------------------------------	
 
-	public void ajoutUtilisateur(String nom, String prenom, String login, String mail, String pass) throws Exception
-	{
+	public void ajoutUtilisateur(String nom, String prenom, String login, String mail, String pass) throws Exception {
 		try{
 			statement = ds.getConnection().prepareStatement("select from utilisateur where adresse_mail = ?");
 			statement.setString(1, mail);
@@ -165,24 +245,11 @@ public class Modele
 			statement.setString(4, login);
 			statement.setString(5, cryptPass(pass));
 
-			result = statement.executeQuery();
-
-			if(result.next()){
-
-				int id = result.getInt(1);
-
-				statement = ds.getConnection().prepareStatement("insert into role (id_utilisateur, role) values(?, ?)");
-				statement.setInt(1, id);
-				statement.setString(2, "role2");
-
-				statement.executeUpdate();
-				System.out.println("ajout de l'utiliateur : " + login);
-			}
-
-		}catch (SQLException | NamingException e) 
-		{
+			statement.executeQuery();
+			
+		} catch (SQLException | NamingException e) {
 			e.printStackTrace();
-		} catch (Exception e){
+		} catch (Exception e) {
 			throw e;
 		} finally{
 			try{
@@ -192,23 +259,112 @@ public class Modele
 			}
 		}
 	}
+			
+	public void ajoutRoleUtilisateur(String login) throws Exception {
+		try {	
+			
+			statement = ds.getConnection().prepareStatement("select id_utilisateur from utilisateur where login = ?");
+			statement.setString(1,login);
+			result = statement.executeQuery();
+			
+			if(result.next()){
+				int id = result.getInt(1);
 
+				statement = ds.getConnection().prepareStatement("insert into role (id_utilisateur, role) values(?, ?)");
+				statement.setInt(1, id);
+				statement.setString(2, "role2");
 
+				statement.executeUpdate();
+				System.out.println("ajout confirmé de l'utiliateur : " + login);
+			}
 
+		}catch (SQLException e) {
+			e.printStackTrace();
+			
+		} catch (Exception e){
+			throw e;
+			
+		} finally{
+			try{
+				statement.getConnection().close();
+				
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	public void suprimerUtilisateur(String login) throws Exception {
+		try {	
+			
+			statement = ds.getConnection().prepareStatement("delete from utilisateur where login = ?");
+			statement.setString(1,login);
+
+			statement.executeUpdate();
+			System.out.println("suppression confirmée de l'utiliateur : " + login);
+
+		}catch (SQLException e) {
+			e.printStackTrace();
+			
+		} catch (Exception e){
+			throw e;
+			
+		} finally{
+			try{
+				statement.getConnection().close();
+				
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	public String getMailUtilisateur(String login) throws Exception {
+		String mail = null;
+		try {	
+			statement = ds.getConnection().prepareStatement("select adresse_mail from utilisateur where login = ?");
+			statement.setString(1,login);
+
+			result = statement.executeQuery();
+			if(result.next())
+				mail = result.getString(1);
+			return mail;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return mail;
+			
+		} catch (Exception e){
+			throw e;
+			
+		} finally{
+			try{
+				statement.getConnection().close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+				return mail;
+			}
+		}
+	}
 	//------------------------------------------------------ARTICLE------------------------------------------------------------
 
 
 
-	public void ajouterArticle(String titre, String description, int idProjet)
+	public int ajouterArticle(String titre, String description, String contenu)
 	{
+		int id_article = -1;
+
 		try
 		{
-			statement = ds.getConnection().prepareStatement("insert into Article (titre, description, id_projet) values(?, ?, ?)");
+			statement = ds.getConnection().prepareStatement("insert into Article (titre, description, contenu) values(?, ?, ?) returning id_article");
 			statement.setString(1, titre);
 			statement.setString(2, description);
-			statement.setInt(3, idProjet);
-			statement.executeUpdate();
-			System.out.println("ajout de l'article : " + titre);
+			statement.setString(3, contenu);
+			ResultSet result = statement.executeQuery();
+			result.next();
+			id_article = result.getInt("id_article");
+			System.out.println("ajout de l'article " + id_article + " : " + titre);
 
 		} catch (Exception e){
 			e.printStackTrace();
@@ -220,6 +376,8 @@ public class Modele
 				e.printStackTrace();
 			}
 		}
+
+		return id_article;
 	}
 
 
@@ -266,41 +424,32 @@ public class Modele
 		}
 	}
 
-
-
-	public ArrayList<Article> getArticles(int idProjet){
-		ArrayList<Article> articles = new ArrayList<Article>();
-		try{
-			statement = ds.getConnection().prepareStatement("select id_article, titre, description from article where id_projet = ?");
-			statement.setInt(1, idProjet);
-			result = statement.executeQuery();
-			while(result.next()){
-				articles.add(new Article(result.getInt(1), result.getString(2), result.getString(3)));
-			}
-			return articles;
-
-		} catch (Exception e){
-			e.printStackTrace();
-			return null;
-		} finally{
-			try{
-				statement.close();
-				ds.getConnection().close();
-			} catch(Exception e){
-				e.printStackTrace();
-			}
-		}
-	}
-
 	public Article getArticle(int id){
 		Article article = null;
 		try{
-			statement = ds.getConnection().prepareStatement("select id_article, titre, description from article where id_article = ?");
+			statement = ds.getConnection().prepareStatement("select titre, description, contenu from article where id_article = ?");
 			statement.setInt(1, id);
 			result = statement.executeQuery();
 			if(result.next()){
-				article = new Article(result.getInt(1), result.getString(2), result.getString(3));
+				article = new Article(id, result.getString("titre"), result.getString("description"), result.getString("contenu"));
 			}
+			else
+				return null;
+
+			String regex = "<\\s(.+)\\s>";
+			String regex2 = "\\r";
+			
+			String subst = "<a href=\"images/article/" + id + "/$1\"><img src=\"images/article/" + id + "/$1\" width=\"50%\" height=\"auto\"/></a>";
+			
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher(article.getContenu());
+			article.setContenu(matcher.replaceAll(subst));
+			
+			pattern = Pattern.compile(regex2);
+			matcher = pattern.matcher(article.getContenu());
+			article.setContenu(matcher.replaceAll("<br>"));
+
+
 			return article;
 
 		} catch (Exception e){
@@ -365,11 +514,11 @@ public class Modele
 	public ArrayList<Media> getMedias(int idArticle){
 		ArrayList<Media> medias = new ArrayList<Media>();
 		try{
-			statement = ds.getConnection().prepareStatement("select id_media, chemin, type from media where id_article = ?");
+			statement = ds.getConnection().prepareStatement("select chemin, type, nom from media where id_article = ?");
 			statement.setInt(1, idArticle);
 			result = statement.executeQuery();
 			while(result.next()){
-				medias.add(new Media(result.getInt(1), result.getString(3), result.getString(4)));
+				medias.add(new Media(result.getString(1), result.getString(2), result.getString(3)));
 			}
 			return medias;
 
@@ -409,18 +558,22 @@ public class Modele
 		}
 	}
 
-	public void saveMediaOnDisqk(String chemin, Part media)
+	public void saveMediaOnDisk(String chemin, Collection<Part> medias, int id)
 	{
 		File f = new File(chemin);
 
 		if(!f.exists())
 			f.mkdirs();
 
-		try 
+
+		for(Part media : medias)
 		{
-			media.write(chemin + media.getName() + ".jpg");
-		} catch (IOException e) {
-			e.printStackTrace();
+			try 
+			{
+				media.write(chemin + media.getName().substring(media.getName().indexOf("_") + 1));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

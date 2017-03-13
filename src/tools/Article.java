@@ -5,21 +5,23 @@ import java.util.ArrayList;
 public class Article {
 
 	private int id;
-	private String titre, description;
+	private String titre, description, contenu;
 	private ArrayList<Media> medias;
 	
-	public Article(int id, String titre, String description){
+	public Article(int id, String titre, String description, String contenu){
 		this.id = id;
 		this.titre = titre;
 		this.description = description;
+		this.contenu = contenu;
 		this.medias = new ArrayList<Media>();
 	}
 	
-	public Article(int id, String titre){
-		this.id = id;
-		this.titre = titre;
-		this.description = "";
-		this.medias = new ArrayList<Media>();
+	public void setContenu(String contenu) {
+		this.contenu = contenu;
+	}
+
+	public String getContenu() {
+		return contenu;
 	}
 	
 	public ArrayList<Media> getMedias(){
