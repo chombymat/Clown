@@ -64,7 +64,7 @@
 					euismod. Donec sed odio dui.</p>
 				<a href="http://www.laprimaporta.com/">La prima porta - Le site</a>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-5">
 				<br> <br> <br> <br> <br> <br>
 				<br> <br>
 				<h2>Le film de 26'</h2>
