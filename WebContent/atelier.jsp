@@ -200,7 +200,14 @@ $(document).ready(function() {
 					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
 					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
 					euismod. Donec sed odio dui.</p>
+				<%
+				if(session.getAttribute("user") != null) 
+				{
+				%>
 				<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
+				<%
+				}
+				%>
 				<br>
 				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTOS_ENFANTS/P1070515.JPG" alt="photo enfant - atelier pain">
 				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTOS_ENFANTS/P1070524.JPG" alt="photo enfant - atelier pain">
@@ -225,7 +232,14 @@ $(document).ready(function() {
 					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
 					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
 					euismod. Donec sed odio dui.</p>
+				<%
+				if(session.getAttribute("user") != null) 
+				{
+				%>
 				<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
+				<%
+				}
+				%>
 				<br>
 				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTOS_ENFANTS/P_20170209_144603.jpg" alt="photo enfant - atelier lait">
 				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTOS_ENFANTS/P_20170209_145415.jpg" alt="photo enfant - atelier lait">
@@ -250,7 +264,14 @@ $(document).ready(function() {
 					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
 					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
 					euismod. Donec sed odio dui.</p>
+				<%
+				if(session.getAttribute("user") != null) 
+				{
+				%>
 				<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
+				<%
+				}
+				%>
 				<br>
 				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTOS_ENFANTS/P_20170302_144319.jpg" alt="photo enfant - atelier 7 familles">
 				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTOS_ENFANTS/P_20170302_144509.jpg" alt="photo enfant - atelier 7 familles">
@@ -276,7 +297,14 @@ $(document).ready(function() {
 					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
 					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
 					euismod. Donec sed odio dui.</p>
+				<%
+				if(session.getAttribute("user") != null) 
+				{
+				%>
 				<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
+				<%
+				}
+				%>
 			</div>
 		</div>
 	</div>
@@ -296,7 +324,14 @@ $(document).ready(function() {
 					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
 					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
 					euismod. Donec sed odio dui.</p>
+				<%
+				if(session.getAttribute("user") != null) 
+				{
+				%>
 				<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
+				<%
+				}
+				%>
 			</div>
 		</div>
 	</div>
@@ -320,7 +355,14 @@ $(document).ready(function() {
 					euismod. Donec sed odio dui.</p>
 			</div>
 			<div class="col-md-5">
+				<%
+				if(session.getAttribute("user") != null) 
+				{
+				%>
 				<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
+				<%
+				}
+				%>
 				<br>
 				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/10687385_1007352505978324_2895073862515994972_o.jpg" alt="photo enfant - le spectacle">
 				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/12604844_1007352812644960_4199858945908434600_o.jpg" alt="photo enfant - le spectacle">

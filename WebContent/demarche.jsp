@@ -160,7 +160,7 @@ $(document).ready(function() {
 	
 	<div id="les_clowns">
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-sm-offset-1 col-md-5">
 				<h3>Claire</h3><br>
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/Deambulation-clowns-prima-porta-bien-etre-21.jpg" alt="photo clown">
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/Deambulation-clowns-prima-porta-bien-etre-32.jpg" alt="photo clown">
