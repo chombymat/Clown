@@ -222,21 +222,21 @@ public class Modele
 
 	//------------------------------------------------------UTILISATEUR------------------------------------------------------------	
 
-	public void ajoutUtilisateur(String nom, String prenom, String login, String mail, String pass) throws Exception {
+	public String ajoutUtilisateur(String nom, String prenom, String login, String mail, String pass) throws Exception {
 		try{
 			statement = ds.getConnection().prepareStatement("select from utilisateur where adresse_mail = ?");
 			statement.setString(1, mail);
 			result = statement.executeQuery();
 
 			if(result.next())
-				throw new Exception("mail");
+				return "mail existant";
 
 			statement = ds.getConnection().prepareStatement("select from utilisateur where login = ?");
 			statement.setString(1, login);
 			result = statement.executeQuery();
 
 			if(result.next())
-				throw new Exception("login");
+				return "login existant";
 
 			statement = ds.getConnection().prepareStatement("insert into utilisateur (nom, prenom, adresse_mail, login, prima_pass) values(?, ?, ?, ?, ?) returning id_utilisateur");
 			statement.setString(1, nom);
@@ -246,11 +246,11 @@ public class Modele
 			statement.setString(5, cryptPass(pass));
 
 			statement.executeQuery();
+			return "inscription ok";
 			
-		} catch (SQLException | NamingException e) {
-			e.printStackTrace();
 		} catch (Exception e) {
-			throw e;
+			e.printStackTrace();
+			return "exception";
 		} finally{
 			try{
 				statement.getConnection().close();
