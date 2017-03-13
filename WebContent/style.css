@@ -3,6 +3,10 @@ h1{text-align:center;color: #C21950;font-family: Serif;}
 h2{color: #C21950; font-family: Serif;font-size: 40px;}
 h3{color: #C21950; font-family: Serif;}
 
+#film{
+	margin-top: 70%;
+}
+
 #page{color: #FFFFFF;background-color: #C21950;}
 
 #bonjour{color: #C21950;font-family: Serif;}
