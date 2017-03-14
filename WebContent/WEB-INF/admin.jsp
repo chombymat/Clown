@@ -207,7 +207,18 @@
 			
 			$('.selection').on('click', function(){
 				var page = $(this).attr('data-value');
-				console.log(page);
+				
+				$.ajax({
+		            url: './ModificationArticle',
+		            type: 'GET',
+		            data: {
+		            	onglet : page,
+		            },
+		            success : function(data)
+		            {
+		            	$('#contenu_article').val(data);
+		            }
+		        });
 			});
 			
 			$('#page_modif_article').hide();
@@ -261,16 +272,24 @@
 	<!-- -------------------------------- Modifier article -------------------------- -->
 	
 	<div class="row" id="page_modif_article">
-		<div class="row" id="modifier_article">
-			<p>Veuillez séléctionner l'article à modifier.</p>
-			<ul>
-				<li class="selection" data-value="pain">Le pain</li>
-				<li class="selection" data-value="lait">Le lait</li>
-				<li class="selection" data-value="famille">Les 7 familles</li>
-				<li class="selection" data-value="menu">Le menu équilibré</li>
-				<li class="selection" data-value="alimentation">Alimentation et environnement</li>
-				<li class="selection" data-value="spectacle">Le spectacle</li>
-			</ul>
+		<div class="row col-md-12" id="modifier_article">
+			<div class="col-md-3">
+				<p>Veuillez séléctionner l'article à modifier.</p>
+				<ul>
+					<li class="selection" data-value="pain">Le pain</li>
+					<li class="selection" data-value="lait">Le lait</li>
+					<li class="selection" data-value="famille">Les 7 familles</li>
+					<li class="selection" data-value="menu">Le menu équilibré</li>
+					<li class="selection" data-value="alimentation">Alimentation et environnement</li>
+					<li class="selection" data-value="spectacle">Le spectacle</li>
+					<li class="selection" data-value="clown">Clown</li>
+					<li class="selection" data-value="pratique_sensoriel">Pratique et sensoriel</li>
+					<li class="selection" data-value="spectacle">Expression Corporelle</li>
+				</ul>
+			</div>
+			<div clas="col-md-5">
+				<textarea id="contenu_article" rows="15" cols="20"></textarea>
+			</div>
 		</div>
 	</div>
 	

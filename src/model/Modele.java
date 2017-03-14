@@ -518,6 +518,52 @@ public class Modele
 		
 		return articles;
 	}
+	
+	public Article getArticle(String onglet)
+	{
+		Article article = null;
+		
+		try
+		{
+			statement = ds.getConnection().prepareStatement("select contenu from article where onglet = ?");
+			statement.setString(1, onglet);
+			result = statement.executeQuery();
+			
+			if(result.next())
+			{
+				article = new Article(-1, "", "", result.getString("contenu"));
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try{ statement.close(); ds.getConnection().close(); }catch(Exception e){}
+		}
+		
+		return article;
+	}
+	
+	public void updateArticle(String onglet, String contenu)
+	{
+		try
+		{
+			statement = ds.getConnection().prepareStatement("update article set contenu = ? where onglet = ?");
+			statement.setString(1, contenu);
+			statement.setString(2, onglet);
+			result = statement.executeQuery();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try{ statement.close(); ds.getConnection().close(); }catch(Exception e){}
+		}
+	}
 
 	//------------------------------------------------------MEDIA------------------------------------------------------------
 
