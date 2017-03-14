@@ -152,8 +152,8 @@ $(document).ready(function() {
 		<div class="row">
 			<h2>Les Clowns</h2><br>
 			<div class="col-md-12">
-				<img class="img-circle" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE" width="300px" height="300px">
-				<img class="img-circle" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE_2.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE" width="300px" height="300px">
+				<img class="img-circle ovale" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE">
+				<img class="img-circle ovale" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE_2.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE">
 			</div>
 		</div>
 	</div>

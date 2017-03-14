@@ -186,9 +186,16 @@ h3{color: #C21950; font-family: Serif;}
 }
 
 #presentationAtelier, #textAtelier, #presentationDemarche, #textDemarche{
-	padding-top: 50px;
+	margin-top: 50px;
 }
 
 .bulle{
-	padding-left: 10px;padding-right: 10px;
+	margin-left: 10px;margin-right: 10px;
+}
+.ovale{
+	margin-left: 20px;margin-right: 20px;
+	border: solid 3px;
+	border-color: #C21950;
+	width: 240px;
+	height: 300px;
 }

@@ -296,7 +296,7 @@ $(document).ready(function() {
 				<p align="justify">Donec id elit non mi porta gravida at eget
 					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
 					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
-					euismod. Donec sed odio dui.</p>
+					euismod. Donec sed odio dui
 				<%
 				if(session.getAttribute("user") != null) 
 				{
@@ -323,8 +323,8 @@ $(document).ready(function() {
 				<p align="justify">Donec id elit non mi porta gravida at eget
 					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
 					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
-					euismod. Donec sed odio dui.</p>
-				<%
+					euismod. Donec sed odio dui
+					<%
 				if(session.getAttribute("user") != null) 
 				{
 				%>
@@ -355,7 +355,7 @@ $(document).ready(function() {
 					euismod. Donec sed odio dui.</p>
 			</div>
 			<div class="col-md-5">
-				<%
+			<%
 				if(session.getAttribute("user") != null) 
 				{
 				%>
