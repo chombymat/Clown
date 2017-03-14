@@ -205,7 +205,13 @@
 				}
 			});
 			
+			$('.selection').on('click', function(){
+				var page = $(this).attr('data-value');
+				console.log(page);
+			});
+			
 			$('#page_modif_article').hide();
+			
 			
 		});
 	</script>
@@ -255,7 +261,17 @@
 	<!-- -------------------------------- Modifier article -------------------------- -->
 	
 	<div class="row" id="page_modif_article">
-		modif article
+		<div class="row" id="modifier_article">
+			<p>Veuillez séléctionner l'article à modifier.</p>
+			<ul>
+				<li class="selection" data-value="pain">Le pain</li>
+				<li class="selection" data-value="lait">Le lait</li>
+				<li class="selection" data-value="famille">Les 7 familles</li>
+				<li class="selection" data-value="menu">Le menu équilibré</li>
+				<li class="selection" data-value="alimentation">Alimentation et environnement</li>
+				<li class="selection" data-value="spectacle">Le spectacle</li>
+			</ul>
+		</div>
 	</div>
 	
 	<!-- -------------------------------- Fin modifier article -------------------------- -->

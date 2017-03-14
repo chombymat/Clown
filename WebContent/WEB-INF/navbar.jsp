@@ -149,7 +149,7 @@
 			      <ul class="dropdown-menu">
 			      <li><a href="./Atelier">Présentatin des ateliers</a></li>
 			        <li><a href="./Atelier?page=pain">Atelier 1 : Le pain</a></li>
-			        <li><a href="./Atelierp?page=lait">Atelier 2 : Le lait</a></li>
+			        <li><a href="./Atelier?page=lait">Atelier 2 : Le lait</a></li>
 			        <li><a href="./Atelier?page=famille">Atelier 3 : Les 7 familles</a></li>
 			        <li><a href="./Atelier?page=menu">Atelier 4 : Le menu equilibré</a></li>
 			        <li><a href="./Atelier?page=alimentation">Atelier 5 : Alimentation et environnement</a></li>
