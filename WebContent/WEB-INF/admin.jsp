@@ -284,11 +284,11 @@
 					<li class="selection" data-value="spectacle">Le spectacle</li>
 					<li class="selection" data-value="clown">Clown</li>
 					<li class="selection" data-value="pratique_sensoriel">Pratique et sensoriel</li>
-					<li class="selection" data-value="spectacle">Expression Corporelle</li>
+					<li class="selection" data-value="expression_corporelle">Expression Corporelle</li>
 				</ul>
 			</div>
 			<div clas="col-md-5">
-				<textarea id="contenu_article" rows="15" cols="20"></textarea>
+				<textarea id="contenu_article" rows="15"></textarea>
 			</div>
 		</div>
 	</div>
