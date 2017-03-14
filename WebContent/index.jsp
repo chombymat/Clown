@@ -17,7 +17,7 @@
 </head>
 <body>
 	<%@include file="/WEB-INF/navbar.jsp"%>
-	<img id="logopp" class="img-circle" src="images/logo/laPrimaPorta.jpg" title="La Prima Porta" alt="Logo de la Prima Porta" width="183" height="183">
+	<img id="logopp" class="img-circle" src="images/logo/laPrimaPorta.png" title="La Prima Porta" alt="Logo de la Prima Porta" width="183" height="183">
 	<div class="container">
 	<div id="laureat" class="col-sm-offset-1 col-md-10"><h1><em>Le projet &laquo; Je mange mieux &raquo; à été lauréat du ministère de l'agriculture en février 2016.</em></h1></div>
 		<!-- Example row of columns -->

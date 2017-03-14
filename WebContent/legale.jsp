@@ -35,7 +35,7 @@ Pendant que vous naviguez sur ce site, La prima porta ne recueille aucune inform
 <p>Droit d&rsquo;acc&egrave;s et de rectification<br />
 Conform&eacute;ment &agrave; la Loi Informatique et Libert&eacute;s du 6 janvier 1978, vous disposez d&rsquo;un droit d&rsquo;acc&egrave;s et de rectification aux donn&eacute;es personnelles vous concernant. Si vous souhaitez exercer ce droit, il vous suffit de nous contacter : La prima porta &#8211; 35, rue Muret 28000 Chartres.<br />
 Mentions relatives &agrave; la protection de la vie priv&eacute;e sur ce site<br />
-Les informations collect&eacute;es par le site http://www.laprimaporta.com via les formulaires ne sont c&eacute;d&eacute;s &agrave; aucun tiers. Elles sont conserv&eacute;es durant le temps n&eacute;cessaire &agrave; leurs traitements.</p>
+Les informations collect&eacute;es par le site https://www.ClownEducatif.com via les formulaires ne sont c&eacute;d&eacute;s &agrave; aucun tiers. Elles sont conserv&eacute;es durant le temps n&eacute;cessaire &agrave; leurs traitements.</p>
 <p>Dispositions compl&eacute;mentaires<br />
 La prima porta se r&eacute;serve le droit de modifier et/ou compl&eacute;ter les pr&eacute;sentes dispositions &agrave; tout moment et ce sans pr&eacute;avis.</p>
 <p>Conception<br />
