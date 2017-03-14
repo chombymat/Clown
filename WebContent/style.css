@@ -7,6 +7,11 @@ h3{color: #C21950; font-family: Serif;}
 	margin-top: 70%;
 }
 
+.bt_image {
+	border: none; 
+	outline: none;
+}
+
 #page{color: #FFFFFF;background-color: #C21950;}
 
 #bonjour{color: #C21950;font-family: Serif;}
