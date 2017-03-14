@@ -10,7 +10,7 @@
 		{
 			$("#name").html("La compagnie la Prima Porta");
 		} 
-		if (page.indexOf('demarche.jsp') != -1)
+		if (page.indexOf('Demarche') != -1)
 		{
 			$("#name").html("Les démarches");
 		}
@@ -140,9 +140,9 @@
             <ul class="nav navbar-nav">
               <li class="dropdown"><a class="dropdown-toggle titre" data-toggle="dropdown" >La démarche<span class="caret"></span></a>
 			      <ul class="dropdown-menu">
-			        <li><a href="./demarche.jsp?page=clown">Clown</a></li>
-			        <li><a href="./demarche.jsp?page=pratique">Pratique et sensoriel</a></li>
-			        <li><a href="./demarche.jsp?page=expression">Expression corporelle</a></li>
+			        <li><a href="./Demarche?page=clown">Clown</a></li>
+			        <li><a href="./Demarche?page=pratique">Pratique et sensoriel</a></li>
+			        <li><a href="./Demarche?page=expression">Expression corporelle</a></li>
 			      </ul>
 			    </li>
 				<li class="dropdown"><a class="dropdown-toggle titre" data-toggle="dropdown">Les ateliers<span class="caret"></span></a>

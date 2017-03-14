@@ -26,7 +26,6 @@ import javax.naming.NamingException;
 import javax.servlet.http.Part;
 import javax.sql.DataSource;
 
-import org.apache.commons.io.IOUtils;
 
 import tools.Article;
 import tools.Media;
@@ -474,7 +473,6 @@ public class Modele
 			result = statement.executeQuery();
 			while(result.next())
 			{
-				Article article = null;
 				switch(result.getString("onglet"))
 				{
 				case "pain" :
@@ -497,6 +495,50 @@ public class Modele
 					break;
 				case "accueil_atelier" :
 					articles.put("accueil_atelier", new Article(-1,"","",result.getString("contenu")));
+					break;
+				}
+			}
+
+		} catch (Exception e){
+			e.printStackTrace();
+			return null;
+		} finally
+		{
+			try
+			{
+				statement.close();
+				ds.getConnection().close();
+			} catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		return articles;
+	}
+	
+	public HashMap<String, tools.Article> getDemarche() 
+	{
+		HashMap<String, Article> articles = new HashMap<String, Article>();
+		try
+		{
+			statement = ds.getConnection().prepareStatement("select onglet, contenu from article where onglet = 'clown' or onglet = 'pratique_sensoriel' or onglet = 'expression_corporelle' or onglet = 'accueil_demarche'");
+			result = statement.executeQuery();
+			while(result.next())
+			{
+				switch(result.getString("onglet"))
+				{
+				case "clown" :
+					articles.put("clown", new Article(-1,"","",result.getString("contenu")));
+					break;
+				case "pratique_sensoriel" :
+					articles.put("pratique_sensoriel", new Article(-1,"","",result.getString("contenu")));
+					break;
+				case "expression_corporelle" :
+					articles.put("expression_corporelle", new Article(-1,"","",result.getString("contenu")));
+					break;
+				case "accueil_demarche" :
+					articles.put("accueil_demarche", new Article(-1,"","",result.getString("contenu")));
 					break;
 				}
 			}

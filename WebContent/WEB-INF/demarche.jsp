@@ -40,33 +40,123 @@ function go_to_page(page_num) {
 	$('#id' + page_num).addClass('active');
 }
 
+function hideAll(){
+	document.activeElement.blur();
+	$('#textAtelier').hide();
+	$('#pain').hide();
+	$('#lait').hide();
+	$('#familles').hide();
+	$('#menu').hide();
+	$('#alimentation').hide();
+	$('#spectacle').hide();
+}
+
+function hideOnglet(){
+	$('#pain').hide();
+	$('#lait').hide();
+	$('#familles').hide();
+	$('#menu').hide();
+	$('#alimentation').hide();
+	$('#spectacle').hide();
+}
+
 $(document).ready(function() {
-					$('#presentation_clown').hide();
-					$('#les_clowns').hide();
-					$('#pratique').hide();
-					$('#expression').hide();
-					if(location.search == "?page=clown"){
-						$('#presentation_clown').show();
-						$('#les_clowns').show();
-						$('#textDemarche').hide();
-						$('#pratique').hide();
-						$('#expression').hide();
-					}
-					if(location.search == "?page=pratique"){
-						$('#presentation_clown').hide();
-						$('#textDemarche').hide();
-						$('#les_clowns').hide();
-						$('#pratique').show();
-						$('#expression').hide();
-					}
-					if(location.search == "?page=expression"){
-						$('#presentation_clown').hide();
-						$('#textDemarche').hide();
-						$('#les_clowns').hide();
-						$('#pratique').hide();
-						$('#expression').show();
-					}
 	
+	hideOnglet();
+
+	<%
+	if(request.getParameter("page") != null)
+	{
+		%>hideAll();<%
+		switch(request.getParameter("page"))
+		{
+		case "clown" :
+			%>$('#presentation_clown').show();
+			$('#les_clowns').show();
+			<%
+			break;
+		case "pratique" :
+			%>$('#pratique').show();<%
+			break;
+		case "expression" :
+			%>$('#expression').show();<%
+			break;
+		}
+	}
+	%>
+
+
+	var modal = document.getElementById('myModal');
+				
+	var span = document.getElementsByClassName("close")[0];
+
+	$('.myImg').on('click', function() {
+		$('html, body').css({
+		overflow : 'hidden',
+		height : '100%'
+	});
+		
+	$('#myModal').attr('style', 'display: block');
+		$('#img01').attr('src', $(this).attr('src'));
+		$('#caption').html($(this).attr('alt'));
+		$('#id' + current_page).removeClass('active');
+	});
+		
+	$('#bt_pain').on('click', function(){
+		hideAll();
+		$('#pain').show();
+	});
+	
+	$('#bt_lait').on('click', function(){
+		hideAll();
+		$('#lait').show();
+	});
+	
+	$('#bt_alimentation').on('click', function(){
+		hideAll();
+		$('#alimentation').show();
+	});
+	
+	$('#bt_menu').on('click', function(){
+		hideAll();
+		$('#menu').show();
+	});
+	
+	$('#bt_famille').on('click', function(){
+		hideAll();
+		$('#familles').show();
+	});
+	
+	$('#bt_spectacle').on('click', function(){
+		hideAll();
+		$('#spectacle').show();
+	});
+	
+	span.onclick = function() {
+		$('html, body').css({
+			overflow : 'auto',
+			height : 'auto'
+		});
+		modal.style.display = "none";
+		$('#id' + current_page).addClass('active');
+	}
+
+	var number_of_pages = Math.ceil($('#content').children().length	/ show_per_page);
+
+	var nav = '<ul class="pagination"><li><a id="page" href="javascript:previous();">&laquo;</a>';
+
+	var i = -1;
+	while (number_of_pages > ++i) {
+		nav += '<li class="page_link'
+		if (!i)
+			nav += ' active';
+		nav += '" id="id' + i + '">';
+		nav += '<a id="page" href="javascript:go_to_page(' + i + ')">' + (i + 1) + '</a>';
+	}
+	nav += '<li><a id="page" href="javascript:next();">&raquo;</a></ul>';
+
+	$('#page_navigation').html(nav);
+	set_display(0, show_per_page);
 					var modal = document.getElementById('myModal');
 					
 					// Get the <span> element that closes the modal
@@ -122,27 +212,12 @@ $(document).ready(function() {
 	
 	<!----------------------------------- categorie ---------------------------------------->
 	<div class="row">
-	<a href="./demarche.jsp?page=clown" class="bulle"><img class="img-circle" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE.JPG" title="Les clowns" alt="image de CLaire et Viginie" width="156" height="156"></a>
-	<a href="./demarche.jsp?page=pratique" class="bulle"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Pratique et sensorielle" alt="Pratique et sensorielle" width="156" height="156"></a>
-	<a href="./demarche.jsp?page=expression" class="bulle"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Expression corporelle" alt="Expression corporelle" width="156" height="156"></a>
+	<input id="bt_clown" type="image" class="img-circle bt_image" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE.JPG" title="Les clowns" alt="image de Claire et Virginie" width="156" height="156" />
+	<input id="bt_pratique" type="image" class="img-circle bt_image" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Pratique et sensorielle" alt="Pratique et sensorielle" width="156" height="156" />
+	<input id="bt_expression" type="image" class="img-circle bt_image" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Expression corporelle" alt="Expression corporelle" width="156" height="156" />
 	</div>
 	<div class="row col-md-10 col-sm-offset-1" id="textDemarche">
-					<p align="justify">Donec id elit non mi porta gravida at eget
-					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
-					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
-					euismod. Donec sed odio dui.Donec id elit non mi porta gravida at eget
-					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
-					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
-					euismod. Donec sed odio dui.Donec id elit non mi porta gravida at eget
-					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
-					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
-					euismod. Donec sed odio dui.Donec id elit non mi porta gravida at eget
-					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
-					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
-					euismod. Donec sed odio dui.Donec id elit non mi porta gravida at eget
-					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
-					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
-					euismod. Donec sed odio dui.</p>
+			<p align="justify"><%= request.getAttribute("accueil_demarche") %></p>
 	</div>
 	<!----------------------------------- fin de categorie ---------------------------------------->
 	
@@ -194,10 +269,7 @@ $(document).ready(function() {
 				<img width="85%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image de pratique et sensoriel" alt="image de pratique et sensoriel">
 			</div>
 			<div class="col-md-5">
-				<p align="justify">Donec id elit non mi porta gravida at eget
-					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
-					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
-					euismod. Donec sed odio dui.</p>
+				<p align="justify"><%= request.getAttribute("pratique") %></p>
 				<br>
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_ATELIER_PRATIQUE_ET_SENSORIEL/2015-12-17_15.43.00.jpg" alt="photo enfant - pratique et sensoriel">
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_ATELIER_PRATIQUE_ET_SENSORIEL/2015-12-17_15.30.53.jpg" alt="photo enfant - pratique et sensoriel">
@@ -219,10 +291,7 @@ $(document).ready(function() {
 				<img width="85%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image d'expression corporelle" alt="image d'expression corporelle">
 			</div>
 			<div class="col-md-5">
-				<p align="justify">Donec id elit non mi porta gravida at eget
-					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
-					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
-					euismod. Donec sed odio dui.</p>
+				<p align="justify"><%= request.getAttribute("expression") %></p>
 				<br>
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_EXPRESSION_CORPORELLE/Capture_lenny_2.PNG" alt="photo enfant - expression corporelle">
 				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_EXPRESSION_CORPORELLE/2015-12-17_15.47.33.jpg" alt="photo enfant - expression corporelle">

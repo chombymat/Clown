@@ -223,7 +223,7 @@
 				<img width="35%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTO_ILLUSTRATION/lait.jpg" title="image de lait" alt="image de lait">
 			</div>
 			<div class="col-md-5">
-				<p align="justify"><p align="justify"><%= request.getAttribute("lait") %></p>
+				<p align="justify"><%= request.getAttribute("lait") %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
@@ -252,7 +252,7 @@
 				<img width="85%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image des 7 familles" alt="image des 7 familles">
 			</div>
 			<div class="col-md-5">
-				<p align="justify"><p align="justify"><%= request.getAttribute("famille") %></p>
+				<p align="justify"><%= request.getAttribute("famille") %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
@@ -283,7 +283,7 @@
 			</div>
 			<div class="col-md-5">
 
-				<p align="justify"><p align="justify"><%= request.getAttribute("menu") %></p>
+				<p align="justify"><%= request.getAttribute("menu") %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
@@ -308,7 +308,7 @@
 			</div>
 			<div class="col-md-5">
 
-				<p align="justify"><p align="justify"><%= request.getAttribute("alimentation") %></p>
+				<p align="justify"><%= request.getAttribute("alimentation") %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
@@ -334,7 +334,7 @@
 			</div>
 			<!-- padding de 5% dans style.css (ligne 59) -->
 			<div class="col-md-5">
-					<p align="justify"><p align="justify"><%= request.getAttribute("spectacle") %></p>
+					<p align="justify"><%= request.getAttribute("spectacle") %></p>
 			</div>
 			<div class="col-md-5">
 			<%
