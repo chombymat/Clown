@@ -107,18 +107,18 @@
 			else
 			{
 				%>
-				<span class="droite"><button id="bt_deconnexion" type="submit" class="btn btn-sample">Déconnexion</button>&nbsp;</span>
+				<span class="droite bouton_nav"><button id="bt_deconnexion" type="submit" class="btn btn-sample">Déconnexion</button>&nbsp;</span>
 				<!-- test administrateur ou non -->
 				<% if (session.getAttribute("user") != null)
 				{ 
 					if(((Utilisateur)session.getAttribute("user")).getRole().equals("role4"))
 					{
 						%>
-						<span class="droite"><button id="bt_administration" type="submit" class="btn btn-sample">Administration</button>&nbsp;</span>
+						<span class="droite bouton_nav"><button id="bt_administration" type="submit" class="btn btn-sample">Administration</button>&nbsp;</span>
 						<% 
 					}
 				} %>
-				<span class="droite" id="bonjour">Bonjour ${ user.nom } ${ user.prenom }&nbsp;&nbsp;</span>
+				<span class="droite bouton_nav" id="bonjour">Bonjour ${ user.nom } ${ user.prenom }&nbsp;&nbsp;</span>
 				<%
 			}
 			%>
