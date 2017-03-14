@@ -42,7 +42,6 @@
 
 	function hideAll()
 	{
-		document.activeElement.blur();
 		$('#textAtelier').hide();
 		$('#pain').hide();
 		$('#lait').hide();

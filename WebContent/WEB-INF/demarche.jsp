@@ -41,23 +41,18 @@ function go_to_page(page_num) {
 }
 
 function hideAll(){
-	document.activeElement.blur();
-	$('#textAtelier').hide();
-	$('#pain').hide();
-	$('#lait').hide();
-	$('#familles').hide();
-	$('#menu').hide();
-	$('#alimentation').hide();
-	$('#spectacle').hide();
+	$('#textDemarche').hide();
+	$('#presentation_clown').hide();
+	$('#les_clowns').hide();
+	$('#pratique').hide();
+	$('#expression').hide();
 }
 
 function hideOnglet(){
-	$('#pain').hide();
-	$('#lait').hide();
-	$('#familles').hide();
-	$('#menu').hide();
-	$('#alimentation').hide();
-	$('#spectacle').hide();
+	$('#presentation_clown').hide();
+	$('#les_clowns').hide();
+	$('#pratique').hide();
+	$('#expression').hide();
 }
 
 $(document).ready(function() {
@@ -102,34 +97,20 @@ $(document).ready(function() {
 		$('#id' + current_page).removeClass('active');
 	});
 		
-	$('#bt_pain').on('click', function(){
+	$('#bt_clown').on('click', function(){
 		hideAll();
-		$('#pain').show();
+		$('#presentation_clown').show();
+		$('#les_clowns').show();
 	});
 	
-	$('#bt_lait').on('click', function(){
+	$('#bt_expression').on('click', function(){
 		hideAll();
-		$('#lait').show();
+		$('#expression').show();
 	});
 	
-	$('#bt_alimentation').on('click', function(){
+	$('#bt_pratique').on('click', function(){
 		hideAll();
-		$('#alimentation').show();
-	});
-	
-	$('#bt_menu').on('click', function(){
-		hideAll();
-		$('#menu').show();
-	});
-	
-	$('#bt_famille').on('click', function(){
-		hideAll();
-		$('#familles').show();
-	});
-	
-	$('#bt_spectacle').on('click', function(){
-		hideAll();
-		$('#spectacle').show();
+		$('#pratique').show();
 	});
 	
 	span.onclick = function() {
@@ -157,54 +138,7 @@ $(document).ready(function() {
 
 	$('#page_navigation').html(nav);
 	set_display(0, show_per_page);
-					var modal = document.getElementById('myModal');
-					
-					// Get the <span> element that closes the modal
-					var span = document.getElementsByClassName("close")[0];
-
-					// When the user clicks on <span> (x), close the modal
-					$('.myImg').on('click', function() {
-						$('html, body').css({
-							overflow : 'hidden',
-							height : '100%'
-						});
-						$('#myModal').attr('style', 'display: block');
-						$('#img01').attr('src', $(this).attr('src'));
-						$('#caption').html($(this).attr('alt'));
-						$('#id' + current_page).removeClass('active');
-					});
-					
-					span.onclick = function() {
-						$('html, body').css({
-							overflow : 'auto',
-							height : 'auto'
-						});
-						modal.style.display = "none";
-						$('#id' + current_page).addClass('active');
-					}
-
-
-					var number_of_pages = Math.ceil($('#content')
-							.children().length
-							/ show_per_page);
-
-					var nav = '<ul class="pagination"><li><a id="page" href="javascript:previous();">&laquo;</a>';
-
-					var i = -1;
-					while (number_of_pages > ++i) {
-						nav += '<li class="page_link'
-						if (!i)
-							nav += ' active';
-						nav += '" id="id' + i + '">';
-						nav += '<a id="page" href="javascript:go_to_page('
-								+ i + ')">' + (i + 1) + '</a>';
-					}
-					nav += '<li><a id="page" href="javascript:next();">&raquo;</a></ul>';
-
-					$('#page_navigation').html(nav);
-					set_display(0, show_per_page);
-
-				});
+});
 </script>
 </head>
 <body>
