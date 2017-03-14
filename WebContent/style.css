@@ -250,10 +250,18 @@ h3{color: #C21950; font-family: Serif;}
 .form-contact{
 	font-family: Serif;
 	background-color: #F5F5DC;
-	color:  #707070;
+	color: #707070;
 	font-size: 120%;
 }
 .legend-contact{
 	color:  #505050;
 	font-size: 200%;
+}
+.btn-warning,
+.btn-warning:focus,
+.btn-warning:hover,
+.btn-warning:active,
+.btn-warning.active,
+.btn-warning:active:focus{
+	background-color: #C21950;
 }
