@@ -93,11 +93,11 @@ $(document).ready(function() {
 <%@include file="/WEB-INF/navbar.jsp"%>
 	<div class="container">
 
-    <form class="well form-horizontal" action="./Contact" method="post"  id="contact_form">
+    <form class="well form-horizontal form-contact" action="./Contact" method="post"  id="contact_form">
 <fieldset>
 
 <!-- Form Name -->
-<legend>Contactez-nous !</legend>
+<legend class="legend-contact">Contactez-nous !</legend>
 
 <!-- Text input-->
 

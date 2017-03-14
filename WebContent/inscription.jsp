@@ -73,7 +73,7 @@
 		<!-- Si pas de javascript pas de formulaire -->
 		<p>Veuillez activer le JavaScript afin de continuer.</p>
 	</noscript>
-	<form id="form" class="form-horizontal" method="post" action="./Inscription" style="display:none">
+	<form id="form" class="form-horizontal form-inscription" method="post" action="./Inscription">
 		<div class="form-group">
 			<label class="control-label col-sm-5">Identifiant:</label>
 			<div class="col-sm-2">
