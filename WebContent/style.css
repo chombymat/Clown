@@ -49,6 +49,7 @@ h3{color: #C21950; font-family: Serif;}
 	width: 100%;
 }
 
+<<<<<<< HEAD
 .form-group, .control-label{
 	font-family: Serif;
 }
@@ -60,6 +61,10 @@ h3{color: #C21950; font-family: Serif;}
 	color: #C21950;
 	font-family: Serif;
 }
+=======
+.form-group, .control-label{font-family: Serif;}
+
+>>>>>>> bd6340b5fd8d68a3d9044266df371c06817d672a
 #logopp{
 	float: left;
 	border: solid 3px;
