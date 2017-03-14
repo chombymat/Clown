@@ -57,11 +57,14 @@ public class Inscription extends HttpServlet {
 				String mail = (String)request.getParameter("inscriptionMail");
 				String login = (String)request.getParameter("inscriptionLogin");
 				String pass = (String)request.getParameter("inscriptionPass");
+				
 				modele.envoyerMailInscription(	
 						nom, prenom , mail, login,
 						"https://localhost:8443/Clown/Inscription?confirmation=" + login,
 						"https://localhost:8443/Clown/Inscription?refus=" + login);
+				modele = new Modele();
 				String retourInscription = modele.ajoutUtilisateur(nom, prenom, login, mail, pass);
+				
 				System.out.println(retourInscription);
 				request.setAttribute("retourInscription", retourInscription);
 				getServletContext().getRequestDispatcher("/inscription.jsp").forward(request, response);

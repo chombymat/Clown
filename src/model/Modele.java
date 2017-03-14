@@ -239,14 +239,14 @@ public class Modele
 			if(result.next())
 				return "login existant";
 
-			statement = ds.getConnection().prepareStatement("insert into utilisateur (nom, prenom, adresse_mail, login, prima_pass) values(?, ?, ?, ?, ?) returning id_utilisateur");
+			statement = ds.getConnection().prepareStatement("insert into utilisateur (nom, prenom, adresse_mail, login, prima_pass) values(?, ?, ?, ?, ?)");
 			statement.setString(1, nom);
 			statement.setString(2, prenom);
 			statement.setString(3, mail);
 			statement.setString(4, login);
 			statement.setString(5, cryptPass(pass));
 
-			statement.executeQuery();
+			statement.executeUpdate();
 			return "inscription ok";
 		} catch (Exception e) {
 			e.printStackTrace();
