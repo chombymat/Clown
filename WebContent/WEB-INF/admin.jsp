@@ -209,14 +209,14 @@
 			
 		});
 	</script>
-	<button id="bt_add_article" class="btn btn-sample">Ajouter article</button> <button id="bt_modif_article" class="btn btn-sample">Modifier article</button>	<button id="bt_add_galerie" class="btn btn-sample">Ajouter à la galerie</button>
+	<button id="bt_add_article" class="btn btn-sample">Ajouter article</button> <button id="bt_modif_article" class="btn btn-sample">Modifier article</button>
 	
 	<!-- -------------------------------- Créer article -------------------------- -->
 	
 	<div class="row" id="page_article">
 		<span id="success" class="success">${ requestScope.article_creer }</span>
 		<div class="row" id="creer_article">
-			<div class="col-md-8">
+			<div class="col-md-12">
 				<form id="form_creer_article" action="./creerArticle" method="post" enctype="multipart/form-data">
 					<br>
 					<span id="erreur_titre" class="erreur">${ requestScope.erreur_titre }</span>
@@ -241,11 +241,11 @@
 					<input type="text" id="text_url">
 					<button type="button" id="bt_add_url" class="btn btn-sample">Ajouter</button>
 				</div>
-			</div>
-			<div class="col-md-2">
-				<br>
-				<div id="images" style="overflow-y: scroll; height:550px; overflow-x: hidden; width: 250px">			
+			
+			<div class="col-md-12">
+				<div id="images">			
 				</div>
+			</div>
 			</div>
 		</div>
 	</div>

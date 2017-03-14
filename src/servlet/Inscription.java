@@ -61,7 +61,11 @@ public class Inscription extends HttpServlet {
 						nom, prenom , mail, login,
 						"https://localhost:8443/Clown/Inscription?confirmation=" + login,
 						"https://localhost:8443/Clown/Inscription?refus=" + login);
-				modele.ajoutUtilisateur(nom, prenom, login, mail, pass);
+				String retourInscription = modele.ajoutUtilisateur(nom, prenom, login, mail, pass);
+				System.out.println(retourInscription);
+				request.setAttribute("retourInscription", retourInscription);
+				getServletContext().getRequestDispatcher("/inscription.jsp").forward(request, response);
+
 			}
 		} catch (Exception e) {
 			response.getWriter().print(e.getMessage());

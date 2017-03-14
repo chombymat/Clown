@@ -75,6 +75,9 @@
 		$('#bt_contacter').on('click', function(){
 			window.location.replace('./contact.jsp');
 		});
+		$('#bt_administration').on('click', function(){
+			window.location.replace('./Administration');
+		});
 		
 		(function($) {
 
@@ -104,8 +107,17 @@
 			else
 			{
 				%>
-				<span class="droite"><button id="bt_deconnexion" type="submit" class="btn btn-sample">Déconnexion</button></span>
-				<span class="droite"><button id="bt_deconnexion" type="submit" class="btn btn-sample">Administration</button></span>
+				<span class="droite"><button id="bt_deconnexion" type="submit" class="btn btn-sample">Déconnexion</button>&nbsp;</span>
+				<!-- test administrateur ou non -->
+				<% if (session.getAttribute("user") != null)
+				{ 
+					if(((Utilisateur)session.getAttribute("user")).getRole().equals("role4"))
+					{
+						%>
+						<span class="droite"><button id="bt_administration" type="submit" class="btn btn-sample">Administration</button>&nbsp;</span>
+						<% 
+					}
+				} %>
 				<span class="droite" id="bonjour">Bonjour ${ user.nom } ${ user.prenom }&nbsp;&nbsp;</span>
 				<%
 			}
