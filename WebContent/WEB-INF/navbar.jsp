@@ -95,30 +95,30 @@
 </script>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
-	<p id="p_navbar"><span class="gauche"><button id="bt_contacter" class="btn btn-sample" href="./contact.jsp">Nous contacter</button></span>
+	<p id="p_navbar"><span class="gauche bouton_nav"><button id="bt_contacter" class="btn btn-sample" href="./contact.jsp">Nous contacter</button></span>
 			<%
 			if(session.getAttribute("user") == null) 
 			{
 				%>
-				<span class="droite"><button id="bt_connexion" type="submit" class="btn btn-sample">connexion</button></span>
-				<span class="droite"><button id="bt_inscription" type="submit" class="btn btn-sample">inscription</button>&nbsp;</span>
+				<span class="droite bouton_nav"><button id="bt_connexion" type="submit" class="btn btn-sample">Connexion</button></span>
+				<span class="droite bouton_nav"><button id="bt_inscription" type="submit" class="btn btn-sample">Inscription</button>&nbsp;</span>
 				<%
 			}
 			else
 			{
 				%>
-				<span class="droite"><button id="bt_deconnexion" type="submit" class="btn btn-sample">Déconnexion</button>&nbsp;</span>
+				<span class="droite bouton_nav"><button id="bt_deconnexion" type="submit" class="btn btn-sample">Déconnexion</button>&nbsp;</span>
 				<!-- test administrateur ou non -->
 				<% if (session.getAttribute("user") != null)
 				{ 
 					if(((Utilisateur)session.getAttribute("user")).getRole().equals("role4"))
 					{
 						%>
-						<span class="droite"><button id="bt_administration" type="submit" class="btn btn-sample">Administration</button>&nbsp;</span>
+						<span class="droite bouton_nav"><button id="bt_administration" type="submit" class="btn btn-sample">Administration</button>&nbsp;</span>
 						<% 
 					}
 				} %>
-				<span class="droite" id="bonjour">Bonjour ${ user.nom } ${ user.prenom }&nbsp;&nbsp;</span>
+				<span class="droite bouton_nav" id="bonjour">Bonjour ${ user.nom } ${ user.prenom }&nbsp;&nbsp;</span>
 				<%
 			}
 			%>
