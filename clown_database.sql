@@ -87,4 +87,11 @@ insert into article(onglet, titre, description, contenu) values('alimentation', 
 insert into article(onglet, titre, description, contenu) values('spectacle', '', '', 'Voici un spectacle (oui je sais il n''est pas présent ayez un peu d''imagination).  Vous pouvez voir sur la gauche une image acheté pour la modique somme de xx,xx€.');
 insert into article(onglet, titre, description, contenu) values('accueil_atelier', '', '', 'Voici l''accueil de la page atelier.');
 
+insert into article(onglet, titre, description, contenu) values('clown', '', '', 'Voici l''accueil de la page clown.');
+insert into article(onglet, titre, description, contenu) values('pratique_sensoriel', '', '', 'Voici l''accueil de la page pratique_sensorielle.');
+insert into article(onglet, titre, description, contenu) values('expression_corporelle', '', '', 'Voici l''accueil de la page expression_corporelle.');
+insert into article(onglet, titre, description, contenu) values('accueil_demarche', '', '', 'Voici l''accueil de la page demarche.');
+
+
+
 
