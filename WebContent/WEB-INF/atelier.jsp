@@ -356,7 +356,6 @@
 		</div>
 	</div>
 	
-	<div id="presentationAtelier"><a href="./atelier.jsp"><button class="btn btn-sample">Pr&eacute;sentation des ateliers</button></a></div>
 	
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
