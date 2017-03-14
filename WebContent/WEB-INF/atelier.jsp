@@ -221,7 +221,7 @@
 				<img width="35%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTO_ILLUSTRATION/lait.jpg" title="image de lait" alt="image de lait">
 			</div>
 			<div class="col-md-5">
-				<p align="justify"><p align="justify"><%= request.getAttribute("lait") %></p></p>
+				<p align="justify"><p align="justify"><%= request.getAttribute("lait") %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
@@ -250,7 +250,7 @@
 				<img width="85%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image des 7 familles" alt="image des 7 familles">
 			</div>
 			<div class="col-md-5">
-				<p align="justify"><p align="justify"><%= request.getAttribute("famille") %></p></p>
+				<p align="justify"><p align="justify"><%= request.getAttribute("famille") %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
@@ -281,7 +281,7 @@
 			</div>
 			<div class="col-md-5">
 
-				<p align="justify"><p align="justify"><%= request.getAttribute("menu") %></p></p>
+				<p align="justify"><p align="justify"><%= request.getAttribute("menu") %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
@@ -306,7 +306,7 @@
 			</div>
 			<div class="col-md-5">
 
-				<p align="justify"><p align="justify"><%= request.getAttribute("alimentation") %></p></p>
+				<p align="justify"><p align="justify"><%= request.getAttribute("alimentation") %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
@@ -332,7 +332,7 @@
 			</div>
 			<!-- padding de 5% dans style.css (ligne 59) -->
 			<div class="col-md-5">
-					<p align="justify"><p align="justify"><%= request.getAttribute("spectacle") %></p></p>
+					<p align="justify"><p align="justify"><%= request.getAttribute("spectacle") %></p>
 			</div>
 			<div class="col-md-5">
 			<%
@@ -352,7 +352,6 @@
 				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/P1070249.JPG" alt="photo enfant - le spectacle">
 				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/P1070276.JPG" alt="photo enfant - le spectacle">
 				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/P1070230.JPG" alt="photo enfant - le spectacle">
-			
 			</div>
 		</div>
 	</div>
@@ -360,8 +359,7 @@
 	
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
-		<span class="close">&times;</span> <img class="modal-content"
-			id="img01">
+		<span class="close">&times;</span> <img class="modal-content" id="img01">
 		<div id="caption"></div>
 	</div>
 			
