@@ -14,7 +14,7 @@
 		{
 			$("#name").html("Les démarches");
 		}
-		if (page.indexOf('atelier.jsp') != -1)
+		if (page.indexOf('Atelier') != -1)
 		{
 			$("#name").html("Les ateliers");
 		}
@@ -147,6 +147,7 @@
 			    </li>
 				<li class="dropdown"><a class="dropdown-toggle titre" data-toggle="dropdown">Les ateliers<span class="caret"></span></a>
 			      <ul class="dropdown-menu">
+			      <li><a href="./Atelier">Présentatin des ateliers</a></li>
 			        <li><a href="./Atelier?page=pain">Atelier 1 : Le pain</a></li>
 			        <li><a href="./Atelierp?page=lait">Atelier 2 : Le lait</a></li>
 			        <li><a href="./Atelier?page=famille">Atelier 3 : Les 7 familles</a></li>

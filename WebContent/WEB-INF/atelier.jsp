@@ -13,36 +13,47 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="style.css" />
 <script>
-var show_per_page = 18;
-var current_page = 0;
-
-function set_display(first, last) {
-	$('#content').children().css('display', 'none');
-	$('#content').children().slice(first, last).css('display', 'block');
-}
-
-function previous() {
-	if ($('.active').prev('.page_link').length)
-		go_to_page(current_page - 1);
-}
-
-function next() {
-	if ($('.active').next('.page_link').length)
-		go_to_page(current_page + 1);
-}
-
-function go_to_page(page_num) {
-	current_page = page_num;
-	start_from = current_page * show_per_page;
-	end_on = start_from + show_per_page;
-	set_display(start_from, end_on);
-	$('.active').removeClass('active');
-	$('#id' + page_num).addClass('active');
-}
+	var show_per_page = 18;
+	var current_page = 0;
+	
+	function set_display(first, last) {
+		$('#content').children().css('display', 'none');
+		$('#content').children().slice(first, last).css('display', 'block');
+	}
+	
+	function previous() {
+		if ($('.active').prev('.page_link').length)
+			go_to_page(current_page - 1);
+	}
+	
+	function next() {
+		if ($('.active').next('.page_link').length)
+			go_to_page(current_page + 1);
+	}
+	
+	function go_to_page(page_num) {
+		current_page = page_num;
+		start_from = current_page * show_per_page;
+		end_on = start_from + show_per_page;
+		set_display(start_from, end_on);
+		$('.active').removeClass('active');
+		$('#id' + page_num).addClass('active');
+	}
 
 	function hideAll()
 	{
+		document.activeElement.blur();
 		$('#textAtelier').hide();
+		$('#pain').hide();
+		$('#lait').hide();
+		$('#familles').hide();
+		$('#menu').hide();
+		$('#alimentation').hide();
+		$('#spectacle').hide();
+	}
+	
+	function hideOnglet()
+	{
 		$('#pain').hide();
 		$('#lait').hide();
 		$('#familles').hide();
@@ -53,14 +64,40 @@ function go_to_page(page_num) {
 
 	$(document).ready(function() 
 	{
-		hideAll();
+		hideOnglet();
 
+		<%
+		if(request.getParameter("page") != null)
+		{
+			%>hideAll();<%
+			switch(request.getParameter("page"))
+			{
+			case "pain" :
+				%>$('#pain').show();<%
+				break;
+			case "lait" :
+				%>$('#lait').show();<%
+				break;
+			case "menu" :
+				%>$('#menu').show();<%
+				break;
+			case "alimentation" :
+				%>$('#alimentation').show();<%
+				break;
+			case "spectacle" :
+				%>$('#spectacle').show();<%
+				break;
+			case "famille" :
+				%>$('#familles').show();<%
+				break;
+			}
+		}
+		%>
+		
 		var modal = document.getElementById('myModal');
 					
-		// Get the <span> element that closes the modal
 		var span = document.getElementsByClassName("close")[0];
 
-		// When the user clicks on <span> (x), close the modal
 		$('.myImg').on('click', function() {
 			$('html, body').css({
 			overflow : 'hidden',
@@ -135,18 +172,12 @@ function go_to_page(page_num) {
 	<%@include file="/WEB-INF/navbar.jsp"%>
 	<!----------------------------------- categorie ---------------------------------------->
 	<div class="row">
-	<input id="bt_pain" type="image" class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTO_ILLUSTRATION/pain.jpg" title="Atelier 1 : Le pain" alt="image de pain" width="156" height="156" />
-	<input id="bt_lait" type="image" class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTO_ILLUSTRATION/lait.jpg" title="Atelier 2 : Le lait" alt="image de lait" width="156" height="156">
-	<input id="bt_famille" type="image" class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Atelier 3 : Les 7 familles" alt="image des 7 familles" width="156" height="156">
-	<input id="bt_menu" type="image" class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_4_UN_MENU_EQUILIBRE/PHOTO_ILLUSTRATION/Fotolia_135759645_S-1.jpg" title="Atelier 4 : Le menu &eacute;quilibr&eacute;" alt="image de fruit et legumes" width="156" height="156">
-	<input id="bt_alimentation" type="image" class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_5_LE_PARCOURS_DU_YAOURT_A_LA_FRAISE/PHOTO_ILLUSTRATION/Fotolia_139412392_S-1.jpg" title="Atelier 5 : Alimentation et environnement" alt="image de yaourt et fraise" width="156" height="156">
-	<input id="bt_spectacle" type="image" class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTO_ILLUSTRATION/clown-1678004_1920.jpg" title="Le spectacle" alt="image de spectacle" width="156" height="156">
-	<!--  <a href="./Atelier?page=pain" class="bulle"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTO_ILLUSTRATION/pain.jpg" title="Atelier 1 : Le pain" alt="image de pain" width="156" height="156"></a>
-	<a href="./Atelier?page=lait" class="bulle"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTO_ILLUSTRATION/lait.jpg" title="Atelier 2 : Le lait" alt="image de lait" width="156" height="156"></a>
-	<a href="./Atelier?page=famille" class="bulle"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Atelier 3 : Les 7 familles" alt="image des 7 familles" width="156" height="156"></a>
-	<a href="./Atelier?page=menu" class="bulle"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_4_UN_MENU_EQUILIBRE/PHOTO_ILLUSTRATION/Fotolia_135759645_S-1.jpg" title="Atelier 4 : Le menu &eacute;quilibr&eacute;" alt="image de fruit et legumes" width="156" height="156"></a>
-	<a href="./Atelier?page=alimentation" class="bulle"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_5_LE_PARCOURS_DU_YAOURT_A_LA_FRAISE/PHOTO_ILLUSTRATION/Fotolia_139412392_S-1.jpg" title="Atelier 5 : Alimentation et environnement" alt="image de yaourt et fraise" width="156" height="156"></a>
-	<a href="./Atelier?page=spectacle" class="bulle"><img class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTO_ILLUSTRATION/clown-1678004_1920.jpg" title="Le spectacle" alt="image de spectacle" width="156" height="156"></a> -->
+		<input id="bt_pain" type="image" class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTO_ILLUSTRATION/pain.jpg" title="Atelier 1 : Le pain" alt="image de pain" width="156" height="156" />
+		<input id="bt_lait" type="image" class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTO_ILLUSTRATION/lait.jpg" title="Atelier 2 : Le lait" alt="image de lait" width="156" height="156">
+		<input id="bt_famille" type="image" class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Atelier 3 : Les 7 familles" alt="image des 7 familles" width="156" height="156">
+		<input id="bt_menu" type="image" class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_4_UN_MENU_EQUILIBRE/PHOTO_ILLUSTRATION/Fotolia_135759645_S-1.jpg" title="Atelier 4 : Le menu &eacute;quilibr&eacute;" alt="image de fruit et legumes" width="156" height="156">
+		<input id="bt_alimentation" type="image" class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_5_LE_PARCOURS_DU_YAOURT_A_LA_FRAISE/PHOTO_ILLUSTRATION/Fotolia_139412392_S-1.jpg" title="Atelier 5 : Alimentation et environnement" alt="image de yaourt et fraise" width="156" height="156">
+		<input id="bt_spectacle" type="image" class="img-circle" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTO_ILLUSTRATION/clown-1678004_1920.jpg" title="Le spectacle" alt="image de spectacle" width="156" height="156">
 	</div>
 	<div class="row col-md-10 col-sm-offset-1" id="textAtelier">
 		<p align="justify"><%= request.getAttribute("accueil_atelier") %></p>
