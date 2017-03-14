@@ -14,7 +14,7 @@
 		{
 			$("#name").html("Les démarches");
 		}
-		if (page.indexOf('atelier.jsp') != -1)
+		if (page.indexOf('Atelier') != -1)
 		{
 			$("#name").html("Les ateliers");
 		}
@@ -147,12 +147,13 @@
 			    </li>
 				<li class="dropdown"><a class="dropdown-toggle titre" data-toggle="dropdown">Les ateliers<span class="caret"></span></a>
 			      <ul class="dropdown-menu">
-			        <li><a href="./atelier.jsp?page=pain">Atelier 1 : Le pain</a></li>
-			        <li><a href="./atelier.jsp?page=lait">Atelier 2 : Le lait</a></li>
-			        <li><a href="./atelier.jsp?page=famille">Atelier 3 : Les 7 familles</a></li>
-			        <li><a href="./atelier.jsp?page=menu">Atelier 4 : Le menu equilibré</a></li>
-			        <li><a href="./atelier.jsp?page=alimentation">Atelier 5 : Alimentation et environnement</a></li>
-			        <li><a href="./atelier.jsp?page=spectacle">Le spectacle</a></li>
+			      <li><a href="./Atelier">Présentatin des ateliers</a></li>
+			        <li><a href="./Atelier?page=pain">Atelier 1 : Le pain</a></li>
+			        <li><a href="./Atelierp?page=lait">Atelier 2 : Le lait</a></li>
+			        <li><a href="./Atelier?page=famille">Atelier 3 : Les 7 familles</a></li>
+			        <li><a href="./Atelier?page=menu">Atelier 4 : Le menu equilibré</a></li>
+			        <li><a href="./Atelier?page=alimentation">Atelier 5 : Alimentation et environnement</a></li>
+			        <li><a href="./Atelier?page=spectacle">Le spectacle</a></li>
 			      </ul>
 			    </li>
 				<li class="dropdown"><a class="dropdown-toggle titre" data-toggle="dropdown">Ressources<span class="caret"></span></a>

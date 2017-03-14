@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -48,10 +49,10 @@ public class Modele
 		}
 	}
 
-	
+
 	public Utilisateur connexion(String login, String pass) throws Exception {
 
-	Utilisateur user = null;
+		Utilisateur user = null;
 		Connection con = null;
 
 		try 
@@ -81,7 +82,7 @@ public class Modele
 
 		return user;
 	}
-	
+
 	private String cryptPass(String pass){
 		byte[] salt = new String("Clown").getBytes();
 
@@ -106,10 +107,10 @@ public class Modele
 	}
 
 	//------------------------------------------------------CONTACT------------------------------------------------------------
-	
+
 	public void envoyerMailContact(String nom, String prenom, String mail, String  numero_telephone, String adresse, String ville, String departement, String sexe, String message){
 		try{
-			
+
 			if(sexe != null){
 				if(sexe.equals("F"))
 					message += "\n- - - -\nDe Madame " + prenom + " " + nom;
@@ -117,7 +118,7 @@ public class Modele
 					message += "\n- - - -\nDe Monsieur " + prenom + " " + nom;
 			} else if(sexe == null)
 				message += "\n- - - -\nDe " + prenom + " " + nom;
-			
+
 			message += "\n- - - -\nPossibilité de contacter ultérieurement via:\n";
 			if(numero_telephone.length() >0)
 				message += "numero de telephone : " + numero_telephone + "\n";
@@ -125,7 +126,7 @@ public class Modele
 				message += "adresse mail : " + mail + "\n";
 			if(adresse.length() >0 && departement.length() >0)
 				message += "adresse physique : " + adresse + "\n" + ville + "\n" + departement;
-	
+
 			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
 			Message msg = new MimeMessage(session_mail);
 			msg.setFrom(new InternetAddress("tweetbookda2i@gmail.com"));
@@ -144,12 +145,12 @@ public class Modele
 			}
 		}
 	}
-	
+
 	//-------------------------------------------------------------INFORMATIONS PAR MAIL---------------------------------------------------------------------------
-	
+
 	public void envoyerMailInscription(String nom, String prenom, String mail, String  pseudo, String lienConfirmation, String lienRefus){
 		try{
-			
+
 			String message = "Nouvelle demande d'inscription de " + nom + " " + prenom + "\nmail : " + mail + "\nidentifiant : " + pseudo;
 			message += "\nVeuillez cliquer sur ce lien pour confirmer l'inscription : " + lienConfirmation;
 			message += "\nVeuillez cliquez sur celui-ci si vous refusez l'inscription de cet individu : " + lienRefus;
@@ -171,10 +172,10 @@ public class Modele
 			}
 		}
 	}
-	
+
 	public void envoyerMailInscriptionRetourUtilisateur(String pseudo, String mail){
 		try{
-			
+
 			String message = "Votre demande d'inscription sous le login " + pseudo + " a bien été validée par l'administrateur.";
 			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
 			Message msg = new MimeMessage(session_mail);
@@ -194,10 +195,10 @@ public class Modele
 			}
 		}
 	}
-	
+
 	public void envoyerMailInscriptionRefusUtilisateur(String pseudo, String mail){
 		try{
-			
+
 			String message = "Votre demande d'inscription sous le login " + pseudo + " a été refusée par l'administrateur.";
 			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
 			Message msg = new MimeMessage(session_mail);
@@ -217,7 +218,7 @@ public class Modele
 			}
 		}
 	}
-	
+
 
 
 	//------------------------------------------------------UTILISATEUR------------------------------------------------------------	
@@ -247,7 +248,6 @@ public class Modele
 
 			statement.executeQuery();
 			return "inscription ok";
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "exception";
@@ -259,14 +259,14 @@ public class Modele
 			}
 		}
 	}
-			
+
 	public void ajoutRoleUtilisateur(String login) throws Exception {
 		try {	
-			
+
 			statement = ds.getConnection().prepareStatement("select id_utilisateur from utilisateur where login = ?");
 			statement.setString(1,login);
 			result = statement.executeQuery();
-			
+
 			if(result.next()){
 				int id = result.getInt(1);
 
@@ -280,24 +280,24 @@ public class Modele
 
 		}catch (SQLException e) {
 			e.printStackTrace();
-			
+
 		} catch (Exception e){
 			throw e;
-			
+
 		} finally{
 			try{
 				statement.getConnection().close();
-				
+
 			} catch(SQLException e) {
 				e.printStackTrace();
 			}
 		}
 	}
-	
-	
+
+
 	public void suprimerUtilisateur(String login) throws Exception {
 		try {	
-			
+
 			statement = ds.getConnection().prepareStatement("delete from utilisateur where login = ?");
 			statement.setString(1,login);
 
@@ -306,21 +306,21 @@ public class Modele
 
 		}catch (SQLException e) {
 			e.printStackTrace();
-			
+
 		} catch (Exception e){
 			throw e;
-			
+
 		} finally{
 			try{
 				statement.getConnection().close();
-				
+
 			} catch(SQLException e) {
 				e.printStackTrace();
 			}
 		}
 	}
-	
-	
+
+
 	public String getMailUtilisateur(String login) throws Exception {
 		String mail = null;
 		try {	
@@ -334,10 +334,10 @@ public class Modele
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return mail;
-			
+
 		} catch (Exception e){
 			throw e;
-			
+
 		} finally{
 			try{
 				statement.getConnection().close();
@@ -438,13 +438,13 @@ public class Modele
 
 			String regex = "<\\s(.+)\\s>";
 			String regex2 = "\\r";
-			
+
 			String subst = "<a href=\"images/article/" + id + "/$1\"><img src=\"images/article/" + id + "/$1\" width=\"50%\" height=\"auto\"/></a>";
-			
+
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(article.getContenu());
 			article.setContenu(matcher.replaceAll(subst));
-			
+
 			pattern = Pattern.compile(regex2);
 			matcher = pattern.matcher(article.getContenu());
 			article.setContenu(matcher.replaceAll("<br>"));
@@ -463,6 +463,60 @@ public class Modele
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public HashMap<String, tools.Article> getAteliers() 
+	{
+		HashMap<String, Article> articles = new HashMap<String, Article>();
+		try
+		{
+			statement = ds.getConnection().prepareStatement("select onglet, contenu from article where onglet = 'pain' or onglet = 'lait' or onglet = 'famille' or onglet = 'menu' or onglet = 'alimentation' or onglet = 'spectacle' or onglet = 'accueil_atelier'");
+			result = statement.executeQuery();
+			while(result.next())
+			{
+				Article article = null;
+				switch(result.getString("onglet"))
+				{
+				case "pain" :
+					articles.put("pain", new Article(-1,"","",result.getString("contenu")));
+					break;
+				case "lait" :
+					articles.put("lait", new Article(-1,"","",result.getString("contenu")));
+					break;
+				case "famille" :
+					articles.put("famille", new Article(-1,"","",result.getString("contenu")));
+					break;
+				case "menu" :
+					articles.put("menu", new Article(-1,"","",result.getString("contenu")));
+					break;
+				case "alimentation" :
+					articles.put("alimentation", new Article(-1,"","",result.getString("contenu")));
+					break;
+				case "spectacle" :
+					articles.put("spectacle", new Article(-1,"","",result.getString("contenu")));
+					break;
+				case "accueil_atelier" :
+					articles.put("accueil_atelier", new Article(-1,"","",result.getString("contenu")));
+					break;
+				}
+			}
+
+		} catch (Exception e){
+			e.printStackTrace();
+			return null;
+		} finally
+		{
+			try
+			{
+				statement.close();
+				ds.getConnection().close();
+			} catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		return articles;
 	}
 
 	//------------------------------------------------------MEDIA------------------------------------------------------------
@@ -619,4 +673,7 @@ public class Modele
 			}
 		}
 	}
+
+
+
 }
