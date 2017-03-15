@@ -159,4 +159,3 @@ insert into media(id_article, chemin, nom, type) values(10, 'images/ONGLET_LA_DE
 insert into media(id_article, chemin, nom, type) values(10, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_EXPRESSION_CORPORELLE/P_20170209_151653.jpg', 'photo enfant - Expression Corporelle', 'photo');
 insert into media(id_article, chemin, nom, type) values(10, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_EXPRESSION_CORPORELLE/P_20170209_153232.jpg', 'photo enfant - Expression Corporelle', 'photo');
 insert into media(id_article, chemin, nom, type) values(10, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_EXPRESSION_CORPORELLE/P_20170209_153311.jpg', 'photo enfant - Expression Corporelle', 'photo');
-
