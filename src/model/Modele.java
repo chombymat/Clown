@@ -517,7 +517,6 @@ public class Modele
 			}
 			
 			query += ")";
-			System.out.println(query);
 			statement = ds.getConnection().prepareStatement(query);
 			result = statement.executeQuery();
 			

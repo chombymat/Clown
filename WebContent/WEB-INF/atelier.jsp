@@ -282,7 +282,7 @@
 			</div>
 			<div class="col-md-5">
 
-				<p align="justify"><%= articles.get("Le menu équilibré").getContenu() %>/p>
+				<p align="justify"><%= articles.get("Le menu équilibré").getContenu() %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
