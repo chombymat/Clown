@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.Modele;
 
+@SuppressWarnings("serial")
 @WebServlet("/Atelier")
 public class Atelier extends HttpServlet 
 {

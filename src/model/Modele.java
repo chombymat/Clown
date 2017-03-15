@@ -547,25 +547,50 @@ public class Modele
 		HashMap<String, Article> articles = new HashMap<String, Article>();
 		try
 		{
-			statement = ds.getConnection().prepareStatement("select onglet, contenu from article where onglet = 'clown' or onglet = 'pratique_sensoriel' or onglet = 'expression_corporelle' or onglet = 'accueil_demarche'");
+			statement = ds.getConnection().prepareStatement("select article.id_article, article.titre as article_titre, contenu from projet, article where projet.id_projet = article.id_projet and projet.titre like 'demarche'");
 			result = statement.executeQuery();
 			while(result.next())
 			{
-				switch(result.getString("onglet"))
+				switch(result.getString("article_titre"))
 				{
-				case "clown" :
-					//articles.put("clown", new Article(-1,"","",result.getString("contenu")));
+				case "Clown" :
+					articles.put("Clown", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
 					break;
-				case "pratique_sensoriel" :
-					//articles.put("pratique_sensoriel", new Article(-1,"","",result.getString("contenu")));
+				case "Pratique et sensoriel" :
+					articles.put("Pratique et sensoriel", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
 					break;
-				case "expression_corporelle" :
-					//articles.put("expression_corporelle", new Article(-1,"","",result.getString("contenu")));
+				case "Expression Corporelle" :
+					articles.put("Expression Corporelle", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
 					break;
-				case "accueil_demarche" :
-					//articles.put("accueil_demarche", new Article(-1,"","",result.getString("contenu")));
+				case "accueil" :
+					articles.put("accueil", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
 					break;
 				}
+			}
+			
+
+			statement.close();
+			String query = "select chemin, titre, nom from media, article where media.id_article = article.id_article and media.id_article in (";
+			
+			boolean firstLine = true;					
+			for(Map.Entry<String, Article> article : articles.entrySet())
+			{
+				if(firstLine)
+				{
+					query += article.getValue().getId();
+					firstLine = false;
+				}
+				else
+					query += "," + article.getValue().getId();
+			}
+			
+			query += ")";
+			statement = ds.getConnection().prepareStatement(query);
+			result = statement.executeQuery();
+			
+			while(result.next())
+			{
+				articles.get(result.getString("titre")).getMedias().add(new Media(result.getString("chemin"), result.getString("nom")));
 			}
 
 		} catch (Exception e){

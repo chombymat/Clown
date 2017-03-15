@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.HashMap,tools.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,6 +13,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="style.css" />
+<% HashMap<String, Article> articles = (HashMap<String, Article>)request.getAttribute("articles");  %>
 <script>
 var show_per_page = 18;
 var current_page = 0;
@@ -151,15 +153,15 @@ $(document).ready(function() {
 	<input id="bt_expression" type="image" class="img-circle bt_image" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Expression corporelle" alt="Expression corporelle" width="156" height="156" />
 	</div>
 	<div class="row col-md-10 col-sm-offset-1" id="textDemarche">
-			<p align="justify"><%= request.getAttribute("accueil_demarche") %></p>
+			<p align="justify"><%= articles.get("accueil").getContenu() %></p>
 	</div>
 	<!----------------------------------- fin de categorie ---------------------------------------->
 	
 	<!------------------------------------- CLOWN ------------------------------------>
 	
 	<div id="presentation_clown">
+		<h2><%= articles.get("Clown").getTitre() %></h2><br>
 		<div class="row">
-			<h2>Les Clowns</h2><br>
 			<div class="col-md-12">
 				<img class="img-circle ovale" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE">
 				<img class="img-circle ovale" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE_2.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE">
@@ -171,24 +173,19 @@ $(document).ready(function() {
 		<div class="row">
 			<div class="col-sm-offset-1 col-md-5">
 				<h3>Claire</h3><br>
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/Deambulation-clowns-prima-porta-bien-etre-21.jpg" alt="photo clown">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/Deambulation-clowns-prima-porta-bien-etre-32.jpg" alt="photo clown">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/MG_4032.jpg" alt="photo clown">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/MG_4037.jpg" alt="photo clown">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/MG_4204.jpg" alt="photo clown">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/MG_4211.jpg" alt="photo clown">
+				<% 
+				for(Media media : articles.get("Clown").getMedias()) {
+					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+				}
+				%>
 			</div>
 			<div class="col-md-5">
 				<h3>Virginie</h3><br>
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P_20170209_141428.jpg" alt="photo clown">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P_20170209_142253.jpg" alt="photo clown">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P_20170209_142753.jpg" alt="photo clown">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1060614.JPG" alt="photo clown">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1060617.JPG" alt="photo clown">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1060691.JPG" alt="photo clown">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1060700.JPG" alt="photo clown">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1070070.JPG" alt="photo clown">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1070097.JPG" alt="photo clown">
+				<% 
+				for(Media media : articles.get("Clown").getMedias()) {
+					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+				}
+				%>
 			</div>
 		</div>
 	</div>
@@ -197,7 +194,7 @@ $(document).ready(function() {
 	<!------------------------------------- PRATIQUE ------------------------------------>
 	
 	<div id="pratique">
-	<h2>Pratique et Sensoriel</h2><br>
+		<h2><%= articles.get("Pratique et sensoriel").getTitre() %></h2><br>
 		<div class="row">
 			<div class="col-md-6">
 				<img width="85%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image de pratique et sensoriel" alt="image de pratique et sensoriel">
@@ -205,21 +202,20 @@ $(document).ready(function() {
 			<div class="col-md-5">
 				<p align="justify"><%= request.getAttribute("pratique") %></p>
 				<br>
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_ATELIER_PRATIQUE_ET_SENSORIEL/2015-12-17_15.43.00.jpg" alt="photo enfant - pratique et sensoriel">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_ATELIER_PRATIQUE_ET_SENSORIEL/2015-12-17_15.30.53.jpg" alt="photo enfant - pratique et sensoriel">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_ATELIER_PRATIQUE_ET_SENSORIEL/2015-12-17_15.34.01.jpg" alt="photo enfant - pratique et sensoriel">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_ATELIER_PRATIQUE_ET_SENSORIEL/2015-12-17_15.37.09.jpg" alt="photo enfant - pratique et sensoriel">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_ATELIER_PRATIQUE_ET_SENSORIEL/2015-12-17_15.40.34.jpg" alt="photo enfant - pratique et sensoriel">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_ATELIER_PRATIQUE_ET_SENSORIEL/P1070143.JPG" alt="photo enfant - pratique et sensoriel">
+				<% 
+				for(Media media : articles.get("Pratique et sensoriel").getMedias())
+				{
+					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+				}
+				%>
 			</div>
 		</div>
 	</div>
 	
-	
 	<!------------------------------------- EXPRESSION ------------------------------------>
 	
 	<div id="expression">
-	<h2>Expression Corporelle</h2><br>
+		<h2><%= articles.get("Expression Corporelle").getTitre() %></h2><br>
 		<div class="row">
 			<div class="col-md-6">
 				<img width="85%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image d'expression corporelle" alt="image d'expression corporelle">
@@ -227,15 +223,12 @@ $(document).ready(function() {
 			<div class="col-md-5">
 				<p align="justify"><%= request.getAttribute("expression") %></p>
 				<br>
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_EXPRESSION_CORPORELLE/Capture_lenny_2.PNG" alt="photo enfant - expression corporelle">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_EXPRESSION_CORPORELLE/2015-12-17_15.47.33.jpg" alt="photo enfant - expression corporelle">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_EXPRESSION_CORPORELLE/2015-12-17_15.51.44.jpg" alt="photo enfant - expression corporelle">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_EXPRESSION_CORPORELLE/2015-12-17_15.52.08.jpg" alt="photo enfant - expression corporelle">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_EXPRESSION_CORPORELLE/2015-12-17_15.52.29.jpg" alt="photo enfant - expression corporelle">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_EXPRESSION_CORPORELLE/2015-12-17_15.53.30.jpg" alt="photo enfant - expression corporelle">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_EXPRESSION_CORPORELLE/P_20170209_151653.jpg" alt="photo enfant - expression corporelle">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_EXPRESSION_CORPORELLE/P_20170209_153232.jpg" alt="photo enfant - expression corporelle">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_EXPRESSION_CORPORELLE/P_20170209_153311.jpg" alt="photo enfant - expression corporelle">
+				<% 
+				for(Media media : articles.get("Expression Corporelle").getMedias())
+				{
+					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+				}
+				%>
 			</div>
 		</div>
 	</div>
