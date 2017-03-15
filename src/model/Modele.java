@@ -588,20 +588,29 @@ public class Modele
 		return articles;
 	}
 	
-	public Article getArticle(String onglet)
+	public Article getArticle(String titre)
 	{
 		Article article = null;
 		Connection con = null;
 		try
 		{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement =con.prepareStatement("select contenu from article where onglet = ?");
-			statement.setString(1, onglet);
+			PreparedStatement statement =con.prepareStatement("select id_article, contenu from article where titre = ?");
+			statement.setString(1, titre);
 			ResultSet result = statement.executeQuery();
 			
 			if(result.next())
 			{
-				//article = new Article(-1, "", "", result.getString("contenu"));
+				article = new Article(result.getInt("id_article"), titre, result.getString("contenu"));
+				
+				PreparedStatement statement2 = con.prepareStatement("select id_media, chemin, nom, type from media where id_article = ? and type like 'photo'");
+				statement2.setInt(1, article.getId());
+				result = statement2.executeQuery();
+				
+				while(result.next())
+				{
+					article.getMedias().add(new Media(result.getInt("id_media"),result.getString("chemin"), result.getString("nom"), result.getString("type")));
+				}
 			}
 		}
 		catch(Exception e)

@@ -198,18 +198,27 @@
 				}
 			});
 			
-			$('.selection').on('click', function(){
-				var page = $(this).attr('data-value');
-				
+			$('#select').change(function(){
+				var page = $(this).val();
+				console.log(page);
 				$.ajax({
 		            url: './ModificationArticle',
 		            type: 'GET',
 		            data: {
-		            	onglet : page,
+		            	titre : page,
 		            },
 		            success : function(data)
 		            {
-		            	$('#contenu_article').val(data);
+		            	var json = jQuery.parseJSON(data);
+		            	var array = json.medias;
+		            	
+		            	for(var i = 0; i < array.length; i++)
+		            	{
+		            		console.log(array[i].chemin);
+		            		$('#modif_article_image').append("<img src=\"" + array[i].chemin + "\" style=\"margin-top: 5%; margin-left: 2%; margin-right=2%\" width=20% height=auto >");
+		            	}
+		            	
+		            	$('#contenu_article').val(json.contenu);
 		            }
 		        });
 			});
@@ -266,22 +275,26 @@
 	
 	<div class="row" id="page_modif_article">
 		<div class="row col-md-12" id="modifier_article">
-			<div class="col-md-3">
 				<p>Veuillez séléctionner l'article à modifier.</p>
-				<ul>
-					<li class="selection" data-value="pain">Le pain</li>
-					<li class="selection" data-value="lait">Le lait</li>
-					<li class="selection" data-value="famille">Les 7 familles</li>
-					<li class="selection" data-value="menu">Le menu équilibré</li>
-					<li class="selection" data-value="alimentation">Alimentation et environnement</li>
-					<li class="selection" data-value="spectacle">Le spectacle</li>
-					<li class="selection" data-value="clown">Clown</li>
-					<li class="selection" data-value="pratique_sensoriel">Pratique et sensoriel</li>
-					<li class="selection" data-value="expression_corporelle">Expression Corporelle</li>
-				</ul>
+				<select id="select" default="">
+					<option disabled selected value hidden></option>
+					<option value="Le pain">Le pain</option>
+					<option value="Le lait">Le lait</option>
+					<option value="Les 7 familles">Les 7 familles</option>
+					<option value="Le menu équilibré">Le menu équilibré</option>
+					<option value="Alimentation et environnement">Alimentation et environnement</option>
+					<option value="Le spectacle">Le spectacle</option>
+					<option value="Clown">Clown</option>
+					<option value="Pratique et sensoriel">Pratique et sensoriel</option>
+					<option value="Expression Corporelle">Expression Corporelle</option>
+				</select>
+		</div>
+		<div class="row">
+			<div class="col-md-5">
+				<textarea id="contenu_article" rows="15" cols="100" style="margin-top: 5%; margin-left: 3%"></textarea>
 			</div>
-			<div clas="col-md-5">
-				<textarea id="contenu_article" rows="15" cols="50"></textarea>
+			<div class="col-md-5" id="modif_article_image">
+				
 			</div>
 		</div>
 	</div>
