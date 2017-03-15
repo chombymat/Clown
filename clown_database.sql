@@ -89,7 +89,7 @@ insert into article(id_projet, titre, contenu) values(1, 'Le spectacle', 'Voici 
 insert into article(id_projet, titre, contenu) values(1, 'accueil', 'Voici l''accueil de la page atelier.');
 insert into article(id_projet, titre, contenu) values(2, 'Clown', 'Voici l''accueil de la page clown.');
 insert into article(id_projet, titre, contenu) values(2, 'Pratique et sensoriel', 'Voici l''accueil de la page pratique_sensorielle.');
-insert into article(id_projet, titre, contenu) values(2, 'Expression Corporelle', 'Voici l''accueil de la page expression_corporelle.');
+insert into article(id_projet, titre, contenu) values(2, 'Expression Corporelle', 'Si vous regarder les photos, vous aller voir Lenny déformé.');
 insert into article(id_projet, titre, contenu) values(2, 'accueil', 'Voici l''accueil de la page demarche.');
 
 insert into media(id_article, chemin, nom, type) values(1, 'images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTOS_ENFANTS/P1070515.JPG', 'photo enfant pain 1', 'photo');

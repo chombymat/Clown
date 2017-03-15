@@ -200,7 +200,7 @@ $(document).ready(function() {
 				<img width="85%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image de pratique et sensoriel" alt="image de pratique et sensoriel">
 			</div>
 			<div class="col-md-5">
-				<p align="justify"><%= request.getAttribute("pratique") %></p>
+				<p align="justify"><%= articles.get("Pratique et sensoriel").getContenu() %></p>
 				<br>
 				<% 
 				for(Media media : articles.get("Pratique et sensoriel").getMedias())
@@ -221,7 +221,7 @@ $(document).ready(function() {
 				<img width="85%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image d'expression corporelle" alt="image d'expression corporelle">
 			</div>
 			<div class="col-md-5">
-				<p align="justify"><%= request.getAttribute("expression") %></p>
+				<p align="justify"><%= articles.get("Expression Corporelle").getContenu() %></p>
 				<br>
 				<% 
 				for(Media media : articles.get("Expression Corporelle").getMedias())
@@ -233,7 +233,7 @@ $(document).ready(function() {
 		</div>
 	</div>
 	
-	<div id="presentationDemarche"><a href="./demarche.jsp"><button class="btn btn-sample">Pr&eacute;sentation de la d&eacute;marche</button></a></div>
+	<div id="presentationDemarche"><a href="./Demarche"><button class="btn btn-sample">Pr&eacute;sentation de la d&eacute;marche</button></a></div>
 	
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
