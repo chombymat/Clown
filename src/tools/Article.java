@@ -5,13 +5,12 @@ import java.util.ArrayList;
 public class Article {
 
 	private int id;
-	private String titre, description, contenu;
+	private String titre, contenu;
 	private ArrayList<Media> medias;
 	
-	public Article(int id, String titre, String description, String contenu){
+	public Article(int id, String titre, String contenu){
 		this.id = id;
 		this.titre = titre;
-		this.description = description;
 		this.contenu = contenu;
 		this.medias = new ArrayList<Media>();
 	}
@@ -43,13 +42,4 @@ public class Article {
 	public void setTitre(String titre) {
 		this.titre = titre;
 	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
 }

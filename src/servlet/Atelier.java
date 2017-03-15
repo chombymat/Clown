@@ -16,13 +16,7 @@ public class Atelier extends HttpServlet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		HashMap<String, tools.Article> articles = new Modele().getAteliers();
-		request.setAttribute("pain", articles.get("pain").getContenu());
-		request.setAttribute("menu", articles.get("menu").getContenu());
-		request.setAttribute("famille", articles.get("famille").getContenu());
-		request.setAttribute("lait", articles.get("lait").getContenu());
-		request.setAttribute("alimentation", articles.get("alimentation").getContenu());
-		request.setAttribute("spectacle", articles.get("spectacle").getContenu());
-		request.setAttribute("accueil_atelier", articles.get("accueil_atelier").getContenu());
+		request.setAttribute("articles", articles);
 		request.getRequestDispatcher("/WEB-INF/atelier.jsp").forward(request, response);
 	}
 }

@@ -18,7 +18,6 @@
 		$(document).ready(function(){
 			var showDivUrl = 0;
 			var showDivAddArticle = 0;
-			var showDivAddGalerie = 0;
 			var showDivModifArticle = 0;
 			
 			/*********************************** Ajouter article ***********************************/
@@ -28,10 +27,10 @@
 			var ii = 1;
 			
 			$('#bt_add_article').on('click', function(){
-				if(showDivAddGalerie == 1)
+				if(showDivModifArticle == 1)
 				{
-					showDivAddGalerie = 0;				
-					$('#remplir_galerie').hide();
+					showDivModifArticle = 0;				
+					$('#page_modif_article').hide();
 				}
 				
 				if(showDivAddArticle == 0)
@@ -187,12 +186,6 @@
 					$('#page_article').hide();
 				}
 				
-				if(showDivAddGalerie == 1)
-				{
-					showDivAddGalerie = 0;				
-					$('#remplir_galerie').hide();
-				}
-				
 				if(showDivModifArticle == 0)
 				{
 					showDivModifArticle = 1;				
@@ -288,7 +281,7 @@
 				</ul>
 			</div>
 			<div clas="col-md-5">
-				<textarea id="contenu_article" rows="15"></textarea>
+				<textarea id="contenu_article" rows="15" cols="50"></textarea>
 			</div>
 		</div>
 	</div>

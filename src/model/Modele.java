@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -430,7 +431,7 @@ public class Modele
 			statement.setInt(1, id);
 			result = statement.executeQuery();
 			if(result.next()){
-				article = new Article(id, result.getString("titre"), result.getString("description"), result.getString("contenu"));
+				//article = new Article(id, result.getString("titre"), result.getString("description"), result.getString("contenu"));
 			}
 			else
 				return null;
@@ -469,36 +470,61 @@ public class Modele
 		HashMap<String, Article> articles = new HashMap<String, Article>();
 		try
 		{
-			statement = ds.getConnection().prepareStatement("select onglet, contenu from article where onglet = 'pain' or onglet = 'lait' or onglet = 'famille' or onglet = 'menu' or onglet = 'alimentation' or onglet = 'spectacle' or onglet = 'accueil_atelier'");
+			statement = ds.getConnection().prepareStatement(
+					"select article.id_article, article.titre as article_titre, contenu from projet, article where projet.id_projet = article.id_projet and projet.titre like 'atelier'");
 			result = statement.executeQuery();
 			while(result.next())
 			{
-				switch(result.getString("onglet"))
+				switch(result.getString("article_titre"))
 				{
-				case "pain" :
-					articles.put("pain", new Article(-1,"","",result.getString("contenu")));
+				case "Le pain" :
+					articles.put("Le pain", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
 					break;
-				case "lait" :
-					articles.put("lait", new Article(-1,"","",result.getString("contenu")));
+				case "Le lait" :
+					articles.put("Le lait", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
 					break;
-				case "famille" :
-					articles.put("famille", new Article(-1,"","",result.getString("contenu")));
+				case "Les 7 familles" :
+					articles.put("Les 7 familles", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
 					break;
-				case "menu" :
-					articles.put("menu", new Article(-1,"","",result.getString("contenu")));
+				case "Le menu équilibré" :
+					articles.put("Le menu équilibré", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
 					break;
-				case "alimentation" :
-					articles.put("alimentation", new Article(-1,"","",result.getString("contenu")));
+				case "Alimentation et environnement" :
+					articles.put("Alimentation et environnement", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
 					break;
-				case "spectacle" :
-					articles.put("spectacle", new Article(-1,"","",result.getString("contenu")));
+				case "Le spectacle" :
+					articles.put("Le spectacle", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
 					break;
-				case "accueil_atelier" :
-					articles.put("accueil_atelier", new Article(-1,"","",result.getString("contenu")));
+				case "accueil" :
+					articles.put("accueil", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
 					break;
 				}
 			}
-
+			
+			statement.close();
+			String query = "select chemin, titre, nom from media, article where media.id_article = article.id_article and media.id_article in (";
+			
+			boolean firstLine = true;					
+			for(Map.Entry<String, Article> article : articles.entrySet())
+			{
+				if(firstLine)
+				{
+					query += article.getValue().getId();
+					firstLine = false;
+				}
+				else
+					query += "," + article.getValue().getId();
+			}
+			
+			query += ")";
+			System.out.println(query);
+			statement = ds.getConnection().prepareStatement(query);
+			result = statement.executeQuery();
+			
+			while(result.next())
+			{
+				articles.get(result.getString("titre")).getMedias().add(new Media(result.getString("chemin"), result.getString("nom")));
+			}
 		} catch (Exception e){
 			e.printStackTrace();
 			return null;
@@ -529,16 +555,16 @@ public class Modele
 				switch(result.getString("onglet"))
 				{
 				case "clown" :
-					articles.put("clown", new Article(-1,"","",result.getString("contenu")));
+					//articles.put("clown", new Article(-1,"","",result.getString("contenu")));
 					break;
 				case "pratique_sensoriel" :
-					articles.put("pratique_sensoriel", new Article(-1,"","",result.getString("contenu")));
+					//articles.put("pratique_sensoriel", new Article(-1,"","",result.getString("contenu")));
 					break;
 				case "expression_corporelle" :
-					articles.put("expression_corporelle", new Article(-1,"","",result.getString("contenu")));
+					//articles.put("expression_corporelle", new Article(-1,"","",result.getString("contenu")));
 					break;
 				case "accueil_demarche" :
-					articles.put("accueil_demarche", new Article(-1,"","",result.getString("contenu")));
+					//articles.put("accueil_demarche", new Article(-1,"","",result.getString("contenu")));
 					break;
 				}
 			}
@@ -573,7 +599,7 @@ public class Modele
 			
 			if(result.next())
 			{
-				article = new Article(-1, "", "", result.getString("contenu"));
+				//article = new Article(-1, "", "", result.getString("contenu"));
 			}
 		}
 		catch(Exception e)

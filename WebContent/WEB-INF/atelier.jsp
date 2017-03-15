@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.HashMap,tools.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,6 +12,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="style.css" />
+<% HashMap<String, Article> articles = (HashMap<String, Article>)request.getAttribute("articles");  %>
 <script>
 	var show_per_page = 18;
 	var current_page = 0;
@@ -180,35 +181,35 @@
 			<input id="bt_spectacle" type="image" class="img-circle bt_image" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTO_ILLUSTRATION/clown-1678004_1920.jpg" title="Le spectacle" alt="image de spectacle" width="156" height="156">
 		</div>
 		<div class="row col-md-10 col-sm-offset-1" id="textAtelier">
-			<p align="justify"><%= request.getAttribute("accueil_atelier") %></p>
+			<p align="justify"><%= articles.get("accueil").getContenu() %></p>
 		</div>
 	</div>
 	<!----------------------------------- fin de categorie ---------------------------------------->
 	
 	<!----------------------------------- PAIN ---------------------------------------->
 	<div id="pain">
-		<h2>Le Pain</h2><br>
+		<h2><%= articles.get("Le pain").getTitre() %></h2><br>
 		<div class="row">
 			<div class="col-md-6">
 				<img width="85%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTO_ILLUSTRATION/pain.jpg" title="image de pain" alt="image de pain">
 			</div>
 			<div class="col-md-5">
-				<p align="justify"><%= request.getAttribute("pain") %></p>
+				<p align="justify"><%= articles.get("Le pain").getContenu() %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
-				%>
-				<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
-				<%
+					%>
+					<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
+					<%
 				}
 				%>
 				<br>
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTOS_ENFANTS/P1070515.JPG" alt="photo enfant - atelier pain">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTOS_ENFANTS/P1070524.JPG" alt="photo enfant - atelier pain">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTOS_ENFANTS/P1070533.JPG" alt="photo enfant - atelier pain">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTOS_ENFANTS/P1070543.JPG" alt="photo enfant - atelier pain">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTOS_ENFANTS/P1070552.JPG" alt="photo enfant - atelier pain">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_1_DU_BLE_AU_PAIN/PHOTOS_ENFANTS/P1070554.JPG" alt="photo enfant - atelier pain">
+				<% 
+				for(Media media : articles.get("Le pain").getMedias())
+				{
+					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+				}
+				%>
 			</div>
 		</div>
 	</div>
@@ -216,13 +217,13 @@
 	
 	<!----------------------------------- LAIT ---------------------------------------->
 	<div id="lait">
-		<h2>Le Lait</h2><br>
+		<h2><%= articles.get("Le lait").getTitre() %></h2><br>
 		<div class="row">
 			<div class="col-md-6">
 				<img width="35%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTO_ILLUSTRATION/lait.jpg" title="image de lait" alt="image de lait">
 			</div>
 			<div class="col-md-5">
-				<p align="justify"><%= request.getAttribute("lait") %></p>
+				<p align="justify"><%= articles.get("Le lait").getContenu() %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
@@ -232,12 +233,12 @@
 				}
 				%>
 				<br>
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTOS_ENFANTS/P_20170209_144603_R.jpg" alt="photo enfant - atelier lait">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTOS_ENFANTS/P_20170209_145415_R.jpg" alt="photo enfant - atelier lait">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTOS_ENFANTS/P_20170209_145430.jpg" alt="photo enfant - atelier lait">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTOS_ENFANTS/P_20170209_145841.jpg" alt="photo enfant - atelier lait">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTOS_ENFANTS/P_20170209_150600.jpg" alt="photo enfant - atelier lait">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_2_LE_LAIT_ET_SES_DERIVES/PHOTOS_ENFANTS/P_20170209_150818.jpg" alt="photo enfant - atelier lait">
+				<% 
+				for(Media media : articles.get("Le lait").getMedias())
+				{
+					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+				}
+				%>
 			</div>
 		</div>
 	</div>
@@ -245,13 +246,13 @@
 	
 	<!----------------------------------- 7 FAMILLES ---------------------------------------->
 	<div id="familles">
-		<h2>Les 7 Familles</h2><br>
+		<h2><%= articles.get("Les 7 familles").getTitre() %></h2><br>
 		<div class="row">
 			<div class="col-md-6">
 				<img width="85%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image des 7 familles" alt="image des 7 familles">
 			</div>
 			<div class="col-md-5">
-				<p align="justify"><%= request.getAttribute("famille") %></p>
+				<p align="justify"><%= articles.get("Les 7 familles").getContenu() %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
@@ -261,13 +262,12 @@
 				}
 				%>
 				<br>
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTOS_ENFANTS/P_20170302_144319_R.jpg" alt="photo enfant - atelier 7 familles">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTOS_ENFANTS/P_20170302_144509.jpg" alt="photo enfant - atelier 7 familles">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTOS_ENFANTS/P_20170302_145849_R.jpg" alt="photo enfant - atelier 7 familles">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTOS_ENFANTS/P_20170302_151218_R.jpg" alt="photo enfant - atelier 7 familles">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTOS_ENFANTS/P_20170302_153058.jpg" alt="photo enfant - atelier 7 familles">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTOS_ENFANTS/P_20170302_153734.jpg" alt="photo enfant - atelier 7 familles">
-			</div>
+<% 
+				for(Media media : articles.get("Les 7 familles").getMedias())
+				{
+					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+				}
+				%>			</div>
 		</div>
 	</div>
 	
@@ -275,20 +275,27 @@
 	
 	<!----------------------------------- MENU EQUILIBRE ---------------------------------------->
 	<div id="menu">
-		<h2>Le Menu Equilibré</h2><br>
+		<h2><%= articles.get("Le menu équilibré").getTitre() %></h2><br>
 		<div class="row">
 			<div class="col-md-6">
 				<img width="85%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_4_UN_MENU_EQUILIBRE/PHOTO_ILLUSTRATION/Fotolia_135759645_S-1.jpg" title="image de fruits et légumes" alt="image de fruits et légumes">
 			</div>
 			<div class="col-md-5">
 
-				<p align="justify"><%= request.getAttribute("menu") %></p>
+				<p align="justify"><%= articles.get("Le menu équilibré").getContenu() %>/p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
 				%>
 				<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
 				<%
+				}
+				%>
+				<br>
+				<% 
+				for(Media media : articles.get("Le menu équilibré").getMedias())
+				{
+					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
 				}
 				%>
 			</div>
@@ -300,20 +307,27 @@
 	
 	<!----------------------------------- ALIMENTATION ---------------------------------------->
 	<div id="alimentation">
-		<h2>Alimentation et Environnement</h2><br>
+		<h2><%= articles.get("Alimentation et environnement").getTitre() %></h2><br>
 		<div class="row">
 			<div class="col-md-6">
 				<img width="85%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_5_LE_PARCOURS_DU_YAOURT_A_LA_FRAISE/PHOTO_ILLUSTRATION/Fotolia_139412392_S-1.jpg" title="image de yaourt et fraise" alt="image de yaourt et fraise">
 			</div>
 			<div class="col-md-5">
 
-				<p align="justify"><%= request.getAttribute("alimentation") %></p>
+				<p align="justify"><%= articles.get("Alimentation et environnement").getContenu() %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
 				%>
 				<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
 				<%
+				}
+				%>
+				<br>
+				<% 
+				for(Media media : articles.get("Alimentation et environnement").getMedias())
+				{
+					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
 				}
 				%>
 			</div>
@@ -326,14 +340,14 @@
 	
 	<!----------------------------------- SPECTACLE ---------------------------------------->
 	<div id="spectacle">
-		<h2>Le Spectacle</h2><br>
+		<h2><%= articles.get("Le spectacle").getTitre() %></h2><br>
 		<div class="row">
 			<div class="col-md-6">
 				<img width="85%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTO_ILLUSTRATION/clown-1678004_1920.jpg" title="Le spectacle" alt="image de spectacle et fraise">
 			</div>
 			<!-- padding de 5% dans style.css (ligne 59) -->
 			<div class="col-md-5">
-					<p align="justify"><%= request.getAttribute("spectacle") %></p>
+					<p align="justify"><%= articles.get("Le spectacle").getContenu() %></p>
 			</div>
 			<div class="col-md-5">
 			<%
@@ -345,14 +359,12 @@
 				}
 				%>
 				<br>
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/10687385_1007352505978324_2895073862515994972_o.jpg" alt="photo enfant - le spectacle">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/12604844_1007352812644960_4199858945908434600_o.jpg" alt="photo enfant - le spectacle">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/P1060829.JPG" alt="photo enfant - le spectacle">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/P1060885.JPG" alt="photo enfant - le spectacle">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/P1070230.JPG" alt="photo enfant - le spectacle">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/P1070249.JPG" alt="photo enfant - le spectacle">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/P1070276.JPG" alt="photo enfant - le spectacle">
-				<img class="myImg img-thumbnail" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/P1070230.JPG" alt="photo enfant - le spectacle">
+				<% 
+				for(Media media : articles.get("Le spectacle").getMedias())
+				{
+					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+				}
+				%>
 			</div>
 		</div>
 	</div>
