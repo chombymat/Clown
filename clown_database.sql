@@ -126,22 +126,22 @@ insert into media(id_article, chemin, nom, type) values(6, 'images/ONGLET_LES_AT
 insert into media(id_article, chemin, nom, type) values(6, 'images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/P1070276.JPG', 'photo enfant spectacle 6', 'photo');
 insert into media(id_article, chemin, nom, type) values(6, 'images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTOS_ENFANTS/P1060829.JPG', 'photo enfant spectacle 7', 'photo');
 
-insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/Deambulation-clowns-prima-porta-bien-etre-21.jpg', 'photo clown - Clair', 'photo');
-insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/Deambulation-clowns-prima-porta-bien-etre-32.jpg', 'photo clown - Clair', 'photo');
-insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/MG_4032.jpg', 'photo clown - Clair', 'photo');
-insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/MG_4037.jpg', 'photo clown - Clair', 'photo');
-insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/MG_4204.jpg', 'photo clown - Clair', 'photo');
-insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/MG_4211.jpg', 'photo clown - Clair', 'photo');
+insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/Deambulation-clowns-prima-porta-bien-etre-21.jpg', 'photo clown - Claire', 'photo_claire');
+insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/Deambulation-clowns-prima-porta-bien-etre-32.jpg', 'photo clown - Claire', 'photo_claire');
+insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/MG_4032.jpg', 'photo clown - Claire', 'photo_claire');
+insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/MG_4037.jpg', 'photo clown - Claire', 'photo_claire');
+insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/MG_4204.jpg', 'photo clown - Claire', 'photo_claire');
+insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/MG_4211.jpg', 'photo clown - Claire', 'photo_claire');
 
-insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P_20170209_141428.jpg', 'photo clown - Virginie', 'photo');
-insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P_20170209_142253.jpg', 'photo clown - Virginie', 'photo');
-insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P_20170209_142753.jpg', 'photo clown - Virginie', 'photo');
-insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1060614.JPG', 'photo clown - Virginie', 'photo');
-insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1060617.JPG', 'photo clown - Virginie', 'photo');
-insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1060691.JPG', 'photo clown - Virginie', 'photo');
-insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1060700.JPG', 'photo clown - Virginie', 'photo');
-insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1070070.JPG', 'photo clown - Virginie', 'photo');
-insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1070097.JPG', 'photo clown - Virginie', 'photo');
+insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P_20170209_141428.jpg', 'photo clown - Virginie', 'photo_virginie');
+insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P_20170209_142253.jpg', 'photo clown - Virginie', 'photo_virginie');
+insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P_20170209_142753.jpg', 'photo clown - Virginie', 'photo_virginie');
+insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1060614.JPG', 'photo clown - Virginie', 'photo_virginie');
+insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1060617.JPG', 'photo clown - Virginie', 'photo_virginie');
+insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1060691.JPG', 'photo clown - Virginie', 'photo_virginie');
+insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1060700.JPG', 'photo clown - Virginie', 'photo_virginie');
+insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1070070.JPG', 'photo clown - Virginie', 'photo_virginie');
+insert into media(id_article, chemin, nom, type) values(8, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/VIRGINIE2/P1070097.JPG', 'photo clown - Virginie', 'photo_virginie');
 
 insert into media(id_article, chemin, nom, type) values(9, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_ATELIER_PRATIQUE_ET_SENSORIEL/2015-12-17_15.43.00.jpg', 'photo enfant - Pratique et Sensoriel', 'photo');
 insert into media(id_article, chemin, nom, type) values(9, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_ATELIER_PRATIQUE_ET_SENSORIEL/2015-12-17_15.30.53.jpg', 'photo enfant - Pratique et Sensoriel', 'photo');
@@ -150,7 +150,7 @@ insert into media(id_article, chemin, nom, type) values(9, 'images/ONGLET_LA_DEM
 insert into media(id_article, chemin, nom, type) values(9, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_ATELIER_PRATIQUE_ET_SENSORIEL/2015-12-17_15.40.34.jpg', 'photo enfant - Pratique et Sensoriel', 'photo');
 insert into media(id_article, chemin, nom, type) values(9, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_ATELIER_PRATIQUE_ET_SENSORIEL/P1070143.JPG', 'photo enfant - Pratique et Sensoriel', 'photo');
 
-insert into media(id_article, chemin, nom, type) values(10, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_EXPRESSION_CORPORELLE/Capture_lenny_2.PNG', 'photo enfant - Expression Corporelle', 'photo');
+insert into media(id_article, chemin, nom, type) values(10, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_EXPRESSION_CORPORELLE/Capture_lenny_2.PNG', 'S''il vous plaut tué moi #JeSuisLenny', 'photo');
 insert into media(id_article, chemin, nom, type) values(10, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_EXPRESSION_CORPORELLE/2015-12-17_15.47.33.jpg', 'photo enfant - Expression Corporelle', 'photo');
 insert into media(id_article, chemin, nom, type) values(10, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_EXPRESSION_CORPORELLE/2015-12-17_15.51.44.jpg', 'photo enfant - Expression Corporelle', 'photo');
 insert into media(id_article, chemin, nom, type) values(10, 'images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_EXPRESSION_CORPORELLE/2015-12-17_15.52.08.jpg', 'photo enfant - Expression Corporelle', 'photo');

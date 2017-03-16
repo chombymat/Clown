@@ -546,9 +546,8 @@ public class Modele
 				}
 			}
 			
-
 			statement.close();
-			String query = "select chemin, titre, nom from media, article where media.id_article = article.id_article and media.id_article in (";
+			String query = "select id_media, chemin, titre, nom, type from media, article where media.id_article = article.id_article and media.id_article in (";
 			
 			boolean firstLine = true;					
 			for(Map.Entry<String, Article> article : articles.entrySet())
@@ -568,7 +567,7 @@ public class Modele
 			
 			while(result.next())
 			{
-				articles.get(result.getString("titre")).getMedias().add(new Media(result.getString("chemin"), result.getString("nom")));
+				articles.get(result.getString("titre")).getMedias().add(new Media(result.getInt("id_media"), result.getString("chemin"), result.getString("nom"), result.getString("type")));
 			}
 
 		} catch (Exception e){

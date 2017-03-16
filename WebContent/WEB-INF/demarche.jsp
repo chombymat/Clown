@@ -175,7 +175,10 @@ $(document).ready(function() {
 				<h3>Claire</h3><br>
 				<% 
 				for(Media media : articles.get("Clown").getMedias()) {
+					if(media.getType().equals("photo_claire"))
+					{
 					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+					}
 				}
 				%>
 			</div>
@@ -183,7 +186,10 @@ $(document).ready(function() {
 				<h3>Virginie</h3><br>
 				<% 
 				for(Media media : articles.get("Clown").getMedias()) {
+					if(media.getType().equals("photo_virginie"))
+					{
 					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+					}
 				}
 				%>
 			</div>
