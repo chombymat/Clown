@@ -204,12 +204,17 @@
 				}
 				%>
 				<br>
+				<div class="scroll-bar-wrap">
+				<div class="scroll-box">
 				<% 
 				for(Media media : articles.get("Le pain").getMedias())
 				{
 					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
 				}
 				%>
+				</div>
+				<div class="cover-bar"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -233,15 +238,20 @@
 				}
 				%>
 				<br>
+				<div class="scroll-bar-wrap">
+				<div class="scroll-box">
 				<% 
 				for(Media media : articles.get("Le lait").getMedias())
 				{
 					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
 				}
 				%>
+				</div>
+				<div class="cover-bar"></div>
+				</div>
+				</div>
 			</div>
 		</div>
-	</div>
 	
 	
 	<!----------------------------------- 7 FAMILLES ---------------------------------------->
@@ -262,14 +272,20 @@
 				}
 				%>
 				<br>
-<% 
+				<div class="scroll-bar-wrap">
+				<div class="scroll-box">
+				<% 
 				for(Media media : articles.get("Les 7 familles").getMedias())
 				{
 					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
 				}
-				%>			</div>
+				%>
+				</div>
+				<div class="cover-bar"></div>
+				</div>
+				</div>
+			</div>
 		</div>
-	</div>
 	
 	
 	
@@ -292,15 +308,20 @@
 				}
 				%>
 				<br>
+				<div class="scroll-bar-wrap">
+				<div class="scroll-box">
 				<% 
 				for(Media media : articles.get("Le menu équilibré").getMedias())
 				{
 					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
 				}
 				%>
+				</div>
+				<div class="cover-bar"></div>
+				</div>
+				</div>
 			</div>
 		</div>
-	</div>
 	
 	
 	
@@ -324,12 +345,17 @@
 				}
 				%>
 				<br>
+				<div class="scroll-bar-wrap">
+				<div class="scroll-box">
 				<% 
 				for(Media media : articles.get("Alimentation et environnement").getMedias())
 				{
 					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
 				}
 				%>
+				</div>
+				<div class="cover-bar"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -359,15 +385,20 @@
 				}
 				%>
 				<br>
+				<div class="scroll-bar-wrap">
+				<div class="scroll-box">
 				<% 
 				for(Media media : articles.get("Le spectacle").getMedias())
 				{
 					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
 				}
 				%>
+				</div>
+				<div class="cover-bar"></div>
+				</div>
+				</div>
 			</div>
 		</div>
-	</div>
 	
 	
 	<!-- The Modal -->
