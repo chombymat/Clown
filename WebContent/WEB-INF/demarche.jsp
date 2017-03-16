@@ -22,7 +22,6 @@ function hideAll(){
 	$('#pratique').hide();
 	$('#expression').hide();
 }
-
 function hideOnglet(){
 	$('#presentation_clown').hide();
 	$('#les_clowns').hide();
@@ -31,7 +30,6 @@ function hideOnglet(){
 }
 $(document).ready(function() {
 	hideOnglet();
-
 	<%
 	if(request.getParameter("page") != null)
 	{
@@ -52,65 +50,38 @@ $(document).ready(function() {
 		}
 	}
 	%>
-
-
-	var modal = document.getElementById('myModal');
-				
+	var modal = document.getElementById('myModal');		
 	var span = document.getElementsByClassName("close")[0];
-
 	$('.myImg').on('click', function() {
 		$('html, body').css({
 		overflow : 'hidden',
 		height : '100%'
 	});
-		
 	$('#myModal').attr('style', 'display: block');
 		$('#img01').attr('src', $(this).attr('src'));
 		$('#caption').html($(this).attr('alt'));
 		$('#id' + current_page).removeClass('active');
 	});
-		
 	$('#bt_clown').on('click', function(){
 		hideAll();
 		$('#presentation_clown').show();
 		$('#les_clowns').show();
 	});
-	
 	$('#bt_expression').on('click', function(){
 		hideAll();
 		$('#expression').show();
 	});
-	
 	$('#bt_pratique').on('click', function(){
 		hideAll();
 		$('#pratique').show();
 	});
-	
 	span.onclick = function() {
 		$('html, body').css({
 			overflow : 'auto',
 			height : 'auto'
 		});
 		modal.style.display = "none";
-		$('#id' + current_page).addClass('active');
 	}
-
-	var number_of_pages = Math.ceil($('#content').children().length	/ show_per_page);
-
-	var nav = '<ul class="pagination"><li><a id="page" href="javascript:previous();">&laquo;</a>';
-
-	var i = -1;
-	while (number_of_pages > ++i) {
-		nav += '<li class="page_link'
-		if (!i)
-			nav += ' active';
-		nav += '" id="id' + i + '">';
-		nav += '<a id="page" href="javascript:go_to_page(' + i + ')">' + (i + 1) + '</a>';
-	}
-	nav += '<li><a id="page" href="javascript:next();">&raquo;</a></ul>';
-
-	$('#page_navigation').html(nav);
-	set_display(0, show_per_page);
 });
 </script>
 </head>
@@ -184,12 +155,17 @@ $(document).ready(function() {
 			<div class="col-md-5">
 				<p align="justify"><%= articles.get("Pratique et sensoriel").getContenu() %></p>
 				<br>
+				<div id="pratique" class="scroll-bar-wrap">
+				<div class="scroll-box">
 				<% 
 				for(Media media : articles.get("Pratique et sensoriel").getMedias())
 				{
 					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
 				}
 				%>
+				</div>
+				<div class="cover-bar"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -205,13 +181,19 @@ $(document).ready(function() {
 			<div class="col-md-5">
 				<p align="justify"><%= articles.get("Expression Corporelle").getContenu() %></p>
 				<br>
+				<div id="expression" class="scroll-bar-wrap">
+				<div class="scroll-box">
 				<% 
 				for(Media media : articles.get("Expression Corporelle").getMedias())
 				{
 					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
 				}
 				%>
+				</div>
+				<div class="cover-bar"></div>
+				</div>
 			</div>
+				
 		</div>
 	</div>
 	
