@@ -23,22 +23,23 @@ h3{color: #C21950; font-family: Serif;}
 }
 .scroll-box {
   width: 100%;
-  height: 350px;
+  height: 475px;
   overflow-y: scroll;
 }
 .scroll-box::-webkit-scrollbar {
   width: .4em; 
+  border-radius: 10px;
 }
 
 .scroll-box::-webkit-scrollbar-thumb {
   overflow:visible;
   background:#f5f5dc;
-  border-radius: 100px;
+  border-radius: 10px;
 }
 .scroll-box::-webkit-scrollbar {
 	background:#c21950;
 	overflow:visible;
-	border-radius: 100px;
+	border-radius: 10px;
 }
 
 .scroll-box::-webkit-scrollbar-thumb {
@@ -52,8 +53,6 @@ h3{color: #C21950; font-family: Serif;}
   right: 0;
   width: .4em;
   -webkit-transition: all .5s;
-  opacity: 1;
-  border-radius: 100px;
 }
 /* MAGIC HAPPENS HERE */
 .scroll-bar-wrap:hover .cover-bar {
