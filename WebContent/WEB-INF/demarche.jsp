@@ -15,33 +15,6 @@
 <link rel="stylesheet" href="style.css" />
 <% HashMap<String, Article> articles = (HashMap<String, Article>)request.getAttribute("articles");  %>
 <script>
-var show_per_page = 18;
-var current_page = 0;
-
-function set_display(first, last) {
-	$('#content').children().css('display', 'none');
-	$('#content').children().slice(first, last).css('display', 'block');
-}
-
-function previous() {
-	if ($('.active').prev('.page_link').length)
-		go_to_page(current_page - 1);
-}
-
-function next() {
-	if ($('.active').next('.page_link').length)
-		go_to_page(current_page + 1);
-}
-
-function go_to_page(page_num) {
-	current_page = page_num;
-	start_from = current_page * show_per_page;
-	end_on = start_from + show_per_page;
-	set_display(start_from, end_on);
-	$('.active').removeClass('active');
-	$('#id' + page_num).addClass('active');
-}
-
 function hideAll(){
 	$('#textDemarche').hide();
 	$('#presentation_clown').hide();
@@ -56,9 +29,7 @@ function hideOnglet(){
 	$('#pratique').hide();
 	$('#expression').hide();
 }
-
 $(document).ready(function() {
-	
 	hideOnglet();
 
 	<%
@@ -161,18 +132,14 @@ $(document).ready(function() {
 	
 	<div id="presentation_clown">
 		<h2><%= articles.get("Clown").getTitre() %></h2><br>
-		<div class="row">
-			<div class="col-md-12">
-				<img class="img-circle ovale" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE">
-				<img class="img-circle ovale" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE_2.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE">
-			</div>
-		</div>
 	</div>
-	
 	<div id="les_clowns">
 		<div class="row">
 			<div class="col-sm-offset-1 col-md-5">
+				<img class="img-circle ovale" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE">
 				<h3>Claire</h3><br>
+				<div id="claire" class="scroll-bar-wrap" >
+				<div class="scroll-box">
 				<% 
 				for(Media media : articles.get("Clown").getMedias()) {
 					if(media.getType().equals("photo_claire"))
@@ -181,9 +148,15 @@ $(document).ready(function() {
 					}
 				}
 				%>
+				</div>
+				<div class="cover-bar"></div>
+				</div>
 			</div>
 			<div class="col-md-5">
+				<img class="img-circle ovale" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE_2.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE">
 				<h3>Virginie</h3><br>
+				<div id="virginie" class="scroll-bar-wrap">
+				<div class="scroll-box">
 				<% 
 				for(Media media : articles.get("Clown").getMedias()) {
 					if(media.getType().equals("photo_virginie"))
@@ -192,6 +165,9 @@ $(document).ready(function() {
 					}
 				}
 				%>
+				</div>
+				<div class="cover-bar"></div>
+				</div>
 			</div>
 		</div>
 	</div>
