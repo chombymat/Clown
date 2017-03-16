@@ -106,7 +106,7 @@ $(document).ready(function() {
   <div class="col-md-4 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="nom" placeholder="Nom" class="form-control"  type="text">
+  <input name="nom" placeholder="Nom" class="form-control" type="text" required>
     </div>
   </div>
 </div>
@@ -118,7 +118,7 @@ $(document).ready(function() {
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="prenom" placeholder="Prénom" class="form-control"  type="text">
+  <input name="prenom" placeholder="Prénom" class="form-control" type="text" required>
     </div>
   </div>
 </div>
@@ -129,7 +129,7 @@ $(document).ready(function() {
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input name="email" placeholder="Adresse E-Mail" class="form-control"  type="text">
+  <input type="email" name="email" placeholder="Adresse E-Mail" class="form-control" type="text" required>
     </div>
   </div>
 </div>
@@ -142,7 +142,7 @@ $(document).ready(function() {
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-  <input name="telephone" placeholder="03 12 34 56 78" class="form-control" type="text">
+		  <input name="telephone" placeholder="03 12 34 56 78" class="form-control" type="text">
     </div>
   </div>
 </div>
@@ -223,7 +223,7 @@ $(document).ready(function() {
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-        	<textarea class="form-control" name="message" placeholder="Votre message ici ..."></textarea>
+        	<textarea class="form-control" name="message" placeholder="Votre message ici ..." required></textarea>
   </div>
   </div>
 </div>

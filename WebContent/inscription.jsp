@@ -18,13 +18,14 @@
 	<script>
 		$(document).ready(function()
 		{
+
 			$("#form").on('submit', function(e)
 			{
 				e.preventDefault();
 				
 				$('#erreur_mail').html("");
 				$('#erreur_login').html("");
-				
+
 				if($('#pass').val() === $('#pass2').val())
 				{
 					var $form = $(this);
@@ -40,28 +41,29 @@
 			            	inscriptionMail : $('#mail').val(),
 			            	initialisation : "true"
 			            },
-			            success : function(data, textStatus, jqXHR)
-			            {
-			            	if(data === "ok")
-			            	{
-			            		if(request.getAttribute("retourInscription") == "inscription ok")
-			            			window.location.replace("./");
-			            	}
-			            	else if(data === "mail")
-			            	{
-			            		if(request.getAttribute("retourInscription") == "mail existant")
-			            			$('#erreur_mail').html("Adresse email déjà existante.");         	
-			            	}else if(data === "login")
-			            	{
-			            		if(request.getAttribute("retourInscription") == "login existant")
-			            			$('#erreur_login').html("Identifiant déjà existant.");         	
+			            success : function(data, textStatus, jqXHR){
+			            	console.log(data);
+
+			            	if(data === "inscription ok"){
+			            		$('#success_message').show();         	
+			            		$("#form")[0].reset();
+			            	} else if(data === "mail existant"){
+			            		$('#erreur').html("");
+			            		$('#erreur_login').html("");
+			            		$('#erreur_mail').html("Adresse email déjà existante.");         	
+			            	} else if(data === "login existant"){
+			            		$('#erreur').html("");
+			            		$('#erreur_mail').html("");
+			            		$('#erreur_login').html("Identifiant déjà existant.");
 			            	}
 			            }
 			        });
 				}
 				else
 				{
-					$('#erreur').html("Les mots de passe saisie ne correspondent pas.")	
+            		$('#erreur_login').html("");
+            		$('#erreur_mail').html("");
+					$('#erreur').html("Les mots de passe saisie ne correspondent pas.");
 				}
 			});
 			
@@ -74,10 +76,10 @@
 		<p>Veuillez activer le JavaScript afin de continuer.</p>
 	</noscript>
 	<form id="form" class="form-horizontal form-inscription" method="post" action="./Inscription">
+		<span id="erreur_login" class="erreur">${ erreur }</span>
 		<div class="form-group">
 			<label class="control-label col-sm-5">Identifiant:</label>
 			<div class="col-sm-2">
-				<span id="erreur_login" class="erreur">${ erreur }</span>
 				<input type="text" class="form-control" placeholder="Identifiant" id="inscriptionLogin" required>
 			</div>
 		</div>
@@ -120,6 +122,8 @@
 			</div>
 		</div>
 	</form>
+	<div class="alert alert-success" role="alert" id="success_message"><i class="glyphicon glyphicon-thumbs-up"></i> Votre inscription a été pris en compte, nous faisons notre possible pour vous répondre rapidement par mail.</div>
+		
 	<%@include file="/WEB-INF/footer.html"%>
 	
 	</body>

@@ -203,11 +203,10 @@ public class Modele
 
 			PreparedStatement statement2 = con.prepareStatement("select from utilisateur where login = ?");
 			statement2.setString(1, login);
-			result = statement.executeQuery();
+			result = statement2.executeQuery();
 
 			if(result.next())
 				return "login existant";
-
 			PreparedStatement statement3 = con.prepareStatement("insert into utilisateur (nom, prenom, adresse_mail, login, prima_pass) values(?, ?, ?, ?, ?)");
 			statement3.setString(1, nom);
 			statement3.setString(2, prenom);
@@ -215,7 +214,7 @@ public class Modele
 			statement3.setString(4, login);
 			statement3.setString(5, cryptPass(pass));
 
-			statement.executeUpdate();
+			statement3.executeUpdate();
 			return "inscription ok";
 		} catch (Exception e) {
 			e.printStackTrace();
