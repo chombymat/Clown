@@ -204,16 +204,11 @@ $(document).ready(function() {
 				<div class="cover-bar"></div>
 				</div>
 			</div>
-				
 		</div>
 	</div>
-	
-	<div id="presentationDemarche"><a href="./Demarche"><button class="btn btn-sample">Pr&eacute;sentation de la d&eacute;marche</button></a></div>
-	
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
-		<span class="close">&times;</span> <img class="modal-content"
-			id="img01">
+		<span class="close">&times;</span> <img class="modal-content" id="img01">
 		<div id="caption"></div>
 	</div>
 	<%@include file="/WEB-INF/footer.html"%>

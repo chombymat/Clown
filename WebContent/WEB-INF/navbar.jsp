@@ -140,6 +140,7 @@
             <ul class="nav navbar-nav">
               <li class="dropdown"><a class="dropdown-toggle titre" data-toggle="dropdown" >La démarche<span class="caret"></span></a>
 			      <ul class="dropdown-menu">
+    			    <li><a href="./Demarche">Présentation de la démarche</a></li>
 			        <li><a href="./Demarche?page=clown">Le clown</a></li>
 			        <li><a href="./Demarche?page=pratique">Pratique et sensoriel</a></li>
 			        <li><a href="./Demarche?page=expression">Expression corporelle</a></li>
@@ -147,7 +148,7 @@
 			    </li>
 				<li class="dropdown"><a class="dropdown-toggle titre" data-toggle="dropdown">Les ateliers<span class="caret"></span></a>
 			      <ul class="dropdown-menu">
-			      <li><a href="./Atelier">Présentatin des ateliers</a></li>
+			      <li><a href="./Atelier">Présentation des ateliers</a></li>
 			        <li><a href="./Atelier?page=pain">Atelier 1 : Le pain</a></li>
 			        <li><a href="./Atelier?page=lait">Atelier 2 : Le lait</a></li>
 			        <li><a href="./Atelier?page=famille">Atelier 3 : Les 7 familles</a></li>
