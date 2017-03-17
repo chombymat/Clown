@@ -199,7 +199,7 @@
 				if(session.getAttribute("user") != null) 
 				{
 					%>
-					<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
+					<a href="images/pdf/FICHE_ATELIER_1_-_DU_BLE_AU_PAIN.pdf" title="Pdf atelier pain">Du blé au pain (.pdf)</a>
 					<%
 				}
 				%>
@@ -233,7 +233,8 @@
 				if(session.getAttribute("user") != null) 
 				{
 				%>
-				<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
+				
+				<a href="images/pdf/FICHE_ATELIER_2_-_LE_LAIT_ET_SES_DERIVES.pdf" title="Pdf atelier Lait">Le lait et ses dérivés (.pdf)</a>
 				<%
 				}
 				%>
@@ -267,7 +268,7 @@
 				if(session.getAttribute("user") != null) 
 				{
 				%>
-				<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
+				<a href="images/pdf/FICHE_ATELIER_3_-_LE_CLASSEMENT_DES_ALIMENTS.pdf" title="Pdf atelier 7 familles">Le classement des aliments (.pdf)</a>
 				<%
 				}
 				%>
@@ -303,7 +304,7 @@
 				if(session.getAttribute("user") != null) 
 				{
 				%>
-				<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
+				<a href="images/pdf/FICHE_ATELIER_4_-_UN_MENU_EQUILIBRE.pdf" title="Pdf atelier menu équilibré">Un menu equilibré (.pdf)</a>
 				<%
 				}
 				%>
@@ -340,7 +341,7 @@
 				if(session.getAttribute("user") != null) 
 				{
 				%>
-				<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
+				<a href="images/pdf/FICHE_ATELIER_5_-_LE_PARCOURS_DU_YAOURT_A_LA_FRAISE.pdf" title="Pdf atelier parcours du yaourt à la fraise">Le parcours du yaourt à la fraise (.pdf)</a>
 				<%
 				}
 				%>

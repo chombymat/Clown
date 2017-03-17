@@ -140,7 +140,7 @@
             <ul class="nav navbar-nav">
               <li class="dropdown"><a class="dropdown-toggle titre" data-toggle="dropdown" >La démarche<span class="caret"></span></a>
 			      <ul class="dropdown-menu">
-			        <li><a href="./Demarche?page=clown">Clown</a></li>
+			        <li><a href="./Demarche?page=clown">Le clown</a></li>
 			        <li><a href="./Demarche?page=pratique">Pratique et sensoriel</a></li>
 			        <li><a href="./Demarche?page=expression">Expression corporelle</a></li>
 			      </ul>
