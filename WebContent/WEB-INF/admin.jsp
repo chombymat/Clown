@@ -212,21 +212,36 @@
 		            	var json = jQuery.parseJSON(data);
 		            	var array = json.medias;
 		            	
+		            	$('#modif_article_image').html("");
 		            	for(var i = 0; i < array.length; i++)
 		            	{
-		            		console.log(array[i].chemin);
-		            		$('#modif_article_image').append("<img src=\"" + array[i].chemin + "\" style=\"margin-top: 5%; margin-left: 2%; margin-right=2%\" width=20% height=auto >");
+		            		$('#modif_article_image').append(
+		            				"<div><img class=\"myImg img-thumbnail\" data-value=\"" + array[i].id + "\" src=\"" + array[i].chemin + "\"><br>" + 
+		            				"<input data-value=\"" + array[i].id + "\" type=\"text\" value=\"" + array[i].nom + "\"><button data-value=\"" + array[i].id + "\" class=\"bt_delete_photo\">Supprimer</button></div>");
 		            	}
-		            	
+		            	bindBtDeletePhoto();
 		            	$('#contenu_article').val(json.contenu);
 		            }
 		        });
 			});
 			
+			$('#bt_submit_update').on('click', function(){
+				console.log("update texte");
+			});
+			
+			$('#bt_update_add_photo').on('click', function(){
+				console.log("add photo");
+			});
+			
 			$('#page_modif_article').hide();
-			
-			
 		});
+		
+		function bindBtDeletePhoto()
+		{
+			$('.bt_delete_photo').on('click', function(){
+				console.log("delete photo : " + $(this).attr('data-value'));
+			});
+		}
 	</script>
 	<button id="bt_add_article" class="btn btn-sample">Ajouter article</button> <button id="bt_modif_article" class="btn btn-sample">Modifier article</button>
 	
@@ -252,14 +267,6 @@
 					<button type="button" id="bt_url" class="btn btn-sample">Ajouter lien</button>
 					<input type="submit" class="btn btn-sample" value="Creer article"/>
 				</form>
-				<div id="saisir_url">
-					<br>
-					 <label for="lien_url">Lien : </label>
-					<input type="text" id="lien_url">
-					<label for="text_url">Texte : </label>
-					<input type="text" id="text_url">
-					<button type="button" id="bt_add_url" class="btn btn-sample">Ajouter</button>
-				</div>
 			
 			<div class="col-md-12">
 				<div id="images">			
@@ -275,26 +282,32 @@
 	
 	<div class="row" id="page_modif_article">
 		<div class="row col-md-12" id="modifier_article">
-				<p>Veuillez séléctionner l'article à modifier.</p>
-				<select id="select" default="">
-					<option disabled selected value hidden></option>
-					<option value="Le pain">Le pain</option>
-					<option value="Le lait">Le lait</option>
-					<option value="Les 7 familles">Les 7 familles</option>
-					<option value="Le menu équilibré">Le menu équilibré</option>
-					<option value="Alimentation et environnement">Alimentation et environnement</option>
-					<option value="Le spectacle">Le spectacle</option>
-					<option value="Clown">Clown</option>
-					<option value="Pratique et sensoriel">Pratique et sensoriel</option>
-					<option value="Expression Corporelle">Expression Corporelle</option>
-				</select>
+			<p>Veuillez séléctionner l'article à modifier.</p>
+			<select id="select" default="">
+				<option disabled selected value hidden></option>
+				<option value="Le pain">Le pain</option>
+				<option value="Le lait">Le lait</option>
+				<option value="Les 7 familles">Les 7 familles</option>
+				<option value="Le menu équilibré">Le menu équilibré</option>
+				<option value="Alimentation et environnement">Alimentation et environnement</option>
+				<option value="Le spectacle">Le spectacle</option>
+				<option value="Clown">Clown</option>
+				<option value="Pratique et sensoriel">Pratique et sensoriel</option>
+				<option value="Expression Corporelle">Expression Corporelle</option>
+			</select>
 		</div>
 		<div class="row">
-			<div class="col-md-5">
-				<textarea id="contenu_article" rows="15" cols="100" style="margin-top: 5%; margin-left: 3%"></textarea>
+			<div class="col-md-8">
+				<textarea id="contenu_article" rows="15" cols="80" style="margin-top: 2%; margin-left: 2%"></textarea><br><button id="bt_submit_update">Mettre à jour</button>
 			</div>
-			<div class="col-md-5" id="modif_article_image">
-				
+			<div class="col-md-3">
+				<div class="scroll-bar-wrap-admin">
+					<div id="modif_article_image" class="scroll-box-admin">
+					</div>
+					<div class="cover-bar">
+					</div>
+				</div>
+				<button id="bt_update_add_photo">Ajouter photo</button>
 			</div>
 		</div>
 	</div>
