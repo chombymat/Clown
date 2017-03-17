@@ -180,7 +180,7 @@
 			<input id="bt_alimentation" type="image" class="img-circle bt_image" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_5_LE_PARCOURS_DU_YAOURT_A_LA_FRAISE/PHOTO_ILLUSTRATION/Fotolia_139412392_S-1.jpg" title="Atelier 5 : Alimentation et environnement" alt="image de yaourt et fraise" width="156" height="156">
 			<input id="bt_spectacle" type="image" class="img-circle bt_image" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_LE_SPECTACLE/PHOTO_ILLUSTRATION/clown-1678004_1920.jpg" title="Le spectacle" alt="image de spectacle" width="156" height="156">
 		</div>
-		<div class="row col-md-10 col-sm-offset-1" id="textAtelier">
+		<div class="row col-md-11 col-sm-offset-1" id="textAtelier">
 			<p align="justify"><%= articles.get("accueil").getContenu() %></p>
 		</div>
 	</div>

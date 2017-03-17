@@ -94,7 +94,7 @@ $(document).ready(function() {
 	<input id="bt_pratique" type="image" class="img-circle bt_image" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Pratique et sensorielle" alt="Pratique et sensorielle" width="156" height="156" />
 	<input id="bt_expression" type="image" class="img-circle bt_image" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Expression corporelle" alt="Expression corporelle" width="156" height="156" />
 	</div>
-	<div class="row col-md-10 col-sm-offset-1" id="textDemarche">
+	<div class="row col-md-11 col-sm-offset-1" id="textDemarche">
 			<p align="justify"><%= articles.get("accueil").getContenu() %></p>
 	</div>
 	<!----------------------------------- fin de categorie ---------------------------------------->
@@ -189,7 +189,7 @@ $(document).ready(function() {
 			<div class="col-md-6">
 				<img width="85%" height="auto" src="images/ONGLET_LES_ATELIERS/SOUS_ONGLET_ATELIER_3_LE_CLASSEMENT_DES_ALIMENTS/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image d'expression corporelle" alt="image d'expression corporelle">
 			</div>
-			<div class="col-md-5">
+			<div class="col-md-6">
 				<p align="justify"><%= articles.get("Expression Corporelle").getContenu() %></p>
 				<br>
 				<div id="expression" class="scroll-bar-wrap">
@@ -206,6 +206,7 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
+	
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
 		<span class="close">&times;</span> <img class="modal-content" id="img01">
