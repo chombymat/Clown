@@ -267,7 +267,6 @@
 					<button type="button" id="bt_url" class="btn btn-sample">Ajouter lien</button>
 					<input type="submit" class="btn btn-sample" value="Creer article"/>
 				</form>
-			
 			<div class="col-md-12">
 				<div id="images">			
 				</div>
