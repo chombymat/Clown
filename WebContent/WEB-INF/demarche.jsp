@@ -106,9 +106,22 @@ $(document).ready(function() {
 	</div>
 	<div id="les_clowns">
 		<div class="row">
-			<div class="col-sm-offset-1 col-md-5">
+			<div class="col-sm-offset-1 col-md-3">
 				<img class="img-circle ovale" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE">
 				<h3>Claire</h3><br>
+				
+			</div>
+			<div class="col-md-4">
+				<p align="justify"><%= articles.get("Clown").getContenu() %></p>
+			</div>
+			<div class="col-md-4">
+				<img class="img-circle ovale" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE_2.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE">
+				<h3>Virginie</h3><br>
+				
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-offset-1 col-md-5">
 				<div id="claire" class="scroll-bar-wrap" >
 				<div class="scroll-box">
 				<% 
@@ -123,10 +136,8 @@ $(document).ready(function() {
 				<div class="cover-bar"></div>
 				</div>
 			</div>
-			<div class="col-md-5">
-				<img class="img-circle ovale" src="images/ONGLET_LA_DEMARCHE/SOUS_ONGLET_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE_2.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE">
-				<h3>Virginie</h3><br>
-				<div id="virginie" class="scroll-bar-wrap">
+			<div class="col-md-6">
+			<div id="virginie" class="scroll-bar-wrap">
 				<div class="scroll-box">
 				<% 
 				for(Media media : articles.get("Clown").getMedias()) {
