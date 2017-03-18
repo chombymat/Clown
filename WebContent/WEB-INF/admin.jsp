@@ -19,7 +19,7 @@
 			var showDivUrl = 0;
 			var showDivAddArticle = 0;
 			var showDivModifArticle = 0;
-			
+
 			/*********************************** Ajouter article ***********************************/
 			
 			var files = [];
@@ -179,6 +179,9 @@
 			
 			/*********************************** Modifier article ***********************************/
 			
+			var id_article = null;
+			var id_projet = null;
+			
 			$('#bt_modif_article').on('click', function(){
 				if(showDivAddArticle == 1)
 				{
@@ -200,7 +203,7 @@
 			
 			$('#select').change(function(){
 				var page = $(this).val();
-				console.log(page);
+
 				$.ajax({
 		            url: './ModificationArticle',
 		            type: 'GET',
@@ -211,37 +214,127 @@
 		            {
 		            	var json = jQuery.parseJSON(data);
 		            	var array = json.medias;
-		            	
+		            	id_article = json.id;
+		            	id_projet = json.id_projet;
 		            	$('#modif_article_image').html("");
 		            	for(var i = 0; i < array.length; i++)
 		            	{
 		            		$('#modif_article_image').append(
-		            				"<div><img class=\"myImg img-thumbnail\" data-value=\"" + array[i].id + "\" src=\"" + array[i].chemin + "\"><br>" + 
-		            				"<input data-value=\"" + array[i].id + "\" type=\"text\" value=\"" + array[i].nom + "\"><button data-value=\"" + array[i].id + "\" class=\"bt_delete_photo\">Supprimer</button></div>");
+		            				"<div class=\"" + array[i].id + "\"><img id=\"" + array[i].id +"\"class=\"myImg img-thumbnail\" src=\"" + array[i].chemin + "\" alt=\"" + array[i].nom +"\" ><br>" + 
+		            				"<input type=\"text\" value=\"" + array[i].nom + "\"><button id_media=\"" + array[i].id + "\" class=\"bt_delete_photo\">Supprimer</button></div>");
 		            	}
-		            	bindBtDeletePhoto();
+		            	initialiser();
 		            	$('#contenu_article').val(json.contenu);
 		            }
 		        });
 			});
 			
-			$('#bt_submit_update').on('click', function(){
-				console.log("update texte");
+			$('#bt_submit_update_content').on('click', function(){
+				var formData = new FormData();
+				formData.append("type", "texte");
+				formData.append("id_article", id_article);
+				formData.append("texte", $('#contenu_article').val());
+				
+				$.ajax({
+		            url: './ModificationArticle',
+		            type: 'POST',
+		            mimeType:'multipart/form-data',
+		            contentType: false,
+		            processData: false,
+		            data: formData,
+		            success : function()
+		            {
+		            	// Afficher modification réussie
+		            }
+		        });
 			});
 			
 			$('#bt_update_add_photo').on('click', function(){
-				console.log("add photo");
+				if($('#update_add_photo_info').is(':visible'))
+					$('#update_add_photo_info').hide();
+				else
+					$('#update_add_photo_info').show();
+			});
+			$('#bt_update_add_photo_submit').on('click', function(){
+				var formData = new FormData();
+				formData.append("type", "add_photo");
+				formData.append("id_article", id_article);
+				formData.append("id_projet", id_projet);
+				formData.append('nom', $('#tb_update_name_photo').val());
+				formData.append('media', $('#file_update_get_photo')[0].files[0]);
+				
+				$.ajax({
+		            url: './ModificationArticle',
+		            type: 'POST',
+		            mimeType:'multipart/form-data',
+		            contentType: false,
+		            processData: false,
+		            data: formData,
+		            success : function(json)
+		            {
+		            	json = jQuery.parseJSON(json);
+		            	$('#modif_article_image').append(
+	            				"<div class=\"" + json.id_media + "\"><img id=\"" + json.id_media +"\"class=\"myImg img-thumbnail\" src=\"images/" + id_projet + "/" + id_article + "/PHOTOS_ENFANTS/" + json.nom + " alt=\""+ $('#tb_update_name_photo').val()  +"\"><br>" 
+	            				+ "<input type=\"text\" value=\"" + $('#tb_update_name_photo').val() + "\"><button id_media=\"" + json.id_media + "\" class=\"bt_delete_photo\">Supprimer</button></div>");
+		            }
+		        });
+			});
+			
+			$('#bt_update_get_photo').on('click', function(){
+				$('#file_update_get_photo').click();
 			});
 			
 			$('#page_modif_article').hide();
+			$('#file_update_get_photo').hide();
+			$('#update_add_photo_info').hide();
+			
+			function initialiser()
+			{
+				var modal = document.getElementById('myModal');
+
+				var span = document.getElementsByClassName("close")[0];
+
+				$('.myImg').on('click', function() {
+					$('html, body').css({
+						overflow : 'hidden',
+						height : '100%'
+					});
+					$('#myModal').attr('style', 'display: block');
+					$('#img01').attr('src', $(this).attr('src'));
+					$('#caption').html($(this).attr('alt'));
+				});
+				
+				span.onclick = function() {
+					$('html, body').css({
+						overflow : 'auto',
+						height : 'auto'
+					});
+					modal.style.display = "none";
+				}
+				
+				$('.bt_delete_photo').on('click', function(){
+					var id_media = $(this).attr('id_media');
+					var formData = new FormData();
+					formData.append("type", "delete_photo");
+					formData.append("id_article", id_article);
+					formData.append("id_media", id_media);
+					formData.append("chemin", $('#' + id_media).attr('src'));
+					
+					$.ajax({
+			            url: './ModificationArticle',
+			            type: 'POST',
+			            mimeType:'multipart/form-data',
+			            contentType: false,
+			            processData: false,
+			            data: formData,
+			            success : function()
+			            {
+			            	$('.' + id_media).remove();
+			            }
+			        });
+				});
+			}
 		});
-		
-		function bindBtDeletePhoto()
-		{
-			$('.bt_delete_photo').on('click', function(){
-				console.log("delete photo : " + $(this).attr('data-value'));
-			});
-		}
 	</script>
 	<button id="bt_add_article" class="btn btn-sample">Ajouter article</button> <button id="bt_modif_article" class="btn btn-sample">Modifier article</button>
 	
@@ -297,7 +390,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-8">
-				<textarea id="contenu_article" rows="15" cols="80" style="margin-top: 2%; margin-left: 2%"></textarea><br><button id="bt_submit_update">Mettre à jour</button>
+				<textarea id="contenu_article" rows="15" cols="80" style="margin-top: 2%; margin-left: 2%"></textarea><br><button id="bt_submit_update_content">Mettre à jour</button>
 			</div>
 			<div class="col-md-3">
 				<div class="scroll-bar-wrap-admin">
@@ -307,8 +400,20 @@
 					</div>
 				</div>
 				<button id="bt_update_add_photo">Ajouter photo</button>
+				<div id="update_add_photo_info" style="margin-top: 2%">
+					<label for="tb_update_name_photo">Nom de la photo </label>
+					<input type="text" id="tb_update_name_photo">
+					<button id="bt_update_get_photo">Importer photo</button>
+					<input type="file" id="file_update_get_photo" accept="image/*">
+					<button id="bt_update_add_photo_submit">Valider</button>
+				</div>
 			</div>
 		</div>
+	</div>
+	
+	<div id="myModal" class="modal">
+		<span class="close">&times;</span> <img class="modal-content" id="img01">
+		<div id="caption"></div>
 	</div>
 	
 	<!-- -------------------------------- Fin modifier article -------------------------- -->

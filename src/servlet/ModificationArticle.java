@@ -3,19 +3,19 @@ package servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.io.IOUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-
 import model.Modele;
 import tools.Media;
 
 @WebServlet("/ModificationArticle")
+@MultipartConfig()
 public class ModificationArticle extends HttpServlet 
 {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
@@ -25,8 +25,9 @@ public class ModificationArticle extends HttpServlet
 
 		tools.Article article = new Modele().getArticle(request.getParameter("titre").toString());
 		json.put("id", article.getId());
-		json.put("titre", new StringEscapeUtils().unescapeHtml4(article.getTitre()));
-		json.put("contenu", new StringEscapeUtils().unescapeHtml4(article.getContenu()));
+		json.put("id_projet", article.getId_projet());
+		json.put("titre", article.getTitre());
+		json.put("contenu", article.getContenu());
 		
 		JSONArray json_medias = new JSONArray();
 		for(Media media : article.getMedias())
@@ -45,15 +46,32 @@ public class ModificationArticle extends HttpServlet
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		String type = request.getParameter("type"); // texte ou photo
+		String type = IOUtils.toString(request.getPart("type").getInputStream(), "UTF-8"); 
+		Modele modele = new Modele();
+		String id_article = IOUtils.toString(request.getPart("id_article").getInputStream(), "UTF-8");
+		int id_media;
 		
-		if(type.equals("texte"))
+		switch(type)
 		{
-			
-		}
-		else if(type.equals("photo"))
-		{
-			
+		case "add_photo" :
+			String id_projet = IOUtils.toString(request.getPart("id_projet").getInputStream(), "UTF-8");
+			String nom = IOUtils.toString(request.getPart("nom").getInputStream(), "UTF-8");
+			modele.saveMediaOnDisk(getServletContext().getRealPath("/") + "images/" + id_projet + "/" + id_article + "/PHOTOS_ENFANTS/", request.getPart("media"));
+			id_media = modele.ajouterMedia("images/" + id_projet + "/" + id_article + "/PHOTOS_ENFANTS/" + request.getPart("media").getSubmittedFileName(), "photo", Integer.valueOf(id_article), nom);
+			JSONObject json = new JSONObject();
+			json.put("id_media", id_media);
+			json.put("nom", request.getPart("media").getSubmittedFileName());
+			response.getWriter().println(json);
+			break;
+		case "texte" :
+			String texte = IOUtils.toString(request.getPart("texte").getInputStream(), "UTF-8");
+			modele.updateArticle(id_article, texte);
+			break;
+		case "delete_photo" :
+			String chemin = IOUtils.toString(request.getPart("chemin").getInputStream(), "UTF-8");
+			id_media = Integer.valueOf(IOUtils.toString(request.getPart("id_media").getInputStream(), "UTF-8"));
+			modele.supprimerMedia(getServletContext().getRealPath("/") + chemin, id_media);
+			break;
 		}
 	}
 }

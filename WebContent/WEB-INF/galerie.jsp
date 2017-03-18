@@ -23,7 +23,6 @@
 <body>
 	<%ArrayList<Media> galerie = (ArrayList) request.getAttribute("galerie");%>
 
-
 	<div class="container">
 		<div id="content" class="row ">
 			<%
@@ -64,8 +63,7 @@
 			$('#id' + page_num).addClass('active');
 		}
 
-		$(document)
-				.ready(
+		$(document).ready(
 						function() {
 							var modal = document.getElementById('myModal');
 

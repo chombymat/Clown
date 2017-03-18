@@ -82,7 +82,7 @@ public class CreerArticle extends HttpServlet
 			{
 				int id = model.ajouterArticle(titre, description, contenu);
 				
-				model.saveMediaOnDisk(getServletContext().getRealPath("/") + "images/article/" + id + "/", media, id);
+				model.saveMediasOnDisk(getServletContext().getRealPath("/") + "images/article/" + id + "/", media, id);
 				
 				if(isAjax)
 				{

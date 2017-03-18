@@ -27,6 +27,7 @@ import javax.naming.NamingException;
 import javax.servlet.http.Part;
 import javax.sql.DataSource;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import tools.Article;
 import tools.Media;
@@ -451,35 +452,36 @@ public class Modele
 			ResultSet result = statement.executeQuery();
 			while(result.next())
 			{
+				String contenu =  StringEscapeUtils.escapeHtml4(result.getString("contenu")).replaceAll("\r", "<br>");
 				switch(result.getString("article_titre"))
 				{
 				case "Le pain" :
-					articles.put("Le pain", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
+					articles.put("Le pain", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
 				case "Le lait" :
-					articles.put("Le lait", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
+					articles.put("Le lait", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
 				case "Les 7 familles" :
-					articles.put("Les 7 familles", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
+					articles.put("Les 7 familles", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
 				case "Le menu équilibré" :
-					articles.put("Le menu équilibré", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
+					articles.put("Le menu équilibré", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
 				case "Alimentation et environnement" :
-					articles.put("Alimentation et environnement", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
+					articles.put("Alimentation et environnement", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
 				case "Le spectacle" :
-					articles.put("Le spectacle", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
+					articles.put("Le spectacle", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
 				case "accueil" :
 					articles.put("accueil", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
 					break;
 				}
 			}
-			
+
 			statement.close();
 			String query = "select chemin, titre, nom from media, article where media.id_article = article.id_article and media.id_article in (";
-			
+
 			boolean firstLine = true;					
 			for(Map.Entry<String, Article> article : articles.entrySet())
 			{
@@ -491,11 +493,11 @@ public class Modele
 				else
 					query += "," + article.getValue().getId();
 			}
-			
+
 			query += ")";
 			PreparedStatement statement2 = con.prepareStatement(query);
 			result = statement2.executeQuery();
-			
+
 			while(result.next())
 			{
 				articles.get(result.getString("titre")).getMedias().add(new Media(result.getString("chemin"), result.getString("nom")));
@@ -513,10 +515,10 @@ public class Modele
 				e.printStackTrace();
 			}
 		}
-		
+
 		return articles;
 	}
-	
+
 	public HashMap<String, tools.Article> getDemarche() 
 	{
 		HashMap<String, Article> articles = new HashMap<String, Article>();
@@ -544,10 +546,10 @@ public class Modele
 					break;
 				}
 			}
-			
+
 			statement.close();
 			String query = "select id_media, chemin, titre, nom, type from media, article where media.id_article = article.id_article and media.id_article in (";
-			
+
 			boolean firstLine = true;					
 			for(Map.Entry<String, Article> article : articles.entrySet())
 			{
@@ -559,11 +561,11 @@ public class Modele
 				else
 					query += "," + article.getValue().getId();
 			}
-			
+
 			query += ")";
 			PreparedStatement statement2 = con.prepareStatement(query);
 			result = statement2.executeQuery();
-			
+
 			while(result.next())
 			{
 				articles.get(result.getString("titre")).getMedias().add(new Media(result.getInt("id_media"), result.getString("chemin"), result.getString("nom"), result.getString("type")));
@@ -582,10 +584,10 @@ public class Modele
 				e.printStackTrace();
 			}
 		}
-		
+
 		return articles;
 	}
-	
+
 	public Article getArticle(String titre)
 	{
 		Article article = null;
@@ -593,18 +595,18 @@ public class Modele
 		try
 		{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement =con.prepareStatement("select id_article, contenu from article where titre = ?");
+			PreparedStatement statement =con.prepareStatement("select id_article, contenu, id_projet from article where titre = ?");
 			statement.setString(1, titre);
 			ResultSet result = statement.executeQuery();
-			
+
 			if(result.next())
 			{
-				article = new Article(result.getInt("id_article"), titre, result.getString("contenu"));
-				
+				article = new Article(result.getInt("id_article"), titre, result.getString("contenu"), result.getInt("id_projet"));
+
 				PreparedStatement statement2 = con.prepareStatement("select id_media, chemin, nom, type from media where id_article = ? and type like 'photo'");
 				statement2.setInt(1, article.getId());
 				result = statement2.executeQuery();
-				
+
 				while(result.next())
 				{
 					article.getMedias().add(new Media(result.getInt("id_media"),result.getString("chemin"), result.getString("nom"), result.getString("type")));
@@ -619,19 +621,19 @@ public class Modele
 		{
 			try{ con.close(); }catch(Exception e){}
 		}
-		
+
 		return article;
 	}
-	
-	public void updateArticle(String onglet, String contenu)
+
+	public void updateArticle(String id_article, String contenu)
 	{
 		Connection con = null;
 		try
 		{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement = con.prepareStatement("update article set contenu = ? where onglet = ?");
+			PreparedStatement statement = con.prepareStatement("update article set contenu = ? where id_article = ?");
 			statement.setString(1, contenu);
-			statement.setString(2, onglet);
+			statement.setInt(2, Integer.valueOf(id_article));
 			statement.executeUpdate();
 		}
 		catch(Exception e)
@@ -647,17 +649,24 @@ public class Modele
 	//------------------------------------------------------MEDIA------------------------------------------------------------
 
 
-	public void ajouterMedia(String chemin, String type, int idArticle){
+	public int ajouterMedia(String chemin, String type, int idArticle, String nom){
 		Connection con = null;
 		try{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement = con.prepareStatement("insert into Media (chemin, type, id_article) values(?, ?, ?)");
+			PreparedStatement statement = con.prepareStatement("insert into media (chemin, type, id_article, nom) values(?, ?, ?, ?) returning id_media");
 			statement.setString(1, chemin);
 			statement.setString(2, type);
 			statement.setInt(3, idArticle);
-			statement.executeUpdate();
-			System.out.println("ajout du media : " + chemin);
+			statement.setString(4, nom);
+			ResultSet result = statement.executeQuery();
+			
+			result.next();
+			
+			int id_media = result.getInt("id_media");
+			
+			System.out.println("ajout du media " + id_media + " : " + chemin);
 
+			return id_media;
 		} catch (Exception e){
 			e.printStackTrace();
 		} finally{
@@ -667,17 +676,21 @@ public class Modele
 				e.printStackTrace();
 			}
 		}
+		
+		return -1;
 	}
 
 
-	public void supprimerMedia(int id){
+	public void supprimerMedia(String chemin, int id_media){
 		Connection con = null;
+		File img = new File(chemin);
 		try{
+			img.delete();
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement = con.prepareStatement("delete from Media where id_media = ?");
-			statement.setInt(1, id);
+			PreparedStatement statement = con.prepareStatement("delete from media where id_media = ?");
+			statement.setInt(1, id_media);
 			statement.executeUpdate();
-			System.out.println("suppression du media : " + id);
+			System.out.println("suppression du media : " + chemin);
 
 		} catch (Exception e){
 			e.printStackTrace();
@@ -741,13 +754,12 @@ public class Modele
 		}
 	}
 
-	public void saveMediaOnDisk(String chemin, Collection<Part> medias, int id)
+	public void saveMediasOnDisk(String chemin, Collection<Part> medias, int id)
 	{
 		File f = new File(chemin);
 
 		if(!f.exists())
 			f.mkdirs();
-
 
 		for(Part media : medias)
 		{
@@ -757,6 +769,16 @@ public class Modele
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+
+	public void saveMediaOnDisk(String chemin, Part media)
+	{
+		try 
+		{
+			media.write(chemin + media.getSubmittedFileName());
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
