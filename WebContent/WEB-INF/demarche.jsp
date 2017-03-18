@@ -90,9 +90,9 @@ $(document).ready(function() {
 	
 	<!----------------------------------- categorie ---------------------------------------->
 	<div class="row">
-	<input id="bt_clown" type="image" class="img-circle bt_image" src="images/ONGLET_DEMARCHE/ATELIER_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE.JPG" title="Les clowns" alt="image de Claire et Virginie" width="156" height="156" />
-	<input id="bt_pratique" type="image" class="img-circle bt_image" src="images/ONGLET_ATELIERS/ATELIER_3_FAMILLES/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Pratique et sensorielle" alt="Pratique et sensorielle" width="156" height="156" />
-	<input id="bt_expression" type="image" class="img-circle bt_image" src="images/ONGLET_ATELIERS/ATELIER_3_FAMILLES/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Expression corporelle" alt="Expression corporelle" width="156" height="156" />
+	<input id="bt_clown" type="image" class="img-circle bt_image" src="images/2/8/CLAIRE/CLAIRE_ET_VIRGINIE.JPG" title="Les clowns" alt="image de Claire et Virginie" width="156" height="156" />
+	<input id="bt_pratique" type="image" class="img-circle bt_image" src="images/1/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Pratique et sensorielle" alt="Pratique et sensorielle" width="156" height="156" />
+	<input id="bt_expression" type="image" class="img-circle bt_image" src="images/1/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Expression corporelle" alt="Expression corporelle" width="156" height="156" />
 	</div>
 	<div class="row col-md-11 col-sm-offset-1" id="textDemarche">
 			<p align="justify"><%= articles.get("accueil").getContenu() %></p>
@@ -107,7 +107,7 @@ $(document).ready(function() {
 	<div id="les_clowns">
 		<div class="row">
 			<div class="col-sm-offset-1 col-md-3">
-				<img class="img-circle ovale" src="images/ONGLET_DEMARCHE/ATELIER_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE">
+				<img class="img-circle ovale" src="images/2/8/CLAIRE/CLAIRE_ET_VIRGINIE.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE">
 				<h3>Claire</h3><br>
 				
 			</div>
@@ -115,7 +115,7 @@ $(document).ready(function() {
 				<p align="justify"><%= articles.get("Clown").getContenu() %></p>
 			</div>
 			<div class="col-md-4">
-				<img class="img-circle ovale" src="images/ONGLET_DEMARCHE/ATELIER_LE_CLOWN/CLAIRE/CLAIRE_ET_VIRGINIE_2.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE">
+				<img class="img-circle ovale" src="images/2/8/CLAIRE/CLAIRE_ET_VIRGINIE_2.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE">
 				<h3>Virginie</h3><br>
 				
 			</div>
@@ -161,7 +161,7 @@ $(document).ready(function() {
 		<h2><%= articles.get("Pratique et sensoriel").getTitre() %></h2><br>
 		<div class="row">
 			<div class="col-md-6">
-				<img width="85%" height="auto" src="images/ONGLET_ATELIERS/ATELIER_3_FAMILLES/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image de pratique et sensoriel" alt="image de pratique et sensoriel">
+				<img width="85%" height="auto" src="images/1/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image de pratique et sensoriel" alt="image de pratique et sensoriel">
 			</div>
 			<div class="col-md-5">
 				<p align="justify"><%= articles.get("Pratique et sensoriel").getContenu() %></p>
@@ -187,7 +187,7 @@ $(document).ready(function() {
 		<h2><%= articles.get("Expression Corporelle").getTitre() %></h2><br>
 		<div class="row">
 			<div class="col-md-6">
-				<img width="85%" height="auto" src="images/ONGLET_ATELIERS/ATELIER_3_FAMILLES/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image d'expression corporelle" alt="image d'expression corporelle">
+				<img width="85%" height="auto" src="images/1/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image d'expression corporelle" alt="image d'expression corporelle">
 			</div>
 			<div class="col-md-6">
 				<p align="justify"><%= articles.get("Expression Corporelle").getContenu() %></p>
