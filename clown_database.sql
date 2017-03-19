@@ -159,3 +159,6 @@ insert into media(id_article, chemin, nom, type) values(10, 'images/2/10/2015-12
 insert into media(id_article, chemin, nom, type) values(10, 'images/2/10/P_20170209_151653.jpg', 'photo enfant - Expression Corporelle', 'photo');
 insert into media(id_article, chemin, nom, type) values(10, 'images/2/10/P_20170209_153232.jpg', 'photo enfant - Expression Corporelle', 'photo');
 insert into media(id_article, chemin, nom, type) values(10, 'images/2/10/P_20170209_153311.jpg', 'photo enfant - Expression Corporelle', 'photo');
+
+insert into media(chemin, nom, type) values('images/galerie/Capture-2.png', 'galerie 1', 'galerie');
+insert into media(chemin, nom, type) values('images/galerie/Plage_deserte.jpg', 'galerie 2', 'galerie');

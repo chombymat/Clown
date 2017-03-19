@@ -680,6 +680,36 @@ public class Modele
 		return -1;
 	}
 
+	public int ajouterMedia(String chemin, String type, String nom){
+		Connection con = null;
+		try{
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("insert into media (chemin, type, nom) values(?, ?, ?) returning id_media");
+			statement.setString(1, chemin);
+			statement.setString(2, type);
+			statement.setString(3, nom);
+			ResultSet result = statement.executeQuery();
+			
+			result.next();
+			
+			int id_media = result.getInt("id_media");
+			
+			System.out.println("ajout du media " + id_media + " : " + chemin);
+
+			return id_media;
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				con.close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		return -1;
+	}
+
 
 	public void supprimerMedia(String chemin, int id_media){
 		Connection con = null;
@@ -735,10 +765,10 @@ public class Modele
 		Connection con = null;
 		try{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement = con.prepareStatement("select chemin, nom from media where type = 'galerie'");
+			PreparedStatement statement = con.prepareStatement("select chemin, nom, id_media from media where type = 'galerie'");
 			ResultSet result = statement.executeQuery();
 			while(result.next()){
-				medias.add(new Media(result.getString("chemin"), result.getString("nom")));
+				medias.add(new Media(result.getString("chemin"), result.getString("nom"), result.getInt("id_media")));
 			}
 			return medias;
 
@@ -782,13 +812,13 @@ public class Modele
 		}
 	}
 
-	public void renameMedia(int id_media, String newName) 
+	public void renameMedia(int id_media, String new_name) 
 	{
 		Connection con = null;
 		try{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
 			PreparedStatement statement = con.prepareStatement("update media set nom = ? where id_media = ?");
-			statement.setString(1, newName);
+			statement.setString(1, new_name);
 			statement.setInt(2, id_media);
 			statement.executeUpdate();
 		} catch (Exception e){

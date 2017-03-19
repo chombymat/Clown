@@ -20,6 +20,12 @@ public class Media {
 		this.type = type;
 	}
 	
+	public Media(String chemin, String nom, int id_media){
+		this.chemin = chemin;
+		this.nom = nom;
+		this.id = id_media;
+	}
+	
 	public Media(String chemin, String nom){
 		this.chemin = chemin;
 		this.nom = nom;

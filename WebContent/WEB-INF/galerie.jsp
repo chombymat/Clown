@@ -90,9 +90,7 @@
 							}
 
 
-							var number_of_pages = Math.ceil($('#content')
-									.children().length
-									/ show_per_page);
+							var number_of_pages = Math.ceil($('#content').children().length / show_per_page);
 
 							var nav = '<ul class="pagination"><li><a id="page" href="javascript:previous();">&laquo;</a>';
 
@@ -109,7 +107,6 @@
 
 							$('#page_navigation').html(nav);
 							set_display(0, show_per_page);
-
 						});
 	</script>
 

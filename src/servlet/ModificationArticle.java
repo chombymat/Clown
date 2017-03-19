@@ -68,7 +68,7 @@ public class ModificationArticle extends HttpServlet
 			id_media = modele.ajouterMedia("images/" + id_projet + "/" + id_article + "/PHOTOS_ENFANTS/" + request.getPart("media").getSubmittedFileName(), "photo", Integer.valueOf(id_article), nom);
 			JSONObject json = new JSONObject();
 			json.put("id_media", id_media);
-			json.put("nom", request.getPart("media").getSubmittedFileName());
+			json.put("nom", nom);
 			response.getWriter().println(json);
 			break;
 		case "texte" :

@@ -15,167 +15,209 @@
 <body>
 	<%@include file="/WEB-INF/navbar.jsp" %>
 	<script>
-		$(document).ready(function(){
-			var showDivUrl = 0;
-			var showDivAddArticle = 0;
-			var showDivModifArticle = 0;
-
-			/*********************************** Ajouter article ***********************************/
+			var show_per_page = 12;
+			var current_page = 0;
+		$(document).ready(function()
+		{
+			/*********************************** Gestion galerie ***********************************/
 			
-			var files = [];
-			var filesGalerie = [];
-			var ii = 1;
-			
-			$('#bt_add_article').on('click', function(){
-				if(showDivModifArticle == 1)
-				{
-					showDivModifArticle = 0;				
+			$('#bt_galerie').on('click', function()
+			{
+				if($('#page_modif_article').is(':visible'))
 					$('#page_modif_article').hide();
-				}
 				
-				if(showDivAddArticle == 0)
-				{
-					showDivAddArticle = 1;					
-					$('#page_article').show();
-				}
+				if($('#page_galerie').is(':visible'))
+					$('#page_galerie').hide();
 				else
 				{
-					showDivAddArticle = 0;					
-					$('#page_article').hide();
+					getGalerie();
+					$('#page_galerie').show();
 				}
 			});
 			
-			$('#bt_add_photo').on('click', function(){
-				$('#media').click();
+			$('#bt_galerie_get_photo').on('click', function(){
+				$('#file_galerie_get_photo').click();
 			});
 			
-			$('#bt_url').on('click', function(){
-				if(showDivUrl == 0)
-				{
-					showDivUrl = 1;				
-					$('#saisir_url').show();
-				}
-				else
-				{
-					showDivUrl = 0;				
-					$('#saisir_url').hide();
-				}
-			});
-			
-			$('#bt_add_url').on('click', function(){
-				var lien = "<a href=\"" + $('#lien_url').val() + "\">" + $('#text_url').val() + "</a>";
-				$('#contenu') .val($('#contenu').val() + " " + lien + " ");
-				showDivUrl = 0;				
-				$('#saisir_url').hide();
-				
-			});
-			
-			$("#media").on('change', function(e){
-				files = $.merge(files, $('#media')[0].files);
-
-				var reader = new FileReader();
-				var current_file = files[files.length - 1];
-				if (current_file.type.indexOf('image') == 0) 
-				{
-				  reader.onload = function (event) 
-				  {
-				      var image = new Image();
-				      image.src = event.target.result;
-						console.log(current_file);
-				      image.onload = function() 
-				      {
-					        var maxWidth = 250,
-					            maxHeight = 250,
-					            imageWidth = image.width,
-					            imageHeight = image.height;
-	
-	
-					        if (imageWidth > imageHeight) 
-					        {
-					          if (imageWidth > maxWidth) 
-					          {
-					            imageHeight *= maxWidth / imageWidth;
-					            imageWidth = maxWidth;
-					          }
-					        }
-					        else 
-					        {
-					          if (imageHeight > maxHeight) 
-					          {
-					            imageWidth *= maxHeight / imageHeight;
-					            imageHeight = maxHeight;
-					          }
-					        }
-	
-					        var canvas = document.createElement('canvas');
-					        canvas.width = imageWidth;
-					        canvas.height = imageHeight;
-					        image.width = imageWidth;
-					        image.height = imageHeight;
-					        var ctx = canvas.getContext("2d");
-					        ctx.drawImage(this, 0, 0, imageWidth, imageHeight);
-						       
-					        var div = document.createElement('div');
-					        var preview = document.createElement('img');
-					        $(preview).attr('src', canvas.toDataURL(current_file.type));
-					        $(div).append(current_file.name);
-					        $(div).append(preview);
-					        $('#images').append(div);
-					        ii++;
-							$('#contenu') .val($('#contenu').val() + "\n< " + current_file.name + " >\n");
-				      }
-				    }
-				  reader.readAsDataURL(current_file);
-				}					
-			});
-			
-			$('#form_creer_article').submit(function(e){
-				e.preventDefault();
-				
-				var $form = $(this);
-		        var form_data = new FormData();
-				
-				for(var i = 0; i < files.length; i++)
-				{
-					form_data.append('media_' + files[i].name, files[i]);
-				}
-				
-				form_data.append('titre', $('#titre').val());
-				form_data.append('description', $('#description').val());
-				form_data.append('contenu', $('#contenu').val());
-				form_data.append('ajax', true);
-		 	
-		        $.ajax({
-		            url: $form.attr('action'),
-		            type: $form.attr('method'),
-		            mimeType:"multipart/form-data",
+			$('#bt_galerie_add_photo_submit').on('click', function(){
+				var name = $('#tb_galerie_name_new_photo').val();
+ 				var file = $('#file_galerie_get_photo')[0].files[0];
+				var form_data = new FormData();
+				form_data.append('type', 'add');
+				form_data.append('media', file);
+				form_data.append('name', name);
+				$.ajax({
+		            url: './ModificationGalerie',
+		            type: 'POST',
 		            contentType: false,
 		            processData: false,
 		            data: form_data,
-		            success : function(json){
-		            	var j = JSON.parse(json);
-		            	if(j.article_creer != null)
-		            	{
-		            		$('#success').html(j.article_creer)
-		            		$('#creer_article').hide();
-		           		}
-		            	if(j.erreur_titre == "true")
-		            		$('#erreur_titre').val("Veuillez saisir un titre");
-		            	if(j.erreur_description == "true")
-		            		$('#erreur_description').val("Veuillez saisir une description");
-		            	if(j.erreur_contenu == "true")
-		            		$('#erreur_contenu').val("Veuillez saisir un contenu");
+		            success : function(json)
+		            {
+		            	json = jQuery.parseJSON(json);
+		            	
+		            	var div = $(document.createElement('div'));
+	            		var img = $(document.createElement('img'));
+	            		var tb = $(document.createElement('input'));
+	            		var bt_rename = $(document.createElement('button'));
+	            		var bt_delete = $(document.createElement('button'));
+	            		
+	            		div.attr('class', 'col-lg-3');
+	            		div.attr('id', json.id_media);
+	            		div.attr('style', 'margin-top: 2%');
+	            		img.attr('class', 'myImg');
+	            		img.attr('id', 'img_' + json.id_media);
+	            		img.attr('src', json.chemin);
+	            		img.attr('alt', json.nom);
+	            		tb.attr('type', 'text');
+	            		tb.attr('id', 'name_' + json.id_media);
+	            		tb.attr('id_media', json.id_media);
+	            		tb.val(json.nom);
+	            		bt_rename.attr('id_media', json.id_media);
+	            		bt_rename.attr('class', 'bt_galerie_rename btn btn-sample');
+	            		bt_rename.html('Renommer');
+	            		bt_rename.attr('style', 'margin-right: 2%');
+	            		bt_delete.attr('id_media', json.id_media);
+	            		bt_delete.attr('class', 'bt_galerie_delete btn btn-sample');
+	            		bt_delete.html('Supprimer');
+	            		
+	            		div.append(img);
+	            		div.append(tb);
+	            		div.append('<br>');
+	            		div.append(bt_rename);
+	            		div.append(bt_delete);
+	            		
+	            		$('#content').append(div);
+	            		
+	            		initialiserGalerie();
 		            }
 		        });
 			});
-			<%
-			if(request.getAttribute("page_article") == null)
+			
+			function getGalerie()
 			{
-				%>$('#page_article').hide();<%
+				$.ajax({
+		            url: './ModificationGalerie',
+		            type: 'GET',
+		            success : function(data)
+		            {
+		            	var j_array = jQuery.parseJSON(data);
+		            	$('#content').html("");
+		            	for(var i = 0; i < j_array.length; i++)
+		            	{
+		            		var div = $(document.createElement('div'));
+		            		var img = $(document.createElement('img'));
+		            		var tb = $(document.createElement('input'));
+		            		var bt_rename = $(document.createElement('button'));
+		            		var bt_delete = $(document.createElement('button'));
+		            		
+		            		div.attr('class', 'col-lg-3');
+		            		div.attr('id', j_array[i].id_media);
+		            		div.attr('style', 'margin-top: 2%');
+		            		img.attr('class', 'myImg');
+		            		img.attr('id', 'img_' + j_array[i].id_media);
+		            		img.attr('src', j_array[i].chemin);
+		            		img.attr('alt', j_array[i].nom);
+		            		tb.attr('type', 'text');
+		            		tb.attr('id', 'name_' + j_array[i].id_media);
+		            		tb.attr('id_media', j_array[i].id_media);
+		            		tb.val(j_array[i].nom);
+		            		bt_rename.attr('id_media', j_array[i].id_media);
+		            		bt_rename.attr('class', 'bt_galerie_rename btn btn-sample');
+		            		bt_rename.html('Renommer');
+		            		bt_rename.attr('style', 'margin-right: 2%');
+		            		bt_delete.attr('id_media', j_array[i].id_media);
+		            		bt_delete.attr('class', 'bt_galerie_delete btn btn-sample');
+		            		bt_delete.html('Supprimer');
+		            		
+		            		div.append(img);
+		            		div.append(tb);
+		            		div.append('<br>');
+		            		div.append(bt_rename);
+		            		div.append(bt_delete);
+		            		
+		            		$('#content').append(div);
+		            		initialiserGalerie();
+		            	}
+		            }
+		        });
 			}
-			%>
-			$('#media').hide();
-			$('#saisir_url').hide();
+			
+			function initialiserGalerie()
+			{
+				$('.bt_galerie_rename').on('click', function(){
+					var id_media = $(this).attr('id_media');
+					var new_name = $('#name_' + id_media).val();
+					console.log(id_media);
+					console.log(new_name);
+					var form_data = new FormData();
+					form_data.append('type', 'rename');
+					form_data.append('id_media', id_media);
+					form_data.append('new_name', new_name);
+					$.ajax({
+			            url: './ModificationGalerie',
+			            type: 'POST',
+			            contentType: false,
+			            processData: false,
+			            data: form_data,
+			            success : function(data)
+			            {
+			            	$('#img_' + id_media).attr('alt', new_name);
+			            }
+			        });
+				});
+				
+				$('.bt_galerie_delete').on('click', function(){
+					var id_media = $(this).attr('id_media');
+					var form_data = new FormData();
+					form_data.append('id_media', id_media);
+					form_data.append('chemin', $('#img_' + id_media).attr('src'));
+					form_data.append('type', 'delete');
+					$.ajax({
+			            url: './ModificationGalerie',
+			            type: 'POST',
+			            contentType: false,
+			            processData: false,
+			            data: form_data,
+			            success : function(data)
+			            {
+			            	$('#' + id_media).remove();
+			            }
+			        });
+				});
+				
+				initialiserModal();
+				
+				var number_of_pages = Math.ceil($('#content').children().length / show_per_page);
+	
+				var nav = '<ul class="pagination"><li><a id="page" href="javascript:previous();">&laquo;</a>';
+	
+				var i = -1;
+				while (number_of_pages > ++i) {
+					nav += '<li class="page_link'
+					if (!i)
+						nav += ' active';
+					nav += '" id="id' + i + '">';
+					nav += '<a id="page" href="javascript:go_to_page('
+							+ i + ')">' + (i + 1) + '</a>';
+				}
+				nav += '<li><a id="page" href="javascript:next();">&raquo;</a></ul>';
+	
+				$('#page_navigation').html(nav);
+				set_display(0, show_per_page);
+			}
+			
+			$('#bt_galerie_add_photo').on('click', function(){
+				if($('#galerie_add_photo_info').is(':visible'))
+					$('#galerie_add_photo_info').hide();
+				else
+					$('#galerie_add_photo_info').show();
+			});
+			
+			$('#page_galerie').hide();
+			$('#file_galerie_get_photo').hide();
+			$('#update_add_photo_info').hide();
+			$('#galerie_add_photo_info').hide();
 			
 			/*********************************** Modifier article ***********************************/
 			
@@ -183,22 +225,13 @@
 			var id_projet = null;
 			
 			$('#bt_modif_article').on('click', function(){
-				if(showDivAddArticle == 1)
-				{
-					showDivAddArticle = 0;					
-					$('#page_article').hide();
-				}
-				
-				if(showDivModifArticle == 0)
-				{
-					showDivModifArticle = 1;				
-					$('#page_modif_article').show();
-				}
-				else
-				{
-					showDivModifArticle = 0;				
+				if($('#page_galerie').is(':visible'))
+					$('#page_galerie').hide();
+
+				if($('#page_modif_article').is(':visible'))
 					$('#page_modif_article').hide();
-				}
+				else
+					$('#page_modif_article').show();
 			});
 			
 			$('#select').change(function(){
@@ -225,7 +258,7 @@
 		            				"<button id_media=\"" + array[i].id + "\" class=\"bt_rename_photo btn btn-sample\">Renommer</button>   " +
 		            				"<button id_media=\"" + array[i].id + "\" class=\"bt_delete_photo btn btn-sample\">Supprimer</button></div>");
 		            	}
-		            	initialiser();
+		            	initialiserUpdateArticle();
 		            	$('#contenu_article').val(json.contenu);
 		            }
 		        });
@@ -297,29 +330,9 @@
 			$('#update_add_photo_info').hide();
 			$('#update_show_article').hide();
 			
-			function initialiser()
+			function initialiserUpdateArticle()
 			{
-				var modal = document.getElementById('myModal');
-
-				var span = document.getElementsByClassName("close")[0];
-
-				$('.myImg').on('click', function() {
-					$('html, body').css({
-						overflow : 'hidden',
-						height : '100%'
-					});
-					$('#myModal').attr('style', 'display: block');
-					$('#img01').attr('src', $(this).attr('src'));
-					$('#caption').html($(this).attr('alt'));
-				});
-				
-				span.onclick = function() {
-					$('html, body').css({
-						overflow : 'auto',
-						height : 'auto'
-					});
-					modal.style.display = "none";
-				}
+				initialiserModel();
 				
 				$('.bt_delete_photo').on('click', function(){
 					var id_media = $(this).attr('id_media');
@@ -371,41 +384,86 @@
 			        });
 				});
 			}
+			
+			//*************************************************************************************
+			
+			function initialiserModal()
+			{
+				var modal = document.getElementById('myModal');
+
+				var span = document.getElementsByClassName("close")[0];
+
+				$('.myImg').on('click', function() {
+					$('html, body').css({
+						overflow : 'hidden',
+						height : '100%'
+					});
+					$('#myModal').attr('style', 'display: block');
+					$('#img01').attr('src', $(this).attr('src'));
+					$('#caption').html($(this).attr('alt'));
+					$('#id' + current_page).removeClass('active');
+				});
+				
+				span.onclick = function() {
+					$('html, body').css({
+						overflow : 'auto',
+						height : 'auto'
+					});
+					modal.style.display = "none";
+					$('#id' + current_page).addClass('active');
+				}
+			}
 		});
+		
+		function set_display(first, last) {
+			$('#content').children().css('display', 'none');
+			$('#content').children().slice(first, last).css('display', 'block');
+		}
+
+		function previous() {
+			if ($('.active').prev('.page_link').length)
+				go_to_page(current_page - 1);
+		}
+
+		function next() {
+			if ($('.active').next('.page_link').length)
+				go_to_page(current_page + 1);
+		}
+
+		function go_to_page(page_num) {
+			current_page = page_num;
+			start_from = current_page * show_per_page;
+			end_on = start_from + show_per_page;
+			set_display(start_from, end_on);
+			$('.active').removeClass('active');
+			$('#id' + page_num).addClass('active');
+		}
 	</script>
-	<button id="bt_add_article" class="btn btn-sample">Ajouter article</button> <button id="bt_modif_article" class="btn btn-sample">Modifier article</button>
+	<button id="bt_galerie" class="btn btn-sample">Gestion galerie</button> <button id="bt_modif_article" class="btn btn-sample">Modifier article</button>
 	
-	<!-- -------------------------------- Créer article -------------------------- -->
+	<!-- -------------------------------- Gestion galerie -------------------------- -->
 	
-	<div class="row" id="page_article">
-		<span id="success" class="success">${ requestScope.article_creer }</span>
-		<div class="row" id="creer_article">
-			<div class="col-md-12">
-				<form id="form_creer_article" action="./creerArticle" method="post" enctype="multipart/form-data">
-					<br>
-					<span id="erreur_titre" class="erreur">${ requestScope.erreur_titre }</span>
-					<textarea id="titre" rows="1" cols="100" placeholder="Le titre de l'article" required></textarea>
-					<br><br>
-					<span id="erreur_description" class="erreur">${ requestScope.erreur_description }</span>
-					<textarea id="description" rows="2" cols="100" placeholder="La description de l'article" required></textarea>
-					<br><br>
-					<span id="erreur_contenu" class="erreur">${ requestScope.erreur_contenu }</span>
-					<textarea id="contenu" rows="15" cols="100" placeholder="Le contenu de l'article" required></textarea>
-					<br>
-					<input id="media" type="file" accept="image/*"/>
-					<button type="button" id="bt_add_photo" class="btn btn-sample">Importer photo</button>
-					<button type="button" id="bt_url" class="btn btn-sample">Ajouter lien</button>
-					<input type="submit" class="btn btn-sample" value="Creer article"/>
-				</form>
-			<div class="col-md-12">
-				<div id="images">			
-				</div>
+	<div class="row col-md-12" id="page_galerie">
+		<div class="container">
+			<div id="content" class="row ">
 			</div>
-			</div>
+			<div id="page_navigation"></div>
+		</div>
+		<p>
+			<button id="bt_galerie_add_photo" class="btn btn-sample">Ajouter photo</button>
+		</p>
+		<div id="galerie_add_photo_info">
+			<p>
+				<label for="tb_galerie_name_new_photo">Nom de la photo </label>
+				<input type="text" id="tb_galerie_name_new_photo">
+				<button id="bt_galerie_get_photo" class="btn btn-sample">Importer photo</button>
+				<input type="file" id="file_galerie_get_photo" accept="image/*">
+				<button id="bt_galerie_add_photo_submit" class="btn btn-sample">Valider</button>
+			</p>
 		</div>
 	</div>
 	
-	<!-- -------------------------------- Fin créer article -------------------------- -->
+	<!-- -------------------------------- Fin gestion galerie -------------------------- -->
 	
 	<!-- -------------------------------- Modifier article -------------------------- -->
 	
@@ -448,12 +506,13 @@
 		</div>
 	</div>
 	
+	<!-- -------------------------------- Fin modifier article -------------------------- -->
+
 	<div id="myModal" class="modal">
 		<span class="close">&times;</span> <img class="modal-content" id="img01">
 		<div id="caption"></div>
 	</div>
-	
-	<!-- -------------------------------- Fin modifier article -------------------------- -->
+
 	<%@include file="/WEB-INF/footer.html"%>
 </body>
 </html>
