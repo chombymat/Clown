@@ -133,17 +133,17 @@
 				e.preventDefault();
 				
 				var $form = $(this);
-		        var formData = new FormData();
+		        var form_data = new FormData();
 				
 				for(var i = 0; i < files.length; i++)
 				{
-					formData.append('media_' + files[i].name, files[i]);
+					form_data.append('media_' + files[i].name, files[i]);
 				}
 				
-				formData.append('titre', $('#titre').val());
-				formData.append('description', $('#description').val());
-				formData.append('contenu', $('#contenu').val());
-				formData.append('ajax', true);
+				form_data.append('titre', $('#titre').val());
+				form_data.append('description', $('#description').val());
+				form_data.append('contenu', $('#contenu').val());
+				form_data.append('ajax', true);
 		 	
 		        $.ajax({
 		            url: $form.attr('action'),
@@ -151,7 +151,7 @@
 		            mimeType:"multipart/form-data",
 		            contentType: false,
 		            processData: false,
-		            data: formData,
+		            data: form_data,
 		            success : function(json){
 		            	var j = JSON.parse(json);
 		            	if(j.article_creer != null)
@@ -220,20 +220,24 @@
 		            	for(var i = 0; i < array.length; i++)
 		            	{
 		            		$('#modif_article_image').append(
-		            				"<div class=\"" + array[i].id + "\"><img id=\"" + array[i].id +"\"class=\"myImg img-thumbnail\" src=\"" + array[i].chemin + "\" alt=\"" + array[i].nom +"\" ><br>" + 
-		            				"<input type=\"text\" value=\"" + array[i].nom + "\"><button id_media=\"" + array[i].id + "\" class=\"bt_delete_photo\">Supprimer</button></div>");
+		            				"<div class=\"" + array[i].id + " col-md-3\"><img id=\"" + array[i].id +"\"class=\"myImg img-thumbnail\" src=\"" + array[i].chemin + "\" alt=\"" + array[i].nom +"\" ><br>" + 
+		            				"<input id=\"name_" + array[i].id + "\" type=\"text\" value=\"" + array[i].nom + "\" maxlength=\"50\"\">" +
+		            				"<button id_media=\"" + array[i].id + "\" class=\"bt_rename_photo btn btn-sample\">Renommer</button>   " +
+		            				"<button id_media=\"" + array[i].id + "\" class=\"bt_delete_photo btn btn-sample\">Supprimer</button></div>");
 		            	}
 		            	initialiser();
 		            	$('#contenu_article').val(json.contenu);
 		            }
 		        });
+				
+				$('#update_show_article').show();
 			});
 			
 			$('#bt_submit_update_content').on('click', function(){
-				var formData = new FormData();
-				formData.append("type", "texte");
-				formData.append("id_article", id_article);
-				formData.append("texte", $('#contenu_article').val());
+				var form_data = new FormData();
+				form_data.append("type", "texte");
+				form_data.append("id_article", id_article);
+				form_data.append("texte", $('#contenu_article').val());
 				
 				$.ajax({
 		            url: './ModificationArticle',
@@ -241,7 +245,7 @@
 		            mimeType:'multipart/form-data',
 		            contentType: false,
 		            processData: false,
-		            data: formData,
+		            data: form_data,
 		            success : function()
 		            {
 		            	// Afficher modification réussie
@@ -255,13 +259,14 @@
 				else
 					$('#update_add_photo_info').show();
 			});
+			
 			$('#bt_update_add_photo_submit').on('click', function(){
-				var formData = new FormData();
-				formData.append("type", "add_photo");
-				formData.append("id_article", id_article);
-				formData.append("id_projet", id_projet);
-				formData.append('nom', $('#tb_update_name_photo').val());
-				formData.append('media', $('#file_update_get_photo')[0].files[0]);
+				var form_data = new FormData();
+				form_data.append("type", "add_photo");
+				form_data.append("id_article", id_article);
+				form_data.append("id_projet", id_projet);
+				form_data.append('nom', $('#tb_update_name_photo').val());
+				form_data.append('media', $('#file_update_get_photo')[0].files[0]);
 				
 				$.ajax({
 		            url: './ModificationArticle',
@@ -269,13 +274,16 @@
 		            mimeType:'multipart/form-data',
 		            contentType: false,
 		            processData: false,
-		            data: formData,
+		            data: form_data,
 		            success : function(json)
 		            {
 		            	json = jQuery.parseJSON(json);
 		            	$('#modif_article_image').append(
-	            				"<div class=\"" + json.id_media + "\"><img id=\"" + json.id_media +"\"class=\"myImg img-thumbnail\" src=\"images/" + id_projet + "/" + id_article + "/PHOTOS_ENFANTS/" + json.nom + " alt=\""+ $('#tb_update_name_photo').val()  +"\"><br>" 
-	            				+ "<input type=\"text\" value=\"" + $('#tb_update_name_photo').val() + "\"><button id_media=\"" + json.id_media + "\" class=\"bt_delete_photo\">Supprimer</button></div>");
+	            				"<div class=\"" + json.id_media + " col-md-3\">"+
+	            				"<img id=\"" + json.id_media +"\"class=\"myImg img-thumbnail\" src=\"images/" + id_projet + "/" + id_article + "/PHOTOS_ENFANTS/" + json.nom + " alt=\""+ $('#tb_update_name_photo').val()  +"\"><br>" 
+	            			  + "<input id=\"name_" + json.id_media + "\" type=\"text\" value=\"" + $('#tb_update_name_photo').val() + "\" maxlength=\"50\"\">" +
+	            				"<button id_media=\"" + json.id_media + "\" class=\"bt_rename_photo btn btn-sample\">Renommer</button>   " +
+	            				"<button id_media=\"" + json.id_media + "\" class=\"bt_delete_photo btn btn-sample\">Supprimer</button></div>");
 		            }
 		        });
 			});
@@ -287,6 +295,7 @@
 			$('#page_modif_article').hide();
 			$('#file_update_get_photo').hide();
 			$('#update_add_photo_info').hide();
+			$('#update_show_article').hide();
 			
 			function initialiser()
 			{
@@ -314,11 +323,11 @@
 				
 				$('.bt_delete_photo').on('click', function(){
 					var id_media = $(this).attr('id_media');
-					var formData = new FormData();
-					formData.append("type", "delete_photo");
-					formData.append("id_article", id_article);
-					formData.append("id_media", id_media);
-					formData.append("chemin", $('#' + id_media).attr('src'));
+					var form_data = new FormData();
+					form_data.append("type", "delete_photo");
+					form_data.append("id_article", id_article);
+					form_data.append("id_media", id_media);
+					form_data.append("chemin", $('#' + id_media).attr('src'));
 					
 					$.ajax({
 			            url: './ModificationArticle',
@@ -326,10 +335,38 @@
 			            mimeType:'multipart/form-data',
 			            contentType: false,
 			            processData: false,
-			            data: formData,
+			            data: form_data,
 			            success : function()
 			            {
 			            	$('.' + id_media).remove();
+			            }
+			        });
+				});
+				
+
+				$('.bt_rename_photo').on('click', function()
+				{
+					var id_media = $(this).attr("id_media");
+					var new_name = $('#name_' + id_media).val();
+					var form_data = new FormData();
+					
+					form_data.append("type", "rename_photo");
+					form_data.append("newName", new_name);
+					form_data.append("id_media", id_media);
+					
+					console.log($('#name_' + id_media).val());
+					console.log($(this).attr("id_media"));
+					
+					$.ajax({
+			            url: './ModificationArticle',
+			            type: 'POST',
+			            mimeType:'multipart/form-data',
+			            contentType: false,
+			            processData: false,
+			            data: form_data,
+			            success : function()
+			            {
+			            	$('#' + id_media).attr('alt', new_name);
 			            }
 			        });
 				});
@@ -372,9 +409,9 @@
 	
 	<!-- -------------------------------- Modifier article -------------------------- -->
 	
-	<div class="row" id="page_modif_article">
-		<div class="row col-md-12" id="modifier_article">
-			<p>Veuillez séléctionner l'article à modifier.</p>
+	<div class="row col-md-12" id="page_modif_article" style="margin-bottom: 2%">
+		<div class="row" id="modifier_article">
+			<p>Veuillez sélectionner l'article à modifier.</p>
 			<select id="select" default="">
 				<option disabled selected value hidden></option>
 				<option value="Le pain">Le pain</option>
@@ -388,24 +425,24 @@
 				<option value="Expression Corporelle">Expression Corporelle</option>
 			</select>
 		</div>
-		<div class="row">
-			<div class="col-md-8">
-				<textarea id="contenu_article" rows="15" cols="80" style="margin-top: 2%; margin-left: 2%"></textarea><br><button id="bt_submit_update_content">Mettre à jour</button>
+		<div id="update_show_article" class="row">
+			<div class="col-md-6">
+				<textarea id="contenu_article" rows="15" cols="80" style="margin-top: 2%; margin-left: 2%"></textarea><br><button id="bt_submit_update_content" class="btn btn-sample">Mettre à jour</button>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-6">
 				<div class="scroll-bar-wrap-admin">
 					<div id="modif_article_image" class="scroll-box-admin">
 					</div>
 					<div class="cover-bar">
 					</div>
 				</div>
-				<button id="bt_update_add_photo">Ajouter photo</button>
+				<button id="bt_update_add_photo" class="btn btn-sample">Ajouter photo</button>
 				<div id="update_add_photo_info" style="margin-top: 2%">
 					<label for="tb_update_name_photo">Nom de la photo </label>
 					<input type="text" id="tb_update_name_photo">
-					<button id="bt_update_get_photo">Importer photo</button>
+					<button id="bt_update_get_photo" class="btn btn-sample">Importer photo</button>
 					<input type="file" id="file_update_get_photo" accept="image/*">
-					<button id="bt_update_add_photo_submit">Valider</button>
+					<button id="bt_update_add_photo_submit" class="btn btn-sample">Valider</button>
 				</div>
 			</div>
 		</div>
@@ -417,7 +454,6 @@
 	</div>
 	
 	<!-- -------------------------------- Fin modifier article -------------------------- -->
-		
 	<%@include file="/WEB-INF/footer.html"%>
 </body>
 </html>

@@ -18,6 +18,7 @@ import tools.Media;
 @MultipartConfig()
 public class ModificationArticle extends HttpServlet 
 {
+	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		response.setCharacterEncoding("UTF-8");
@@ -44,12 +45,19 @@ public class ModificationArticle extends HttpServlet
 		response.getWriter().println(json);
 	}
 
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		String type = IOUtils.toString(request.getPart("type").getInputStream(), "UTF-8"); 
 		Modele modele = new Modele();
-		String id_article = IOUtils.toString(request.getPart("id_article").getInputStream(), "UTF-8");
-		int id_media;
+		String id_article = "";
+		int id_media = -1;
+		
+		if(request.getPart("id_article") != null)
+			id_article = IOUtils.toString(request.getPart("id_article").getInputStream(), "UTF-8");
+		
+		if(request.getPart("id_media") != null)
+			id_media = Integer.valueOf(IOUtils.toString(request.getPart("id_media").getInputStream(), "UTF-8"));
 		
 		switch(type)
 		{
@@ -69,8 +77,11 @@ public class ModificationArticle extends HttpServlet
 			break;
 		case "delete_photo" :
 			String chemin = IOUtils.toString(request.getPart("chemin").getInputStream(), "UTF-8");
-			id_media = Integer.valueOf(IOUtils.toString(request.getPart("id_media").getInputStream(), "UTF-8"));
 			modele.supprimerMedia(getServletContext().getRealPath("/") + chemin, id_media);
+			break;
+		case "rename_photo" :
+			String newName = IOUtils.toString(request.getPart("newName").getInputStream(), "UTF-8");
+			modele.renameMedia(id_media, newName);
 			break;
 		}
 	}

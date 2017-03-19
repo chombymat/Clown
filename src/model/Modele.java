@@ -782,6 +782,26 @@ public class Modele
 		}
 	}
 
+	public void renameMedia(int id_media, String newName) 
+	{
+		Connection con = null;
+		try{
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("update media set nom = ? where id_media = ?");
+			statement.setString(1, newName);
+			statement.setInt(2, id_media);
+			statement.executeUpdate();
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				con.close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+
 	//------------------------------------------------------PROJET------------------------------------------------------------
 
 
@@ -826,7 +846,5 @@ public class Modele
 			}
 		}
 	}
-
-
 
 }
