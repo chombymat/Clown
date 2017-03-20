@@ -1,4 +1,4 @@
-body{background-color: #F5F5DC;text-align: center;font-family: Calibri;font-size: 17px;
+body{background-color: #f0f0e5;text-align: center;font-family: Calibri;font-size: 17px;
 scrollbar-base-color: orange; 
 scrollbar-arrow-color: green;
 scrollbar-DarkShadow-Color: blue; }
@@ -45,7 +45,6 @@ h3{color: #C21950; font-family: Serif;}
 
 .scroll-box-admin::-webkit-scrollbar-thumb {
   overflow:visible;
-  background:#f5f5dc;
   border-radius: 10px;
 }
 .scroll-box-admin::-webkit-scrollbar {
@@ -65,7 +64,7 @@ h3{color: #C21950; font-family: Serif;}
 
 .scroll-box::-webkit-scrollbar-thumb {
   overflow:visible;
-  background:#f5f5dc;
+  background:#f0f0e5;
   border-radius: 10px;
 }
 .scroll-box::-webkit-scrollbar {
@@ -79,7 +78,7 @@ h3{color: #C21950; font-family: Serif;}
 }
 .cover-bar {
   position: absolute;
-  background: #F5F5DC;
+  background: #f0f0e5;
   height: 100%;  
   top: 0;
   right: 0;
@@ -185,7 +184,7 @@ h3{color: #C21950; font-family: Serif;}
 }
 
 .navbar-default{
-	background-color: #F5F5DC;
+	background-color: #f0f0e5;
 	border: none;
 }
 
@@ -341,7 +340,7 @@ h3{color: #C21950; font-family: Serif;}
 }
 .form-contact{
 	font-family: Serif;
-	background-color: #F5F5DC;
+	background-color: #f0f0e5;
 	color: #707070;
 	font-size: 120%;
 }

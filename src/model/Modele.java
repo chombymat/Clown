@@ -783,7 +783,8 @@ public class Modele
 
 
 
-	public ArrayList<Media> getMedias(int idArticle){
+	public ArrayList<Media> getMedias(int idArticle)
+	{
 		ArrayList<Media> medias = new ArrayList<Media>();
 		Connection con = null;
 		try{
@@ -808,7 +809,8 @@ public class Modele
 		}
 	}
 
-	public ArrayList<Media> getGalerie(){
+	public ArrayList<Media> getGalerie()
+	{
 		ArrayList<Media> medias = new ArrayList<Media>();
 		Connection con = null;
 		try{
@@ -883,7 +885,8 @@ public class Modele
 	//------------------------------------------------------PROJET------------------------------------------------------------
 
 
-	public void ajouterProjet(String titre, String description){
+	public void ajouterProjet(String titre, String description)
+	{
 		Connection con = null;
 		try{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
@@ -904,8 +907,8 @@ public class Modele
 		}
 	}
 
-
-	public void supprimerProjet(int id){
+	public void supprimerProjet(int id)
+	{
 		Connection con = null;
 		try{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
