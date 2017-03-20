@@ -332,7 +332,7 @@
 			
 			function initialiserUpdateArticle()
 			{
-				initialiserModel();
+				initialiserModal();
 				
 				$('.bt_delete_photo').on('click', function(){
 					var id_media = $(this).attr('id_media');
