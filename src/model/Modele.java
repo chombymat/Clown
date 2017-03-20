@@ -195,6 +195,31 @@ public class Modele
 			}
 		}
 	}
+	
+	public void envoyerMailModifPassword(String pseudo, String mail, String lienModifPassword){
+		try{
+
+			String message = "Votre demande de modification de mot de passe sous le login " + pseudo +
+							 " a bien été prise en compte. Veuillez cliquez sur le lien ci-dessous pour modifier ce champ :\n" +
+							 lienModifPassword;
+			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
+			Message msg = new MimeMessage(session_mail);
+			msg.setFrom(new InternetAddress(mailEntreprise));
+			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mail));
+			msg.setSubject("modification de mot de passe La Prima Porta");
+			msg.setText(message);
+			Transport.send(msg);
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				ds.getConnection().close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
 
 	public void envoyerMailInscriptionRefusUtilisateur(String pseudo, String mail){
 		try{
@@ -344,6 +369,29 @@ public class Modele
 			} catch(SQLException e) {
 				e.printStackTrace();
 				return mail;
+			}
+		}
+	}
+	
+	public void modifierPasswordUtilisateur(String login, String mail, String pass) throws Exception {
+		try {	
+			statement = ds.getConnection().prepareStatement("udpate utilisateur set prima_pass = ? where login = ? and adresse_mail = ?");
+			statement.setString(1, cryptPass(pass));
+			statement.setString(2, login);
+			statement.setString(3, mail);
+			
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} catch (Exception e){
+			throw e;
+
+		} finally{
+			try{
+				statement.getConnection().close();
+			} catch(SQLException e) {
+				e.printStackTrace();
 			}
 		}
 	}
