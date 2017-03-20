@@ -4,13 +4,16 @@ drop table if exists projet;
 drop table if exists role;
 drop table if exists utilisateur;
 drop table if exists contact;
+drop table if exists media_clown;
+drop table if exists clown;
 
 -- création de la table des projets :
 -- titre obligatoire
 
 create table projet(
-	id_projet serial primary key,
-	titre varchar(200) not null
+	id_projet serial,
+	titre varchar(200) not null,
+	constraint pk_projet primary key(id_projet)
 );
 
 -- création de la table des articles :
@@ -18,10 +21,12 @@ create table projet(
 -- relié à un projet
 
 create table article(
-	id_article serial primary key,
-	id_projet integer references projet(id_projet) on update cascade on delete restrict,
+	id_article serial,
+	id_projet integer,
 	titre varchar(200) not null,
-	contenu text not null
+	contenu text not null,
+	constraint pk_article primary key(id_article),
+	constraint fk_article_projet foreign key(id_projet) references projet(id_projet) on update cascade on delete restrict
 );
 
 -- création de la table des média :
@@ -29,11 +34,13 @@ create table article(
 -- relié à un article
 
 create table media(
-	id_media serial primary key,
-	id_article integer references article(id_article) on update cascade on delete restrict,
-	chemin varchar(200) not null,
+	id_media serial,
+	id_article integer,
+	chemin text not null,
 	nom varchar(50) not null,
-	type varchar(50) not null
+	type varchar(50) not null,
+	constraint pk_media primary key(id_media),
+	constraint fk_media_article foreign key(id_article) references article(id_article) on update cascade on delete restrict
 );
 
 -- création de la table des utilisateurs :
@@ -41,12 +48,13 @@ create table media(
 -- prima_pass : mot de passe crypté en sha256 + salt : 'clown'
 
 create table utilisateur(
-	id_utilisateur serial primary key,
+	id_utilisateur serial,
 	nom varchar(100) not null,
 	prenom varchar(100) not null,
 	adresse_mail varchar(100) not null unique,
 	login varchar(20) not null unique,
-	prima_pass varchar(100) not null
+	prima_pass varchar(100) not null,
+	constraint pk_utilisateur primary key(id_utilisateur)
 );
 
 -- création de la table des rôles : 
@@ -54,9 +62,9 @@ create table utilisateur(
 -- 4 : administrateur
 
 create table role(
-	id_utilisateur integer references utilisateur(id_utilisateur) 
-		on update cascade on delete restrict,
-	role varchar(100) default 'Matthias'
+	id_utilisateur integer,
+	role varchar(100) default 'Matthias',
+	constraint fk_role_utilisateur foreign key(id_utilisateur) references utilisateur(id_utilisateur) on update cascade on delete restrict
 );
 
 -- création de la table de contact de l'entreprise : 
@@ -71,6 +79,44 @@ create table contact(
 	code_postal varchar(5),
 	ville varchar(200)
 );
+
+create table clown(
+	id_clown serial,
+	nom varchar(100) not null,
+	constraint pk_clown primary key(id_clown)
+);
+
+create table media_clown(
+	id_media serial,
+	id_clown integer,
+	type varchar(8) not null,
+	nom varchar(100) not null,
+	chemin text not null,
+	constraint pk_media_clown primary key(id_media),
+	constraint fk_media_clown_clown foreign key(id_clown) references clown(id_clown) on update cascade on delete cascade
+);
+
+insert into clown(nom) values('Claire');
+insert into clown(nom) values('Virginie');
+
+insert into media_clown(id_clown, type, nom, chemin) values(1, 'portrait', 'portrait Claire', 'images/clowns/1/portrait.JPG');
+insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Claire', 'images/clowns/1/Deambulation-clowns-prima-porta-bien-etre-21.jpg');
+insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Claire','images/clowns/1/Deambulation-clowns-prima-porta-bien-etre-32.jpg');
+insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Claire','images/clowns/1/MG_4032.jpg');
+insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Claire','images/clowns/1/MG_4037.jpg');
+insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Claire','images/clowns/1/MG_4204.jpg');
+insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Claire','images/clowns/1/MG_4211.jpg');
+
+insert into media_clown(id_clown, type, nom, chemin) values(2, 'portrait', 'portrait Virginie', 'images/clowns/2/portrait.JPG');
+insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Virginie', 'images/clowns/2/P_20170209_141428.jpg');
+insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Virginie','images/clowns/2/P_20170209_142253.jpg');
+insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Virginie','images/clowns/2/P_20170209_142753.jpg');
+insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Virginie','images/clowns/2/P1060614.JPG');
+insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Virginie','images/clowns/2/P1060617.JPG');
+insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Virginie','images/clowns/2/P1060691.JPG');
+insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Virginie','images/clowns/2/P1060700.JPG');
+insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Virginie','images/clowns/2/P1070070.JPG');
+insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Virginie','images/clowns/2/P1070097.JPG');
 
 insert into utilisateur(id_utilisateur, nom, prenom, adresse_mail, login, prima_pass) values(1, 'Markey', 'Jeffrey', 'markey.jeffrey@gmail.com', 'Metarion', 'DH/hPDypUlaFDntpSXvYFCb1HSE6qG1uPMnn61q8YWY=');
 insert into role(id_utilisateur, role) values(1, 'role4');
@@ -125,23 +171,6 @@ insert into media(id_article, chemin, nom, type) values(6, 'images/1/6/PHOTOS_EN
 insert into media(id_article, chemin, nom, type) values(6, 'images/1/6/PHOTOS_ENFANTS/P1070230.JPG', 'photo enfant spectacle 5', 'photo');
 insert into media(id_article, chemin, nom, type) values(6, 'images/1/6/PHOTOS_ENFANTS/P1070276.JPG', 'photo enfant spectacle 6', 'photo');
 insert into media(id_article, chemin, nom, type) values(6, 'images/1/6/PHOTOS_ENFANTS/P1060829.JPG', 'photo enfant spectacle 7', 'photo');
-
-insert into media(id_article, chemin, nom, type) values(8, 'images/2/8/CLAIRE/Deambulation-clowns-prima-porta-bien-etre-21.jpg', 'photo clown - Claire', 'photo_claire');
-insert into media(id_article, chemin, nom, type) values(8, 'images/2/8/CLAIRE/Deambulation-clowns-prima-porta-bien-etre-32.jpg', 'photo clown - Claire', 'photo_claire');
-insert into media(id_article, chemin, nom, type) values(8, 'images/2/8/CLAIRE/MG_4032.jpg', 'photo clown - Claire', 'photo_claire');
-insert into media(id_article, chemin, nom, type) values(8, 'images/2/8/CLAIRE/MG_4037.jpg', 'photo clown - Claire', 'photo_claire');
-insert into media(id_article, chemin, nom, type) values(8, 'images/2/8/CLAIRE/MG_4204.jpg', 'photo clown - Claire', 'photo_claire');
-insert into media(id_article, chemin, nom, type) values(8, 'images/2/8/CLAIRE/MG_4211.jpg', 'photo clown - Claire', 'photo_claire');
-
-insert into media(id_article, chemin, nom, type) values(8, 'images/2/8/VIRGINIE2/P_20170209_141428.jpg', 'photo clown - Virginie', 'photo_virginie');
-insert into media(id_article, chemin, nom, type) values(8, 'images/2/8/VIRGINIE2/P_20170209_142253.jpg', 'photo clown - Virginie', 'photo_virginie');
-insert into media(id_article, chemin, nom, type) values(8, 'images/2/8/VIRGINIE2/P_20170209_142753.jpg', 'photo clown - Virginie', 'photo_virginie');
-insert into media(id_article, chemin, nom, type) values(8, 'images/2/8/VIRGINIE2/P1060614.JPG', 'photo clown - Virginie', 'photo_virginie');
-insert into media(id_article, chemin, nom, type) values(8, 'images/2/8/VIRGINIE2/P1060617.JPG', 'photo clown - Virginie', 'photo_virginie');
-insert into media(id_article, chemin, nom, type) values(8, 'images/2/8/VIRGINIE2/P1060691.JPG', 'photo clown - Virginie', 'photo_virginie');
-insert into media(id_article, chemin, nom, type) values(8, 'images/2/8/VIRGINIE2/P1060700.JPG', 'photo clown - Virginie', 'photo_virginie');
-insert into media(id_article, chemin, nom, type) values(8, 'images/2/8/VIRGINIE2/P1070070.JPG', 'photo clown - Virginie', 'photo_virginie');
-insert into media(id_article, chemin, nom, type) values(8, 'images/2/8/VIRGINIE2/P1070097.JPG', 'photo clown - Virginie', 'photo_virginie');
 
 insert into media(id_article, chemin, nom, type) values(9, 'images/2/9/2015-12-17_15.43.00.jpg', 'photo enfant - Pratique et Sensoriel', 'photo');
 insert into media(id_article, chemin, nom, type) values(9, 'images/2/9/2015-12-17_15.30.53.jpg', 'photo enfant - Pratique et Sensoriel', 'photo');
