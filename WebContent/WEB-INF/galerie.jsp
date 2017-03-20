@@ -23,7 +23,6 @@
 <body>
 	<%ArrayList<Media> galerie = (ArrayList) request.getAttribute("galerie");%>
 
-
 	<div class="container">
 		<div id="content" class="row ">
 			<%
@@ -64,8 +63,7 @@
 			$('#id' + page_num).addClass('active');
 		}
 
-		$(document)
-				.ready(
+		$(document).ready(
 						function() {
 							var modal = document.getElementById('myModal');
 
@@ -92,9 +90,7 @@
 							}
 
 
-							var number_of_pages = Math.ceil($('#content')
-									.children().length
-									/ show_per_page);
+							var number_of_pages = Math.ceil($('#content').children().length / show_per_page);
 
 							var nav = '<ul class="pagination"><li><a id="page" href="javascript:previous();">&laquo;</a>';
 
@@ -111,7 +107,6 @@
 
 							$('#page_navigation').html(nav);
 							set_display(0, show_per_page);
-
 						});
 	</script>
 

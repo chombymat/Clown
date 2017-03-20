@@ -27,6 +27,7 @@ import javax.naming.NamingException;
 import javax.servlet.http.Part;
 import javax.sql.DataSource;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import tools.Article;
 import tools.Media;
@@ -34,21 +35,7 @@ import tools.Utilisateur;
 
 public class Modele 
 {
-	protected ResultSet result;
-	protected DataSource ds = null;
-	protected PreparedStatement statement = null;
 	private String mailEntreprise = "aurelia.catrice@etudiant.univ-lille1.fr";
-
-	public Modele(){
-		try 
-		{
-			ds = (DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase");
-
-		} catch(Exception e){
-			e.printStackTrace();
-		}
-	}
-
 
 	public Utilisateur connexion(String login, String pass) throws Exception {
 
@@ -57,7 +44,7 @@ public class Modele
 
 		try 
 		{
-			con = ds.getConnection();
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
 			PreparedStatement ps_connection = con.prepareStatement(
 					"select role, utilisateur.id_utilisateur, nom, prenom, adresse_mail from utilisateur, role where role.id_utilisateur = utilisateur.id_utilisateur and login = ? and prima_pass = ?");
 			ps_connection.setString(1, login);
@@ -83,10 +70,12 @@ public class Modele
 		return user;
 	}
 
-	private String cryptPass(String pass){
+	private String cryptPass(String pass)
+	{
 		byte[] salt = new String("Clown").getBytes();
 
-		try {
+		try 
+		{
 			MessageDigest digest = MessageDigest.getInstance("SHA-256");
 			digest.reset();
 			digest.update(salt);
@@ -108,7 +97,8 @@ public class Modele
 
 	//------------------------------------------------------CONTACT------------------------------------------------------------
 
-	public void envoyerMailContact(String nom, String prenom, String mail, String  numero_telephone, String adresse, String ville, String departement, String sexe, String message){
+	public void envoyerMailContact(String nom, String prenom, String mail, String  numero_telephone, String adresse, String ville, String departement, String sexe, String message)
+	{
 		try{
 
 			if(sexe != null){
@@ -137,12 +127,6 @@ public class Modele
 
 		} catch (Exception e){
 			e.printStackTrace();
-		} finally{
-			try{
-				ds.getConnection().close();
-			} catch(Exception e){
-				e.printStackTrace();
-			}
 		}
 	}
 
@@ -164,12 +148,6 @@ public class Modele
 
 		} catch (Exception e){
 			e.printStackTrace();
-		} finally{
-			try{
-				ds.getConnection().close();
-			} catch(Exception e){
-				e.printStackTrace();
-			}
 		}
 	}
 
@@ -187,12 +165,6 @@ public class Modele
 
 		} catch (Exception e){
 			e.printStackTrace();
-		} finally{
-			try{
-				ds.getConnection().close();
-			} catch(Exception e){
-				e.printStackTrace();
-			}
 		}
 	}
 	
@@ -235,50 +207,47 @@ public class Modele
 
 		} catch (Exception e){
 			e.printStackTrace();
-		} finally{
-			try{
-				ds.getConnection().close();
-			} catch(Exception e){
-				e.printStackTrace();
-			}
-		}
+		} 
 	}
 
 
 
 	//------------------------------------------------------UTILISATEUR------------------------------------------------------------	
 
-	public String ajoutUtilisateur(String nom, String prenom, String login, String mail, String pass) throws Exception {
-		try{
-			statement = ds.getConnection().prepareStatement("select from utilisateur where adresse_mail = ?");
+	public String ajoutUtilisateur(String nom, String prenom, String login, String mail, String pass) throws Exception 
+	{
+		Connection con = null;
+		try
+		{
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("select from utilisateur where adresse_mail = ?");
 			statement.setString(1, mail);
-			result = statement.executeQuery();
+			ResultSet result = statement.executeQuery();
 
 			if(result.next())
 				return "mail existant";
 
-			statement = ds.getConnection().prepareStatement("select from utilisateur where login = ?");
-			statement.setString(1, login);
-			result = statement.executeQuery();
+			PreparedStatement statement2 = con.prepareStatement("select from utilisateur where login = ?");
+			statement2.setString(1, login);
+			result = statement2.executeQuery();
 
 			if(result.next())
 				return "login existant";
+			PreparedStatement statement3 = con.prepareStatement("insert into utilisateur (nom, prenom, adresse_mail, login, prima_pass) values(?, ?, ?, ?, ?)");
+			statement3.setString(1, nom);
+			statement3.setString(2, prenom);
+			statement3.setString(3, mail);
+			statement3.setString(4, login);
+			statement3.setString(5, cryptPass(pass));
 
-			statement = ds.getConnection().prepareStatement("insert into utilisateur (nom, prenom, adresse_mail, login, prima_pass) values(?, ?, ?, ?, ?)");
-			statement.setString(1, nom);
-			statement.setString(2, prenom);
-			statement.setString(3, mail);
-			statement.setString(4, login);
-			statement.setString(5, cryptPass(pass));
-
-			statement.executeUpdate();
+			statement3.executeUpdate();
 			return "inscription ok";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "exception";
 		} finally{
 			try{
-				statement.getConnection().close();
+				con.close();
 			} catch(SQLException e){
 				e.printStackTrace();
 			}
@@ -286,20 +255,21 @@ public class Modele
 	}
 
 	public void ajoutRoleUtilisateur(String login) throws Exception {
+		Connection con = null;
 		try {	
-
-			statement = ds.getConnection().prepareStatement("select id_utilisateur from utilisateur where login = ?");
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("select id_utilisateur from utilisateur where login = ?");
 			statement.setString(1,login);
-			result = statement.executeQuery();
+			ResultSet result = statement.executeQuery();
 
 			if(result.next()){
 				int id = result.getInt(1);
 
-				statement = ds.getConnection().prepareStatement("insert into role (id_utilisateur, role) values(?, ?)");
-				statement.setInt(1, id);
-				statement.setString(2, "role2");
+				PreparedStatement statement2 = con.prepareStatement("insert into role (id_utilisateur, role) values(?, ?)");
+				statement2.setInt(1, id);
+				statement2.setString(2, "role2");
 
-				statement.executeUpdate();
+				statement2.executeUpdate();
 				System.out.println("ajout confirmé de l'utiliateur : " + login);
 			}
 
@@ -311,7 +281,7 @@ public class Modele
 
 		} finally{
 			try{
-				statement.getConnection().close();
+				con.close();
 
 			} catch(SQLException e) {
 				e.printStackTrace();
@@ -321,9 +291,10 @@ public class Modele
 
 
 	public void suprimerUtilisateur(String login) throws Exception {
+		Connection con = null;
 		try {	
-
-			statement = ds.getConnection().prepareStatement("delete from utilisateur where login = ?");
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("delete from utilisateur where login = ?");
 			statement.setString(1,login);
 
 			statement.executeUpdate();
@@ -337,8 +308,7 @@ public class Modele
 
 		} finally{
 			try{
-				statement.getConnection().close();
-
+				con.close();
 			} catch(SQLException e) {
 				e.printStackTrace();
 			}
@@ -348,11 +318,13 @@ public class Modele
 
 	public String getMailUtilisateur(String login) throws Exception {
 		String mail = null;
+		Connection con = null;
 		try {	
-			statement = ds.getConnection().prepareStatement("select adresse_mail from utilisateur where login = ?");
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("select adresse_mail from utilisateur where login = ?");
 			statement.setString(1,login);
 
-			result = statement.executeQuery();
+			ResultSet result = statement.executeQuery();
 			if(result.next())
 				mail = result.getString(1);
 			return mail;
@@ -365,7 +337,7 @@ public class Modele
 
 		} finally{
 			try{
-				statement.getConnection().close();
+				con.close();
 			} catch(SQLException e) {
 				e.printStackTrace();
 				return mail;
@@ -402,10 +374,11 @@ public class Modele
 	public int ajouterArticle(String titre, String description, String contenu)
 	{
 		int id_article = -1;
-
+		Connection con = null;
 		try
 		{
-			statement = ds.getConnection().prepareStatement("insert into Article (titre, description, contenu) values(?, ?, ?) returning id_article");
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("insert into Article (titre, description, contenu) values(?, ?, ?) returning id_article");
 			statement.setString(1, titre);
 			statement.setString(2, description);
 			statement.setString(3, contenu);
@@ -418,8 +391,7 @@ public class Modele
 			e.printStackTrace();
 		} finally{
 			try{
-				statement.close();
-				ds.getConnection().close();
+				con.close();
 			} catch(Exception e){
 				e.printStackTrace();
 			}
@@ -431,8 +403,10 @@ public class Modele
 
 
 	public void modifierArticle(int id, String titre, String description){
+		Connection con = null;
 		try{
-			statement = ds.getConnection().prepareStatement("update from Article set titre = ?, description= ? where id_article = ?");
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("update from Article set titre = ?, description= ? where id_article = ?");
 			statement.setString(1, titre);
 			statement.setString(2, description);
 			statement.setInt(3, id);
@@ -443,8 +417,7 @@ public class Modele
 			e.printStackTrace();
 		} finally{
 			try{
-				statement.close();
-				ds.getConnection().close();
+				con.close();
 			} catch(Exception e){
 				e.printStackTrace();
 			}
@@ -454,8 +427,10 @@ public class Modele
 
 
 	public void supprimerArticle(int id){
+		Connection con = null;
 		try{
-			statement = ds.getConnection().prepareStatement("delete from Article where id_article = ?");
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("delete from Article where id_article = ?");
 			statement.setInt(1, id);
 			statement.executeUpdate();
 			System.out.println("suppression de l'article : " + id);
@@ -464,8 +439,7 @@ public class Modele
 			e.printStackTrace();
 		} finally{
 			try{
-				statement.close();
-				ds.getConnection().close();
+				con.close();
 			} catch(Exception e){
 				e.printStackTrace();
 			}
@@ -474,10 +448,12 @@ public class Modele
 
 	public Article getArticle(int id){
 		Article article = null;
+		Connection con = null;
 		try{
-			statement = ds.getConnection().prepareStatement("select titre, description, contenu from article where id_article = ?");
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("select titre, description, contenu from article where id_article = ?");
 			statement.setInt(1, id);
-			result = statement.executeQuery();
+			ResultSet result = statement.executeQuery();
 			if(result.next()){
 				//article = new Article(id, result.getString("titre"), result.getString("description"), result.getString("contenu"));
 			}
@@ -505,8 +481,7 @@ public class Modele
 			return null;
 		} finally{
 			try{
-				statement.close();
-				ds.getConnection().close();
+				con.close();
 			} catch(Exception e){
 				e.printStackTrace();
 			}
@@ -516,42 +491,45 @@ public class Modele
 	public HashMap<String, tools.Article> getAteliers() 
 	{
 		HashMap<String, Article> articles = new HashMap<String, Article>();
+		Connection con = null;
 		try
 		{
-			statement = ds.getConnection().prepareStatement(
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement(
 					"select article.id_article, article.titre as article_titre, contenu from projet, article where projet.id_projet = article.id_projet and projet.titre like 'atelier'");
-			result = statement.executeQuery();
+			ResultSet result = statement.executeQuery();
 			while(result.next())
 			{
+				String contenu =  StringEscapeUtils.escapeHtml4(result.getString("contenu")).replaceAll("\r", "<br>");
 				switch(result.getString("article_titre"))
 				{
 				case "Le pain" :
-					articles.put("Le pain", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
+					articles.put("Le pain", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
 				case "Le lait" :
-					articles.put("Le lait", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
+					articles.put("Le lait", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
 				case "Les 7 familles" :
-					articles.put("Les 7 familles", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
+					articles.put("Les 7 familles", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
 				case "Le menu équilibré" :
-					articles.put("Le menu équilibré", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
+					articles.put("Le menu équilibré", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
 				case "Alimentation et environnement" :
-					articles.put("Alimentation et environnement", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
+					articles.put("Alimentation et environnement", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
 				case "Le spectacle" :
-					articles.put("Le spectacle", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
+					articles.put("Le spectacle", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
 				case "accueil" :
 					articles.put("accueil", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
 					break;
 				}
 			}
-			
+
 			statement.close();
 			String query = "select chemin, titre, nom from media, article where media.id_article = article.id_article and media.id_article in (";
-			
+
 			boolean firstLine = true;					
 			for(Map.Entry<String, Article> article : articles.entrySet())
 			{
@@ -563,11 +541,11 @@ public class Modele
 				else
 					query += "," + article.getValue().getId();
 			}
-			
+
 			query += ")";
-			statement = ds.getConnection().prepareStatement(query);
-			result = statement.executeQuery();
-			
+			PreparedStatement statement2 = con.prepareStatement(query);
+			result = statement2.executeQuery();
+
 			while(result.next())
 			{
 				articles.get(result.getString("titre")).getMedias().add(new Media(result.getString("chemin"), result.getString("nom")));
@@ -579,41 +557,66 @@ public class Modele
 		{
 			try
 			{
-				statement.close();
-				ds.getConnection().close();
+				con.close();
 			} catch(Exception e)
 			{
 				e.printStackTrace();
 			}
 		}
-		
+
 		return articles;
 	}
-	
+
 	public HashMap<String, tools.Article> getDemarche() 
 	{
 		HashMap<String, Article> articles = new HashMap<String, Article>();
+		Connection con = null;
 		try
 		{
-			statement = ds.getConnection().prepareStatement("select onglet, contenu from article where onglet = 'clown' or onglet = 'pratique_sensoriel' or onglet = 'expression_corporelle' or onglet = 'accueil_demarche'");
-			result = statement.executeQuery();
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("select article.id_article, article.titre as article_titre, contenu from projet, article where projet.id_projet = article.id_projet and projet.titre like 'demarche'");
+			ResultSet result = statement.executeQuery();
 			while(result.next())
 			{
-				switch(result.getString("onglet"))
+				switch(result.getString("article_titre"))
 				{
-				case "clown" :
-					//articles.put("clown", new Article(-1,"","",result.getString("contenu")));
+				case "Clown" :
+					articles.put("Clown", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
 					break;
-				case "pratique_sensoriel" :
-					//articles.put("pratique_sensoriel", new Article(-1,"","",result.getString("contenu")));
+				case "Pratique et sensoriel" :
+					articles.put("Pratique et sensoriel", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
 					break;
-				case "expression_corporelle" :
-					//articles.put("expression_corporelle", new Article(-1,"","",result.getString("contenu")));
+				case "Expression Corporelle" :
+					articles.put("Expression Corporelle", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
 					break;
-				case "accueil_demarche" :
-					//articles.put("accueil_demarche", new Article(-1,"","",result.getString("contenu")));
+				case "accueil" :
+					articles.put("accueil", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
 					break;
 				}
+			}
+
+			statement.close();
+			String query = "select id_media, chemin, titre, nom, type from media, article where media.id_article = article.id_article and media.id_article in (";
+
+			boolean firstLine = true;					
+			for(Map.Entry<String, Article> article : articles.entrySet())
+			{
+				if(firstLine)
+				{
+					query += article.getValue().getId();
+					firstLine = false;
+				}
+				else
+					query += "," + article.getValue().getId();
+			}
+
+			query += ")";
+			PreparedStatement statement2 = con.prepareStatement(query);
+			result = statement2.executeQuery();
+
+			while(result.next())
+			{
+				articles.get(result.getString("titre")).getMedias().add(new Media(result.getInt("id_media"), result.getString("chemin"), result.getString("nom"), result.getString("type")));
 			}
 
 		} catch (Exception e){
@@ -623,30 +626,39 @@ public class Modele
 		{
 			try
 			{
-				statement.close();
-				ds.getConnection().close();
+				con.close();
 			} catch(Exception e)
 			{
 				e.printStackTrace();
 			}
 		}
-		
+
 		return articles;
 	}
-	
-	public Article getArticle(String onglet)
+
+	public Article getArticle(String titre)
 	{
 		Article article = null;
-		
+		Connection con = null;
 		try
 		{
-			statement = ds.getConnection().prepareStatement("select contenu from article where onglet = ?");
-			statement.setString(1, onglet);
-			result = statement.executeQuery();
-			
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement =con.prepareStatement("select id_article, contenu, id_projet from article where titre = ?");
+			statement.setString(1, titre);
+			ResultSet result = statement.executeQuery();
+
 			if(result.next())
 			{
-				//article = new Article(-1, "", "", result.getString("contenu"));
+				article = new Article(result.getInt("id_article"), titre, result.getString("contenu"), result.getInt("id_projet"));
+
+				PreparedStatement statement2 = con.prepareStatement("select id_media, chemin, nom, type from media where id_article = ? and type like 'photo'");
+				statement2.setInt(1, article.getId());
+				result = statement2.executeQuery();
+
+				while(result.next())
+				{
+					article.getMedias().add(new Media(result.getInt("id_media"),result.getString("chemin"), result.getString("nom"), result.getString("type")));
+				}
 			}
 		}
 		catch(Exception e)
@@ -655,20 +667,22 @@ public class Modele
 		}
 		finally
 		{
-			try{ statement.close(); ds.getConnection().close(); }catch(Exception e){}
+			try{ con.close(); }catch(Exception e){}
 		}
-		
+
 		return article;
 	}
-	
-	public void updateArticle(String onglet, String contenu)
+
+	public void updateArticle(String id_article, String contenu)
 	{
+		Connection con = null;
 		try
 		{
-			statement = ds.getConnection().prepareStatement("update article set contenu = ? where onglet = ?");
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("update article set contenu = ? where id_article = ?");
 			statement.setString(1, contenu);
-			statement.setString(2, onglet);
-			result = statement.executeQuery();
+			statement.setInt(2, Integer.valueOf(id_article));
+			statement.executeUpdate();
 		}
 		catch(Exception e)
 		{
@@ -676,48 +690,91 @@ public class Modele
 		}
 		finally
 		{
-			try{ statement.close(); ds.getConnection().close(); }catch(Exception e){}
+			try{ con.close(); }catch(Exception e){}
 		}
 	}
 
 	//------------------------------------------------------MEDIA------------------------------------------------------------
 
 
-	public void ajouterMedia(String chemin, String type, int idArticle){
+	public int ajouterMedia(String chemin, String type, int idArticle, String nom){
+		Connection con = null;
 		try{
-			statement = ds.getConnection().prepareStatement("insert into Media (chemin, type, id_article) values(?, ?, ?)");
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("insert into media (chemin, type, id_article, nom) values(?, ?, ?, ?) returning id_media");
 			statement.setString(1, chemin);
 			statement.setString(2, type);
 			statement.setInt(3, idArticle);
-			statement.executeUpdate();
-			System.out.println("ajout du media : " + chemin);
+			statement.setString(4, nom);
+			ResultSet result = statement.executeQuery();
+			
+			result.next();
+			
+			int id_media = result.getInt("id_media");
+			
+			System.out.println("ajout du media " + id_media + " : " + chemin);
 
+			return id_media;
 		} catch (Exception e){
 			e.printStackTrace();
 		} finally{
 			try{
-				statement.close();
-				ds.getConnection().close();
+				con.close();
 			} catch(Exception e){
 				e.printStackTrace();
 			}
 		}
+		
+		return -1;
+	}
+
+	public int ajouterMedia(String chemin, String type, String nom){
+		Connection con = null;
+		try{
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("insert into media (chemin, type, nom) values(?, ?, ?) returning id_media");
+			statement.setString(1, chemin);
+			statement.setString(2, type);
+			statement.setString(3, nom);
+			ResultSet result = statement.executeQuery();
+			
+			result.next();
+			
+			int id_media = result.getInt("id_media");
+			
+			System.out.println("ajout du media " + id_media + " : " + chemin);
+
+			return id_media;
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				con.close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		return -1;
 	}
 
 
-	public void supprimerMedia(int id){
+	public void supprimerMedia(String chemin, int id_media){
+		Connection con = null;
+		File img = new File(chemin);
 		try{
-			statement = ds.getConnection().prepareStatement("delete from Media where id_media = ?");
-			statement.setInt(1, id);
+			img.delete();
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("delete from media where id_media = ?");
+			statement.setInt(1, id_media);
 			statement.executeUpdate();
-			System.out.println("suppression du media : " + id);
+			System.out.println("suppression du media : " + chemin);
 
 		} catch (Exception e){
 			e.printStackTrace();
 		} finally{
 			try{
-				statement.close();
-				ds.getConnection().close();
+				con.close();
 			} catch(Exception e){
 				e.printStackTrace();
 			}
@@ -728,10 +785,12 @@ public class Modele
 
 	public ArrayList<Media> getMedias(int idArticle){
 		ArrayList<Media> medias = new ArrayList<Media>();
+		Connection con = null;
 		try{
-			statement = ds.getConnection().prepareStatement("select chemin, type, nom from media where id_article = ?");
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("select chemin, type, nom from media where id_article = ?");
 			statement.setInt(1, idArticle);
-			result = statement.executeQuery();
+			ResultSet result = statement.executeQuery();
 			while(result.next()){
 				medias.add(new Media(result.getString(1), result.getString(2), result.getString(3)));
 			}
@@ -742,8 +801,7 @@ public class Modele
 			return null;
 		} finally{
 			try{
-				statement.close();
-				ds.getConnection().close();
+				con.close();
 			} catch(Exception e){
 				e.printStackTrace();
 			}
@@ -752,11 +810,13 @@ public class Modele
 
 	public ArrayList<Media> getGalerie(){
 		ArrayList<Media> medias = new ArrayList<Media>();
+		Connection con = null;
 		try{
-			statement = ds.getConnection().prepareStatement("select chemin, nom from media where type = 'galerie'");
-			result = statement.executeQuery();
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("select chemin, nom, id_media from media where type = 'galerie'");
+			ResultSet result = statement.executeQuery();
 			while(result.next()){
-				medias.add(new Media(result.getString("chemin"), result.getString("nom")));
+				medias.add(new Media(result.getString("chemin"), result.getString("nom"), result.getInt("id_media")));
 			}
 			return medias;
 
@@ -765,21 +825,19 @@ public class Modele
 			return null;
 		} finally{
 			try{
-				statement.close();
-				ds.getConnection().close();
+				con.close();
 			} catch(Exception e){
 				e.printStackTrace();
 			}
 		}
 	}
 
-	public void saveMediaOnDisk(String chemin, Collection<Part> medias, int id)
+	public void saveMediasOnDisk(String chemin, Collection<Part> medias, int id)
 	{
 		File f = new File(chemin);
 
 		if(!f.exists())
 			f.mkdirs();
-
 
 		for(Part media : medias)
 		{
@@ -792,12 +850,44 @@ public class Modele
 		}
 	}
 
+	public void saveMediaOnDisk(String chemin, Part media)
+	{
+		try 
+		{
+			media.write(chemin + media.getSubmittedFileName());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void renameMedia(int id_media, String new_name) 
+	{
+		Connection con = null;
+		try{
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("update media set nom = ? where id_media = ?");
+			statement.setString(1, new_name);
+			statement.setInt(2, id_media);
+			statement.executeUpdate();
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				con.close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+
 	//------------------------------------------------------PROJET------------------------------------------------------------
 
 
 	public void ajouterProjet(String titre, String description){
+		Connection con = null;
 		try{
-			statement = ds.getConnection().prepareStatement("insert into Projet (titre, description) values(?, ?)");
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("insert into Projet (titre, description) values(?, ?)");
 			statement.setString(1, titre);
 			statement.setString(2, description);
 			statement.executeUpdate();
@@ -807,8 +897,7 @@ public class Modele
 			e.printStackTrace();
 		} finally{
 			try{
-				statement.close();
-				ds.getConnection().close();
+				con.close();
 			} catch(Exception e){
 				e.printStackTrace();
 			}
@@ -817,8 +906,10 @@ public class Modele
 
 
 	public void supprimerProjet(int id){
+		Connection con = null;
 		try{
-			statement = ds.getConnection().prepareStatement("delete from Projet where id_projet = ?");
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("delete from Projet where id_projet = ?");
 			statement.setInt(1, id);
 			statement.executeUpdate();
 			System.out.println("suppression du projet : " + id);
@@ -827,14 +918,11 @@ public class Modele
 			e.printStackTrace();
 		} finally{
 			try{
-				statement.close();
-				ds.getConnection().close();
+				con.close();
 			} catch(Exception e){
 				e.printStackTrace();
 			}
 		}
 	}
-
-
 
 }

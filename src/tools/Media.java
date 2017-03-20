@@ -6,10 +6,11 @@ public class Media {
 	private String chemin, type, nom;
 	private int idArticle;
 
-	public Media(int id, String chemin, String type){
+	public Media(int id, String chemin, String nom, String type){
 		this.id = id;
 		this.chemin = chemin;
 		this.type = type;
+		this.nom = nom;
 	}
 
 	public Media(int id, int idArticle, String chemin, String type){
@@ -17,6 +18,12 @@ public class Media {
 		this.idArticle = idArticle;
 		this.chemin = chemin;
 		this.type = type;
+	}
+	
+	public Media(String chemin, String nom, int id_media){
+		this.chemin = chemin;
+		this.nom = nom;
+		this.id = id_media;
 	}
 	
 	public Media(String chemin, String nom){

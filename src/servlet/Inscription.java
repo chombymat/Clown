@@ -49,8 +49,8 @@ public class Inscription extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Modele modele = new Modele();
 		try {
-			if((String)request.getParameter("initialisation") != null){
-				response.sendRedirect("./index.jsp");
+			if((String)request.getParameter("initialisation") != null)
+			{
 				System.out.println("inscription demandée");
 				String nom = (String)request.getParameter("inscriptionNom");
 				String prenom = (String)request.getParameter("inscriptionPrenom");
@@ -65,13 +65,10 @@ public class Inscription extends HttpServlet {
 				modele = new Modele();
 				String retourInscription = modele.ajoutUtilisateur(nom, prenom, login, mail, pass);
 				
-				System.out.println(retourInscription);
-				request.setAttribute("retourInscription", retourInscription);
-				getServletContext().getRequestDispatcher("/inscription.jsp").forward(request, response);
-
+				response.getWriter().print(retourInscription);
 			}
 		} catch (Exception e) {
-			response.getWriter().print(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 }

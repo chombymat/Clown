@@ -18,10 +18,7 @@ public class Demarche extends HttpServlet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		HashMap<String, tools.Article> articles = new Modele().getDemarche();
-		request.setAttribute("clown", articles.get("clown").getContenu());
-		request.setAttribute("pratique", articles.get("pratique_sensoriel").getContenu());
-		request.setAttribute("expression", articles.get("expression_corporelle").getContenu());
-		request.setAttribute("accueil_demarche", articles.get("accueil_demarche").getContenu());
+		request.setAttribute("articles", articles);
 		request.getRequestDispatcher("/WEB-INF/demarche.jsp").forward(request, response);
 	}
 }
