@@ -466,13 +466,13 @@ public class Modele
 		try
 		{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement =con.prepareStatement("select  contenu, id_projet, titre from article where id_article = ?");
+			PreparedStatement statement =con.prepareStatement("select  contenu, titre from article where id_article = ?");
 			statement.setInt(1, id_article);
 			ResultSet result = statement.executeQuery();
 
 			if(result.next())
 			{
-				article = new Article(id_article, result.getString("titre"), result.getString("contenu"), result.getInt("id_projet"));
+				article = new Article(id_article, result.getString("titre"), result.getString("contenu"));
 
 				PreparedStatement statement2 = con.prepareStatement("select id_media, chemin, nom, type from media where id_article = ? and type like 'photo'");
 				statement2.setInt(1, id_article);

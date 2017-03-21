@@ -216,13 +216,11 @@
 			
 			$('#page_galerie').hide();
 			$('#file_galerie_get_photo').hide();
-			$('#update_add_photo_info').hide();
 			$('#galerie_add_photo_info').hide();
 			
 			/*********************************** Modifier article ***********************************/
 			
 			var id_article = null;
-			var id_projet = null;
 			
 			$('#bt_modif_article').on('click', function(){
 				if($('#page_galerie').is(':visible'))
@@ -235,8 +233,7 @@
 			});
 			
 			$('#select').change(function(){
-				var id_article = $('option:selected', this).attr('id_article');
-	console.log(id_article);
+				id_article = $('option:selected', this).attr('id_article');
 				$.ajax({
 		            url: './ModificationArticle',
 		            type: 'GET',
@@ -248,7 +245,6 @@
 		            	var json = jQuery.parseJSON(data);
 		            	var array = json.medias;
 		            	id_article = json.id;
-		            	id_projet = json.id_projet;
 		            	
 		            	if(id_article != 7 && id_article != 11)
 		            	{
@@ -302,9 +298,9 @@
 			
 			$('#bt_update_add_photo_submit').on('click', function(){
 				var form_data = new FormData();
+				console.log(id_article);
 				form_data.append("type", "add_photo");
 				form_data.append("id_article", id_article);
-				form_data.append("id_projet", id_projet);
 				form_data.append('nom', $('#tb_update_name_photo').val());
 				form_data.append('media', $('#file_update_get_photo')[0].files[0]);
 				
@@ -334,10 +330,15 @@
 				$('#file_update_get_photo').click();
 			});
 			
+			$('#bt_update_add_pdf').on('click', function(){
+				$('#file_update_add_pdf').click();
+			});
+			
 			$('#page_modif_article').hide();
 			$('#file_update_get_photo').hide();
 			$('#update_add_photo_info').hide();
 			$('#update_show_article').hide();
+			$('#file_update_add_pdf').hide();
 			
 			function initialiserUpdateArticle()
 			{
@@ -497,6 +498,7 @@
 				<option id_article="12">Formation</option>
 			</select>
 		</div>
+		
 		<div id="update_show_article" class="row">
 			<div class="col-md-6">
 				<textarea id="contenu_article" rows="15" cols="80" style="margin-top: 2%; margin-left: 2%"></textarea><br><button id="bt_submit_update_content" class="btn btn-sample">Mettre à jour</button>
@@ -517,6 +519,14 @@
 					<button id="bt_update_add_photo_submit" class="btn btn-sample">Valider</button>
 				</div>
 			</div>
+
+			<div id="update_pdf">
+				<div class="row">
+					<input type="file" id="file_update_add_pdf" accept="application/pdf">
+					<button id="bt_update_add_pdf" class="btn btn-sample">Ajouter PDF</button>
+				</div>
+			</div>
+			
 		</div>
 	</div>
 	

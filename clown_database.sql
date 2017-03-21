@@ -202,3 +202,4 @@ insert into media(id_article, chemin, nom, type) values(11, 'images/1/1/PHOTOS_E
 
 insert into media(chemin, nom, type) values('images/galerie/Capture-2.png', 'galerie 1', 'galerie');
 insert into media(chemin, nom, type) values('images/galerie/Plage_deserte.jpg', 'galerie 2', 'galerie');
+insert into media(chemin, nom, type) values('images/galerie/photo.jpg', 'Constance', 'galerie');

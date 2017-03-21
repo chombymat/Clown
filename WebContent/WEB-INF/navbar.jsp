@@ -42,7 +42,7 @@
 		{
 			$("#name").html("S'inscrire");
 		}
-		if (page.indexOf('formation.jsp') != -1)
+		if (page.indexOf('Formation') != -1)
 		{
 			$("#name").html("Formation");
 		}
@@ -167,7 +167,7 @@
 			        <li><a href="./partenaires.jsp">Partenaires</a></li>
 			      </ul>
 			    </li>
-			    <li><a href="./formation.jsp" class="titre">Formation</a></li>
+			    <li><a href="Formation" class="titre">Formation</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
