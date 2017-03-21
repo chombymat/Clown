@@ -374,3 +374,10 @@ h3{color: #C21950; font-family: Serif;}
 iframe{
 	margin-top: 13%;	
 }
+
+.parent { /* parent juste pour l'alignement vertical, le nom n'est pas important */
+  display: flex; /* contexte sur le parent */
+}
+.enfant { /* enfant juste pour l'alignement vertical, le nom n'est pas important */
+  margin: auto; /* eh oui, tout bêtement */
+}
