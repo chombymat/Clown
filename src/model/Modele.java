@@ -122,7 +122,7 @@ public class Modele
 			Message msg = new MimeMessage(session_mail);
 			msg.setFrom(new InternetAddress("tweetbookda2i@gmail.com"));
 			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mailEntreprise));
-			msg.setSubject("prise de contact " + nom + " " + prenom);
+			msg.setSubject("prise de contact [La Prima Porta]");
 			msg.setText(message);
 			Transport.send(msg);
 
@@ -143,7 +143,7 @@ public class Modele
 			Message msg = new MimeMessage(session_mail);
 			msg.setFrom(new InternetAddress("tweetbookda2i@gmail.com"));
 			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mailEntreprise));
-			msg.setSubject("demande d'inscription " + nom + " " + prenom);
+			msg.setSubject("demande d'inscription [La Prima Porta]");
 			msg.setText(message);
 			Transport.send(msg);
 
@@ -160,7 +160,7 @@ public class Modele
 			Message msg = new MimeMessage(session_mail);
 			msg.setFrom(new InternetAddress(mailEntreprise));
 			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mail));
-			msg.setSubject("comfirmation d'inscription La Prima Porta");
+			msg.setSubject("comfirmation d'inscription [La Prima Porta]");
 			msg.setText(message);
 			Transport.send(msg);
 
@@ -179,7 +179,24 @@ public class Modele
 			Message msg = new MimeMessage(session_mail);
 			msg.setFrom(new InternetAddress(mailEntreprise));
 			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mail));
-			msg.setSubject("modification de mot de passe La Prima Porta");
+			msg.setSubject("modification de mot de passe [La Prima Porta]");
+			msg.setText(message);
+			Transport.send(msg);
+
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void envoyerMailConfirmPassword(String pseudo, String mail){
+		try{
+
+			String message = "Votre mot de passe relatif au login " + pseudo + " a bien été modifié";
+			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
+			Message msg = new MimeMessage(session_mail);
+			msg.setFrom(new InternetAddress(mailEntreprise));
+			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mail));
+			msg.setSubject("mot de passe modifié [La Prima Porta]");
 			msg.setText(message);
 			Transport.send(msg);
 
@@ -196,7 +213,7 @@ public class Modele
 			Message msg = new MimeMessage(session_mail);
 			msg.setFrom(new InternetAddress(mailEntreprise));
 			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mail));
-			msg.setSubject("refus d'inscription La Prima Porta");
+			msg.setSubject("refus d'inscription [La Prima Porta]");
 			msg.setText(message);
 			Transport.send(msg);
 
@@ -344,8 +361,13 @@ public class Modele
 		Connection con = null;
 		try {	
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement = con.prepareStatement("udpate utilisateur set prima_pass = ? where login = ? and adresse_mail = ?");
-			statement.setString(1,login);
+			PreparedStatement statement = con.prepareStatement("update utilisateur set prima_pass = ? where login = ? and adresse_mail = ?");
+			statement.setString(1, pass);
+			statement.setString(2, login);
+			statement.setString(3, mail);
+			statement.executeUpdate();
+			System.out.println("test");
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 
