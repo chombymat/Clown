@@ -62,6 +62,18 @@
 		{
 			$("#name").html("Demande de modification de mot de passe");
 		}
+		if (page.indexOf('modifPassword.jsp') != -1)
+		{
+			$("#name").html("Modification du mot de passe");
+		}
+		if (page.indexOf('refusInscription.jsp') != -1)
+		{
+			$("#name").html("Demande d'inscription");
+		}
+		if (page.indexOf('confirmationInscription.jsp') != -1)
+		{
+			$("#name").html("Demande d'inscription");
+		}
 		
 		$('#bt_connexion').on('click', function(){
 			window.location.replace('./connexion.jsp');

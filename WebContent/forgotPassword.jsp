@@ -34,7 +34,8 @@
 		            {
 		            	if(data === "ok")
 		            	{
-		            		window.location.replace("./");
+		            		$('#success_message').show();         	
+		            		$("#form")[0].reset();
 		            	}
 		            	else if(data === "fail")
 		            	{
@@ -54,8 +55,8 @@
 	</noscript>
 	<hr/>
  <form id="form" class="form-horizontal" method="post" action="ForgotPassword" style="display:none">
-    <div class="form-group">
       <span id="erreur" class="erreur"></span>
+    <div class="form-group">
       <label class="control-label col-sm-4">Identifiant :</label>
       <div class="col-sm-4">
       	<span id="erreur" class="erreur"></span>
@@ -63,9 +64,10 @@
       </div>
     </div>
      <div class="form-group">
+     <span id="erreur" class="erreur"></span>
       <label class="control-label col-sm-4">Mail :</label>
       <div class="col-sm-4">          
-        <input id="mail" type="text" class="form-control" name="mail" placeholder="mail">
+        <input id="mail" type="text" class="form-control" name="mail" placeholder="mail" required>
       </div>
     </div>
     <div class="form-group">        
@@ -73,6 +75,7 @@
         <button type="submit" class="btn btn-sample">Envoyer la demande</button>
       </div>
     </div>
+    <div class="alert alert-success" role="alert" id="success_message"><i class="glyphicon glyphicon-thumbs-up"></i> Votre demande a bien été prise en compte, veuillez consulter votre boîte mail.</div>
   </form>
   <%@include file="/WEB-INF/footer.html"%>
 </body>

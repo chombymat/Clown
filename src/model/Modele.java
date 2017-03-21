@@ -355,16 +355,16 @@ public class Modele
 		}
 	}
 	
-	public void modifierPasswordUtilisateur(String login, String mail, String pass) throws Exception {
+	public String  modifierPasswordUtilisateur(String login, String mail, String pass) throws Exception {
 		Connection con = null;
 		try {	
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
 			PreparedStatement statement = con.prepareStatement("update utilisateur set prima_pass = ? where login = ? and adresse_mail = ?");
-			statement.setString(1, pass);
+			statement.setString(1, cryptPass(pass));
 			statement.setString(2, login);
 			statement.setString(3, mail);
 			statement.executeUpdate();
-			System.out.println("test");
+
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -379,6 +379,7 @@ public class Modele
 				e.printStackTrace();
 			}
 		}
+		return "ok";
 	}
 	//------------------------------------------------------ARTICLE------------------------------------------------------------
 
