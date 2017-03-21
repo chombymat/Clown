@@ -17,8 +17,8 @@ public class Contact extends HttpServlet {
 			new model.Modele().envoyerMailContact(request.getParameter("nom"), request.getParameter("prenom"),
 										   request.getParameter("email"), request.getParameter("telephone"),
 										   request.getParameter("adresse"), request.getParameter("ville"),
-										   request.getParameter("departement"), request.getParameter("sexe"),
-										   request.getParameter("message"));
+										   request.getParameter("departement"), request.getParameter("profession"),
+										   request.getParameter("etablissement"), request.getParameter("message"));
 
 		}
 		catch(Exception e)

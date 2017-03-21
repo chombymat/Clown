@@ -98,25 +98,27 @@ public class Modele
 
 	//------------------------------------------------------CONTACT------------------------------------------------------------
 
-	public void envoyerMailContact(String nom, String prenom, String mail, String  numero_telephone, String adresse, String ville, String departement, String sexe, String message)
+	public void envoyerMailContact(String nom, String prenom, String mail, String  numero_telephone, String adresse, String ville, String departement, String profession, String etablissement, String message)
 	{
 		try{
 
-			if(sexe != null){
-				if(sexe.equals("F"))
-					message += "\n- - - -\nDe Madame " + prenom + " " + nom;
-				else if(sexe.equals("H"))
-					message += "\n- - - -\nDe Monsieur " + prenom + " " + nom;
-			} else if(sexe == null)
-				message += "\n- - - -\nDe " + prenom + " " + nom;
+			message += "\n_________________\n\nDe " + prenom + " " + nom;
 
-			message += "\n- - - -\nPossibilité de contacter ultérieurement via:\n";
+			message += "\n\nInformations complémentaires:\n";
 			if(numero_telephone.length() >0)
-				message += "numero de telephone : " + numero_telephone + "\n";
+				message += "numéro de téléphone: " + numero_telephone + "\n";
 			if(mail.length() >0)
-				message += "adresse mail : " + mail + "\n";
-			if(adresse.length() >0 && departement.length() >0)
-				message += "adresse physique : " + adresse + "\n" + ville + "\n" + departement;
+				message += "email: " + mail + "\n";
+			if(adresse.length() >0)
+				message += "adresse: " + adresse + "\n";
+			if(ville.length() >0)
+				message += "ville: " + ville + "\n";
+			if(departement.length() > 0)
+				message += "département: " + departement + "\n";
+			if(profession.length() > 0)
+				message += "profession: " + profession + "\n";
+			if(etablissement.length() > 0)
+				message += "établissement: " + etablissement + "\n";
 
 			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
 			Message msg = new MimeMessage(session_mail);
