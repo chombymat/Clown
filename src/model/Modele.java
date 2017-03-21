@@ -473,7 +473,7 @@ public class Modele
 			{
 				article = new Article(id_article, result.getString("titre"), result.getString("contenu"));
 
-				PreparedStatement statement2 = con.prepareStatement("select id_media, chemin, nom, type from media where id_article = ? and type like 'photo'");
+				PreparedStatement statement2 = con.prepareStatement("select id_media, chemin, nom, type from media where id_article = ?");
 				statement2.setInt(1, id_article);
 				result = statement2.executeQuery();
 
@@ -986,6 +986,48 @@ public class Modele
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public void savePdfOnDisk(String racine, Integer id_article, Part part) 
+	{
+		File file = new File(racine + "images/pdf/" + id_article + "/");
+		
+		if(!file.exists())
+			file.mkdirs();
+		
+		try
+		{
+			part.write(file.getAbsolutePath() + "/" + part.getSubmittedFileName());
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public int addPdf(int id_article, String name, String filename)
+	{
+		Connection con = null;
+		try
+		{
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("insert into media (id_article, type, nom, chemin) values(?, ?, ?, ?) returning id_media");
+			statement.setInt(1, id_article);
+			statement.setString(2, "pdf");
+			statement.setString(3, name);
+			statement.setString(4, "images/pdf/" + id_article + "/" + filename);
+			ResultSet result = statement.executeQuery();
+			result.next();
+			return result.getInt("id_media");
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try{ con.close(); }catch(Exception e){}
+		}
+		return 0;
 	}
 
 }

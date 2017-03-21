@@ -83,6 +83,11 @@ public class ModificationArticle extends HttpServlet
 			String newName = IOUtils.toString(request.getPart("newName").getInputStream(), "UTF-8");
 			modele.renameMedia(id_media, newName);
 			break;
+		case "add_pdf" :
+			String nom_pdf = IOUtils.toString(request.getPart("nom").getInputStream(), "UTF-8");
+			modele.savePdfOnDisk(getServletContext().getRealPath("/"), Integer.valueOf(id_article), request.getPart("media"));
+			modele.addPdf(Integer.valueOf(id_article), nom_pdf, request.getPart("media").getSubmittedFileName());
+			break;
 		}
 	}
 }
