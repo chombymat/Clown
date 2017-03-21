@@ -19,6 +19,7 @@ public class Contact extends HttpServlet {
 										   request.getParameter("adresse"), request.getParameter("ville"),
 										   request.getParameter("departement"), request.getParameter("sexe"),
 										   request.getParameter("message"));
+			response.sendRedirect("./contact.jsp");
 
 		}
 		catch(Exception e)
