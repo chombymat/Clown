@@ -68,8 +68,14 @@
     </div>
     <div class="form-group">        
       <div class="col-sm-offset-4 col-sm-4">
-        <button type="submit" class="btn btn-sample">Se connecter</button>  <button id="reset" class="btn btn-sample">Mot de passe oublié ?</button>
+        <button type="submit" class="btn btn-sample">Se connecter</button>
       </div>
+    </div>
+ </form>
+      
+  <form class="form-horizontal" method="post" action="./connexion">
+    <div class="form-group">
+        <button type="submit" class="btn btn-sample" name="oubliPass" value="true">Mot de passe oublié ?</button>
     </div>
   </form>
   <%@include file="/WEB-INF/footer.html"%>

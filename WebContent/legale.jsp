@@ -19,8 +19,8 @@
 
 <div class="jumbotron">
 <p>Compagnie La Prima Porta<br />
-2, all&eacute;e de la Laiterie<br />
-59650 Villeneuve d&rsquo;Ascq</p>
+23 Rue gosselet,<br />
+59000 Lille</p>
 <p>+33 (0) 6 12 84 06 33<br />
 compagnielaprimaporta@gmail.com</p>
 <p>Marques et appellations commerciales<br />

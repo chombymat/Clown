@@ -12,7 +12,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="style.css" />
-<% HashMap<String, Article> articles = (HashMap<String, Article>)request.getAttribute("articles");  %>
+<% HashMap<Integer, Article> articles = (HashMap<Integer, Article>)request.getAttribute("articles");  %>
 <script>
 	var show_per_page = 18;
 	var current_page = 0;
@@ -180,34 +180,42 @@
 			<input id="bt_alimentation" type="image" class="img-circle bt_image" src="images/1/5/PHOTO_ILLUSTRATION/Fotolia_139412392_S-1.jpg" title="Atelier 5 : Alimentation et environnement" alt="image de yaourt et fraise" width="156" height="156">
 			<input id="bt_spectacle" type="image" class="img-circle bt_image" src="images/1/6/PHOTO_ILLUSTRATION/clown-1678004_1920.jpg" title="Le spectacle" alt="image de spectacle" width="156" height="156">
 		</div>
-		<div class="row col-md-11 col-sm-offset-1" id="textAtelier">
-			<p align="justify"><%= articles.get("accueil").getContenu() %></p>
+		<div class="row col-md-10 col-sm-offset-1" id="textAtelier">
+			<p align="justify"><%= articles.get(7).getContenu() %></p>
 		</div>
 	</div>
 	<!----------------------------------- fin de categorie ---------------------------------------->
 	
 	<!----------------------------------- PAIN ---------------------------------------->
 	<div id="pain">
-		<h2><%= articles.get("Le pain").getTitre() %></h2><br>
-		<div class="row">
+		<h2><%= articles.get(1).getTitre() %></h2><br>
+		<div class="row parent">
 			<div class="col-md-6">
 				<img width="85%" height="auto" src="images/1/1/PHOTO_ILLUSTRATION/pain.jpg" title="image de pain" alt="image de pain">
 			</div>
-			<div class="col-md-5">
-				<p align="justify"><%= articles.get("Le pain").getContenu() %></p>
+			<div class="col-md-5 enfant">
+				<p align="justify"><%= articles.get(1).getContenu() %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
-					%>
+				%>
 					<a href="images/pdf/FICHE_ATELIER_1_-_DU_BLE_AU_PAIN.pdf" title="Pdf atelier pain">Du blé au pain (.pdf)</a>
-					<%
+				<%
 				}
 				%>
+			</div>
+				
+		</div>
+		<div class="row">
+		<div class="col-md-6">
+			<iframe src="https://player.vimeo.com/video/186044683" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		</div>
+		<div class="col-md-5">
 				<br>
 				<div class="scroll-bar-wrap">
 				<div class="scroll-box">
 				<% 
-				for(Media media : articles.get("Le pain").getMedias())
+				for(Media media : articles.get(1).getMedias())
 				{
 					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
 				}
@@ -215,34 +223,40 @@
 				</div>
 				<div class="cover-bar"></div>
 				</div>
-			</div>
+				</div>
 		</div>
 	</div>
 	
-	
 	<!----------------------------------- LAIT ---------------------------------------->
 	<div id="lait">
-		<h2><%= articles.get("Le lait").getTitre() %></h2><br>
-		<div class="row">
+		<h2><%= articles.get(2).getTitre() %></h2><br>
+		<div class="row parent">
 			<div class="col-md-6">
 				<img width="35%" height="auto" src="images/1/2/PHOTO_ILLUSTRATION/lait.jpg" title="image de lait" alt="image de lait">
 			</div>
-			<div class="col-md-5">
-				<p align="justify"><%= articles.get("Le lait").getContenu() %></p>
+			<div class="col-md-5 enfant">
+				<p align="justify"><%= articles.get(2).getContenu() %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
 				%>
-				
 				<a href="images/pdf/FICHE_ATELIER_2_-_LE_LAIT_ET_SES_DERIVES.pdf" title="Pdf atelier Lait">Le lait et ses dérivés (.pdf)</a>
 				<%
 				}
 				%>
+			</div>
+				
+		</div>
+		<div class="row">
+		<div class="col-md-6">
+			<iframe src="https://player.vimeo.com/video/186044683" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		</div>
+		<div class="col-md-5">
 				<br>
 				<div class="scroll-bar-wrap">
 				<div class="scroll-box">
 				<% 
-				for(Media media : articles.get("Le lait").getMedias())
+				for(Media media : articles.get(2).getMedias())
 				{
 					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
 				}
@@ -251,19 +265,18 @@
 				<div class="cover-bar"></div>
 				</div>
 				</div>
-			</div>
 		</div>
-	
+	</div>
 	
 	<!----------------------------------- 7 FAMILLES ---------------------------------------->
 	<div id="familles">
-		<h2><%= articles.get("Les 7 familles").getTitre() %></h2><br>
-		<div class="row">
+		<h2><%= articles.get(3).getTitre() %></h2><br>
+		<div class="row parent">
 			<div class="col-md-6">
 				<img width="85%" height="auto" src="images/1/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image des 7 familles" alt="image des 7 familles">
 			</div>
-			<div class="col-md-5">
-				<p align="justify"><%= articles.get("Les 7 familles").getContenu() %></p>
+			<div class="col-md-5 enfant">
+				<p align="justify"><%= articles.get(3).getContenu() %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
@@ -272,11 +285,19 @@
 				<%
 				}
 				%>
+			</div>
+				
+		</div>
+		<div class="row">
+		<div class="col-md-6">
+			<iframe src="https://player.vimeo.com/video/186044683" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		</div>
+		<div class="col-md-5">
 				<br>
 				<div class="scroll-bar-wrap">
 				<div class="scroll-box">
 				<% 
-				for(Media media : articles.get("Les 7 familles").getMedias())
+				for(Media media : articles.get(3).getMedias())
 				{
 					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
 				}
@@ -285,21 +306,20 @@
 				<div class="cover-bar"></div>
 				</div>
 				</div>
-			</div>
 		</div>
+	</div>
 	
 	
 	
 	<!----------------------------------- MENU EQUILIBRE ---------------------------------------->
 	<div id="menu">
-		<h2><%= articles.get("Le menu équilibré").getTitre() %></h2><br>
-		<div class="row">
+		<h2><%= articles.get(4).getTitre() %></h2><br>
+		<div class="row parent">
 			<div class="col-md-6">
 				<img width="85%" height="auto" src="images/1/4/PHOTO_ILLUSTRATION/Fotolia_135759645_S-1.jpg" title="image de fruits et légumes" alt="image de fruits et légumes">
 			</div>
-			<div class="col-md-5">
-
-				<p align="justify"><%= articles.get("Le menu équilibré").getContenu() %></p>
+			<div class="col-md-5 enfant">
+				<p align="justify"><%= articles.get(4).getContenu() %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
@@ -308,11 +328,19 @@
 				<%
 				}
 				%>
+			</div>
+				
+		</div>
+		<div class="row">
+		<div class="col-md-6">
+			<iframe src="https://player.vimeo.com/video/186044683" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		</div>
+		<div class="col-md-5">
 				<br>
 				<div class="scroll-bar-wrap">
 				<div class="scroll-box">
 				<% 
-				for(Media media : articles.get("Le menu équilibré").getMedias())
+				for(Media media : articles.get(4).getMedias())
 				{
 					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
 				}
@@ -321,22 +349,18 @@
 				<div class="cover-bar"></div>
 				</div>
 				</div>
-			</div>
 		</div>
-	
-	
-	
+	</div>
 	
 	<!----------------------------------- ALIMENTATION ---------------------------------------->
 	<div id="alimentation">
-		<h2><%= articles.get("Alimentation et environnement").getTitre() %></h2><br>
-		<div class="row">
+		<h2><%= articles.get(5).getTitre() %></h2><br>
+		<div class="row parent">
 			<div class="col-md-6">
 				<img width="85%" height="auto" src="images/1/5/PHOTO_ILLUSTRATION/Fotolia_139412392_S-1.jpg" title="image de yaourt et fraise" alt="image de yaourt et fraise">
 			</div>
-			<div class="col-md-5">
-
-				<p align="justify"><%= articles.get("Alimentation et environnement").getContenu() %></p>
+			<div class="col-md-5 enfant">
+				<p align="justify"><%= articles.get(5).getContenu() %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
@@ -345,11 +369,19 @@
 				<%
 				}
 				%>
+			</div>
+				
+		</div>
+		<div class="row">
+		<div class="col-md-6">
+			<iframe src="https://player.vimeo.com/video/186044683" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		</div>
+		<div class="col-md-5">
 				<br>
 				<div class="scroll-bar-wrap">
 				<div class="scroll-box">
 				<% 
-				for(Media media : articles.get("Alimentation et environnement").getMedias())
+				for(Media media : articles.get(5).getMedias())
 				{
 					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
 				}
@@ -357,39 +389,50 @@
 				</div>
 				<div class="cover-bar"></div>
 				</div>
-			</div>
+				</div>
 		</div>
 	</div>
 	
-	
-	
-	
-	
 	<!----------------------------------- SPECTACLE ---------------------------------------->
 	<div id="spectacle">
-		<h2><%= articles.get("Le spectacle").getTitre() %></h2><br>
-		<div class="row">
+		<h2><%= articles.get(6).getTitre() %></h2><br>
+		<div class="row parent">
 			<div class="col-md-6">
 				<img width="85%" height="auto" src="images/1/6/PHOTO_ILLUSTRATION/clown-1678004_1920.jpg" title="Le spectacle" alt="image de spectacle et fraise">
 			</div>
-			<!-- padding de 5% dans style.css (ligne 59) -->
-			<div class="col-md-5">
-					<p align="justify"><%= articles.get("Le spectacle").getContenu() %></p>
-			</div>
-			<div class="col-md-5">
-			<%
+			<div class="col-md-5 enfant">
+				<p align="justify"><%= articles.get(6).getContenu() %></p>
+				<%
 				if(session.getAttribute("user") != null) 
 				{
-					%>
+				%>
 					<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
-					<%
+				<%
 				}
 				%>
+			</div>
+				
+		</div>
+		<div class="row">
+		<div class="col-md-6">
+			<%
+			if(session.getAttribute("user") != null) {
+			%>
+				<iframe src="https://player.vimeo.com/video/186044683" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+			<%
+			} else {
+			%>
+				<iframe src="https://player.vimeo.com/video/202925050" width="640" height="274" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+			<%
+			}
+			%>
+		</div>
+		<div class="col-md-5">
 				<br>
 				<div class="scroll-bar-wrap">
 				<div class="scroll-box">
 				<% 
-				for(Media media : articles.get("Le spectacle").getMedias())
+				for(Media media : articles.get(6).getMedias())
 				{
 					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
 				}
@@ -398,9 +441,8 @@
 				<div class="cover-bar"></div>
 				</div>
 				</div>
-			</div>
 		</div>
-	
+	</div>
 	
 	<!-- The Modal -->
 	<div id="myModal" class="modal">

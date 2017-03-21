@@ -1,10 +1,24 @@
-body{background-color: #F5F5DC;text-align: center;font-family: Calibri;font-size: 17px;
+body{background-color: #f0f0e5;text-align: center;font-family: Calibri;font-size: 17px;
 scrollbar-base-color: orange; 
 scrollbar-arrow-color: green;
 scrollbar-DarkShadow-Color: blue; }
 h1{text-align:center;color: #C21950;font-family: Serif;}
 h2{color: #C21950; font-family: Serif;font-size: 40px;}
 h3{color: #C21950; font-family: Serif;}
+
+.nom_clown {
+	color: #C21950; 
+	font-family: Serif;
+	font-size: 25px;
+}
+
+.portraits_clown {
+    width: auto;
+    display: inline-block;
+    height:auto;
+    margin-right:2%;
+    margin-bottom:2%;
+}
 
 #film{
 	margin-top: 70%;
@@ -23,7 +37,7 @@ h3{color: #C21950; font-family: Serif;}
 }
 .scroll-box {
   width: 100%;
-  height: 475px;
+  height: 450px;
   overflow-y: scroll;
 }
 
@@ -45,7 +59,6 @@ h3{color: #C21950; font-family: Serif;}
 
 .scroll-box-admin::-webkit-scrollbar-thumb {
   overflow:visible;
-  background:#f5f5dc;
   border-radius: 10px;
 }
 .scroll-box-admin::-webkit-scrollbar {
@@ -65,7 +78,7 @@ h3{color: #C21950; font-family: Serif;}
 
 .scroll-box::-webkit-scrollbar-thumb {
   overflow:visible;
-  background:#f5f5dc;
+  background:#f0f0e5;
   border-radius: 10px;
 }
 .scroll-box::-webkit-scrollbar {
@@ -79,7 +92,7 @@ h3{color: #C21950; font-family: Serif;}
 }
 .cover-bar {
   position: absolute;
-  background: #F5F5DC;
+  background: #f0f0e5;
   height: 100%;  
   top: 0;
   right: 0;
@@ -185,7 +198,7 @@ h3{color: #C21950; font-family: Serif;}
 }
 
 .navbar-default{
-	background-color: #F5F5DC;
+	background-color: #f0f0e5;
 	border: none;
 }
 
@@ -341,7 +354,7 @@ h3{color: #C21950; font-family: Serif;}
 }
 .form-contact{
 	font-family: Serif;
-	background-color: #F5F5DC;
+	background-color: #f0f0e5;
 	color: #707070;
 	font-size: 120%;
 }
@@ -356,4 +369,15 @@ h3{color: #C21950; font-family: Serif;}
 .btn-warning.active,
 .btn-warning:active:focus{
 	background-color: #C21950;
+}
+
+iframe{
+	margin-top: 13%;	
+}
+
+.parent { /* parent juste pour l'alignement vertical, le nom n'est pas important */
+  display: flex; /* contexte sur le parent */
+}
+.enfant { /* enfant juste pour l'alignement vertical, le nom n'est pas important */
+  margin: auto; /* eh oui, tout bêtement */
 }

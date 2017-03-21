@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.HashMap,tools.*" %>
+<%@ page import="java.util.*,tools.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,7 +13,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="style.css" />
-<% HashMap<String, Article> articles = (HashMap<String, Article>)request.getAttribute("articles");  %>
+<% HashMap<String, Article> articles = (HashMap<String, Article>)request.getAttribute("articles");
+   ArrayList<Clown> list_clowns = (ArrayList<Clown>) request.getAttribute("list_clowns");%>
 <script>
 function hideAll(){
 	$('#textDemarche').hide();
@@ -30,6 +31,7 @@ function hideOnglet(){
 }
 $(document).ready(function() {
 	hideOnglet();
+	$('.photo_clown').hide();
 	<%
 	if(request.getParameter("page") != null)
 	{
@@ -82,19 +84,30 @@ $(document).ready(function() {
 		});
 		modal.style.display = "none";
 	}
+	
+	
+	$('.portrait_clown').on('click', function(){
+		$('.photo_clown').hide();
+		
+		var id_clown = $(this).attr('id');
+		console.log(id_clown);
+		$('#photos_' + id_clown).show();
+	});
+	
+	
+	
 });
 </script>
 </head>
 <body>
 	<%@include file="/WEB-INF/navbar.jsp"%>
-	
 	<!----------------------------------- categorie ---------------------------------------->
-	<div class="row">
-	<input id="bt_clown" type="image" class="img-circle bt_image" src="images/2/8/CLAIRE/CLAIRE_ET_VIRGINIE.JPG" title="Les clowns" alt="image de Claire et Virginie" width="156" height="156" />
-	<input id="bt_pratique" type="image" class="img-circle bt_image" src="images/1/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Pratique et sensorielle" alt="Pratique et sensorielle" width="156" height="156" />
-	<input id="bt_expression" type="image" class="img-circle bt_image" src="images/1/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Expression corporelle" alt="Expression corporelle" width="156" height="156" />
+	<div class="row col-md-12">
+		<input id="bt_clown" type="image" class="img-circle bt_image" src="images/clowns/1/portrait.JPG" title="Les clowns" alt="image de Claire et Virginie" width="156" height="156" />
+		<input id="bt_pratique" type="image" class="img-circle bt_image" src="images/1/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Pratique et sensorielle" alt="Pratique et sensorielle" width="156" height="156" />
+		<input id="bt_expression" type="image" class="img-circle bt_image" src="images/1/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Expression corporelle" alt="Expression corporelle" width="156" height="156" />
 	</div>
-	<div class="row col-md-11 col-sm-offset-1" id="textDemarche">
+	<div class="row col-md-10 col-sm-offset-1" id="textDemarche">
 			<p align="justify"><%= articles.get("accueil").getContenu() %></p>
 	</div>
 	<!----------------------------------- fin de categorie ---------------------------------------->
@@ -105,56 +118,68 @@ $(document).ready(function() {
 		<h2><%= articles.get("Clown").getTitre() %></h2><br>
 	</div>
 	<div id="les_clowns">
-		<div class="row">
-			<div class="col-sm-offset-1 col-md-3">
-				<img class="img-circle ovale" src="images/2/8/CLAIRE/CLAIRE_ET_VIRGINIE.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE">
-				<h3>Claire</h3><br>
-				
-			</div>
-			<div class="col-md-4">
-				<p align="justify"><%= articles.get("Clown").getContenu() %></p>
-			</div>
-			<div class="col-md-4">
-				<img class="img-circle ovale" src="images/2/8/CLAIRE/CLAIRE_ET_VIRGINIE_2.JPG" title="CLAIRE_ET_VIRGINIE" alt="CLAIRE_ET_VIRGINIE">
-				<h3>Virginie</h3><br>
-				
+		<div class="row col-md-12">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-4">
+						<p><%= articles.get("Clown").getContenu() %></p>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-offset-1 col-md-5">
-				<div id="claire" class="scroll-bar-wrap" >
-				<div class="scroll-box">
-				<% 
-				for(Media media : articles.get("Clown").getMedias()) {
-					if(media.getType().equals("photo_claire"))
-					{
-					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
-					}
+		
+			<%
+				for(Clown clown : list_clowns)
+				{
+					%>
+					<div class="portraits_clown">
+						<img id="<%= clown.getId_clown() %>" class="portrait_clown img-circle ovale" 
+						<% 
+						for(Media media : clown.getList_media())
+						{ 
+							if(media.getType().equals("portrait")) 
+							{
+								%>src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+							}
+						} 
+						%>
+						<br>
+						<span class="nom_clown"><%= clown.getName() %></span>
+					</div>
+					<%
 				}
-				%>
-				</div>
-				<div class="cover-bar"></div>
-				</div>
-			</div>
-			<div class="col-md-6">
-			<div id="virginie" class="scroll-bar-wrap">
-				<div class="scroll-box">
-				<% 
-				for(Media media : articles.get("Clown").getMedias()) {
-					if(media.getType().equals("photo_virginie"))
-					{
-					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
-					}
-				}
-				%>
-				</div>
-				<div class="cover-bar"></div>
-				</div>
-			</div>
+			%>
 		</div>
 	</div>
 	
+	<!--  ------------------------------	Photos_clown	------------------------------ -->
 	
+	<div class="container">
+		<div class="row col-md-12">
+		<%
+		for(Clown clown : list_clowns)
+		{
+			%>
+			<div id="photos_<%= clown.getId_clown() %>" class="photo_clown scroll-bar-wrap" >
+				<div class="scroll-box">
+					<% 
+					for(Media media : clown.getList_media()) 
+					{
+						if(media.getType().equals("photo"))
+						{
+							%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+						}
+					}
+					%>
+				</div>
+				<div class="cover-bar"></div>
+			</div>
+			<%
+		}
+		%>
+		</div>
+	</div>
 	<!------------------------------------- PRATIQUE ------------------------------------>
 	
 	<div id="pratique">

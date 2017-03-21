@@ -216,13 +216,11 @@
 			
 			$('#page_galerie').hide();
 			$('#file_galerie_get_photo').hide();
-			$('#update_add_photo_info').hide();
 			$('#galerie_add_photo_info').hide();
 			
 			/*********************************** Modifier article ***********************************/
 			
 			var id_article = null;
-			var id_projet = null;
 			
 			$('#bt_modif_article').on('click', function(){
 				if($('#page_galerie').is(':visible'))
@@ -235,29 +233,34 @@
 			});
 			
 			$('#select').change(function(){
-				var page = $(this).val();
-
+				id_article = $('option:selected', this).attr('id_article');
 				$.ajax({
 		            url: './ModificationArticle',
 		            type: 'GET',
 		            data: {
-		            	titre : page,
+		            	id_article : id_article,
 		            },
 		            success : function(data)
 		            {
 		            	var json = jQuery.parseJSON(data);
 		            	var array = json.medias;
 		            	id_article = json.id;
-		            	id_projet = json.id_projet;
-		            	$('#modif_article_image').html("");
-		            	for(var i = 0; i < array.length; i++)
+		            	
+		            	if(id_article != 7 && id_article != 11)
 		            	{
-		            		$('#modif_article_image').append(
-		            				"<div class=\"" + array[i].id + " col-md-3\"><img id=\"" + array[i].id +"\"class=\"myImg img-thumbnail\" src=\"" + array[i].chemin + "\" alt=\"" + array[i].nom +"\" ><br>" + 
-		            				"<input id=\"name_" + array[i].id + "\" type=\"text\" value=\"" + array[i].nom + "\" maxlength=\"50\"\">" +
-		            				"<button id_media=\"" + array[i].id + "\" class=\"bt_rename_photo btn btn-sample\">Renommer</button>   " +
-		            				"<button id_media=\"" + array[i].id + "\" class=\"bt_delete_photo btn btn-sample\">Supprimer</button></div>");
+			            	$('#modif_article_image').html("");
+			            	for(var i = 0; i < array.length; i++)
+			            	{
+			            		$('#modif_article_image').append(
+			            				"<div class=\"" + array[i].id + " col-md-3\"><img id=\"" + array[i].id +"\"class=\"myImg img-thumbnail\" src=\"" + array[i].chemin + "\" alt=\"" + array[i].nom +"\" ><br>" + 
+			            				"<input id=\"name_" + array[i].id + "\" type=\"text\" value=\"" + array[i].nom + "\" maxlength=\"50\"\">" +
+			            				"<button id_media=\"" + array[i].id + "\" class=\"bt_rename_photo btn btn-sample\">Renommer</button>   " +
+			            				"<button id_media=\"" + array[i].id + "\" class=\"bt_delete_photo btn btn-sample\">Supprimer</button></div>");
+			            	}
+			            	$('#update_gestion_photo').show();
 		            	}
+		            	else
+		            		$('#update_gestion_photo').hide();
 		            	initialiserUpdateArticle();
 		            	$('#contenu_article').val(json.contenu);
 		            }
@@ -295,9 +298,9 @@
 			
 			$('#bt_update_add_photo_submit').on('click', function(){
 				var form_data = new FormData();
+				console.log(id_article);
 				form_data.append("type", "add_photo");
 				form_data.append("id_article", id_article);
-				form_data.append("id_projet", id_projet);
 				form_data.append('nom', $('#tb_update_name_photo').val());
 				form_data.append('media', $('#file_update_get_photo')[0].files[0]);
 				
@@ -313,10 +316,12 @@
 		            	json = jQuery.parseJSON(json);
 		            	$('#modif_article_image').append(
 	            				"<div class=\"" + json.id_media + " col-md-3\">"+
-	            				"<img id=\"" + json.id_media +"\"class=\"myImg img-thumbnail\" src=\"images/" + id_projet + "/" + id_article + "/PHOTOS_ENFANTS/" + json.nom + " alt=\""+ $('#tb_update_name_photo').val()  +"\"><br>" 
+	            				"<img id=\"" + json.id_media +"\"class=\"myImg img-thumbnail\" src=\"" + json.nom + "\" alt=\""+ $('#tb_update_name_photo').val()  +"\"><br>" 
 	            			  + "<input id=\"name_" + json.id_media + "\" type=\"text\" value=\"" + $('#tb_update_name_photo').val() + "\" maxlength=\"50\"\">" +
 	            				"<button id_media=\"" + json.id_media + "\" class=\"bt_rename_photo btn btn-sample\">Renommer</button>   " +
 	            				"<button id_media=\"" + json.id_media + "\" class=\"bt_delete_photo btn btn-sample\">Supprimer</button></div>");
+		            	
+		            	initialiserUpdateArticle();
 		            }
 		        });
 			});
@@ -325,14 +330,19 @@
 				$('#file_update_get_photo').click();
 			});
 			
+			$('#bt_update_add_pdf').on('click', function(){
+				$('#file_update_add_pdf').click();
+			});
+			
 			$('#page_modif_article').hide();
 			$('#file_update_get_photo').hide();
 			$('#update_add_photo_info').hide();
 			$('#update_show_article').hide();
+			$('#file_update_add_pdf').hide();
 			
 			function initialiserUpdateArticle()
 			{
-				initialiserModel();
+				initialiserModal();
 				
 				$('.bt_delete_photo').on('click', function(){
 					var id_media = $(this).attr('id_media');
@@ -472,22 +482,28 @@
 			<p>Veuillez sélectionner l'article à modifier.</p>
 			<select id="select" default="">
 				<option disabled selected value hidden></option>
-				<option value="Le pain">Le pain</option>
-				<option value="Le lait">Le lait</option>
-				<option value="Les 7 familles">Les 7 familles</option>
-				<option value="Le menu équilibré">Le menu équilibré</option>
-				<option value="Alimentation et environnement">Alimentation et environnement</option>
-				<option value="Le spectacle">Le spectacle</option>
-				<option value="Clown">Clown</option>
-				<option value="Pratique et sensoriel">Pratique et sensoriel</option>
-				<option value="Expression Corporelle">Expression Corporelle</option>
+				<option id_article="7">Présentation des ateliers</option>
+				<option id_article="1">Le pain</option>
+				<option id_article="2">Le lait</option>
+				<option id_article="3">Les 7 familles</option>
+				<option id_article="4">Le menu équilibré</option>
+				<option id_article="5">Alimentation et environnement</option>
+				<option id_article="6">Le spectacle</option>
+				<option disabled value></option>
+				<option id_article="11">Présentation de notre démarche</option>
+				<option id_article="8">Clown</option>
+				<option id_article="9">Pratique et sensoriel</option>
+				<option id_article="10">Expression Corporelle</option>
+				<option disabled value></option>
+				<option id_article="12">Formation</option>
 			</select>
 		</div>
+		
 		<div id="update_show_article" class="row">
 			<div class="col-md-6">
 				<textarea id="contenu_article" rows="15" cols="80" style="margin-top: 2%; margin-left: 2%"></textarea><br><button id="bt_submit_update_content" class="btn btn-sample">Mettre à jour</button>
 			</div>
-			<div class="col-md-6">
+			<div id="update_gestion_photo" class="col-md-6">
 				<div class="scroll-bar-wrap-admin">
 					<div id="modif_article_image" class="scroll-box-admin">
 					</div>
@@ -503,10 +519,21 @@
 					<button id="bt_update_add_photo_submit" class="btn btn-sample">Valider</button>
 				</div>
 			</div>
+
+			<div id="update_pdf">
+				<div class="row">
+					<input type="file" id="file_update_add_pdf" accept="application/pdf">
+					<button id="bt_update_add_pdf" class="btn btn-sample">Ajouter PDF</button>
+				</div>
+			</div>
+			
 		</div>
 	</div>
 	
 	<!-- -------------------------------- Fin modifier article -------------------------- -->
+	
+	<!-- -------------------------------- Gestion clowns -------------------------- -->
+	
 
 	<div id="myModal" class="modal">
 		<span class="close">&times;</span> <img class="modal-content" id="img01">

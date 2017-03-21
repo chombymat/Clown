@@ -45,10 +45,10 @@ $(document).ready(function() {
             email: {
                 validators: {
                     notEmpty: {
-                        message: 'veuillez entrer votre addresse email'
+                        message: 'veuillez entrer votre adresse email'
                     },
                     emailAddress: {
-                        message: 'veuillez entrer une addresse email valide'
+                        message: 'veuillez entrer une adresse email valide'
                     }
                 }
             },
@@ -150,7 +150,7 @@ $(document).ready(function() {
 <!-- Text input-->
       
 <div class="form-group">
-  <label class="col-md-4 control-label">Addresse</label>  
+  <label class="col-md-4 control-label">Adresse</label>  
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
@@ -165,7 +165,7 @@ $(document).ready(function() {
   <label class="col-md-4 control-label">Ville</label>  
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+        <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
   <input name="ville" placeholder="Ville" class="form-control"  type="text">
     </div>
   </div>
@@ -174,7 +174,7 @@ $(document).ready(function() {
 <!-- Select Basic -->
    
 <div class="form-group"> 
-  <label class="col-md-4 control-label">Département</label>
+  <label class="col-md-4 control-label">Région</label>
     <div class="col-md-4 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
@@ -198,23 +198,30 @@ $(document).ready(function() {
 </div>
 </div>
 
+<!-- Text input-->
+ 
+<div class="form-group">
+  <label class="col-md-4 control-label">Profession</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-briefcase"></i></span>
+  <input name="profession" placeholder="Profession" class="form-control"  type="text">
+    </div>
+  </div>
+</div>
 
-<!-- radio checks -->
- <div class="form-group">
-                        <label class="col-md-4 control-label">Sexe ?</label>
-                        <div class="col-md-4">
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="sexe" value="H" /> Homme
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="sexe" value="F" /> Femme
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+<!-- Text input-->
+ 
+<div class="form-group">
+  <label class="col-md-4 control-label">Etablissement</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
+  <input name="etablissement" placeholder="Etablissement" class="form-control"  type="text">
+    </div>
+  </div>
+</div>
+
 
 <!-- Text area -->
   

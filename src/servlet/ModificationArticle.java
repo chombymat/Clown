@@ -8,9 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.io.IOUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+
 import model.Modele;
 import tools.Media;
 
@@ -24,9 +26,8 @@ public class ModificationArticle extends HttpServlet
 		response.setCharacterEncoding("UTF-8");
 		JSONObject json = new JSONObject();
 
-		tools.Article article = new Modele().getArticle(request.getParameter("titre").toString());
+		tools.Article article = new Modele().getArticle(Integer.valueOf(request.getParameter("id_article").toString()));
 		json.put("id", article.getId());
-		json.put("id_projet", article.getId_projet());
 		json.put("titre", article.getTitre());
 		json.put("contenu", article.getContenu());
 		
@@ -62,13 +63,12 @@ public class ModificationArticle extends HttpServlet
 		switch(type)
 		{
 		case "add_photo" :
-			String id_projet = IOUtils.toString(request.getPart("id_projet").getInputStream(), "UTF-8");
 			String nom = IOUtils.toString(request.getPart("nom").getInputStream(), "UTF-8");
-			modele.saveMediaOnDisk(getServletContext().getRealPath("/") + "images/" + id_projet + "/" + id_article + "/PHOTOS_ENFANTS/", request.getPart("media"));
-			id_media = modele.ajouterMedia("images/" + id_projet + "/" + id_article + "/PHOTOS_ENFANTS/" + request.getPart("media").getSubmittedFileName(), "photo", Integer.valueOf(id_article), nom);
+			modele.saveMediaOnDisk(getServletContext().getRealPath("/") + "images/article/" + id_article + "/PHOTOS_ENFANTS/", request.getPart("media"));
+			id_media = modele.ajouterMedia("images/article/" + id_article + "/PHOTOS_ENFANTS/" + request.getPart("media").getSubmittedFileName(), "photo", Integer.valueOf(id_article), nom);
 			JSONObject json = new JSONObject();
 			json.put("id_media", id_media);
-			json.put("nom", nom);
+			json.put("nom", "images/article/" + id_article + "/PHOTOS_ENFANTS/" + request.getPart("media").getSubmittedFileName());
 			response.getWriter().println(json);
 			break;
 		case "texte" :

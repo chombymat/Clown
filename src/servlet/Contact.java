@@ -17,9 +17,14 @@ public class Contact extends HttpServlet {
 			new model.Modele().envoyerMailContact(request.getParameter("nom"), request.getParameter("prenom"),
 										   request.getParameter("email"), request.getParameter("telephone"),
 										   request.getParameter("adresse"), request.getParameter("ville"),
+<<<<<<< HEAD
 										   request.getParameter("departement"), request.getParameter("sexe"),
 										   request.getParameter("message"));
 			response.sendRedirect("./contact.jsp");
+=======
+										   request.getParameter("departement"), request.getParameter("profession"),
+										   request.getParameter("etablissement"), request.getParameter("message"));
+>>>>>>> 0c3412b8d72d01280e3b6701abc924ac0eaf2f3e
 
 		}
 		catch(Exception e)

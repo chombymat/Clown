@@ -42,7 +42,7 @@
 		{
 			$("#name").html("S'inscrire");
 		}
-		if (page.indexOf('formation.jsp') != -1)
+		if (page.indexOf('Formation') != -1)
 		{
 			$("#name").html("Formation");
 		}
@@ -56,8 +56,11 @@
 		}
 		if (page.indexOf('Article') != -1)
 		{
-
 			$("#name").html("${ requestScope.article.getTitre() }");
+		}
+		if (page.indexOf('forgotPassword.jsp') != -1)
+		{
+			$("#name").html("Demande de modification de mot de passe");
 		}
 		
 		$('#bt_connexion').on('click', function(){
@@ -164,7 +167,7 @@
 			        <li><a href="./partenaires.jsp">Partenaires</a></li>
 			      </ul>
 			    </li>
-			    <li><a href="./formation.jsp" class="titre">Formation</a></li>
+			    <li><a href="Formation" class="titre">Formation</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->

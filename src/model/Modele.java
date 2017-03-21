@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.mail.Message;
 import javax.mail.Message.RecipientType;
 import javax.mail.Session;
@@ -26,10 +25,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.http.Part;
 import javax.sql.DataSource;
-
 import org.apache.commons.lang3.StringEscapeUtils;
-
 import tools.Article;
+import tools.Clown;
 import tools.Media;
 import tools.Utilisateur;
 
@@ -97,31 +95,33 @@ public class Modele
 
 	//------------------------------------------------------CONTACT------------------------------------------------------------
 
-	public void envoyerMailContact(String nom, String prenom, String mail, String  numero_telephone, String adresse, String ville, String departement, String sexe, String message)
+	public void envoyerMailContact(String nom, String prenom, String mail, String  numero_telephone, String adresse, String ville, String departement, String profession, String etablissement, String message)
 	{
 		try{
 
-			if(sexe != null){
-				if(sexe.equals("F"))
-					message += "\n- - - -\nDe Madame " + prenom + " " + nom;
-				else if(sexe.equals("H"))
-					message += "\n- - - -\nDe Monsieur " + prenom + " " + nom;
-			} else if(sexe == null)
-				message += "\n- - - -\nDe " + prenom + " " + nom;
+			message += "\n_________________\n\nDe " + prenom + " " + nom;
 
-			message += "\n- - - -\nPossibilité de contacter ultérieurement via:\n";
+			message += "\n\nInformations complémentaires:\n";
 			if(numero_telephone.length() >0)
-				message += "numero de telephone : " + numero_telephone + "\n";
+				message += "numéro de téléphone: " + numero_telephone + "\n";
 			if(mail.length() >0)
-				message += "adresse mail : " + mail + "\n";
-			if(adresse.length() >0 && departement.length() >0)
-				message += "adresse physique : " + adresse + "\n" + ville + "\n" + departement;
+				message += "email: " + mail + "\n";
+			if(adresse.length() >0)
+				message += "adresse: " + adresse + "\n";
+			if(ville.length() >0)
+				message += "ville: " + ville + "\n";
+			if(departement.length() > 0)
+				message += "département: " + departement + "\n";
+			if(profession.length() > 0)
+				message += "profession: " + profession + "\n";
+			if(etablissement.length() > 0)
+				message += "établissement: " + etablissement + "\n";
 
 			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
 			Message msg = new MimeMessage(session_mail);
 			msg.setFrom(new InternetAddress("tweetbookda2i@gmail.com"));
 			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mailEntreprise));
-			msg.setSubject("prise de contact " + nom + " " + prenom);
+			msg.setSubject("prise de contact [La Prima Porta]");
 			msg.setText(message);
 			Transport.send(msg);
 
@@ -142,7 +142,7 @@ public class Modele
 			Message msg = new MimeMessage(session_mail);
 			msg.setFrom(new InternetAddress("tweetbookda2i@gmail.com"));
 			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mailEntreprise));
-			msg.setSubject("demande d'inscription " + nom + " " + prenom);
+			msg.setSubject("demande d'inscription [La Prima Porta]");
 			msg.setText(message);
 			Transport.send(msg);
 
@@ -159,7 +159,43 @@ public class Modele
 			Message msg = new MimeMessage(session_mail);
 			msg.setFrom(new InternetAddress(mailEntreprise));
 			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mail));
-			msg.setSubject("comfirmation d'inscription La Prima Porta");
+			msg.setSubject("comfirmation d'inscription [La Prima Porta]");
+			msg.setText(message);
+			Transport.send(msg);
+
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void envoyerMailModifPassword(String pseudo, String mail, String lienModifPassword){
+		try{
+
+			String message = "Votre demande de modification de mot de passe sous le login " + pseudo +
+							 " a bien été prise en compte. Veuillez cliquez sur le lien ci-dessous pour modifier ce champ :\n" +
+							 lienModifPassword;
+			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
+			Message msg = new MimeMessage(session_mail);
+			msg.setFrom(new InternetAddress(mailEntreprise));
+			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mail));
+			msg.setSubject("modification de mot de passe [La Prima Porta]");
+			msg.setText(message);
+			Transport.send(msg);
+
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void envoyerMailConfirmPassword(String pseudo, String mail){
+		try{
+
+			String message = "Votre mot de passe relatif au login " + pseudo + " a bien été modifié";
+			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
+			Message msg = new MimeMessage(session_mail);
+			msg.setFrom(new InternetAddress(mailEntreprise));
+			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mail));
+			msg.setSubject("mot de passe modifié [La Prima Porta]");
 			msg.setText(message);
 			Transport.send(msg);
 
@@ -176,7 +212,7 @@ public class Modele
 			Message msg = new MimeMessage(session_mail);
 			msg.setFrom(new InternetAddress(mailEntreprise));
 			msg.setRecipients(RecipientType.TO, InternetAddress.parse(mail));
-			msg.setSubject("refus d'inscription La Prima Porta");
+			msg.setSubject("refus d'inscription [La Prima Porta]");
 			msg.setText(message);
 			Transport.send(msg);
 
@@ -264,7 +300,6 @@ public class Modele
 		}
 	}
 
-
 	public void suprimerUtilisateur(String login) throws Exception {
 		Connection con = null;
 		try {	
@@ -316,6 +351,32 @@ public class Modele
 			} catch(SQLException e) {
 				e.printStackTrace();
 				return mail;
+			}
+		}
+	}
+	
+	public void modifierPasswordUtilisateur(String login, String mail, String pass) throws Exception {
+		Connection con = null;
+		try {	
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("update utilisateur set prima_pass = ? where login = ? and adresse_mail = ?");
+			statement.setString(1, pass);
+			statement.setString(2, login);
+			statement.setString(3, mail);
+			statement.executeUpdate();
+			System.out.println("test");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} catch (Exception e){
+			throw e;
+
+		} finally{
+			try{
+				con.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
 			}
 		}
 	}
@@ -398,51 +459,46 @@ public class Modele
 		}
 	}
 
-	public Article getArticle(int id){
+	public Article getArticle(int id_article)
+	{
 		Article article = null;
 		Connection con = null;
-		try{
+		try
+		{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement = con.prepareStatement("select titre, description, contenu from article where id_article = ?");
-			statement.setInt(1, id);
+			PreparedStatement statement =con.prepareStatement("select  contenu, titre from article where id_article = ?");
+			statement.setInt(1, id_article);
 			ResultSet result = statement.executeQuery();
-			if(result.next()){
-				//article = new Article(id, result.getString("titre"), result.getString("description"), result.getString("contenu"));
-			}
-			else
-				return null;
 
-			String regex = "<\\s(.+)\\s>";
-			String regex2 = "\\r";
+			if(result.next())
+			{
+				article = new Article(id_article, result.getString("titre"), result.getString("contenu"));
 
-			String subst = "<a href=\"images/article/" + id + "/$1\"><img src=\"images/article/" + id + "/$1\" width=\"50%\" height=\"auto\"/></a>";
+				PreparedStatement statement2 = con.prepareStatement("select id_media, chemin, nom, type from media where id_article = ? and type like 'photo'");
+				statement2.setInt(1, id_article);
+				result = statement2.executeQuery();
 
-			Pattern pattern = Pattern.compile(regex);
-			Matcher matcher = pattern.matcher(article.getContenu());
-			article.setContenu(matcher.replaceAll(subst));
-
-			pattern = Pattern.compile(regex2);
-			matcher = pattern.matcher(article.getContenu());
-			article.setContenu(matcher.replaceAll("<br>"));
-
-
-			return article;
-
-		} catch (Exception e){
-			e.printStackTrace();
-			return null;
-		} finally{
-			try{
-				con.close();
-			} catch(Exception e){
-				e.printStackTrace();
+				while(result.next())
+				{
+					article.getMedias().add(new Media(result.getInt("id_media"),result.getString("chemin"), result.getString("nom"), result.getString("type")));
+				}
 			}
 		}
-	}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try{ con.close(); }catch(Exception e){}
+		}
 
-	public HashMap<String, tools.Article> getAteliers() 
+		return article;
+	}
+	
+	public HashMap<Integer, tools.Article> getAteliers() 
 	{
-		HashMap<String, Article> articles = new HashMap<String, Article>();
+		HashMap<Integer, Article> articles = new HashMap<Integer, Article>();
 		Connection con = null;
 		try
 		{
@@ -453,45 +509,45 @@ public class Modele
 			while(result.next())
 			{
 				String contenu =  StringEscapeUtils.escapeHtml4(result.getString("contenu")).replaceAll("\r", "<br>");
-				switch(result.getString("article_titre"))
+				switch(result.getInt("id_article"))
 				{
-				case "Le pain" :
-					articles.put("Le pain", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
+				case 1 :
+					articles.put(result.getInt("id_article"), new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
-				case "Le lait" :
-					articles.put("Le lait", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
+				case 2 :
+					articles.put(result.getInt("id_article"), new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
-				case "Les 7 familles" :
-					articles.put("Les 7 familles", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
+				case 3 :
+					articles.put(result.getInt("id_article"), new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
-				case "Le menu équilibré" :
-					articles.put("Le menu équilibré", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
+				case 4 :
+					articles.put(result.getInt("id_article"), new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
-				case "Alimentation et environnement" :
-					articles.put("Alimentation et environnement", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
+				case 5 :
+					articles.put(result.getInt("id_article"), new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
-				case "Le spectacle" :
-					articles.put("Le spectacle", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
+				case 6 :
+					articles.put(result.getInt("id_article"), new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
-				case "accueil" :
-					articles.put("accueil", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
+				case 7 :
+					articles.put(result.getInt("id_article"), new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
 					break;
 				}
 			}
 
 			statement.close();
-			String query = "select chemin, titre, nom from media, article where media.id_article = article.id_article and media.id_article in (";
+			String query = "select chemin, id_article, nom from media where media.id_article in (";
 
 			boolean firstLine = true;					
-			for(Map.Entry<String, Article> article : articles.entrySet())
+			for(Map.Entry<Integer, Article> article : articles.entrySet())
 			{
 				if(firstLine)
 				{
-					query += article.getValue().getId();
+					query += article.getKey();
 					firstLine = false;
 				}
 				else
-					query += "," + article.getValue().getId();
+					query += "," + article.getKey();
 			}
 
 			query += ")";
@@ -500,7 +556,7 @@ public class Modele
 
 			while(result.next())
 			{
-				articles.get(result.getString("titre")).getMedias().add(new Media(result.getString("chemin"), result.getString("nom")));
+				articles.get(result.getInt("id_article")).getMedias().add(new Media(result.getString("chemin"), result.getString("nom")));
 			}
 		} catch (Exception e){
 			e.printStackTrace();
@@ -518,7 +574,7 @@ public class Modele
 
 		return articles;
 	}
-
+	
 	public HashMap<String, tools.Article> getDemarche() 
 	{
 		HashMap<String, Article> articles = new HashMap<String, Article>();
@@ -526,8 +582,9 @@ public class Modele
 		try
 		{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement = con.prepareStatement("select article.id_article, article.titre as article_titre, contenu from projet, article where projet.id_projet = article.id_projet and projet.titre like 'demarche'");
+			PreparedStatement statement = con.prepareStatement("select article.id_article, article.titre as article_titre, contenu from projet, article where projet.id_projet = article.id_projet and projet.id_projet = 2");
 			ResultSet result = statement.executeQuery();
+			
 			while(result.next())
 			{
 				switch(result.getString("article_titre"))
@@ -588,6 +645,59 @@ public class Modele
 		return articles;
 	}
 
+	public HashMap<String, Clown> getClowns() 
+	{
+		HashMap<String, Clown> clowns = new HashMap<>();
+		Connection con = null;
+		try
+		{
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("select id_clown, nom from clown");
+			ResultSet result = statement.executeQuery();
+			String query = "select id_clown, id_media, chemin, nom, type from media_clown where id_clown in (";
+
+			boolean firstLine = true;					
+			while(result.next())
+			{
+				clowns.put(result.getString("id_clown"), new Clown(result.getString("nom"), result.getInt("id_clown")));
+				if(firstLine)
+				{
+					firstLine = false;
+					query += result.getString("id_clown");
+				}
+				else
+					query += ", " + result.getString("id_clown");
+			}
+
+			statement.close();
+
+			query += ")";
+			
+			PreparedStatement statement2 = con.prepareStatement(query);
+			result = statement2.executeQuery();
+
+			while(result.next())
+			{
+				clowns.get(result.getString("id_clown")).getList_media().add(new Media(result.getInt("id_media"), result.getString("chemin"), result.getString("nom"), result.getString("type")));
+			}
+
+		} catch (Exception e){
+			e.printStackTrace();
+			return null;
+		} finally
+		{
+			try
+			{
+				con.close();
+			} catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+
+		return clowns;
+	}
+	
 	public Article getArticle(String titre)
 	{
 		Article article = null;
@@ -735,7 +845,8 @@ public class Modele
 
 
 
-	public ArrayList<Media> getMedias(int idArticle){
+	public ArrayList<Media> getMedias(int idArticle)
+	{
 		ArrayList<Media> medias = new ArrayList<Media>();
 		Connection con = null;
 		try{
@@ -760,7 +871,8 @@ public class Modele
 		}
 	}
 
-	public ArrayList<Media> getGalerie(){
+	public ArrayList<Media> getGalerie()
+	{
 		ArrayList<Media> medias = new ArrayList<Media>();
 		Connection con = null;
 		try{
@@ -835,7 +947,8 @@ public class Modele
 	//------------------------------------------------------PROJET------------------------------------------------------------
 
 
-	public void ajouterProjet(String titre, String description){
+	public void ajouterProjet(String titre, String description)
+	{
 		Connection con = null;
 		try{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
@@ -856,8 +969,8 @@ public class Modele
 		}
 	}
 
-
-	public void supprimerProjet(int id){
+	public void supprimerProjet(int id)
+	{
 		Connection con = null;
 		try{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
