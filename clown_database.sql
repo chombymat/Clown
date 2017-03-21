@@ -37,7 +37,7 @@ create table media(
 	id_media serial,
 	id_article integer,
 	chemin text not null,
-	nom varchar(50) not null,
+	nom text not null,
 	type varchar(50) not null,
 	constraint pk_media primary key(id_media),
 	constraint fk_media_article foreign key(id_article) references article(id_article) on update cascade on delete restrict
@@ -189,16 +189,21 @@ insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/P
 insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/P_20170209_153232.jpg', 'photo enfant - Expression Corporelle', 'photo');
 insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/P_20170209_153311.jpg', 'photo enfant - Expression Corporelle', 'photo');
 
-insert into media(id_article, chemin, nom, type) values(11, 'images/pdf/FICHE_ATELIER_1_-_DU_BLE_AU_PAIN.pdf', 'pdf test', 'pdf');
-insert into media(id_article, chemin, nom, type) values(11, 'images/pdf/FICHE_ATELIER_1_-_DU_BLE_AU_PAIN.pdf', 'pdf test', 'pdf');
-insert into media(id_article, chemin, nom, type) values(11, 'images/pdf/FICHE_ATELIER_1_-_DU_BLE_AU_PAIN.pdf', 'pdf test', 'pdf');
-insert into media(id_article, chemin, nom, type) values(11, 'images/pdf/FICHE_ATELIER_1_-_DU_BLE_AU_PAIN.pdf', 'pdf test', 'pdf');
-insert into media(id_article, chemin, nom, type) values(11, 'images/pdf/FICHE_ATELIER_1_-_DU_BLE_AU_PAIN.pdf', 'pdf test', 'pdf');
-insert into media(id_article, chemin, nom, type) values(11, 'images/4/11/PHOTOS_ENFANTS/P1070515.JPG', 'photo enfant pain 1', 'photo');
-insert into media(id_article, chemin, nom, type) values(11, 'images/1/1/PHOTOS_ENFANTS/P1070515.JPG', 'photo enfant pain 1', 'photo');
-insert into media(id_article, chemin, nom, type) values(11, 'images/1/1/PHOTOS_ENFANTS/P1070515.JPG', 'photo enfant pain 1', 'photo');
-insert into media(id_article, chemin, nom, type) values(11, 'images/1/1/PHOTOS_ENFANTS/P1070515.JPG', 'photo enfant pain 1', 'photo');
-insert into media(id_article, chemin, nom, type) values(11, 'images/1/1/PHOTOS_ENFANTS/P1070515.JPG', 'photo enfant pain 1', 'photo');
+insert into media(id_article, chemin, nom, type) values(1, 'images/pdf/1/FICHE_ATELIER_1_-_DU_BLE_AU_PAIN.pdf', 'Fiche atelier 1 : du blé au pain (.pdf)', 'pdf');
+insert into media(id_article, chemin, nom, type) values(2, 'images/pdf/2/FICHE_ATELIER_2_-_LE_LAIT_ET_SES_DERIVES.pdf', 'Fiche atelier 2 : le lait et ses dérivés (.pdf)', 'pdf');
+insert into media(id_article, chemin, nom, type) values(3, 'images/pdf/3/FICHE_ATELIER_3_-_LE_CLASSEMENT_DES_ALIMENTS.pdf', 'Fiche atelier 3 : le classement des aliments (.pdf)', 'pdf');
+insert into media(id_article, chemin, nom, type) values(4, 'images/pdf/4/FICHE_ATELIER_4_-_UN_MENU_EQUILIBRE.pdf', 'Fiche atelier 4 : un menu équilibré (.pdf)', 'pdf');
+insert into media(id_article, chemin, nom, type) values(5, 'images/pdf/5/FICHE_ATELIER_5_-_LE_PARCOURS_DU_YAOURT_A_LA_FRAISE.pdf', 'Fiche atelier 5 : le parcours du yaourt à la fraise (.pdf)', 'pdf');
+
+insert into media(id_article, chemin, nom, type) values(8, 'images/pdf/5/FICHE_ATELIER_5_-_LE_PARCOURS_DU_YAOURT_A_LA_FRAISE.pdf', 'Fiche atelier 5 : le parcours du yaourt à la fraise (.pdf)', 'pdf');
+insert into media(id_article, chemin, nom, type) values(9, 'images/pdf/5/FICHE_ATELIER_5_-_LE_PARCOURS_DU_YAOURT_A_LA_FRAISE.pdf', 'Fiche atelier 5 : le parcours du yaourt à la fraise (.pdf)', 'pdf');
+insert into media(id_article, chemin, nom, type) values(10, 'images/pdf/5/FICHE_ATELIER_5_-_LE_PARCOURS_DU_YAOURT_A_LA_FRAISE.pdf', 'Fiche atelier 5 : le parcours du yaourt à la fraise (.pdf)', 'pdf');
+
+insert into media(id_article, chemin, nom, type) values(11, 'images/article/11/PHOTOS_ENFANTS/P1070515.JPG', 'photo enfant pain 1', 'photo');
+insert into media(id_article, chemin, nom, type) values(11, 'images/article/11/PHOTOS_ENFANTS/P1070515.JPG', 'photo enfant pain 1', 'photo');
+insert into media(id_article, chemin, nom, type) values(11, 'images/artcile/11/PHOTOS_ENFANTS/P1070515.JPG', 'photo enfant pain 1', 'photo');
+insert into media(id_article, chemin, nom, type) values(11, 'images/article/11/PHOTOS_ENFANTS/P1070515.JPG', 'photo enfant pain 1', 'photo');
+insert into media(id_article, chemin, nom, type) values(11, 'images/article/11/PHOTOS_ENFANTS/P1070515.JPG', 'photo enfant pain 1', 'photo');
 
 insert into media(chemin, nom, type) values('images/galerie/Capture-2.png', 'galerie 1', 'galerie');
 insert into media(chemin, nom, type) values('images/galerie/Plage_deserte.jpg', 'galerie 2', 'galerie');

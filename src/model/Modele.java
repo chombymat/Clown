@@ -536,7 +536,7 @@ public class Modele
 			}
 
 			statement.close();
-			String query = "select chemin, id_article, nom from media where media.id_article in (";
+			String query = "select chemin, id_article, nom, type from media where media.id_article in (";
 
 			boolean firstLine = true;					
 			for(Map.Entry<Integer, Article> article : articles.entrySet())
@@ -556,7 +556,7 @@ public class Modele
 
 			while(result.next())
 			{
-				articles.get(result.getInt("id_article")).getMedias().add(new Media(result.getString("chemin"), result.getString("nom")));
+				articles.get(result.getInt("id_article")).getMedias().add(new Media(result.getString("chemin"), result.getString("nom"), result.getString("type")));
 			}
 		} catch (Exception e){
 			e.printStackTrace();
@@ -575,48 +575,48 @@ public class Modele
 		return articles;
 	}
 	
-	public HashMap<String, tools.Article> getDemarche() 
+	public HashMap<Integer, tools.Article> getDemarche() 
 	{
-		HashMap<String, Article> articles = new HashMap<String, Article>();
+		HashMap<Integer, Article> articles = new HashMap<Integer, Article>();
 		Connection con = null;
 		try
 		{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement = con.prepareStatement("select article.id_article, article.titre as article_titre, contenu from projet, article where projet.id_projet = article.id_projet and projet.id_projet = 2");
+			PreparedStatement statement = con.prepareStatement("select article.id_article as id_article, article.titre, contenu from projet, article where projet.id_projet = article.id_projet and projet.id_projet = 2");
 			ResultSet result = statement.executeQuery();
 			
 			while(result.next())
 			{
-				switch(result.getString("article_titre"))
+				switch(result.getInt("id_article"))
 				{
-				case "Clown" :
-					articles.put("Clown", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
+				case 8 :
+					articles.put(result.getInt("id_article"), new Article(result.getInt("id_article"),result.getString("titre"), result.getString("contenu")));
 					break;
-				case "Pratique et sensoriel" :
-					articles.put("Pratique et sensoriel", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
+				case 9 :
+					articles.put(result.getInt("id_article"), new Article(result.getInt("id_article"),result.getString("titre"), result.getString("contenu")));
 					break;
-				case "Expression Corporelle" :
-					articles.put("Expression Corporelle", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
+				case 10 :
+					articles.put(result.getInt("id_article"), new Article(result.getInt("id_article"),result.getString("titre"), result.getString("contenu")));
 					break;
-				case "accueil" :
-					articles.put("accueil", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
+				case 11 :
+					articles.put(result.getInt("id_article"), new Article(result.getInt("id_article"),result.getString("titre"), result.getString("contenu")));
 					break;
 				}
 			}
 
 			statement.close();
-			String query = "select id_media, chemin, titre, nom, type from media, article where media.id_article = article.id_article and media.id_article in (";
+			String query = "select id_media, chemin, id_article, nom, type from media where id_article in (";
 
 			boolean firstLine = true;					
-			for(Map.Entry<String, Article> article : articles.entrySet())
+			for(Map.Entry<Integer, Article> article : articles.entrySet())
 			{
 				if(firstLine)
 				{
-					query += article.getValue().getId();
+					query += article.getKey();
 					firstLine = false;
 				}
 				else
-					query += "," + article.getValue().getId();
+					query += "," + article.getKey();
 			}
 
 			query += ")";
@@ -625,9 +625,8 @@ public class Modele
 
 			while(result.next())
 			{
-				articles.get(result.getString("titre")).getMedias().add(new Media(result.getInt("id_media"), result.getString("chemin"), result.getString("nom"), result.getString("type")));
+				articles.get(result.getInt("id_article")).getMedias().add(new Media(result.getInt("id_media"), result.getString("chemin"), result.getString("nom"), result.getString("type")));
 			}
-
 		} catch (Exception e){
 			e.printStackTrace();
 			return null;
