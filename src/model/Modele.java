@@ -184,12 +184,6 @@ public class Modele
 
 		} catch (Exception e){
 			e.printStackTrace();
-		} finally{
-			try{
-				ds.getConnection().close();
-			} catch(Exception e){
-				e.printStackTrace();
-			}
 		}
 	}
 
@@ -346,13 +340,11 @@ public class Modele
 	}
 	
 	public void modifierPasswordUtilisateur(String login, String mail, String pass) throws Exception {
+		Connection con = null;
 		try {	
-			statement = ds.getConnection().prepareStatement("udpate utilisateur set prima_pass = ? where login = ? and adresse_mail = ?");
-			statement.setString(1, cryptPass(pass));
-			statement.setString(2, login);
-			statement.setString(3, mail);
-			
-			statement.executeUpdate();
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("udpate utilisateur set prima_pass = ? where login = ? and adresse_mail = ?");
+			statement.setString(1,login);
 		} catch (SQLException e) {
 			e.printStackTrace();
 
@@ -361,7 +353,7 @@ public class Modele
 
 		} finally{
 			try{
-				statement.getConnection().close();
+				con.close();
 			} catch(SQLException e) {
 				e.printStackTrace();
 			}

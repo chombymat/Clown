@@ -15,16 +15,15 @@ public class Connexion extends HttpServlet
 {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		String login = request.getParameter("login");
-		String pass = request.getParameter("pass");
 		Modele model = new Modele();
 		try
 		{
-			if( request.getParameter("oubliPassword") != null) {
-				
+			if((String)request.getParameter("oubliPass") != null){
+				response.sendRedirect("./forgotPassword.jsp");
 				
 			} else {
-				
+				String login = request.getParameter("login");
+				String pass = request.getParameter("pass");
 				HttpSession session = request.getSession();
 				Utilisateur user = model.connexion(login, pass);
 				session.setAttribute("user", user);
