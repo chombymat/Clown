@@ -34,7 +34,8 @@
 		            {
 		            	if(data === "ok")
 		            	{
-		            		window.location.replace("./");
+		            		$('#success_message').show();         	
+		            		$("#form")[0].reset();
 		            	}
 		            	else if(data === "fail")
 		            	{
@@ -74,6 +75,7 @@
         <button type="submit" class="btn btn-sample">Envoyer la demande</button>
       </div>
     </div>
+    <div class="alert alert-success" role="alert" id="success_message"><i class="glyphicon glyphicon-thumbs-up"></i> Votre demande a bien été prise en compte, veuillez consulter votre boîte mail.</div>
   </form>
   <%@include file="/WEB-INF/footer.html"%>
 </body>

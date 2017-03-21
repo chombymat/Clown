@@ -37,11 +37,12 @@
 			            {
 			            	if(data === "ok")
 			            	{
-			            		window.location.replace("./");
+			            		$('#success_message').show();         	
+			            		$("#form")[0].reset();
 			            	}
 			            	else if(data === "fail")
 			            	{
-			            		$('#erreur').html("Identifiant/mot de passe incorrect");         	
+			            		$('#erreur').html("Identifiant/Mail  incorrect");         	
 			            	}
 			            }
 			        });
@@ -92,6 +93,7 @@
         <button type="submit" class="btn btn-sample">Modifier le mot de passe</button>
       </div>
     </div>
+    <div class="alert alert-success" role="alert" id="success_message"><i class="glyphicon glyphicon-thumbs-up"></i> Votre mot de passe a bien été modifié.</div>
   </form>
   <%@include file="/WEB-INF/footer.html"%>
 </body>

@@ -34,18 +34,12 @@ public class ForgotPassword extends HttpServlet {
 				
 				
 			} else if((String)request.getParameter("confirmationModifPassword") != null){
-				System.out.println((String)request.getParameter("login"));
-				System.out.println("!!! password modifié in DB");
 				model = new Modele();
 				
-				System.out.println("log :" + (String)request.getParameter("login"));
-				System.out.println("mail :" + (String)request.getParameter("mail"));
-				System.out.println("pass :" + (String)request.getParameter("passwordModified"));
-				
-				model.modifierPasswordUtilisateur((String)request.getParameter("login"),
+				String result = model.modifierPasswordUtilisateur((String)request.getParameter("login"),
 												  (String)request.getParameter("mail"),
 												  (String)request.getParameter("passwordModified"));
-				response.sendRedirect("./connexion.jsp");
+				response.getWriter().print(result);
 				
 			}
 		} catch (Exception e) {
