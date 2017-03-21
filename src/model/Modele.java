@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.mail.Message;
 import javax.mail.Message.RecipientType;
 import javax.mail.Session;
@@ -26,9 +25,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.http.Part;
 import javax.sql.DataSource;
-
 import org.apache.commons.lang3.StringEscapeUtils;
-
 import tools.Article;
 import tools.Clown;
 import tools.Media;

@@ -107,7 +107,7 @@ $(document).ready(function() {
 		<input id="bt_pratique" type="image" class="img-circle bt_image" src="images/1/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Pratique et sensorielle" alt="Pratique et sensorielle" width="156" height="156" />
 		<input id="bt_expression" type="image" class="img-circle bt_image" src="images/1/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Expression corporelle" alt="Expression corporelle" width="156" height="156" />
 	</div>
-	<div class="row col-md-11 col-sm-offset-1" id="textDemarche">
+	<div class="row col-md-10 col-sm-offset-1" id="textDemarche">
 			<p align="justify"><%= articles.get("accueil").getContenu() %></p>
 	</div>
 	<!----------------------------------- fin de categorie ---------------------------------------->

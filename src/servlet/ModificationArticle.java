@@ -8,9 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.io.IOUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+
+import model.ModelTmp;
 import model.Modele;
 import tools.Media;
 
@@ -24,7 +27,7 @@ public class ModificationArticle extends HttpServlet
 		response.setCharacterEncoding("UTF-8");
 		JSONObject json = new JSONObject();
 
-		tools.Article article = new Modele().getArticle(request.getParameter("titre").toString());
+		tools.Article article = new ModelTmp().getArticle(request.getParameter("titre").toString());
 		json.put("id", article.getId());
 		json.put("id_projet", article.getId_projet());
 		json.put("titre", article.getTitre());
