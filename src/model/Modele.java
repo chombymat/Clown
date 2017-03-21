@@ -30,6 +30,7 @@ import javax.sql.DataSource;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 import tools.Article;
+import tools.Clown;
 import tools.Media;
 import tools.Utilisateur;
 
@@ -566,8 +567,9 @@ public class Modele
 		try
 		{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement = con.prepareStatement("select article.id_article, article.titre as article_titre, contenu from projet, article where projet.id_projet = article.id_projet and projet.titre like 'demarche'");
+			PreparedStatement statement = con.prepareStatement("select article.id_article, article.titre as article_titre, contenu from projet, article where projet.id_projet = article.id_projet and projet.id_projet = 2");
 			ResultSet result = statement.executeQuery();
+			
 			while(result.next())
 			{
 				switch(result.getString("article_titre"))
@@ -628,6 +630,59 @@ public class Modele
 		return articles;
 	}
 
+	public HashMap<String, Clown> getClowns() 
+	{
+		HashMap<String, Clown> clowns = new HashMap<>();
+		Connection con = null;
+		try
+		{
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("select id_clown, nom from clown");
+			ResultSet result = statement.executeQuery();
+			String query = "select id_clown, id_media, chemin, nom, type from media_clown where id_clown in (";
+
+			boolean firstLine = true;					
+			while(result.next())
+			{
+				clowns.put(result.getString("id_clown"), new Clown(result.getString("nom"), result.getInt("id_clown")));
+				if(firstLine)
+				{
+					firstLine = false;
+					query += result.getString("id_clown");
+				}
+				else
+					query += ", " + result.getString("id_clown");
+			}
+
+			statement.close();
+
+			query += ")";
+			
+			PreparedStatement statement2 = con.prepareStatement(query);
+			result = statement2.executeQuery();
+
+			while(result.next())
+			{
+				clowns.get(result.getString("id_clown")).getList_media().add(new Media(result.getInt("id_media"), result.getString("chemin"), result.getString("nom"), result.getString("type")));
+			}
+
+		} catch (Exception e){
+			e.printStackTrace();
+			return null;
+		} finally
+		{
+			try
+			{
+				con.close();
+			} catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+
+		return clowns;
+	}
+	
 	public Article getArticle(String titre)
 	{
 		Article article = null;

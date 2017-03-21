@@ -313,10 +313,12 @@
 		            	json = jQuery.parseJSON(json);
 		            	$('#modif_article_image').append(
 	            				"<div class=\"" + json.id_media + " col-md-3\">"+
-	            				"<img id=\"" + json.id_media +"\"class=\"myImg img-thumbnail\" src=\"images/" + id_projet + "/" + id_article + "/PHOTOS_ENFANTS/" + json.nom + " alt=\""+ $('#tb_update_name_photo').val()  +"\"><br>" 
+	            				"<img id=\"" + json.id_media +"\"class=\"myImg img-thumbnail\" src=\"" + json.nom + "\" alt=\""+ $('#tb_update_name_photo').val()  +"\"><br>" 
 	            			  + "<input id=\"name_" + json.id_media + "\" type=\"text\" value=\"" + $('#tb_update_name_photo').val() + "\" maxlength=\"50\"\">" +
 	            				"<button id_media=\"" + json.id_media + "\" class=\"bt_rename_photo btn btn-sample\">Renommer</button>   " +
 	            				"<button id_media=\"" + json.id_media + "\" class=\"bt_delete_photo btn btn-sample\">Supprimer</button></div>");
+		            	
+		            	initialiserUpdateArticle();
 		            }
 		        });
 			});
