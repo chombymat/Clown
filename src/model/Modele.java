@@ -837,8 +837,11 @@ public class Modele
 			}
 		}
 	}
-
-
+	
+	public void deletePdf(String racine, int id_article, int id_media)
+	{
+		
+	}
 
 	public ArrayList<Media> getMedias(int idArticle)
 	{
@@ -990,7 +993,7 @@ public class Modele
 		}
 	}
 
-	public void savePdfOnDisk(String racine, Integer id_article, Part part) 
+	public void savePdfOnDisk(String racine, int id_article, int id_media, Part part) 
 	{
 		File file = new File(racine + "images/pdf/" + id_article + "/");
 		
@@ -999,7 +1002,7 @@ public class Modele
 		
 		try
 		{
-			part.write(file.getAbsolutePath() + "/" + part.getSubmittedFileName());
+			part.write(file.getAbsolutePath() + "/" + id_media + ".pdf");
 		}
 		catch(Exception e)
 		{
@@ -1007,17 +1010,17 @@ public class Modele
 		}
 	}
 	
-	public int addPdf(int id_article, String name, String filename)
+	public int addPdf(int id_article, String name)
 	{
 		Connection con = null;
 		try
 		{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement = con.prepareStatement("insert into media (id_article, type, nom, chemin) values(?, ?, ?, ?) returning id_media");
+			PreparedStatement statement = con.prepareStatement("insert into media (id_article, type, nom, chemin) values(?, ?, ?, ? || (select last_value from media_id_media_seq) || '.pdf') returning id_media");
 			statement.setInt(1, id_article);
 			statement.setString(2, "pdf");
 			statement.setString(3, name);
-			statement.setString(4, "images/pdf/" + id_article + "/" + filename);
+			statement.setString(4, "images/pdf/" + id_article + "/");
 			ResultSet result = statement.executeQuery();
 			result.next();
 			return result.getInt("id_media");

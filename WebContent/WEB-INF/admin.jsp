@@ -145,6 +145,9 @@
 			
 			function initialiserGalerie()
 			{
+				$('.bt_galerie_rename').unbind('click');
+				$('.bt_galerie_delete').unbind('click');
+				
 				$('.bt_galerie_rename').on('click', function(){
 					var id_media = $(this).attr('id_media');
 					var new_name = $('#name_' + id_media).val();
@@ -253,7 +256,22 @@
 			            	for(var i = 0; i < array.length; i++)
 			            	{
 			            		var div = $(document.createElement('div'));
-				            	div.attr('class', array[i].id + ' col-md-2');
+				            	div.attr('class', array[i].id + ' col-md-3');
+				            	
+				            	var input = $(document.createElement('input'));
+				            	input.attr('id', 'name_' + array[i].id);
+				            	input.attr('type', 'text');
+				            	input.val(array[i].nom);
+				            	input.attr('size', '50');
+				            	
+				            	var bt_rename = $(document.createElement('button'));
+				            	bt_rename.attr('id_media', array[i].id);
+				            	bt_rename.attr('class', 'bt_rename btn btn-sample');
+				            	bt_rename.html('Renommer');
+				            	
+				            	var bt_delete = $(document.createElement('button'));
+				            	bt_delete.attr('id_media', array[i].id);
+				            	bt_delete.html('Supprimer');
 				            	
 			            		if(array[i].type === "photo")
 			            		{
@@ -262,19 +280,8 @@
 					            	img.attr('class', 'myImg img-thumbnail');
 					            	img.attr('src',array[i].chemin);
 					            	img.attr('alt', array[i].nom);
-					            	var input = $(document.createElement('input'));
-					            	input.attr('id', 'name_' + array[i].id);
-					            	input.attr('type', 'text');
-					            	input.val(array[i].nom);
-					            	input.attr('maxlength', '50');
-					            	var bt_rename = $(document.createElement('button'));
-					            	var bt_delete = $(document.createElement('button'));
-					            	bt_rename.attr('id_media', array[i].id);
-					            	bt_rename.attr('class', 'bt_rename_photo btn btn-sample');
-					            	bt_rename.html('Renommer');
-					            	bt_delete.attr('id_media', array[i].id);
+					            	
 					            	bt_delete.attr('class', 'bt_delete_photo btn btn-sample');
-					            	bt_delete.html('Supprimer');
 					            	
 					            	div.append(img);
 					            	div.append('<br>');
@@ -290,20 +297,8 @@
 			            			var a = $(document.createElement('a'));
 			            			a.attr('href', array[i].chemin);
 			            			a.html('Voir PDF');
-					            	var input = $(document.createElement('input'));
-					            	input.attr('id', 'name_pdf_' + array[i].id);
-					            	input.attr('type', 'text');
-					            	input.val(array[i].nom);
-					            	input.attr('maxlength', '50');
-					            	input.attr('width', '50');
-					            	var bt_rename = $(document.createElement('button'));
-					            	var bt_delete = $(document.createElement('button'));
-					            	bt_rename.attr('id_media', array[i].id);
-					            	bt_rename.attr('class', 'bt_rename_pdf btn btn-sample');
-					            	bt_rename.html('Renommer');
-					            	bt_delete.attr('id_media', array[i].id);
+			            			
 					            	bt_delete.attr('class', 'bt_delete_pdf btn btn-sample');
-					            	bt_delete.html('Supprimer');
 					            	
 					            	div.append(a);
 					            	div.append('<br><br>');
@@ -358,7 +353,7 @@
 		            data: form_data,
 		            success : function()
 		            {
-		            	// Afficher modification réussie
+		            	alert("Modification réussie")
 		            }
 		        });
 			});
@@ -404,11 +399,11 @@
 		            	var bt_rename = $(document.createElement('button'));
 		            	var bt_delete = $(document.createElement('button'));
 		            	bt_rename.attr('id_media', json.id_media);
-		            	bt_rename.attr('class', 'bt_rename_photo btn btn-sample');
+		            	bt_rename.attr('class', 'bt_rename btn btn-sample');
 		            	bt_rename.html('Renommer');
 		            	bt_delete.attr('id_media', json.id_media);
 		            	bt_delete.attr('class', 'bt_delete_photo btn btn-sample');
-		            	bt_delete.html('supprimer');
+		            	bt_delete.html('Supprimer');
 		            	
 		            	div.append(img);
 		            	div.append('<br>');
@@ -438,26 +433,6 @@
 				$('#file_update_get_pdf').click();
 			});
 			
-			$('.bt_delete_get_pdf').on('click', function(){
-				var form_data = new FormData();
-				form_data.append("type", "delete_pdf");
-				form_data.append("id_article", id_article);
-				form_data.append('id_media', $(this).attr('id_media'));
-				
-				$.ajax({
-		            url: './ModificationArticle',
-		            type: 'POST',
-		            mimeType:'multipart/form-data',
-		            contentType: false,
-		            processData: false,
-		            data: form_data,
-		            success : function(json)
-		            {
-		            	console.log("pdf ajouté");
-		            }
-		        });
-			});
-			
 			$('#bt_update_submit_pdf').on('click', function(){
 				var form_data = new FormData();
 				form_data.append("type", "add_pdf");
@@ -474,7 +449,36 @@
 		            data: form_data,
 		            success : function(json)
 		            {
-		            	console.log("pdf ajouté");
+						json = jQuery.parseJSON(json);
+		            	
+		            	var div = $(document.createElement('div'));
+		            	div.attr('class', json.id_media + ' col-md-3');
+		            	var a =  $(document.createElement('a'));
+		            	a.attr('href', json.nom);
+		            	a.html('Voir PDF');
+		            	var input = $(document.createElement('input'));
+		            	input.attr('id', 'name_' + json.id_media);
+		            	input.attr('type', 'text');
+		            	input.val($('#tb_update_name_pdf').val());
+		            	input.attr('size', '50');
+		            	var bt_rename = $(document.createElement('button'));
+		            	var bt_delete = $(document.createElement('button'));
+		            	bt_rename.attr('id_media', json.id_media);
+		            	bt_rename.attr('class', 'bt_rename btn btn-sample');
+		            	bt_rename.html('Renommer');
+		            	bt_delete.attr('id_media', json.id_media);
+		            	bt_delete.attr('class', 'bt_delete_pdf btn btn-sample');
+		            	bt_delete.html('Supprimer');
+		            	
+		            	div.append(a);
+		            	div.append('<br><br>');
+		            	div.append(input);
+		            	div.append(bt_rename);
+		            	div.append(bt_delete);
+		            	
+		            	$('#modif_article_pdf').append(div);
+
+		            	initialiserUpdateArticle();
 		            }
 		        });
 			});
@@ -487,6 +491,10 @@
 			
 			function initialiserUpdateArticle()
 			{
+				$('.bt_delete_photo').unbind('click');
+				$('.bt_rename').unbind('click');
+				$('.bt_delete_pdf').unbind('click');
+				
 				initialiserModal();
 				
 				$('.bt_delete_photo').on('click', function(){
@@ -512,18 +520,15 @@
 				});
 				
 
-				$('.bt_rename_photo').on('click', function()
+				$('.bt_rename').on('click', function(e)
 				{
 					var id_media = $(this).attr("id_media");
 					var new_name = $('#name_' + id_media).val();
 					var form_data = new FormData();
 					
-					form_data.append("type", "rename_photo");
-					form_data.append("newName", new_name);
+					form_data.append("type", "rename");
+					form_data.append("new_name", new_name);
 					form_data.append("id_media", id_media);
-					
-					console.log($('#name_' + id_media).val());
-					console.log($(this).attr("id_media"));
 					
 					$.ajax({
 			            url: './ModificationArticle',
@@ -535,6 +540,27 @@
 			            success : function()
 			            {
 			            	$('#' + id_media).attr('alt', new_name);
+			            }
+			        });
+				});
+				
+				$('.bt_delete_pdf').on('click', function(){
+					var id_media = $(this).attr('id_media');
+					var form_data = new FormData();
+					form_data.append("type", "delete_pdf");
+					form_data.append("id_article", id_article);
+					form_data.append('id_media', $(this).attr('id_media'));
+					
+					$.ajax({
+			            url: './ModificationArticle',
+			            type: 'POST',
+			            mimeType:'multipart/form-data',
+			            contentType: false,
+			            processData: false,
+			            data: form_data,
+			            success : function(json)
+			            {
+			            	$('.' + id_media).remove();
 			            }
 			        });
 				});
@@ -584,6 +610,8 @@
 			
 			function initialiserModal()
 			{
+				$('.myImg').unbind('click');
+				
 				var modal = document.getElementById('myModal');
 
 				var span = document.getElementsByClassName("close")[0];
