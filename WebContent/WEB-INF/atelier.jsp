@@ -180,7 +180,7 @@
 			<input id="bt_alimentation" type="image" class="img-circle bt_image" src="images/1/5/PHOTO_ILLUSTRATION/Fotolia_139412392_S-1.jpg" title="Atelier 5 : Alimentation et environnement" alt="image de yaourt et fraise" width="156" height="156">
 			<input id="bt_spectacle" type="image" class="img-circle bt_image" src="images/1/6/PHOTO_ILLUSTRATION/clown-1678004_1920.jpg" title="Le spectacle" alt="image de spectacle" width="156" height="156">
 		</div>
-		<div class="row col-md-11 col-sm-offset-1" id="textAtelier">
+		<div class="row col-md-10 col-sm-offset-1" id="textAtelier">
 			<p align="justify"><%= articles.get("accueil").getContenu() %></p>
 		</div>
 	</div>
@@ -192,6 +192,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<img width="85%" height="auto" src="images/1/1/PHOTO_ILLUSTRATION/pain.jpg" title="image de pain" alt="image de pain">
+			<iframe src="https://player.vimeo.com/video/206183023" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 			</div>
 			<div class="col-md-5">
 				<p align="justify"><%= articles.get("Le pain").getContenu() %></p>
@@ -217,6 +218,7 @@
 				</div>
 			</div>
 		</div>
+		
 	</div>
 	
 	
