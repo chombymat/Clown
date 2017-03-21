@@ -838,11 +838,6 @@ public class Modele
 		}
 	}
 	
-	public void deletePdf(String racine, int id_article, int id_media)
-	{
-		
-	}
-
 	public ArrayList<Media> getMedias(int idArticle)
 	{
 		ArrayList<Media> medias = new ArrayList<Media>();
