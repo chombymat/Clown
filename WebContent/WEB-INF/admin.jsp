@@ -235,13 +235,13 @@
 			});
 			
 			$('#select').change(function(){
-				var page = $(this).val();
-
+				var id_article = $('option:selected', this).attr('id_article');
+	console.log(id_article);
 				$.ajax({
 		            url: './ModificationArticle',
 		            type: 'GET',
 		            data: {
-		            	titre : page,
+		            	id_article : id_article,
 		            },
 		            success : function(data)
 		            {
@@ -249,15 +249,22 @@
 		            	var array = json.medias;
 		            	id_article = json.id;
 		            	id_projet = json.id_projet;
-		            	$('#modif_article_image').html("");
-		            	for(var i = 0; i < array.length; i++)
+		            	
+		            	if(id_article != 7 && id_article != 11)
 		            	{
-		            		$('#modif_article_image').append(
-		            				"<div class=\"" + array[i].id + " col-md-3\"><img id=\"" + array[i].id +"\"class=\"myImg img-thumbnail\" src=\"" + array[i].chemin + "\" alt=\"" + array[i].nom +"\" ><br>" + 
-		            				"<input id=\"name_" + array[i].id + "\" type=\"text\" value=\"" + array[i].nom + "\" maxlength=\"50\"\">" +
-		            				"<button id_media=\"" + array[i].id + "\" class=\"bt_rename_photo btn btn-sample\">Renommer</button>   " +
-		            				"<button id_media=\"" + array[i].id + "\" class=\"bt_delete_photo btn btn-sample\">Supprimer</button></div>");
+			            	$('#modif_article_image').html("");
+			            	for(var i = 0; i < array.length; i++)
+			            	{
+			            		$('#modif_article_image').append(
+			            				"<div class=\"" + array[i].id + " col-md-3\"><img id=\"" + array[i].id +"\"class=\"myImg img-thumbnail\" src=\"" + array[i].chemin + "\" alt=\"" + array[i].nom +"\" ><br>" + 
+			            				"<input id=\"name_" + array[i].id + "\" type=\"text\" value=\"" + array[i].nom + "\" maxlength=\"50\"\">" +
+			            				"<button id_media=\"" + array[i].id + "\" class=\"bt_rename_photo btn btn-sample\">Renommer</button>   " +
+			            				"<button id_media=\"" + array[i].id + "\" class=\"bt_delete_photo btn btn-sample\">Supprimer</button></div>");
+			            	}
+			            	$('#update_gestion_photo').show();
 		            	}
+		            	else
+		            		$('#update_gestion_photo').hide();
 		            	initialiserUpdateArticle();
 		            	$('#contenu_article').val(json.contenu);
 		            }
@@ -474,22 +481,27 @@
 			<p>Veuillez sélectionner l'article à modifier.</p>
 			<select id="select" default="">
 				<option disabled selected value hidden></option>
-				<option value="Le pain">Le pain</option>
-				<option value="Le lait">Le lait</option>
-				<option value="Les 7 familles">Les 7 familles</option>
-				<option value="Le menu équilibré">Le menu équilibré</option>
-				<option value="Alimentation et environnement">Alimentation et environnement</option>
-				<option value="Le spectacle">Le spectacle</option>
-				<option value="Clown">Clown</option>
-				<option value="Pratique et sensoriel">Pratique et sensoriel</option>
-				<option value="Expression Corporelle">Expression Corporelle</option>
+				<option id_article="7">Présentation des ateliers</option>
+				<option id_article="1">Le pain</option>
+				<option id_article="2">Le lait</option>
+				<option id_article="3">Les 7 familles</option>
+				<option id_article="4">Le menu équilibré</option>
+				<option id_article="5">Alimentation et environnement</option>
+				<option id_article="6">Le spectacle</option>
+				<option disabled value></option>
+				<option id_article="11">Présentation de notre démarche</option>
+				<option id_article="8">Clown</option>
+				<option id_article="9">Pratique et sensoriel</option>
+				<option id_article="10">Expression Corporelle</option>
+				<option disabled value></option>
+				<option id_article="12">Formation</option>
 			</select>
 		</div>
 		<div id="update_show_article" class="row">
 			<div class="col-md-6">
 				<textarea id="contenu_article" rows="15" cols="80" style="margin-top: 2%; margin-left: 2%"></textarea><br><button id="bt_submit_update_content" class="btn btn-sample">Mettre à jour</button>
 			</div>
-			<div class="col-md-6">
+			<div id="update_gestion_photo" class="col-md-6">
 				<div class="scroll-bar-wrap-admin">
 					<div id="modif_article_image" class="scroll-box-admin">
 					</div>

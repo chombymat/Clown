@@ -300,7 +300,6 @@ public class Modele
 		}
 	}
 
-
 	public void suprimerUtilisateur(String login) throws Exception {
 		Connection con = null;
 		try {	
@@ -460,51 +459,46 @@ public class Modele
 		}
 	}
 
-	public Article getArticle(int id){
+	public Article getArticle(int id_article)
+	{
 		Article article = null;
 		Connection con = null;
-		try{
+		try
+		{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement = con.prepareStatement("select titre, description, contenu from article where id_article = ?");
-			statement.setInt(1, id);
+			PreparedStatement statement =con.prepareStatement("select  contenu, id_projet, titre from article where id_article = ?");
+			statement.setInt(1, id_article);
 			ResultSet result = statement.executeQuery();
-			if(result.next()){
-				//article = new Article(id, result.getString("titre"), result.getString("description"), result.getString("contenu"));
-			}
-			else
-				return null;
 
-			String regex = "<\\s(.+)\\s>";
-			String regex2 = "\\r";
+			if(result.next())
+			{
+				article = new Article(id_article, result.getString("titre"), result.getString("contenu"), result.getInt("id_projet"));
 
-			String subst = "<a href=\"images/article/" + id + "/$1\"><img src=\"images/article/" + id + "/$1\" width=\"50%\" height=\"auto\"/></a>";
+				PreparedStatement statement2 = con.prepareStatement("select id_media, chemin, nom, type from media where id_article = ? and type like 'photo'");
+				statement2.setInt(1, id_article);
+				result = statement2.executeQuery();
 
-			Pattern pattern = Pattern.compile(regex);
-			Matcher matcher = pattern.matcher(article.getContenu());
-			article.setContenu(matcher.replaceAll(subst));
-
-			pattern = Pattern.compile(regex2);
-			matcher = pattern.matcher(article.getContenu());
-			article.setContenu(matcher.replaceAll("<br>"));
-
-
-			return article;
-
-		} catch (Exception e){
-			e.printStackTrace();
-			return null;
-		} finally{
-			try{
-				con.close();
-			} catch(Exception e){
-				e.printStackTrace();
+				while(result.next())
+				{
+					article.getMedias().add(new Media(result.getInt("id_media"),result.getString("chemin"), result.getString("nom"), result.getString("type")));
+				}
 			}
 		}
-	}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try{ con.close(); }catch(Exception e){}
+		}
 
-	public HashMap<String, tools.Article> getAteliers() 
+		return article;
+	}
+	
+	public HashMap<Integer, tools.Article> getAteliers() 
 	{
-		HashMap<String, Article> articles = new HashMap<String, Article>();
+		HashMap<Integer, Article> articles = new HashMap<Integer, Article>();
 		Connection con = null;
 		try
 		{
@@ -515,45 +509,45 @@ public class Modele
 			while(result.next())
 			{
 				String contenu =  StringEscapeUtils.escapeHtml4(result.getString("contenu")).replaceAll("\r", "<br>");
-				switch(result.getString("article_titre"))
+				switch(result.getInt("id_article"))
 				{
-				case "Le pain" :
-					articles.put("Le pain", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
+				case 1 :
+					articles.put(result.getInt("id_article"), new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
-				case "Le lait" :
-					articles.put("Le lait", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
+				case 2 :
+					articles.put(result.getInt("id_article"), new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
-				case "Les 7 familles" :
-					articles.put("Les 7 familles", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
+				case 3 :
+					articles.put(result.getInt("id_article"), new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
-				case "Le menu équilibré" :
-					articles.put("Le menu équilibré", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
+				case 4 :
+					articles.put(result.getInt("id_article"), new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
-				case "Alimentation et environnement" :
-					articles.put("Alimentation et environnement", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
+				case 5 :
+					articles.put(result.getInt("id_article"), new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
-				case "Le spectacle" :
-					articles.put("Le spectacle", new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
+				case 6 :
+					articles.put(result.getInt("id_article"), new Article(result.getInt("id_article"),result.getString("article_titre"), contenu));
 					break;
-				case "accueil" :
-					articles.put("accueil", new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
+				case 7 :
+					articles.put(result.getInt("id_article"), new Article(result.getInt("id_article"),result.getString("article_titre"), result.getString("contenu")));
 					break;
 				}
 			}
 
 			statement.close();
-			String query = "select chemin, titre, nom from media, article where media.id_article = article.id_article and media.id_article in (";
+			String query = "select chemin, id_article, nom from media where media.id_article in (";
 
 			boolean firstLine = true;					
-			for(Map.Entry<String, Article> article : articles.entrySet())
+			for(Map.Entry<Integer, Article> article : articles.entrySet())
 			{
 				if(firstLine)
 				{
-					query += article.getValue().getId();
+					query += article.getKey();
 					firstLine = false;
 				}
 				else
-					query += "," + article.getValue().getId();
+					query += "," + article.getKey();
 			}
 
 			query += ")";
@@ -562,7 +556,7 @@ public class Modele
 
 			while(result.next())
 			{
-				articles.get(result.getString("titre")).getMedias().add(new Media(result.getString("chemin"), result.getString("nom")));
+				articles.get(result.getInt("id_article")).getMedias().add(new Media(result.getString("chemin"), result.getString("nom")));
 			}
 		} catch (Exception e){
 			e.printStackTrace();
@@ -580,7 +574,7 @@ public class Modele
 
 		return articles;
 	}
-
+	
 	public HashMap<String, tools.Article> getDemarche() 
 	{
 		HashMap<String, Article> articles = new HashMap<String, Article>();

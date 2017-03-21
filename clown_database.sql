@@ -22,7 +22,7 @@ create table projet(
 
 create table article(
 	id_article serial,
-	id_projet integer,
+	id_projet integer default null,
 	titre varchar(200) not null,
 	contenu text not null,
 	constraint pk_article primary key(id_article),
@@ -124,7 +124,6 @@ insert into role(id_utilisateur, role) values(1, 'role4');
 insert into projet(titre) values('atelier');
 insert into projet(titre) values('demarche');
 insert into projet(titre) values('ressource');
-insert into projet(titre) values('formation');
 
 insert into article(id_projet, titre, contenu) values(1, 'Le pain', E'Sentir la bonne odeur du pain chaud, croquer dans une tartine de beurre, la tremper dans un bon chocolat…Le pain fait partie de la base de notre alimentation, nous en consommons chaque jour avec délice qu''il soit en baguette ou en tranches !\rAvec la Prima Porta, suivez le parcours du blé au pain ; observez des épis de blé, touchez la farine et terminez par pétrir votre propre pain ! ');
 insert into article(id_projet, titre, contenu) values(1, 'Le lait', E'Quoi de mieux qu''un bon bol de lait chaud en hiver ? Et ce yaourt que vous prenez plaisir à déguster à la fin de votre repas. Savez vous quel est le parcours du lait depuis les pis de la vache jusqu''au supermarché ?\rPas d''inquiétude, la compagnie La Prima Porta est là, prête à vous aider. Avec cet atelier, les enfants découvriront avec plaisir le lait et ses dérivés. ');
@@ -137,6 +136,7 @@ insert into article(id_projet, titre, contenu) values(2, 'Clown', E'C''est l''hi
 insert into article(id_projet, titre, contenu) values(2, 'Pratique et sensoriel', E'Entendre, goûter, sentir, toucher et voir ; nous le faisons tous les jours mais y prêtons-nous vraiment attention ? Prenons-nous encore le temps de sentir la bonne odeur du pain frais le matin, d''écouter les bruits autour de nous ? Et pourtant, c''est grâce à ces cinq sens que nous découvrons et appréhendons le monde qui nous entoure. \r\rC''est pour remettre les cinq sens à l''honneur que la Prima Porta propose des ateliers pratiques et sensoriels.\rAutour du thème riche et varié qu''est l''alimentation, les enfants observent à la loupe, goûtent, mettent la main à la pâte (à pain), piochent dans un sac des légumes, expérimentent les boîtes sensorielles et bien d''autres choses encore !!!');
 insert into article(id_projet, titre, contenu) values(2, 'Expression Corporelle', E'Reprendre par et avec le corps les concepts pour mieux les intégrer, les vivre pour mieux les assimiler, pour mieux les incorporer, voilà les valeurs de la compagnie La Prima Porta.\rChaque atelier se termine par un moment d''expression corporelle. L''idée est que chaque enfant intériorise à sa manière et à son rythme les différents éléments vus lors du solo de clown et de l''atelier pratique. \rAvec bienveillance, rythme et sérénité, les enfants laissent parler leur imagination, leurs émotions ; ils communiquent avec leur corps, ils prennent leur place à côté de et avec l''autre. \rCette fin d''atelier se veut être un moment d''écoute, d''attention et de respect ; Il ne s''agit pas d''apprendre par cœur mais d''apprendre par corps ! ');
 insert into article(id_projet, titre, contenu) values(2, 'accueil', E'Apprendre par le rire, par les sens et par le corps, le tout dans une atmosphère ludique et dynamique, voilà les motivations et les valeurs de la compagnie La Prima Porta. \r\rElle est composée de clowns de théâtre alliant poésie et humour, apprenez dans la joie et la bonne humeur.\rA l''aide de notre démarche innovante basée sur trois temps, l''enfant demeure au coeur de l''apprentissage. Il partage avec le clown, expérimente avec l''atelier pratique et s''exprime avec le corps. \rLa Prima Porta ouvre la première porte, celle qui permet de se révéler, tout en s''ouvrant aux autres et au monde.');
+insert into article(titre, contenu) values('formation', '');
 
 insert into media(id_article, chemin, nom, type) values(1, 'images/1/1/PHOTOS_ENFANTS/P1070515.JPG', 'photo enfant pain 1', 'photo');
 insert into media(id_article, chemin, nom, type) values(1, 'images/1/1/PHOTOS_ENFANTS/P1070524.JPG', 'photo enfant pain 2', 'photo');
