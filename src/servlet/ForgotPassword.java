@@ -27,7 +27,9 @@ public class ForgotPassword extends HttpServlet {
 					model = new Modele();
 					model.envoyerMailModifPassword(login, mail,
 											"https://localhost:8443/Clown/ForgotPassword?primaUpdate=" + login);
-					response.sendRedirect("./connexion.jsp");
+					response.getWriter().print("ok");
+				} else {
+					response.getWriter().print("fail");
 				}
 				
 				

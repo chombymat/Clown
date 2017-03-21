@@ -54,8 +54,8 @@
 	</noscript>
 	<hr/>
  <form id="form" class="form-horizontal" method="post" action="ForgotPassword" style="display:none">
-    <div class="form-group">
       <span id="erreur" class="erreur"></span>
+    <div class="form-group">
       <label class="control-label col-sm-4">Identifiant :</label>
       <div class="col-sm-4">
       	<span id="erreur" class="erreur"></span>
