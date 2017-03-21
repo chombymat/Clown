@@ -364,7 +364,7 @@ public class Modele
 			statement.setString(2, login);
 			statement.setString(3, mail);
 			statement.executeUpdate();
-			System.out.println("test");
+
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

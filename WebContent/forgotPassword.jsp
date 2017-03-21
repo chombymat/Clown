@@ -63,9 +63,10 @@
       </div>
     </div>
      <div class="form-group">
+     <span id="erreur" class="erreur"></span>
       <label class="control-label col-sm-4">Mail :</label>
       <div class="col-sm-4">          
-        <input id="mail" type="text" class="form-control" name="mail" placeholder="mail">
+        <input id="mail" type="text" class="form-control" name="mail" placeholder="mail" required>
       </div>
     </div>
     <div class="form-group">        
