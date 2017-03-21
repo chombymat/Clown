@@ -757,23 +757,22 @@ public class Modele
 	//------------------------------------------------------MEDIA------------------------------------------------------------
 
 
-	public int ajouterMedia(String chemin, String type, int idArticle, String nom){
+	public int ajouterMedia(int id_article, String chemin, String nom, String type, String extension){
 		Connection con = null;
 		try{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement = con.prepareStatement("insert into media (chemin, type, id_article, nom) values(?, ?, ?, ?) returning id_media");
+			PreparedStatement statement = con.prepareStatement("insert into media (chemin, type, id_article, nom) values(? || (select last_value from media_id_media_seq) || ?, ?, ?, ?) returning id_media");
 			statement.setString(1, chemin);
-			statement.setString(2, type);
-			statement.setInt(3, idArticle);
-			statement.setString(4, nom);
+			statement.setString(2, extension);
+			statement.setString(3, type);
+			statement.setInt(4, id_article);
+			statement.setString(5, nom);
 			ResultSet result = statement.executeQuery();
 			
 			result.next();
 			
 			int id_media = result.getInt("id_media");
 			
-			System.out.println("ajout du media " + id_media + " : " + chemin);
-
 			return id_media;
 		} catch (Exception e){
 			e.printStackTrace();
@@ -788,23 +787,21 @@ public class Modele
 		return -1;
 	}
 
-	public int ajouterMedia(String chemin, String type, String nom){
+	public int ajouterMedia(String chemin, String type, String nom, String extension){
 		Connection con = null;
 		try{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement = con.prepareStatement("insert into media (chemin, type, nom) values(?, ?, ?) returning id_media");
+			
+			PreparedStatement statement = con.prepareStatement("insert into media (chemin, type, nom) values(? || (select last_value from media_id_media_seq) || ?, ?, ?) returning id_media");
 			statement.setString(1, chemin);
-			statement.setString(2, type);
-			statement.setString(3, nom);
+			statement.setString(2, extension);
+			statement.setString(3, type);
+			statement.setString(4, nom);
 			ResultSet result = statement.executeQuery();
 			
 			result.next();
-			
-			int id_media = result.getInt("id_media");
-			
-			System.out.println("ajout du media " + id_media + " : " + chemin);
 
-			return id_media;
+			return result.getInt("id_media");
 		} catch (Exception e){
 			e.printStackTrace();
 		} finally{
@@ -912,11 +909,16 @@ public class Modele
 		}
 	}
 
-	public void saveMediaOnDisk(String chemin, Part media)
+	public void saveMediaOnDisk(String chemin, Part media, int id_media)
 	{
+		File file = new File(chemin);
+		
+		if(!file.exists())
+			file.mkdirs();
+		
 		try 
 		{
-			media.write(chemin + media.getSubmittedFileName());
+			media.write(chemin + id_media + media.getSubmittedFileName().substring(media.getSubmittedFileName().lastIndexOf(".")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

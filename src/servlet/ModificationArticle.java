@@ -64,11 +64,13 @@ public class ModificationArticle extends HttpServlet
 		{
 		case "add_photo" :
 			String nom = IOUtils.toString(request.getPart("nom").getInputStream(), "UTF-8");
-			modele.saveMediaOnDisk(getServletContext().getRealPath("/") + "images/article/" + id_article + "/PHOTOS_ENFANTS/", request.getPart("media"));
-			id_media = modele.ajouterMedia("images/article/" + id_article + "/PHOTOS_ENFANTS/" + request.getPart("media").getSubmittedFileName(), "photo", Integer.valueOf(id_article), nom);
+			String extension = request.getPart("media").getSubmittedFileName().substring(request.getPart("media").getSubmittedFileName().lastIndexOf("."));
+
+			id_media = modele.ajouterMedia(Integer.valueOf(id_article), "images/article/" + id_article + "/PHOTOS_ENFANTS/", nom, "photo", extension);
+			modele.saveMediaOnDisk(getServletContext().getRealPath("/") + "images/article/" + id_article + "/PHOTOS_ENFANTS/", request.getPart("media"), id_media);
 			JSONObject json = new JSONObject();
 			json.put("id_media", id_media);
-			json.put("nom", "images/article/" + id_article + "/PHOTOS_ENFANTS/" + request.getPart("media").getSubmittedFileName());
+			json.put("nom", "images/article/" + id_article + "/PHOTOS_ENFANTS/" + id_media +  extension);
 			response.getWriter().println(json);
 			break;
 		case "texte" :

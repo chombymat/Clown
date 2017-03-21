@@ -249,14 +249,16 @@
 		            	if(id_article != 7 && id_article != 11)
 		            	{
 			            	$('#modif_article_image').html("");
+			            	$('#modif_article_pdf').html("");
 			            	for(var i = 0; i < array.length; i++)
 			            	{
+			            		var div = $(document.createElement('div'));
+				            	div.attr('class', array[i].id + ' col-md-2');
+				            	
 			            		if(array[i].type === "photo")
 			            		{
-				            		var div = $(document.createElement('div'));
-					            	div.attr('class', 'col-md-3');
 					            	var img =  $(document.createElement('img'));
-					            	img.attr('id', json.id_media);
+					            	img.attr('id', array[i].id);
 					            	img.attr('class', 'myImg img-thumbnail');
 					            	img.attr('src',array[i].chemin);
 					            	img.attr('alt', array[i].nom);
@@ -277,6 +279,7 @@
 					            	div.append(img);
 					            	div.append('<br>');
 					            	div.append(input);
+					            	div.append('<br>');
 					            	div.append(bt_rename);
 					            	div.append(bt_delete);
 					            	
@@ -284,7 +287,32 @@
 			            		}
 			            		else if(array[i].type === "pdf")
 			            		{
-			            			
+			            			var a = $(document.createElement('a'));
+			            			a.attr('href', array[i].chemin);
+			            			a.html('Voir PDF');
+					            	var input = $(document.createElement('input'));
+					            	input.attr('id', 'name_pdf_' + array[i].id);
+					            	input.attr('type', 'text');
+					            	input.val(array[i].nom);
+					            	input.attr('maxlength', '50');
+					            	input.attr('width', '50');
+					            	var bt_rename = $(document.createElement('button'));
+					            	var bt_delete = $(document.createElement('button'));
+					            	bt_rename.attr('id_media', array[i].id);
+					            	bt_rename.attr('class', 'bt_rename_pdf btn btn-sample');
+					            	bt_rename.html('Renommer');
+					            	bt_delete.attr('id_media', array[i].id);
+					            	bt_delete.attr('class', 'bt_delete_pdf btn btn-sample');
+					            	bt_delete.html('Supprimer');
+					            	
+					            	div.append(a);
+					            	div.append('<br><br>');
+					            	div.append(input);
+					            	div.append('<br>');
+					            	div.append(bt_rename);
+					            	div.append(bt_delete);
+					            	
+					            	$('#modif_article_pdf').append(div);
 			            		}
 			            	}
 			            	
@@ -300,7 +328,7 @@
 		            	}
 		            	
 		            	$('#contenu_article').val(json.contenu);
-		            	$('#bt_update_add_pdf').hide();
+		            	$('#update_pdf').hide();
 		            	$('#update_gestion_photo').hide();
 		            	$('#update_video').hide();
 		            	
@@ -362,7 +390,7 @@
 		            	json = jQuery.parseJSON(json);
 		            	
 		            	var div = $(document.createElement('div'));
-		            	div.attr('class', 'col-md-3');
+		            	div.attr('class', json.id_media + ' col-md-3');
 		            	var img =  $(document.createElement('img'));
 		            	img.attr('id', json.id_media);
 		            	img.attr('class', 'myImg img-thumbnail');
@@ -408,6 +436,26 @@
 			
 			$('#bt_update_get_pdf').on('click', function(){
 				$('#file_update_get_pdf').click();
+			});
+			
+			$('.bt_delete_get_pdf').on('click', function(){
+				var form_data = new FormData();
+				form_data.append("type", "delete_pdf");
+				form_data.append("id_article", id_article);
+				form_data.append('id_media', $(this).attr('id_media'));
+				
+				$.ajax({
+		            url: './ModificationArticle',
+		            type: 'POST',
+		            mimeType:'multipart/form-data',
+		            contentType: false,
+		            processData: false,
+		            data: form_data,
+		            success : function(json)
+		            {
+		            	console.log("pdf ajouté");
+		            }
+		        });
 			});
 			
 			$('#bt_update_submit_pdf').on('click', function(){
@@ -503,9 +551,9 @@
 				
 				if(id_article == 7 || id_article == 11)
 				{
-					$('#pdf').attr('class', 'onglet hide');
-					$('#photo').attr('class', 'onglet hide');
-					$('#video').attr('class', 'onglet hide');
+					$('#onglet_pdf').attr('class', 'onglet hide');
+					$('#onglet_photo').attr('class', 'onglet hide');
+					$('#onglet_video').attr('class', 'onglet hide');
 				}
 				else
 				{
@@ -525,8 +573,8 @@
 					break;
 				case 'onglet_video' :
 					break;
-				case 'pdf' :
-					$('#onglet_pdf').show();
+				case 'onglet_pdf' :
+					$('#update_pdf').show();
 					break;
 				}
 				
@@ -667,6 +715,12 @@
 			</div>
 			
 			<div id="update_pdf">
+				<div class="scroll-bar-wrap-admin">
+					<div id="modif_article_pdf" class="scroll-box-admin">
+					</div>
+					<div class="cover-bar">
+					</div>
+				</div>
 				<button id="bt_update_add_pdf" class="btn btn-sample">Ajouter PDF</button>
 				<div id="update_get_pdf" class="row" hidden>
 					<input type="file" id="file_update_get_pdf" accept="application/pdf">
