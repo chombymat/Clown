@@ -258,9 +258,13 @@
 			            				"<button id_media=\"" + array[i].id + "\" class=\"bt_delete_photo btn btn-sample\">Supprimer</button></div>");
 			            	}
 			            	$('#update_gestion_photo').show();
+			            	$('#bt_update_add_pdf').show();
 		            	}
 		            	else
+		            	{
+		            		$('#bt_update_add_pdf').hide();
 		            		$('#update_gestion_photo').hide();
+		            	}
 		            	initialiserUpdateArticle();
 		            	$('#contenu_article').val(json.contenu);
 		            }
@@ -331,14 +335,21 @@
 			});
 			
 			$('#bt_update_add_pdf').on('click', function(){
-				$('#file_update_add_pdf').click();
+				if($('#update_get_pdf').is(':visible'))
+					$('#update_get_pdf').hide();
+				else
+					$('#update_get_pdf').show();
+			});
+			
+			$('#bt_update_get_pdf').on('click', function(){
+				$('#file_update_get_pdf').click();
 			});
 			
 			$('#page_modif_article').hide();
 			$('#file_update_get_photo').hide();
 			$('#update_add_photo_info').hide();
 			$('#update_show_article').hide();
-			$('#file_update_add_pdf').hide();
+			$('#file_update_get_pdf').hide();
 			
 			function initialiserUpdateArticle()
 			{
@@ -519,11 +530,15 @@
 					<button id="bt_update_add_photo_submit" class="btn btn-sample">Valider</button>
 				</div>
 			</div>
-
+			
 			<div id="update_pdf">
-				<div class="row">
-					<input type="file" id="file_update_add_pdf" accept="application/pdf">
-					<button id="bt_update_add_pdf" class="btn btn-sample">Ajouter PDF</button>
+				<button id="bt_update_add_pdf" class="btn btn-sample">Ajouter PDF</button>
+				<div id="update_get_pdf" class="row" hidden>
+					<input type="file" id="file_update_get_pdf" accept="application/pdf">
+					<label for="tb_update_get_pdf">Nom du PDF :</label>
+					<input type="text" id="tb_update_pdf">
+					<button id="bt_update_get_pdf" class="btn btn-sample">Importer PDF</button>
+					<button id="bt_update_submit_pdf" class="btn btn-sample">Valider</button>
 				</div>
 			</div>
 			
