@@ -12,8 +12,6 @@ import java.util.Base64;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.mail.Message;
 import javax.mail.Message.RecipientType;
 import javax.mail.Session;
