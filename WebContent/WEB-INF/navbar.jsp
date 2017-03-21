@@ -56,8 +56,11 @@
 		}
 		if (page.indexOf('Article') != -1)
 		{
-
 			$("#name").html("${ requestScope.article.getTitre() }");
+		}
+		if (page.indexOf('forgotPassword.jsp') != -1)
+		{
+			$("#name").html("Demande de modification de mot de passe");
 		}
 		
 		$('#bt_connexion').on('click', function(){

@@ -192,7 +192,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<img width="85%" height="auto" src="images/1/1/PHOTO_ILLUSTRATION/pain.jpg" title="image de pain" alt="image de pain">
-			<iframe src="https://player.vimeo.com/video/206183023" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				<iframe src="https://player.vimeo.com/video/208726519" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 			</div>
 			<div class="col-md-5">
 				<p align="justify"><%= articles.get("Le pain").getContenu() %></p>
@@ -228,6 +228,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<img width="35%" height="auto" src="images/1/2/PHOTO_ILLUSTRATION/lait.jpg" title="image de lait" alt="image de lait">
+				<iframe src="https://player.vimeo.com/video/208726519" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 			</div>
 			<div class="col-md-5">
 				<p align="justify"><%= articles.get("Le lait").getContenu() %></p>
@@ -274,6 +275,14 @@
 				<%
 				}
 				%>
+			</div>
+				
+		</div>
+		<div class="row">
+		<div class="col-md-6">
+			<iframe src="https://player.vimeo.com/video/186044683" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		</div>
+		<div class="col-md-5">
 				<br>
 				<div class="scroll-bar-wrap">
 				<div class="scroll-box">
@@ -287,8 +296,8 @@
 				<div class="cover-bar"></div>
 				</div>
 				</div>
-			</div>
 		</div>
+	</div>
 	
 	
 	
