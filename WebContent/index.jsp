@@ -47,21 +47,17 @@
 					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
 					euismod. Donec sed odio dui.</p>
 				<h2>L'association</h2>
-				<p align="justify">Donec id elit non mi porta gravida at eget
-					metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-					condimentum nibh, ut fermentum massa justo sit amet risus. Etiam
-					porta sem malesuada magna mollis euismod. Donec sed odio dui. Donec
-					id elit non mi porta gravida at eget metus. Fusce dapibus, tellus
-					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
-					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
-					euismod. Donec sed odio dui. Donec id elit non mi porta gravida at
-					eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-					condimentum nibh, ut fermentum massa justo sit amet risus. Etiam
-					porta sem malesuada magna mollis euismod. Donec sed odio dui. Donec
-					id elit non mi porta gravida at eget metus. Fusce dapibus, tellus
-					ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
-					massa justo sit amet risus. Etiam porta sem malesuada magna mollis
-					euismod. Donec sed odio dui.</p>
+<h3 align="center">La compagnie La Prima Porta est détermi-nez à développer ces 3 axes !</h3>
+<p>&nbsp;</p>
+<ol>
+<li><strong> Les clowns éducatifs</strong><br>
+ou « comment rendre les sciences accessibles à tous ».</li><br>
+<li><strong> Les ateliers d&rsquo;expression de clown de théâtre</strong><br>
+Les ateliers adultes de clown de théâtre à destination de tous les publics, des professionnels et des publics fragilisés.</li><br>
+<li><strong> Les déambulations &laquo;&nbsp;tout-terrain&nbsp;&raquo;</strong><br>
+Les clowns de La Prima Porta interviennent dans tous les lieux, les espaces afin d&rsquo;apporter humour, poésie et décalage.</li><br>
+</ol>
+<p align="justify">La Prima Porta a pour vocation d’intervenir dans les lieux non dédiés au théâtre, être tout-terrain. Elle est persuadée que le rire, l’humour et la fantaisie ont leur place dans tous les espaces, urbains ou ruraux : rues, écoles, centres sociaux, centres de santé, etc. En effet, le clown, par sa vérité et son décalage, permet toutes les aventures et rencontres humaines possibles.</p>
 				<a id="primaPorta" href="http://www.laprimaporta.com/">La prima porta - Le site</a>
 			</div>
 			<div class="col-md-5">
