@@ -258,13 +258,12 @@
 			            	for(var i = 0; i < array.length; i++)
 			            	{
 			            		var div = $(document.createElement('div'));
-				            	div.attr('class', array[i].id + ' col-md-3');
+				            	div.attr('class', array[i].id + ' col-md-2');
 				            	
 				            	var input = $(document.createElement('input'));
 				            	input.attr('id', 'name_' + array[i].id);
 				            	input.attr('type', 'text');
 				            	input.val(array[i].nom);
-				            	input.attr('size', '50');
 				            	
 				            	var bt_rename = $(document.createElement('button'));
 				            	bt_rename.attr('id_media', array[i].id);
@@ -397,7 +396,7 @@
 		            	json = jQuery.parseJSON(json);
 		            	
 		            	var div = $(document.createElement('div'));
-		            	div.attr('class', json.id_media + ' col-md-3');
+		            	div.attr('class', json.id_media + ' col-md-2');
 		            	var img =  $(document.createElement('img'));
 		            	img.attr('id', json.id_media);
 		            	img.attr('class', 'myImg img-thumbnail');
@@ -464,7 +463,7 @@
 						json = jQuery.parseJSON(json);
 		            	
 		            	var div = $(document.createElement('div'));
-		            	div.attr('class', json.id_media + ' col-md-3');
+		            	div.attr('class', json.id_media + ' col-md-2');
 		            	var a =  $(document.createElement('a'));
 		            	a.attr('href', json.nom);
 		            	a.html('Voir PDF');
@@ -472,7 +471,6 @@
 		            	input.attr('id', 'name_' + json.id_media);
 		            	input.attr('type', 'text');
 		            	input.val($('#tb_update_name_pdf').val());
-		            	input.attr('size', '50');
 		            	var bt_rename = $(document.createElement('button'));
 		            	var bt_delete = $(document.createElement('button'));
 		            	bt_rename.attr('id_media', json.id_media);

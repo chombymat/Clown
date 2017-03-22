@@ -96,8 +96,8 @@ create table media_clown(
 	constraint fk_media_clown_clown foreign key(id_clown) references clown(id_clown) on update cascade on delete cascade
 );
 
-insert into clown(nom) values('Claire');
-insert into clown(nom) values('Virginie');
+insert into clown(nom) values('Mademoiselle Lulu');
+insert into clown(nom) values('Chef Ratatouille');
 
 insert into media_clown(id_clown, type, nom, chemin) values(1, 'portrait', 'portrait Claire', 'images/clowns/1/portrait.JPG');
 insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Claire', 'images/clowns/1/Deambulation-clowns-prima-porta-bien-etre-21.jpg');

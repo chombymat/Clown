@@ -183,7 +183,7 @@ $(document).ready(function() {
 					{
 						if(media.getType().equals("photo"))
 						{
-							%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+							%><img class="myImg img-thumbnail img-responsive" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
 						}
 					}
 					%>
@@ -270,7 +270,7 @@ $(document).ready(function() {
 				{
 					if(media.getType().equals("photo"))
 					{
-						%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+						%><img class="myImg img-thumbnail portrait" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
 					}
 				}
 				%>
