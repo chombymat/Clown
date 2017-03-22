@@ -6,6 +6,11 @@ h1{text-align:center;color: #C21950;font-family: Serif;}
 h2{color: #C21950; font-family: Serif;font-size: 40px;}
 h3{color: #C21950; font-family: Serif;}
 
+#bt_rename{
+	margin-right:10px;
+	margin-left:10px;
+}
+
 .nom_clown {
 	color: #C21950; 
 	font-family: Serif;
@@ -112,7 +117,6 @@ h3{color: #C21950; font-family: Serif;}
 }
 /* scrolls*/
 
-
 .bt_image {
 	border: none; 
 	outline: none;
@@ -133,7 +137,10 @@ h3{color: #C21950; font-family: Serif;}
 .btn-sample { 
 	font-family: Serif;
 	color: #ffffff; 
-	background-color: #C21950; 
+	background-color: #C21950;
+	margin-right:10px;
+	margin-left:10px;
+	margin-top:10px;
 }
 
 #page_article{
@@ -248,6 +255,11 @@ h3{color: #C21950; font-family: Serif;}
 .img-thumbnail{
 	background-color: transparent;
 	border-color: transparent;
+	height: auto; 
+    width: auto;
+    max-width: 175px; 
+    max-height: 150px;
+    
 }
 
 /* The Modal (background) */
