@@ -21,28 +21,36 @@
 			$("#form").on('submit', function(e){
 				e.preventDefault();
 				
-				var $form = $(this);
-		        $.ajax({
-		            url: $form.attr('action'),
-		            type: $form.attr('method'),
-		            data: {
-		            	login : $('#login').val(),
-		            	mail : $('#mail').val(),
-		            	passwordModified : SHA256($('#passwordModified').val()),
-		            	confirmationModifPassword : "true"
-		            },
-		            success : function(data, textStatus, jqXHR)
-		            {
-		            	if(data === "ok")
-		            	{
-		            		window.location.replace("./");
-		            	}
-		            	else if(data === "fail")
-		            	{
-		            		$('#erreur').html("Identifiant/mot de passe incorrect");         	
-		            	}
-		            }
-		        });
+				if($('#passwordModified').val() === $('#passwordModified2').val())
+				{
+					var $form = $(this);
+			        $.ajax({
+			            url: $form.attr('action'),
+			            type: $form.attr('method'),
+			            data: {
+			            	login : $('#login').val(),
+			            	mail : $('#mail').val(),
+			            	passwordModified : SHA256($('#passwordModified').val()),
+			            	confirmationModifPassword : "true"
+			            },
+			            success : function(data, textStatus, jqXHR)
+			            {
+			            	if(data === "ok")
+			            	{
+			            		$('#success_message').show();         	
+			            		$("#form")[0].reset();
+			            	}
+			            	else if(data === "fail")
+			            	{
+			            		$('#erreur').html("Identifiant/Mail  incorrect");         	
+			            	}
+			            }
+			        });
+				}
+				else
+				{
+					$('#erreur').html("Les mots de passe saisis ne correspondent pas.");
+				}
 			});
 			
 			$('#form').show();
@@ -58,20 +66,26 @@
     <div class="form-group">
       <label class="control-label col-sm-4">Identifiant :</label>
       <div class="col-sm-4">
-      	<span id="erreur" class="erreur"></span>
         <input id="login" type="text" class="form-control" placeholder="Identifiant" name="login" required>
       </div>
     </div>
      <div class="form-group">
       <label class="control-label col-sm-4">Mail :</label>
       <div class="col-sm-4">          
-        <input id="mail" type="text" class="form-control" name="mail" placeholder="mail">
+        <input id="mail" type="text" class="form-control" name="mail" placeholder="mail" required>
       </div>
     </div>
+    <span id="erreur" class="erreur"></span>
     <div class="form-group">
       <label class="control-label col-sm-4">Mot de passe :</label>
       <div class="col-sm-4">          
-        <input id="passwordModified" type="password" class="form-control" name="passwordModified" placeholder="Mot de passe">
+        <input id="passwordModified" type="password" class="form-control" name="passwordModified" placeholder="Mot de passe" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4">Confirmation mot de passe :</label>
+      <div class="col-sm-4">          
+        <input id="passwordModified2" type="password" class="form-control" name="passwordModified2" placeholder="Mot de passe" required>
       </div>
     </div>
     <div class="form-group">        
@@ -79,6 +93,7 @@
         <button type="submit" class="btn btn-sample">Modifier le mot de passe</button>
       </div>
     </div>
+    <div class="alert alert-success" role="alert" id="success_message"><i class="glyphicon glyphicon-thumbs-up"></i> Votre mot de passe a bien été modifié.</div>
   </form>
   <%@include file="/WEB-INF/footer.html"%>
 </body>

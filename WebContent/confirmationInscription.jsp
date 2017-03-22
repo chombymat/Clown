@@ -16,8 +16,7 @@
 
 <div class="container">
 <div class="jumbotron">
-<h1>Demande d'inscription</h1>
-<p>La demande d'inscription a bien été confirmée</p>
+<p>La demande d'inscription a bien été confirmée.</p>
 </div>
 </div>
 	<%@include file="/WEB-INF/footer.html"%>

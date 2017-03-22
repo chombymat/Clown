@@ -57,11 +57,12 @@ public class ModificationGalerie extends HttpServlet
 		{
 		case "add" :
 			String nom = IOUtils.toString(request.getPart("name").getInputStream(), "UTF-8");
-			modele.saveMediaOnDisk(getServletContext().getRealPath("/") + "images/galerie/", request.getPart("media"));
-			id_media = modele.ajouterMedia("images/galerie/" + request.getPart("media").getSubmittedFileName(), "galerie", nom);
+			String extension = request.getPart("media").getSubmittedFileName().substring(request.getPart("media").getSubmittedFileName().lastIndexOf("."));
+			id_media = modele.ajouterMedia("images/galerie/", "galerie", nom, extension);
+			modele.saveMediaOnDisk(getServletContext().getRealPath("/") + "images/galerie/", request.getPart("media"), id_media);
 			JSONObject json = new JSONObject();
 			json.put("id_media", id_media);
-			json.put("chemin", "images/galerie/" + request.getPart("media").getSubmittedFileName());
+			json.put("chemin", "images/galerie/" + id_media + extension);
 			json.put("nom", nom);
 			response.getWriter().println(json);
 			break;

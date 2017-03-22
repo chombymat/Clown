@@ -13,11 +13,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="style.css" />
-<% HashMap<String, Article> articles = (HashMap<String, Article>)request.getAttribute("articles");
+<% HashMap<Integer, Article> articles = (HashMap<Integer, Article>)request.getAttribute("articles");
    ArrayList<Clown> list_clowns = (ArrayList<Clown>) request.getAttribute("list_clowns");%>
 <script>
 function hideAll(){
 	$('#textDemarche').hide();
+	$('.photo_clown').hide();
 	$('#presentation_clown').hide();
 	$('#les_clowns').hide();
 	$('#pratique').hide();
@@ -108,21 +109,35 @@ $(document).ready(function() {
 		<input id="bt_expression" type="image" class="img-circle bt_image" src="images/article/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Expression corporelle" alt="Expression corporelle" width="156" height="156" />
 	</div>
 	<div class="row col-md-10 col-sm-offset-1" id="textDemarche">
-			<p align="justify"><%= articles.get("accueil").getContenu() %></p>
+			<p align="justify"><%= articles.get(11).getContenu() %></p>
 	</div>
 	<!----------------------------------- fin de categorie ---------------------------------------->
 	
 	<!------------------------------------- CLOWN ------------------------------------>
 	
 	<div id="presentation_clown">
-		<h2><%= articles.get("Clown").getTitre() %></h2><br>
+		<h2><%= articles.get(8).getTitre() %></h2><br>
 	</div>
 	<div id="les_clowns">
 		<div class="row col-md-12">
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-4">
-						<p><%= articles.get("Clown").getContenu() %></p>
+						<p><%= articles.get(8).getContenu() %></p>
+						<%
+						if(session.getAttribute("user") != null) 
+						{
+							for(Media media : articles.get(8).getMedias())
+							{
+								if(media.getType().equals("pdf"))
+								{
+									%>
+									<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
+									<%
+								}
+							}
+						}
+						%>
 					</div>
 				</div>
 			</div>
@@ -183,20 +198,37 @@ $(document).ready(function() {
 	<!------------------------------------- PRATIQUE ------------------------------------>
 	
 	<div id="pratique">
-		<h2><%= articles.get("Pratique et sensoriel").getTitre() %></h2><br>
+		<h2><%= articles.get(9).getTitre() %></h2><br>
 		<div class="row">
 			<div class="col-md-6">
 				<img width="85%" height="auto" src="images/article/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image de pratique et sensoriel" alt="image de pratique et sensoriel">
 			</div>
 			<div class="col-md-5">
-				<p align="justify"><%= articles.get("Pratique et sensoriel").getContenu() %></p>
+				<p align="justify"><%= articles.get(9).getContenu() %></p>
+					<%
+					if(session.getAttribute("user") != null) 
+					{
+						for(Media media : articles.get(9).getMedias())
+						{
+							if(media.getType().equals("pdf"))
+							{
+								%>
+								<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
+								<%
+							}
+						}
+					}
+					%>
 				<br>
 				<div id="pratique" class="scroll-bar-wrap">
 				<div class="scroll-box">
 				<% 
-				for(Media media : articles.get("Pratique et sensoriel").getMedias())
+				for(Media media : articles.get(9).getMedias())
 				{
-					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+					if(media.getType().equals("photo"))
+					{
+						%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+					}
 				}
 				%>
 				</div>
@@ -209,20 +241,37 @@ $(document).ready(function() {
 	<!------------------------------------- EXPRESSION ------------------------------------>
 	
 	<div id="expression">
-		<h2><%= articles.get("Expression Corporelle").getTitre() %></h2><br>
+		<h2><%= articles.get(10).getTitre() %></h2><br>
 		<div class="row">
 			<div class="col-md-6">
 				<img width="85%" height="auto" src="images/article/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image d'expression corporelle" alt="image d'expression corporelle">
 			</div>
 			<div class="col-md-6">
-				<p align="justify"><%= articles.get("Expression Corporelle").getContenu() %></p>
+				<p align="justify"><%= articles.get(10).getContenu() %></p>
+				<%
+				if(session.getAttribute("user") != null) 
+				{
+					for(Media media : articles.get(10).getMedias())
+					{
+						if(media.getType().equals("pdf"))
+						{
+							%>
+							<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
+							<%
+						}
+					}
+				}
+				%>
 				<br>
 				<div id="expression" class="scroll-bar-wrap">
 				<div class="scroll-box">
 				<% 
-				for(Media media : articles.get("Expression Corporelle").getMedias())
+				for(Media media : articles.get(10).getMedias())
 				{
-					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+					if(media.getType().equals("photo"))
+					{
+						%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+					}
 				}
 				%>
 				</div>

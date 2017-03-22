@@ -37,7 +37,7 @@ create table media(
 	id_media serial,
 	id_article integer,
 	chemin text not null,
-	nom varchar(50) not null,
+	nom text not null,
 	type varchar(50) not null,
 	constraint pk_media primary key(id_media),
 	constraint fk_media_article foreign key(id_article) references article(id_article) on update cascade on delete restrict
@@ -138,68 +138,63 @@ insert into article(id_projet, titre, contenu) values(2, 'Expression Corporelle'
 insert into article(id_projet, titre, contenu) values(2, 'accueil', E'Apprendre par le rire, par les sens et par le corps, le tout dans une atmosphère ludique et dynamique, voilà les motivations et les valeurs de la compagnie La Prima Porta. \r\rElle est composée de clowns de théâtre alliant poésie et humour, apprenez dans la joie et la bonne humeur.\rA l''aide de notre démarche innovante basée sur trois temps, l''enfant demeure au coeur de l''apprentissage. Il partage avec le clown, expérimente avec l''atelier pratique et s''exprime avec le corps. \rLa Prima Porta ouvre la première porte, celle qui permet de se révéler, tout en s''ouvrant aux autres et au monde.');
 insert into article(titre, contenu) values('formation', '');
 
-insert into media(id_article, chemin, nom, type) values(1, 'images/article/1/PHOTOS_ENFANTS/P1070515.JPG', 'photo enfant pain 1', 'photo');
-insert into media(id_article, chemin, nom, type) values(1, 'images/article/1/PHOTOS_ENFANTS/P1070524.JPG', 'photo enfant pain 2', 'photo');
-insert into media(id_article, chemin, nom, type) values(1, 'images/article/1/PHOTOS_ENFANTS/P1070533.JPG', 'photo enfant pain 3', 'photo');
-insert into media(id_article, chemin, nom, type) values(1, 'images/article/1/PHOTOS_ENFANTS/P1070543.JPG', 'photo enfant pain 4', 'photo');
-insert into media(id_article, chemin, nom, type) values(1, 'images/article/1/PHOTOS_ENFANTS/P1070552.JPG', 'photo enfant pain 5', 'photo');
-insert into media(id_article, chemin, nom, type) values(1, 'images/article/1/PHOTOS_ENFANTS/P1070554.JPG', 'photo enfant pain 6', 'photo');
+insert into media(id_article, chemin, nom, type) values(1, 'images/article/1/PHOTOS_ENFANTS/1.JPG', 'photo enfant pain 1', 'photo');
+insert into media(id_article, chemin, nom, type) values(1, 'images/article/1/PHOTOS_ENFANTS/2.JPG', 'photo enfant pain 2', 'photo');
+insert into media(id_article, chemin, nom, type) values(1, 'images/article/1/PHOTOS_ENFANTS/3.JPG', 'photo enfant pain 3', 'photo');
+insert into media(id_article, chemin, nom, type) values(1, 'images/article/1/PHOTOS_ENFANTS/4.JPG', 'photo enfant pain 4', 'photo');
+insert into media(id_article, chemin, nom, type) values(1, 'images/article/1/PHOTOS_ENFANTS/5.JPG', 'photo enfant pain 5', 'photo');
+insert into media(id_article, chemin, nom, type) values(1, 'images/article/1/PHOTOS_ENFANTS/6.JPG', 'photo enfant pain 6', 'photo');
 
-insert into media(id_article, chemin, nom, type) values(2, 'images/article/2/PHOTOS_ENFANTS/P_20170209_144603.jpg', 'photo enfant lait 1', 'photo');
-insert into media(id_article, chemin, nom, type) values(2, 'images/article/2/PHOTOS_ENFANTS/P_20170209_144603_R.jpg', 'photo enfant lait 2', 'photo');
-insert into media(id_article, chemin, nom, type) values(2, 'images/article/2/PHOTOS_ENFANTS/P_20170209_145415.jpg', 'photo enfant lait 3', 'photo');
-insert into media(id_article, chemin, nom, type) values(2, 'images/article/2/PHOTOS_ENFANTS/P_20170209_145415_R.jpg', 'photo enfant lait 4', 'photo');
-insert into media(id_article, chemin, nom, type) values(2, 'images/article/2/PHOTOS_ENFANTS/P_20170209_145430.jpg', 'photo enfant lait 5', 'photo');
-insert into media(id_article, chemin, nom, type) values(2, 'images/article/2/PHOTOS_ENFANTS/P_20170209_145841.jpg', 'photo enfant lait 6', 'photo');
-insert into media(id_article, chemin, nom, type) values(2, 'images/article/2/PHOTOS_ENFANTS/P_20170209_150600.jpg', 'photo enfant lait 7', 'photo');
-insert into media(id_article, chemin, nom, type) values(2, 'images/article/2/PHOTOS_ENFANTS/P_20170209_150818.jpg', 'photo enfant lait 8', 'photo');
+insert into media(id_article, chemin, nom, type) values(2, 'images/article/2/PHOTOS_ENFANTS/7.jpg', 'photo enfant lait 1', 'photo');
+insert into media(id_article, chemin, nom, type) values(2, 'images/article/2/PHOTOS_ENFANTS/8.jpg', 'photo enfant lait 2', 'photo');
+insert into media(id_article, chemin, nom, type) values(2, 'images/article/2/PHOTOS_ENFANTS/9.jpg', 'photo enfant lait 3', 'photo');
+insert into media(id_article, chemin, nom, type) values(2, 'images/article/2/PHOTOS_ENFANTS/10.jpg', 'photo enfant lait 4', 'photo');
+insert into media(id_article, chemin, nom, type) values(2, 'images/article/2/PHOTOS_ENFANTS/11.jpg', 'photo enfant lait 5', 'photo');
+insert into media(id_article, chemin, nom, type) values(2, 'images/article/2/PHOTOS_ENFANTS/12.jpg', 'photo enfant lait 6', 'photo');
+insert into media(id_article, chemin, nom, type) values(2, 'images/article/2/PHOTOS_ENFANTS/13.jpg', 'photo enfant lait 7', 'photo');
+insert into media(id_article, chemin, nom, type) values(2, 'images/article/2/PHOTOS_ENFANTS/14.jpg', 'photo enfant lait 8', 'photo');
 
-insert into media(id_article, chemin, nom, type) values(3, 'images/article/3/PHOTOS_ENFANTS/P_20170302_144319.jpg', 'photo enfant famille 1', 'photo');
-insert into media(id_article, chemin, nom, type) values(3, 'images/article/3/PHOTOS_ENFANTS/P_20170302_144319_R.jpg', 'photo enfant famille 2', 'photo');
-insert into media(id_article, chemin, nom, type) values(3, 'images/article/3/PHOTOS_ENFANTS/P_20170302_144509.jpg', 'photo enfant famille 3', 'photo');
-insert into media(id_article, chemin, nom, type) values(3, 'images/article/3/PHOTOS_ENFANTS/P_20170302_145849.jpg', 'photo enfant famille 4', 'photo');
-insert into media(id_article, chemin, nom, type) values(3, 'images/article/3/PHOTOS_ENFANTS/P_20170302_145849_R.jpg', 'photo enfant famille 5', 'photo');
-insert into media(id_article, chemin, nom, type) values(3, 'images/article/3/PHOTOS_ENFANTS/P_20170302_151218.jpg', 'photo enfant famille 6', 'photo');
-insert into media(id_article, chemin, nom, type) values(3, 'images/article/3/PHOTOS_ENFANTS/P_20170302_151218_R.jpg', 'photo enfant famille 7', 'photo');
-insert into media(id_article, chemin, nom, type) values(3, 'images/article/3/PHOTOS_ENFANTS/P_20170302_153058.jpg', 'photo enfant famille 8', 'photo');
-insert into media(id_article, chemin, nom, type) values(3, 'images/article/3/PHOTOS_ENFANTS/P_20170302_153734.jpg', 'photo enfant famille 9', 'photo');
+insert into media(id_article, chemin, nom, type) values(3, 'images/article/3/PHOTOS_ENFANTS/15.jpg', 'photo enfant famille 1', 'photo');
+insert into media(id_article, chemin, nom, type) values(3, 'images/article/3/PHOTOS_ENFANTS/16.jpg', 'photo enfant famille 2', 'photo');
+insert into media(id_article, chemin, nom, type) values(3, 'images/article/3/PHOTOS_ENFANTS/17.jpg', 'photo enfant famille 3', 'photo');
+insert into media(id_article, chemin, nom, type) values(3, 'images/article/3/PHOTOS_ENFANTS/18.jpg', 'photo enfant famille 4', 'photo');
+insert into media(id_article, chemin, nom, type) values(3, 'images/article/3/PHOTOS_ENFANTS/19.jpg', 'photo enfant famille 5', 'photo');
+insert into media(id_article, chemin, nom, type) values(3, 'images/article/3/PHOTOS_ENFANTS/20.jpg', 'photo enfant famille 6', 'photo');
+insert into media(id_article, chemin, nom, type) values(3, 'images/article/3/PHOTOS_ENFANTS/21.jpg', 'photo enfant famille 7', 'photo');
+insert into media(id_article, chemin, nom, type) values(3, 'images/article/3/PHOTOS_ENFANTS/22.jpg', 'photo enfant famille 8', 'photo');
+insert into media(id_article, chemin, nom, type) values(3, 'images/article/3/PHOTOS_ENFANTS/23.jpg', 'photo enfant famille 9', 'photo');
 
-insert into media(id_article, chemin, nom, type) values(6, 'images/article/6/PHOTOS_ENFANTS/10687385_1007352505978324_2895073862515994972_o.jpg', 'photo enfant spectacle 1', 'photo');
-insert into media(id_article, chemin, nom, type) values(6, 'images/article/6/PHOTOS_ENFANTS/12604844_1007352812644960_4199858945908434600_o.jpg', 'photo enfant spectacle 2', 'photo');
-insert into media(id_article, chemin, nom, type) values(6, 'images/article/6/PHOTOS_ENFANTS/P1060885.JPG', 'photo enfant spectacle 3', 'photo');
-insert into media(id_article, chemin, nom, type) values(6, 'images/article/6/PHOTOS_ENFANTS/P1070230.JPG', 'photo enfant spectacle 4', 'photo');
-insert into media(id_article, chemin, nom, type) values(6, 'images/article/6/PHOTOS_ENFANTS/P1070230.JPG', 'photo enfant spectacle 5', 'photo');
-insert into media(id_article, chemin, nom, type) values(6, 'images/article/6/PHOTOS_ENFANTS/P1070276.JPG', 'photo enfant spectacle 6', 'photo');
-insert into media(id_article, chemin, nom, type) values(6, 'images/article/6/PHOTOS_ENFANTS/P1060829.JPG', 'photo enfant spectacle 7', 'photo');
+insert into media(id_article, chemin, nom, type) values(6, 'images/article/6/PHOTOS_ENFANTS/24.jpg', 'photo enfant spectacle 1', 'photo');
+insert into media(id_article, chemin, nom, type) values(6, 'images/article/6/PHOTOS_ENFANTS/25.jpg', 'photo enfant spectacle 2', 'photo');
+insert into media(id_article, chemin, nom, type) values(6, 'images/article/6/PHOTOS_ENFANTS/26.JPG', 'photo enfant spectacle 3', 'photo');
+insert into media(id_article, chemin, nom, type) values(6, 'images/article/6/PHOTOS_ENFANTS/27.JPG', 'photo enfant spectacle 4', 'photo');
+insert into media(id_article, chemin, nom, type) values(6, 'images/article/6/PHOTOS_ENFANTS/28.JPG', 'photo enfant spectacle 5', 'photo');
+insert into media(id_article, chemin, nom, type) values(6, 'images/article/6/PHOTOS_ENFANTS/29.JPG', 'photo enfant spectacle 6', 'photo');
+insert into media(id_article, chemin, nom, type) values(6, 'images/article/6/PHOTOS_ENFANTS/30.JPG', 'photo enfant spectacle 7', 'photo');
 
-insert into media(id_article, chemin, nom, type) values(9, 'images/article/9/2015-12-17_15.43.00.jpg', 'photo enfant - Pratique et Sensoriel', 'photo');
-insert into media(id_article, chemin, nom, type) values(9, 'images/article/9/2015-12-17_15.30.53.jpg', 'photo enfant - Pratique et Sensoriel', 'photo');
-insert into media(id_article, chemin, nom, type) values(9, 'images/article/9/2015-12-17_15.34.01.jpg', 'photo enfant - Pratique et Sensoriel', 'photo');
-insert into media(id_article, chemin, nom, type) values(9, 'images/article/9/2015-12-17_15.37.09.jpg', 'photo enfant - Pratique et Sensoriel', 'photo');
-insert into media(id_article, chemin, nom, type) values(9, 'images/article/9/2015-12-17_15.40.34.jpg', 'photo enfant - Pratique et Sensoriel', 'photo');
-insert into media(id_article, chemin, nom, type) values(9, 'images/article/9/P1070143.JPG', 'photo enfant - Pratique et Sensoriel', 'photo');
+insert into media(id_article, chemin, nom, type) values(9, 'images/article/9/31.jpg', 'photo enfant - Pratique et Sensoriel', 'photo');
+insert into media(id_article, chemin, nom, type) values(9, 'images/article/9/32.jpg', 'photo enfant - Pratique et Sensoriel', 'photo');
+insert into media(id_article, chemin, nom, type) values(9, 'images/article/9/33.jpg', 'photo enfant - Pratique et Sensoriel', 'photo');
+insert into media(id_article, chemin, nom, type) values(9, 'images/article/9/34.jpg', 'photo enfant - Pratique et Sensoriel', 'photo');
+insert into media(id_article, chemin, nom, type) values(9, 'images/article/9/35.jpg', 'photo enfant - Pratique et Sensoriel', 'photo');
+insert into media(id_article, chemin, nom, type) values(9, 'images/article/9/36.JPG', 'photo enfant - Pratique et Sensoriel', 'photo');
 
-insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/Capture_lenny_2.PNG', 'S''il vous plaut tué moi #JeSuisLenny', 'photo');
-insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/2015-12-17_15.47.33.jpg', 'photo enfant - Expression Corporelle', 'photo');
-insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/2015-12-17_15.51.44.jpg', 'photo enfant - Expression Corporelle', 'photo');
-insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/2015-12-17_15.52.08.jpg', 'photo enfant - Expression Corporelle', 'photo');
-insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/2015-12-17_15.52.29.jpg', 'photo enfant - Expression Corporelle', 'photo');
-insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/2015-12-17_15.53.30.jpg', 'photo enfant - Expression Corporelle', 'photo');
-insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/P_20170209_151653.jpg', 'photo enfant - Expression Corporelle', 'photo');
-insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/P_20170209_153232.jpg', 'photo enfant - Expression Corporelle', 'photo');
-insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/P_20170209_153311.jpg', 'photo enfant - Expression Corporelle', 'photo');
+insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/42.PNG', 'S''il vous plait tué moi #JeSuisLenny', 'photo');
+insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/38.jpg', 'photo enfant - Expression Corporelle', 'photo');
+insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/39.jpg', 'photo enfant - Expression Corporelle', 'photo');
+insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/40.jpg', 'photo enfant - Expression Corporelle', 'photo');
+insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/41.jpg', 'photo enfant - Expression Corporelle', 'photo');
+insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/37.jpg', 'photo enfant - Expression Corporelle', 'photo');
+insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/43.jpg', 'photo enfant - Expression Corporelle', 'photo');
+insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/44.jpg', 'photo enfant - Expression Corporelle', 'photo');
+insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/45.jpg', 'photo enfant - Expression Corporelle', 'photo');
 
-insert into media(id_article, chemin, nom, type) values(11, 'images/pdf/FICHE_ATELIER_1_-_DU_BLE_AU_PAIN.pdf', 'pdf test', 'pdf');
-insert into media(id_article, chemin, nom, type) values(11, 'images/pdf/FICHE_ATELIER_1_-_DU_BLE_AU_PAIN.pdf', 'pdf test', 'pdf');
-insert into media(id_article, chemin, nom, type) values(11, 'images/pdf/FICHE_ATELIER_1_-_DU_BLE_AU_PAIN.pdf', 'pdf test', 'pdf');
-insert into media(id_article, chemin, nom, type) values(11, 'images/pdf/FICHE_ATELIER_1_-_DU_BLE_AU_PAIN.pdf', 'pdf test', 'pdf');
-insert into media(id_article, chemin, nom, type) values(11, 'images/pdf/FICHE_ATELIER_1_-_DU_BLE_AU_PAIN.pdf', 'pdf test', 'pdf');
-insert into media(id_article, chemin, nom, type) values(11, 'images/4/11/PHOTOS_ENFANTS/P1070515.JPG', 'photo enfant pain 1', 'photo');
-insert into media(id_article, chemin, nom, type) values(11, 'images/1/1/PHOTOS_ENFANTS/P1070515.JPG', 'photo enfant pain 1', 'photo');
-insert into media(id_article, chemin, nom, type) values(11, 'images/1/1/PHOTOS_ENFANTS/P1070515.JPG', 'photo enfant pain 1', 'photo');
-insert into media(id_article, chemin, nom, type) values(11, 'images/1/1/PHOTOS_ENFANTS/P1070515.JPG', 'photo enfant pain 1', 'photo');
-insert into media(id_article, chemin, nom, type) values(11, 'images/1/1/PHOTOS_ENFANTS/P1070515.JPG', 'photo enfant pain 1', 'photo');
+insert into media(id_article, chemin, nom, type) values(1, 'images/pdf/1/46.pdf', 'Fiche atelier 1 : du blé au pain (.pdf)', 'pdf');
+insert into media(id_article, chemin, nom, type) values(2, 'images/pdf/2/47.pdf', 'Fiche atelier 2 : le lait et ses dérivés (.pdf)', 'pdf');
+insert into media(id_article, chemin, nom, type) values(3, 'images/pdf/3/48.pdf', 'Fiche atelier 3 : le classement des aliments (.pdf)', 'pdf');
+insert into media(id_article, chemin, nom, type) values(4, 'images/pdf/4/49.pdf', 'Fiche atelier 4 : un menu équilibré (.pdf)', 'pdf');
+insert into media(id_article, chemin, nom, type) values(5, 'images/pdf/5/50.pdf', 'Fiche atelier 5 : le parcours du yaourt à la fraise (.pdf)', 'pdf');
 
-insert into media(chemin, nom, type) values('images/galerie/Capture-2.png', 'galerie 1', 'galerie');
-insert into media(chemin, nom, type) values('images/galerie/Plage_deserte.jpg', 'galerie 2', 'galerie');
-insert into media(chemin, nom, type) values('images/galerie/photo.jpg', 'Constance', 'galerie');
+insert into media(chemin, nom, type) values('images/galerie/51.png', 'galerie 1', 'galerie');
+insert into media(chemin, nom, type) values('images/galerie/52.jpg', 'galerie 2', 'galerie');
+insert into media(chemin, nom, type) values('images/galerie/53.jpg', 'Constance', 'galerie');

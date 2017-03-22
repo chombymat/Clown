@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Modele;
+import tools.Article;
 import tools.Clown;
 
 @SuppressWarnings("serial")
@@ -19,7 +20,7 @@ public class Demarche extends HttpServlet
 {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		HashMap<String, tools.Article> articles = new Modele().getDemarche();
+		HashMap<Integer, Article> articles = new Modele().getDemarche();
 		HashMap<String, Clown> clowns = new Modele().getClowns();
 		ArrayList<Clown> list_clowns = new ArrayList<Clown>(clowns.values());
 		

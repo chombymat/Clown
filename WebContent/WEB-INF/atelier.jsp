@@ -198,32 +198,41 @@
 				<%
 				if(session.getAttribute("user") != null) 
 				{
-				%>
-					<a href="images/pdf/FICHE_ATELIER_1_-_DU_BLE_AU_PAIN.pdf" title="Pdf atelier pain">Du blé au pain (.pdf)</a>
-				<%
+					for(Media media : articles.get(1).getMedias())
+					{
+						if(media.getType().equals("pdf"))
+						{
+							%>
+							<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
+							<%
+						}
+					}
 				}
 				%>
 			</div>
 				
 		</div>
-		<div class="row">
-		<div class="col-md-6">
-			<iframe src="https://player.vimeo.com/video/186044683" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-		</div>
-		<div class="col-md-5">
+		<div class="row col-md-12">
+			<div class="col-md-6">
+				<iframe src="https://player.vimeo.com/video/186044683" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+			</div>
+			<div class="col-md-6">
 				<br>
 				<div class="scroll-bar-wrap">
-				<div class="scroll-box">
-				<% 
-				for(Media media : articles.get(1).getMedias())
-				{
-					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
-				}
-				%>
+					<div class="scroll-box">
+						<% 
+						for(Media media : articles.get(1).getMedias())
+						{
+							if(media.getType().equals("photo"))
+							{
+								%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+							}
+						}
+						%>
+					</div>
+					<div class="cover-bar"></div>
 				</div>
-				<div class="cover-bar"></div>
-				</div>
-				</div>
+			</div>
 		</div>
 	</div>
 	
@@ -239,9 +248,15 @@
 				<%
 				if(session.getAttribute("user") != null) 
 				{
-				%>
-				<a href="images/pdf/FICHE_ATELIER_2_-_LE_LAIT_ET_SES_DERIVES.pdf" title="Pdf atelier Lait">Le lait et ses dérivés (.pdf)</a>
-				<%
+					for(Media media : articles.get(2).getMedias())
+					{
+						if(media.getType().equals("pdf"))
+						{
+							%>
+							<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
+							<%
+						}
+					}
 				}
 				%>
 			</div>
@@ -258,7 +273,10 @@
 				<% 
 				for(Media media : articles.get(2).getMedias())
 				{
-					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+					if(media.getType().equals("photo"))
+					{
+						%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+					}
 				}
 				%>
 				</div>
@@ -280,9 +298,15 @@
 				<%
 				if(session.getAttribute("user") != null) 
 				{
-				%>
-				<a href="images/pdf/FICHE_ATELIER_3_-_LE_CLASSEMENT_DES_ALIMENTS.pdf" title="Pdf atelier 7 familles">Le classement des aliments (.pdf)</a>
-				<%
+					for(Media media : articles.get(3).getMedias())
+					{
+						if(media.getType().equals("pdf"))
+						{
+							%>
+							<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
+							<%
+						}
+					}
 				}
 				%>
 			</div>
@@ -299,7 +323,10 @@
 				<% 
 				for(Media media : articles.get(3).getMedias())
 				{
-					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+					if(media.getType().equals("photo"))
+					{
+						%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+					}
 				}
 				%>
 				</div>
@@ -323,9 +350,15 @@
 				<%
 				if(session.getAttribute("user") != null) 
 				{
-				%>
-				<a href="images/pdf/FICHE_ATELIER_4_-_UN_MENU_EQUILIBRE.pdf" title="Pdf atelier menu équilibré">Un menu equilibré (.pdf)</a>
-				<%
+					for(Media media : articles.get(4).getMedias())
+					{
+						if(media.getType().equals("pdf"))
+						{
+							%>
+							<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
+							<%
+						}
+					}
 				}
 				%>
 			</div>
@@ -342,7 +375,10 @@
 				<% 
 				for(Media media : articles.get(4).getMedias())
 				{
-					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+					if(media.getType().equals("photo"))
+					{
+						%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+					}
 				}
 				%>
 				</div>
@@ -364,13 +400,18 @@
 				<%
 				if(session.getAttribute("user") != null) 
 				{
-				%>
-				<a href="images/pdf/FICHE_ATELIER_5_-_LE_PARCOURS_DU_YAOURT_A_LA_FRAISE.pdf" title="Pdf atelier parcours du yaourt à la fraise">Le parcours du yaourt à la fraise (.pdf)</a>
-				<%
+					for(Media media : articles.get(5).getMedias())
+					{
+						if(media.getType().equals("pdf"))
+						{
+							%>
+							<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
+							<%
+						}
+					}
 				}
 				%>
 			</div>
-				
 		</div>
 		<div class="row">
 		<div class="col-md-6">
@@ -383,7 +424,10 @@
 				<% 
 				for(Media media : articles.get(5).getMedias())
 				{
-					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+					if(media.getType().equals("photo"))
+					{
+						%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+					}
 				}
 				%>
 				</div>
@@ -405,9 +449,15 @@
 				<%
 				if(session.getAttribute("user") != null) 
 				{
-				%>
-					<a href="images/pdf/pdf.pdf" title="PdfdeTest">c'est un pdf de test (.pdf)</a>
-				<%
+					for(Media media : articles.get(6).getMedias())
+					{
+						if(media.getType().equals("pdf"))
+						{
+							%>
+							<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
+							<%
+						}
+					}
 				}
 				%>
 			</div>
@@ -434,7 +484,10 @@
 				<% 
 				for(Media media : articles.get(6).getMedias())
 				{
-					%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+					if(media.getType().equals("photo"))
+					{
+						%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+					}
 				}
 				%>
 				</div>

@@ -63,7 +63,7 @@
 				{
             		$('#erreur_login').html("");
             		$('#erreur_mail').html("");
-					$('#erreur').html("Les mots de passe saisie ne correspondent pas.");
+					$('#erreur').html("Les mots de passe saisis ne correspondent pas.");
 				}
 			});
 			

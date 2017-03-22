@@ -145,6 +145,9 @@
 			
 			function initialiserGalerie()
 			{
+				$('.bt_galerie_rename').unbind('click');
+				$('.bt_galerie_delete').unbind('click');
+				
 				$('.bt_galerie_rename').on('click', function(){
 					var id_media = $(this).attr('id_media');
 					var new_name = $('#name_' + id_media).val();
@@ -249,20 +252,86 @@
 		            	if(id_article != 7 && id_article != 11)
 		            	{
 			            	$('#modif_article_image').html("");
+			            	$('#modif_article_pdf').html("");
 			            	for(var i = 0; i < array.length; i++)
 			            	{
-			            		$('#modif_article_image').append(
-			            				"<div class=\"" + array[i].id + " col-md-3\"><img id=\"" + array[i].id +"\"class=\"myImg img-thumbnail\" src=\"" + array[i].chemin + "\" alt=\"" + array[i].nom +"\" ><br>" + 
-			            				"<input id=\"name_" + array[i].id + "\" type=\"text\" value=\"" + array[i].nom + "\" maxlength=\"50\"\">" +
-			            				"<button id_media=\"" + array[i].id + "\" class=\"bt_rename_photo btn btn-sample\">Renommer</button>   " +
-			            				"<button id_media=\"" + array[i].id + "\" class=\"bt_delete_photo btn btn-sample\">Supprimer</button></div>");
+			            		var div = $(document.createElement('div'));
+				            	div.attr('class', array[i].id + ' col-md-3');
+				            	
+				            	var input = $(document.createElement('input'));
+				            	input.attr('id', 'name_' + array[i].id);
+				            	input.attr('type', 'text');
+				            	input.val(array[i].nom);
+				            	input.attr('size', '50');
+				            	
+				            	var bt_rename = $(document.createElement('button'));
+				            	bt_rename.attr('id_media', array[i].id);
+				            	bt_rename.attr('class', 'bt_rename btn btn-sample');
+				            	bt_rename.html('Renommer');
+				            	
+				            	var bt_delete = $(document.createElement('button'));
+				            	bt_delete.attr('id_media', array[i].id);
+				            	bt_delete.html('Supprimer');
+				            	
+			            		if(array[i].type === "photo")
+			            		{
+					            	var img =  $(document.createElement('img'));
+					            	img.attr('id', array[i].id);
+					            	img.attr('class', 'myImg img-thumbnail');
+					            	img.attr('src',array[i].chemin);
+					            	img.attr('alt', array[i].nom);
+					            	
+					            	bt_delete.attr('class', 'bt_delete_photo btn btn-sample');
+					            	
+					            	div.append(img);
+					            	div.append('<br>');
+					            	div.append(input);
+					            	div.append('<br>');
+					            	div.append(bt_rename);
+					            	div.append(bt_delete);
+					            	
+					            	$('#modif_article_image').append(div);
+			            		}
+			            		else if(array[i].type === "pdf")
+			            		{
+			            			var a = $(document.createElement('a'));
+			            			a.attr('href', array[i].chemin);
+			            			a.html('Voir PDF');
+			            			
+					            	bt_delete.attr('class', 'bt_delete_pdf btn btn-sample');
+					            	
+					            	div.append(a);
+					            	div.append('<br><br>');
+					            	div.append(input);
+					            	div.append('<br>');
+					            	div.append(bt_rename);
+					            	div.append(bt_delete);
+					            	
+					            	$('#modif_article_pdf').append(div);
+			            		}
 			            	}
-			            	$('#update_gestion_photo').show();
+			            	
+			            	$('#onglet_photo').attr('class', 'onglet');
+			            	$('#onglet_pdf').attr('class', 'onglet');
+			            	$('#onglet_video').attr('class', 'onglet');
 		            	}
 		            	else
-		            		$('#update_gestion_photo').hide();
-		            	initialiserUpdateArticle();
+		            	{
+		            		$('#onglet_photo').attr('class', 'onglet hide');
+			            	$('#onglet_pdf').attr('class', 'onglet hide');
+			            	$('#onglet_video').attr('class', 'onglet hide');
+		            	}
+		            	
 		            	$('#contenu_article').val(json.contenu);
+		            	$('#update_pdf').hide();
+		            	$('#update_gestion_photo').hide();
+		            	$('#update_video').hide();
+		            	
+		            	$('#onglet_contenu').attr('class', 'onglet active');
+		            	$('#update_content').show();
+		            	
+		            	initialiserUpdateArticle();
+		            	
 		            }
 		        });
 				
@@ -284,7 +353,7 @@
 		            data: form_data,
 		            success : function()
 		            {
-		            	// Afficher modification réussie
+		            	alert("Modification réussie")
 		            }
 		        });
 			});
@@ -314,13 +383,36 @@
 		            success : function(json)
 		            {
 		            	json = jQuery.parseJSON(json);
-		            	$('#modif_article_image').append(
-	            				"<div class=\"" + json.id_media + " col-md-3\">"+
-	            				"<img id=\"" + json.id_media +"\"class=\"myImg img-thumbnail\" src=\"" + json.nom + "\" alt=\""+ $('#tb_update_name_photo').val()  +"\"><br>" 
-	            			  + "<input id=\"name_" + json.id_media + "\" type=\"text\" value=\"" + $('#tb_update_name_photo').val() + "\" maxlength=\"50\"\">" +
-	            				"<button id_media=\"" + json.id_media + "\" class=\"bt_rename_photo btn btn-sample\">Renommer</button>   " +
-	            				"<button id_media=\"" + json.id_media + "\" class=\"bt_delete_photo btn btn-sample\">Supprimer</button></div>");
 		            	
+		            	var div = $(document.createElement('div'));
+		            	div.attr('class', json.id_media + ' col-md-3');
+		            	var img =  $(document.createElement('img'));
+		            	img.attr('id', json.id_media);
+		            	img.attr('class', 'myImg img-thumbnail');
+		            	img.attr('src',json.nom);
+		            	img.attr('alt', $('#tb_update_name_photo').val());
+		            	var input = $(document.createElement('input'));
+		            	input.attr('id', 'name_' + json.id_media);
+		            	input.attr('type', 'text');
+		            	input.val($('#tb_update_name_photo').val());
+		            	input.attr('maxlength', '50');
+		            	var bt_rename = $(document.createElement('button'));
+		            	var bt_delete = $(document.createElement('button'));
+		            	bt_rename.attr('id_media', json.id_media);
+		            	bt_rename.attr('class', 'bt_rename btn btn-sample');
+		            	bt_rename.html('Renommer');
+		            	bt_delete.attr('id_media', json.id_media);
+		            	bt_delete.attr('class', 'bt_delete_photo btn btn-sample');
+		            	bt_delete.html('Supprimer');
+		            	
+		            	div.append(img);
+		            	div.append('<br>');
+		            	div.append(input);
+		            	div.append(bt_rename);
+		            	div.append(bt_delete);
+		            	
+		            	$('#modif_article_image').append(div);
+
 		            	initialiserUpdateArticle();
 		            }
 		        });
@@ -331,17 +423,78 @@
 			});
 			
 			$('#bt_update_add_pdf').on('click', function(){
-				$('#file_update_add_pdf').click();
+				if($('#update_get_pdf').is(':visible'))
+					$('#update_get_pdf').hide();
+				else
+					$('#update_get_pdf').show();
+			});
+			
+			$('#bt_update_get_pdf').on('click', function(){
+				$('#file_update_get_pdf').click();
+			});
+			
+			$('#bt_update_submit_pdf').on('click', function(){
+				var form_data = new FormData();
+				form_data.append("type", "add_pdf");
+				form_data.append("id_article", id_article);
+				form_data.append('nom', $('#tb_update_name_pdf').val());
+				form_data.append('media', $('#file_update_get_pdf')[0].files[0]);
+				
+				$.ajax({
+		            url: './ModificationArticle',
+		            type: 'POST',
+		            mimeType:'multipart/form-data',
+		            contentType: false,
+		            processData: false,
+		            data: form_data,
+		            success : function(json)
+		            {
+						json = jQuery.parseJSON(json);
+		            	
+		            	var div = $(document.createElement('div'));
+		            	div.attr('class', json.id_media + ' col-md-3');
+		            	var a =  $(document.createElement('a'));
+		            	a.attr('href', json.nom);
+		            	a.html('Voir PDF');
+		            	var input = $(document.createElement('input'));
+		            	input.attr('id', 'name_' + json.id_media);
+		            	input.attr('type', 'text');
+		            	input.val($('#tb_update_name_pdf').val());
+		            	input.attr('size', '50');
+		            	var bt_rename = $(document.createElement('button'));
+		            	var bt_delete = $(document.createElement('button'));
+		            	bt_rename.attr('id_media', json.id_media);
+		            	bt_rename.attr('class', 'bt_rename btn btn-sample');
+		            	bt_rename.html('Renommer');
+		            	bt_delete.attr('id_media', json.id_media);
+		            	bt_delete.attr('class', 'bt_delete_pdf btn btn-sample');
+		            	bt_delete.html('Supprimer');
+		            	
+		            	div.append(a);
+		            	div.append('<br><br>');
+		            	div.append(input);
+		            	div.append(bt_rename);
+		            	div.append(bt_delete);
+		            	
+		            	$('#modif_article_pdf').append(div);
+
+		            	initialiserUpdateArticle();
+		            }
+		        });
 			});
 			
 			$('#page_modif_article').hide();
 			$('#file_update_get_photo').hide();
 			$('#update_add_photo_info').hide();
 			$('#update_show_article').hide();
-			$('#file_update_add_pdf').hide();
+			$('#file_update_get_pdf').hide();
 			
 			function initialiserUpdateArticle()
 			{
+				$('.bt_delete_photo').unbind('click');
+				$('.bt_rename').unbind('click');
+				$('.bt_delete_pdf').unbind('click');
+				
 				initialiserModal();
 				
 				$('.bt_delete_photo').on('click', function(){
@@ -367,18 +520,15 @@
 				});
 				
 
-				$('.bt_rename_photo').on('click', function()
+				$('.bt_rename').on('click', function(e)
 				{
 					var id_media = $(this).attr("id_media");
 					var new_name = $('#name_' + id_media).val();
 					var form_data = new FormData();
 					
-					form_data.append("type", "rename_photo");
-					form_data.append("newName", new_name);
+					form_data.append("type", "rename");
+					form_data.append("new_name", new_name);
 					form_data.append("id_media", id_media);
-					
-					console.log($('#name_' + id_media).val());
-					console.log($(this).attr("id_media"));
 					
 					$.ajax({
 			            url: './ModificationArticle',
@@ -393,12 +543,75 @@
 			            }
 			        });
 				});
+				
+				$('.bt_delete_pdf').on('click', function(){
+					var id_media = $(this).attr('id_media');
+					var form_data = new FormData();
+					form_data.append("type", "delete_pdf");
+					form_data.append("id_article", id_article);
+					form_data.append('id_media', $(this).attr('id_media'));
+					
+					$.ajax({
+			            url: './ModificationArticle',
+			            type: 'POST',
+			            mimeType:'multipart/form-data',
+			            contentType: false,
+			            processData: false,
+			            data: form_data,
+			            success : function(json)
+			            {
+			            	$('.' + id_media).remove();
+			            }
+			        });
+				});
 			}
+			
+			function hideOnglet()
+			{
+				$('#update_content').hide();
+				$('#update_gestion_photo').hide();
+				$('#update_pdf').hide();
+			}
+			
+			$('.onglet').on('click', function(){
+				
+				if(id_article == 7 || id_article == 11)
+				{
+					$('#onglet_pdf').attr('class', 'onglet hide');
+					$('#onglet_photo').attr('class', 'onglet hide');
+					$('#onglet_video').attr('class', 'onglet hide');
+				}
+				else
+				{
+					$('.onglet').attr('class', 'onglet');
+					$(this).attr('class', 'onglet active');
+				}
+				
+				hideOnglet();
+
+				switch($(this).attr('id'))
+				{
+				case 'onglet_contenu' :
+					$('#update_content').show();
+					break;
+				case 'onglet_photo' :
+					$('#update_gestion_photo').show();
+					break;
+				case 'onglet_video' :
+					break;
+				case 'onglet_pdf' :
+					$('#update_pdf').show();
+					break;
+				}
+				
+			});
 			
 			//*************************************************************************************
 			
 			function initialiserModal()
 			{
+				$('.myImg').unbind('click');
+				
 				var modal = document.getElementById('myModal');
 
 				var span = document.getElementsByClassName("close")[0];
@@ -500,10 +713,19 @@
 		</div>
 		
 		<div id="update_show_article" class="row">
-			<div class="col-md-6">
+		
+			<ul class="nav nav-tabs">
+			    <li id="onglet_contenu" class="onglet active"><a>Contenu</a></li>
+			    <li id="onglet_photo" class="onglet"><a>Photo</a></li>
+			    <li id="onglet_video" class="onglet"><a>Vidéo</a></li>
+			    <li id="onglet_pdf" class="onglet"><a>PDF</a></li>
+			  </ul>
+			  
+			<div id="update_content">
 				<textarea id="contenu_article" rows="15" cols="80" style="margin-top: 2%; margin-left: 2%"></textarea><br><button id="bt_submit_update_content" class="btn btn-sample">Mettre à jour</button>
 			</div>
-			<div id="update_gestion_photo" class="col-md-6">
+			
+			<div id="update_gestion_photo">
 				<div class="scroll-bar-wrap-admin">
 					<div id="modif_article_image" class="scroll-box-admin">
 					</div>
@@ -519,12 +741,25 @@
 					<button id="bt_update_add_photo_submit" class="btn btn-sample">Valider</button>
 				</div>
 			</div>
-
+			
 			<div id="update_pdf">
-				<div class="row">
-					<input type="file" id="file_update_add_pdf" accept="application/pdf">
-					<button id="bt_update_add_pdf" class="btn btn-sample">Ajouter PDF</button>
+				<div class="scroll-bar-wrap-admin">
+					<div id="modif_article_pdf" class="scroll-box-admin">
+					</div>
+					<div class="cover-bar">
+					</div>
 				</div>
+				<button id="bt_update_add_pdf" class="btn btn-sample">Ajouter PDF</button>
+				<div id="update_get_pdf" class="row" hidden>
+					<input type="file" id="file_update_get_pdf" accept="application/pdf">
+					<label for="tb_update_get_pdf">Nom du PDF :</label>
+					<input type="text" id="tb_update_name_pdf">
+					<button id="bt_update_get_pdf" class="btn btn-sample">Importer PDF</button>
+					<button id="bt_update_submit_pdf" class="btn btn-sample">Valider</button>
+				</div>
+			</div>
+			
+			<div id="update_video">
 			</div>
 			
 		</div>

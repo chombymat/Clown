@@ -12,11 +12,14 @@
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+	<%@include file="/WEB-INF/navbar.jsp" %>
+
 <div class="container">
 <div class="jumbotron">
-<h1>Demande d'inscription</h1>
-<p>La demande d'inscription a bien été refusée</p>
+<p>La demande d'inscription a bien été refusée.</p>
 </div>
 </div>
+	<%@include file="/WEB-INF/footer.html"%>
+
 </body>
 </html>
