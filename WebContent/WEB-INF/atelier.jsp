@@ -173,12 +173,12 @@
 	<!----------------------------------- categorie ---------------------------------------->
 	<div class ="row">
 		<div class="row">
-			<input id="bt_pain" type="image" class="img-circle bt_image" src="images/1/1/PHOTO_ILLUSTRATION/pain.jpg" title="Atelier 1 : Le pain" alt="image de pain" width="156" height="156" />
-			<input id="bt_lait" type="image" class="img-circle bt_image" src="images/1/2/PHOTO_ILLUSTRATION/lait.jpg" title="Atelier 2 : Le lait" alt="image de lait" width="156" height="156">
-			<input id="bt_famille" type="image" class="img-circle bt_image" src="images/1/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Atelier 3 : Les 7 familles" alt="image des 7 familles" width="156" height="156">
-			<input id="bt_menu" type="image" class="img-circle bt_image" src="images/1/4/PHOTO_ILLUSTRATION/Fotolia_135759645_S-1.jpg" title="Atelier 4 : Le menu &eacute;quilibr&eacute;" alt="image de fruit et legumes" width="156" height="156">
-			<input id="bt_alimentation" type="image" class="img-circle bt_image" src="images/1/5/PHOTO_ILLUSTRATION/Fotolia_139412392_S-1.jpg" title="Atelier 5 : Alimentation et environnement" alt="image de yaourt et fraise" width="156" height="156">
-			<input id="bt_spectacle" type="image" class="img-circle bt_image" src="images/1/6/PHOTO_ILLUSTRATION/clown-1678004_1920.jpg" title="Le spectacle" alt="image de spectacle" width="156" height="156">
+			<input id="bt_pain" type="image" class="img-circle bt_image" src="images/article/1/PHOTO_ILLUSTRATION/pain.jpg" title="Atelier 1 : Le pain" alt="image de pain" width="156" height="156" />
+			<input id="bt_lait" type="image" class="img-circle bt_image" src="images/article/2/PHOTO_ILLUSTRATION/lait.jpg" title="Atelier 2 : Le lait" alt="image de lait" width="156" height="156">
+			<input id="bt_famille" type="image" class="img-circle bt_image" src="images/article/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Atelier 3 : Les 7 familles" alt="image des 7 familles" width="156" height="156">
+			<input id="bt_menu" type="image" class="img-circle bt_image" src="images/article/4/PHOTO_ILLUSTRATION/Fotolia_135759645_S-1.jpg" title="Atelier 4 : Le menu &eacute;quilibr&eacute;" alt="image de fruit et legumes" width="156" height="156">
+			<input id="bt_alimentation" type="image" class="img-circle bt_image" src="images/article/5/PHOTO_ILLUSTRATION/Fotolia_139412392_S-1.jpg" title="Atelier 5 : Alimentation et environnement" alt="image de yaourt et fraise" width="156" height="156">
+			<input id="bt_spectacle" type="image" class="img-circle bt_image" src="images/article/6/PHOTO_ILLUSTRATION/clown-1678004_1920.jpg" title="Le spectacle" alt="image de spectacle" width="156" height="156">
 		</div>
 		<div class="row col-md-10 col-sm-offset-1" id="textAtelier">
 			<p align="justify"><%= articles.get(7).getContenu() %></p>
@@ -191,7 +191,7 @@
 		<h2><%= articles.get(1).getTitre() %></h2><br>
 		<div class="row parent">
 			<div class="col-md-6">
-				<img width="85%" height="auto" src="images/1/1/PHOTO_ILLUSTRATION/pain.jpg" title="image de pain" alt="image de pain">
+				<img width="85%" height="auto" src="images/article/1/PHOTO_ILLUSTRATION/pain.jpg" title="image de pain" alt="image de pain">
 			</div>
 			<div class="col-md-5 enfant">
 				<p align="justify"><%= articles.get(1).getContenu() %></p>
@@ -232,7 +232,7 @@
 		<h2><%= articles.get(2).getTitre() %></h2><br>
 		<div class="row parent">
 			<div class="col-md-6">
-				<img width="35%" height="auto" src="images/1/2/PHOTO_ILLUSTRATION/lait.jpg" title="image de lait" alt="image de lait">
+				<img width="35%" height="auto" src="images/article/2/PHOTO_ILLUSTRATION/lait.jpg" title="image de lait" alt="image de lait">
 			</div>
 			<div class="col-md-5 enfant">
 				<p align="justify"><%= articles.get(2).getContenu() %></p>
@@ -273,7 +273,7 @@
 		<h2><%= articles.get(3).getTitre() %></h2><br>
 		<div class="row parent">
 			<div class="col-md-6">
-				<img width="85%" height="auto" src="images/1/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image des 7 familles" alt="image des 7 familles">
+				<img width="85%" height="auto" src="images/article/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image des 7 familles" alt="image des 7 familles">
 			</div>
 			<div class="col-md-5 enfant">
 				<p align="justify"><%= articles.get(3).getContenu() %></p>
@@ -316,7 +316,7 @@
 		<h2><%= articles.get(4).getTitre() %></h2><br>
 		<div class="row parent">
 			<div class="col-md-6">
-				<img width="85%" height="auto" src="images/1/4/PHOTO_ILLUSTRATION/Fotolia_135759645_S-1.jpg" title="image de fruits et légumes" alt="image de fruits et légumes">
+				<img width="85%" height="auto" src="images/article/4/PHOTO_ILLUSTRATION/Fotolia_135759645_S-1.jpg" title="image de fruits et légumes" alt="image de fruits et légumes">
 			</div>
 			<div class="col-md-5 enfant">
 				<p align="justify"><%= articles.get(4).getContenu() %></p>
@@ -357,7 +357,7 @@
 		<h2><%= articles.get(5).getTitre() %></h2><br>
 		<div class="row parent">
 			<div class="col-md-6">
-				<img width="85%" height="auto" src="images/1/5/PHOTO_ILLUSTRATION/Fotolia_139412392_S-1.jpg" title="image de yaourt et fraise" alt="image de yaourt et fraise">
+				<img width="85%" height="auto" src="images/article/5/PHOTO_ILLUSTRATION/Fotolia_139412392_S-1.jpg" title="image de yaourt et fraise" alt="image de yaourt et fraise">
 			</div>
 			<div class="col-md-5 enfant">
 				<p align="justify"><%= articles.get(5).getContenu() %></p>
@@ -398,7 +398,7 @@
 		<h2><%= articles.get(6).getTitre() %></h2><br>
 		<div class="row parent">
 			<div class="col-md-6">
-				<img width="85%" height="auto" src="images/1/6/PHOTO_ILLUSTRATION/clown-1678004_1920.jpg" title="Le spectacle" alt="image de spectacle et fraise">
+				<img width="85%" height="auto" src="images/article/6/PHOTO_ILLUSTRATION/clown-1678004_1920.jpg" title="Le spectacle" alt="image de spectacle et fraise">
 			</div>
 			<div class="col-md-5 enfant">
 				<p align="justify"><%= articles.get(6).getContenu() %></p>

@@ -104,8 +104,8 @@ $(document).ready(function() {
 	<!----------------------------------- categorie ---------------------------------------->
 	<div class="row col-md-12">
 		<input id="bt_clown" type="image" class="img-circle bt_image" src="images/clowns/1/portrait.JPG" title="Les clowns" alt="image de Claire et Virginie" width="156" height="156" />
-		<input id="bt_pratique" type="image" class="img-circle bt_image" src="images/1/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Pratique et sensorielle" alt="Pratique et sensorielle" width="156" height="156" />
-		<input id="bt_expression" type="image" class="img-circle bt_image" src="images/1/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Expression corporelle" alt="Expression corporelle" width="156" height="156" />
+		<input id="bt_pratique" type="image" class="img-circle bt_image" src="images/article/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Pratique et sensorielle" alt="Pratique et sensorielle" width="156" height="156" />
+		<input id="bt_expression" type="image" class="img-circle bt_image" src="images/article/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="Expression corporelle" alt="Expression corporelle" width="156" height="156" />
 	</div>
 	<div class="row col-md-10 col-sm-offset-1" id="textDemarche">
 			<p align="justify"><%= articles.get("accueil").getContenu() %></p>
@@ -186,7 +186,7 @@ $(document).ready(function() {
 		<h2><%= articles.get("Pratique et sensoriel").getTitre() %></h2><br>
 		<div class="row">
 			<div class="col-md-6">
-				<img width="85%" height="auto" src="images/1/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image de pratique et sensoriel" alt="image de pratique et sensoriel">
+				<img width="85%" height="auto" src="images/article/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image de pratique et sensoriel" alt="image de pratique et sensoriel">
 			</div>
 			<div class="col-md-5">
 				<p align="justify"><%= articles.get("Pratique et sensoriel").getContenu() %></p>
@@ -212,7 +212,7 @@ $(document).ready(function() {
 		<h2><%= articles.get("Expression Corporelle").getTitre() %></h2><br>
 		<div class="row">
 			<div class="col-md-6">
-				<img width="85%" height="auto" src="images/1/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image d'expression corporelle" alt="image d'expression corporelle">
+				<img width="85%" height="auto" src="images/article/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image d'expression corporelle" alt="image d'expression corporelle">
 			</div>
 			<div class="col-md-6">
 				<p align="justify"><%= articles.get("Expression Corporelle").getContenu() %></p>
