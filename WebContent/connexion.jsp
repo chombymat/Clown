@@ -26,7 +26,7 @@
 		            url: $form.attr('action'),
 		            type: $form.attr('method'),
 		            data: {
-		            	login : $('#login').val(),
+		            	login : SHA256($('#login').val()),
 		            	pass : SHA256($('#pass').val())
 		            },
 		            success : function(data, textStatus, jqXHR)

@@ -119,7 +119,7 @@ insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo V
 insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Virginie','images/clowns/2/P1070070.JPG');
 insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Virginie','images/clowns/2/P1070097.JPG');
 
-insert into utilisateur(id_utilisateur, nom, prenom, adresse_mail, login, prima_pass) values(1, 'Markey', 'Jeffrey', 'markey.jeffrey@gmail.com', 'Metarion', 'DH/hPDypUlaFDntpSXvYFCb1HSE6qG1uPMnn61q8YWY=');
+insert into utilisateur(id_utilisateur, nom, prenom, adresse_mail, login, prima_pass) values(1, 'Markey', 'Jeffrey', 'markey.jeffrey@gmail.com', 'Ha8gvAbW3Q1A1U+Duqc/xDa7dCVh1R6W75lms3MTj9o=', 'DH/hPDypUlaFDntpSXvYFCb1HSE6qG1uPMnn61q8YWY=');
 insert into role(id_utilisateur, role) values(1, 'role4');
 
 insert into projet(titre) values('atelier');
