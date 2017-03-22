@@ -17,25 +17,25 @@ public class Inscription extends HttpServlet {
 		Modele modele = new Modele();
 		
 		try {
-			String logConfirmation = (String)request.getParameter("confirmation");
-			String mailConfirmation =  modele.getMailUtilisateur(logConfirmation);
-			System.out.println(logConfirmation + " " + mailConfirmation);
-			if(logConfirmation != null && mailConfirmation != null){
+			
+			String tokenConfirmation = (String)request.getParameter("confirmation");
+			String mail = modele.getMailUtilisateur(tokenConfirmation);
+			if(tokenConfirmation != null){
 				
-					
 				System.out.println("inscription confirmée");
-				modele.ajoutRoleUtilisateur(logConfirmation);
-				modele.envoyerMailInscriptionRetourUtilisateur(logConfirmation, mailConfirmation);
+				modele = new Modele();
+				modele.ajoutRoleUtilisateur(tokenConfirmation);
+				modele = new Modele();
+				modele.envoyerMailInscriptionRetourUtilisateur(mail);
 				response.sendRedirect("./confirmationInscription.jsp");
 			}
 			
 			else if((String)request.getParameter("refus") != null){
-				logConfirmation = (String)request.getParameter("refus");
-				mailConfirmation =  modele.getMailUtilisateur(logConfirmation);
-				if(mailConfirmation != null){
+				tokenConfirmation = (String)request.getParameter("refus");
+				if(tokenConfirmation != null){
 					System.out.println("inscription refusée");
-					modele.suprimerUtilisateur(logConfirmation);
-					modele.envoyerMailInscriptionRefusUtilisateur(logConfirmation, mailConfirmation);
+					modele.suprimerUtilisateur(tokenConfirmation);
+					modele.envoyerMailInscriptionRefusUtilisateur(tokenConfirmation, mail);
 					response.sendRedirect("./refusInscription.jsp");
 				}
 			}
@@ -59,14 +59,15 @@ public class Inscription extends HttpServlet {
 				String login = (String)request.getParameter("inscriptionLogin");
 				String pass = (String)request.getParameter("inscriptionPass");
 				
-				modele.envoyerMailInscription(	
-						nom, prenom , mail, login,
-						"https://localhost:8443/Clown/Inscription?confirmation=" + modele.cryptPass(login),
-						"https://localhost:8443/Clown/Inscription?refus=" + modele.cryptPass(login));
-				modele = new Modele();
-				String retourInscription = modele.ajoutUtilisateur(nom, prenom, login, mail, pass);
-				
-				response.getWriter().print(retourInscription);
+				String token = modele.ajoutUtilisateur(nom, prenom, login, mail, pass);
+				if(token.length() == 10){
+					modele = new Modele();
+					modele.envoyerMailInscription(	
+							nom, prenom , mail, login,
+							"https://localhost:8443/Clown/Inscription?confirmation=" + token,
+							"https://localhost:8443/Clown/Inscription?refus=" + token);
+				}
+				response.getWriter().print(token);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

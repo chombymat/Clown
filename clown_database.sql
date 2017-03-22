@@ -60,9 +60,9 @@ create table utilisateur(
 
 
 create table validation(
-idUser integer,
-code varchar(10) not null,
-constraint fk_validation foreign key(idUser) references inscrit(idUser) on delete cascade
+	id_utilisateur integer,
+	token varchar(10) not null,
+	constraint fk_validation_utilisateur foreign key(id_utilisateur) references utilisateur(id_utilisateur) on update cascade on delete restrict
 );
 
 -- création de la table des rôles : 
