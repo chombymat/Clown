@@ -44,18 +44,23 @@
 			            success : function(data, textStatus, jqXHR){
 			            	console.log(data);
 
-			            	if(data === "inscription ok"){
-			            		$('#success_message').show();         	
-			            		$("#form")[0].reset();
-			            	} else if(data === "mail existant"){
+			            	if(data === "mail existant"){
 			            		$('#erreur').html("");
 			            		$('#erreur_login').html("");
-			            		$('#erreur_mail').html("Adresse email déjà existante.");         	
+			            		$('#erreur_mail').html("Adresse email déjà existante."); 
+			            	} else if(data === "exception"){
+				            		$('#erreur').html("Un problème est survenu lors de l'inscription");
+				            		$('#erreur_login').html("");
+				            		$('#erreur_mail').html("");   
 			            	} else if(data === "login existant"){
 			            		$('#erreur').html("");
 			            		$('#erreur_mail').html("");
 			            		$('#erreur_login').html("Identifiant déjà existant.");
+			            	} else {
+			            		$('#success_message').show();         	
+			            		$("#form")[0].reset();
 			            	}
+			            	
 			            }
 			        });
 				}
@@ -122,7 +127,7 @@
 			</div>
 		</div>
 	</form>
-	<div class="alert alert-success" role="alert" id="success_message"><i class="glyphicon glyphicon-thumbs-up"></i> Votre inscription a été pris en compte, nous faisons notre possible pour vous répondre rapidement par mail.</div>
+	<div class="alert alert-success" role="alert" id="success_message"><i class="glyphicon glyphicon-thumbs-up"></i> Votre inscription a été prise en compte, nous faisons notre possible pour vous répondre rapidement par mail.</div>
 		
 	<%@include file="/WEB-INF/footer.html"%>
 	

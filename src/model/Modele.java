@@ -12,6 +12,8 @@ import java.util.Base64;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
+
 import javax.mail.Message;
 import javax.mail.Message.RecipientType;
 import javax.mail.Session;
@@ -64,6 +66,34 @@ public class Modele
 		finally{try{con.close();}catch(Exception e){}}
 
 		return user;
+	}
+	
+	public  String generateToken(){
+		String lettreMaj[] = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+		String lettreMin[] = new String[]{"a", "b", "c", "d", "e" ,"f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+
+		String code = "";
+
+		for(int i = 0; i < 10; i++)
+		{
+			int randomNum = ThreadLocalRandom.current().nextInt(1, 4);
+			int index = 0;
+			switch(randomNum)
+			{
+			case 1 :
+				index = ThreadLocalRandom.current().nextInt(0, 26);
+				code += lettreMaj[index];
+				break;
+			case 2 :
+				index = ThreadLocalRandom.current().nextInt(0, 26);
+				code += lettreMin[index];
+				break;
+			case 3 :
+				code += ThreadLocalRandom.current().nextInt(0, 10);
+				break;
+			}
+		}
+		return code;
 	}
 
 	public String cryptPass(String pass)
@@ -149,10 +179,10 @@ public class Modele
 		}
 	}
 
-	public void envoyerMailInscriptionRetourUtilisateur(String pseudo, String mail){
+	public void envoyerMailInscriptionRetourUtilisateur(String mail){
 		try{
 
-			String message = "Votre demande d'inscription sous le login " + pseudo + " a bien été validée par l'administrateur.";
+			String message = "Votre demande d'inscription a bien été validée par l'administrateur.";
 			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
 			Message msg = new MimeMessage(session_mail);
 			msg.setFrom(new InternetAddress(mailEntreprise));
@@ -242,15 +272,27 @@ public class Modele
 
 			if(result.next())
 				return "login existant";
-			PreparedStatement statement3 = con.prepareStatement("insert into utilisateur (nom, prenom, adresse_mail, login, prima_pass) values(?, ?, ?, ?, ?)");
+			
+			
+			
+			PreparedStatement statement3 = con.prepareStatement("insert into utilisateur (nom, prenom, adresse_mail, login, prima_pass) values(?, ?, ?, ?, ?) returning id_utilisateur");
 			statement3.setString(1, nom);
 			statement3.setString(2, prenom);
 			statement3.setString(3, mail);
 			statement3.setString(4, cryptPass(login));
 			statement3.setString(5, cryptPass(pass));
-
-			statement3.executeUpdate();
-			return "inscription ok";
+			
+			result = statement3.executeQuery();
+			result.next();
+			int id = result.getInt(1);
+			
+			String token = generateToken();
+			PreparedStatement statement4 = con.prepareStatement("insert into validation (id_utilisateur, token) values(?, ?)");
+			statement4.setInt(1, id);
+			statement4.setString(2, token);
+			statement4.executeUpdate();
+			return token;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "exception";
@@ -262,22 +304,61 @@ public class Modele
 			}
 		}
 	}
+	
+	
 
-	public void ajoutRoleUtilisateur(String login) throws Exception {
+	public void ajoutRoleUtilisateur(String token) throws Exception {
 		Connection con = null;
 		try {	
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement = con.prepareStatement("select id_utilisateur from utilisateur where login = ?");
-			statement.setString(1, login);
+			
+			
+			
+			PreparedStatement statement = con.prepareStatement("select id_utilisateur from validation where token = ?");
+			statement.setString(1, token);
 			ResultSet result = statement.executeQuery();
 
 			if(result.next()){
 				int id = result.getInt(1);
-
+				
 				PreparedStatement statement2 = con.prepareStatement("insert into role (id_utilisateur, role) values(?, ?)");
 				statement2.setInt(1, id);
 				statement2.setString(2, "role2");
+				statement2.executeUpdate();
+				
+				PreparedStatement statement3 = con.prepareStatement("delete from validation where token = ?");
+				statement3.setString(1, token);
+				statement3.executeUpdate();
+			}
 
+		}catch (SQLException e) {
+			e.printStackTrace();
+
+		} catch (Exception e){
+			throw e;
+
+		} finally{
+			try{
+				con.close();
+
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void suprimerUtilisateur(String token) throws Exception {
+		Connection con = null;
+		try {	
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			
+			PreparedStatement statement = con.prepareStatement("delete from validation where token = ? returning id_utilisateur");
+			statement.setString(1, token);
+			ResultSet result = statement.executeQuery();
+			
+			if(result.next()){
+				PreparedStatement statement2 = con.prepareStatement("delete from utilisateur where id_utilisateur = ?");
+				statement2.setInt(1, result.getInt(1));
 				statement2.executeUpdate();
 			}
 
@@ -290,31 +371,6 @@ public class Modele
 		} finally{
 			try{
 				con.close();
-
-			} catch(SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	public void suprimerUtilisateur(String login) throws Exception {
-		Connection con = null;
-		try {	
-			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement = con.prepareStatement("delete from utilisateur where login = ?");
-			statement.setString(1,cryptPass(login));
-
-			statement.executeUpdate();
-
-		}catch (SQLException e) {
-			e.printStackTrace();
-
-		} catch (Exception e){
-			throw e;
-
-		} finally{
-			try{
-				con.close();
 			} catch(SQLException e) {
 				e.printStackTrace();
 			}
@@ -322,17 +378,27 @@ public class Modele
 	}
 
 
-	public String getMailUtilisateur(String login) throws Exception {
+	public String getMailUtilisateur(String token) throws Exception {
+		
 		String mail = null;
 		Connection con = null;
+		
 		try {	
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement = con.prepareStatement("select adresse_mail from utilisateur where login = ?");
-			statement.setString(1,cryptPass(login));
-
+			
+			PreparedStatement statement = con.prepareStatement("select id_utilisateur from validation where token = ?");
+			statement.setString(1, token);
 			ResultSet result = statement.executeQuery();
-			if(result.next())
-				mail = result.getString(1);
+			
+			if(result.next()){
+				PreparedStatement statement2 = con.prepareStatement("select adresse_mail from utilisateur where id_utilisateur = ?");
+				statement2.setInt(1, result.getInt(1));
+				result = statement2.executeQuery();
+				
+				if(result.next()){
+					mail = result.getString(1);
+				}
+			}
 			return mail;
 		} catch (SQLException e) {
 			e.printStackTrace();
