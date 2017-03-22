@@ -37,8 +37,9 @@ create table media(
 	id_media serial,
 	id_article integer,
 	chemin text not null,
-	nom text not null,
+	nom text,
 	type varchar(50) not null,
+	doitInscrit boolean default 'false',
 	constraint pk_media primary key(id_media),
 	constraint fk_media_article foreign key(id_article) references article(id_article) on update cascade on delete restrict
 );
@@ -198,3 +199,5 @@ insert into media(id_article, chemin, nom, type) values(5, 'images/pdf/5/50.pdf'
 insert into media(chemin, nom, type) values('images/galerie/51.png', 'galerie 1', 'galerie');
 insert into media(chemin, nom, type) values('images/galerie/52.jpg', 'galerie 2', 'galerie');
 insert into media(chemin, nom, type) values('images/galerie/53.jpg', 'Constance', 'galerie');
+
+insert into media(id_article, chemin, type) values(1, '<iframe src="https://player.vimeo.com/video/209263699?title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>', 'video');

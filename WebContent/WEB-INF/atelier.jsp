@@ -214,7 +214,15 @@
 		</div>
 		<div class="row col-md-12">
 			<div class="col-md-6">
-				<iframe src="https://player.vimeo.com/video/186044683" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				<%
+				for(Media media : articles.get(1).getMedias())
+				{
+					if(media.getType().equals("video"))
+					{
+						%><%= media.getChemin() %><%
+					}
+				}
+				%>
 			</div>
 			<div class="col-md-6">
 				<br>
@@ -264,7 +272,15 @@
 		</div>
 		<div class="row">
 		<div class="col-md-6">
-			<iframe src="https://player.vimeo.com/video/186044683" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+			<%
+				for(Media media : articles.get(2).getMedias())
+				{
+					if(media.getType().equals("video"))
+					{
+						%><%= media.getChemin() %><%
+					}
+				}
+				%>
 		</div>
 		<div class="col-md-5">
 				<br>
@@ -314,7 +330,15 @@
 		</div>
 		<div class="row">
 		<div class="col-md-6">
-			<iframe src="https://player.vimeo.com/video/186044683" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+			<%
+				for(Media media : articles.get(3).getMedias())
+				{
+					if(media.getType().equals("video"))
+					{
+						%><%= media.getChemin() %><%
+					}
+				}
+				%>
 		</div>
 		<div class="col-md-5">
 				<br>
@@ -366,7 +390,15 @@
 		</div>
 		<div class="row">
 		<div class="col-md-6">
-			<iframe src="https://player.vimeo.com/video/186044683" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+			<%
+				for(Media media : articles.get(4).getMedias())
+				{
+					if(media.getType().equals("video"))
+					{
+						%><%= media.getChemin() %><%
+					}
+				}
+				%>
 		</div>
 		<div class="col-md-5">
 				<br>
@@ -415,7 +447,15 @@
 		</div>
 		<div class="row">
 		<div class="col-md-6">
-			<iframe src="https://player.vimeo.com/video/186044683" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+			<%
+				for(Media media : articles.get(5).getMedias())
+				{
+					if(media.getType().equals("video"))
+					{
+						%><%= media.getChemin() %><%
+					}
+				}
+				%>
 		</div>
 		<div class="col-md-5">
 				<br>

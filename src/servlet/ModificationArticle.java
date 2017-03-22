@@ -52,6 +52,7 @@ public class ModificationArticle extends HttpServlet
 		String type = IOUtils.toString(request.getPart("type").getInputStream(), "UTF-8"); 
 		Modele modele = new Modele();
 		String id_article = "";
+		boolean doit_inscrit;
 		int id_media = -1;
 		
 		if(request.getPart("id_article") != null)
@@ -65,8 +66,8 @@ public class ModificationArticle extends HttpServlet
 		case "add_photo" :
 			String nom = IOUtils.toString(request.getPart("nom").getInputStream(), "UTF-8");
 			String extension = request.getPart("media").getSubmittedFileName().substring(request.getPart("media").getSubmittedFileName().lastIndexOf("."));
-
-			id_media = modele.ajouterMedia(Integer.valueOf(id_article), "images/article/" + id_article + "/PHOTOS_ENFANTS/", nom, "photo", extension);
+			doit_inscrit = Boolean.valueOf(IOUtils.toString(request.getPart("doit_inscrit").getInputStream(), "UTF-8"));
+			id_media = modele.ajouterMedia(Integer.valueOf(id_article), "images/article/" + id_article + "/PHOTOS_ENFANTS/", nom, "photo", extension, doit_inscrit);
 			modele.saveMediaOnDisk(getServletContext().getRealPath("/") + "images/article/" + id_article + "/PHOTOS_ENFANTS/", request.getPart("media"), id_media);
 			JSONObject json_photo = new JSONObject();
 			json_photo.put("id_media", id_media);
@@ -87,7 +88,8 @@ public class ModificationArticle extends HttpServlet
 			break;
 		case "add_pdf" :
 			String nom_pdf = IOUtils.toString(request.getPart("nom").getInputStream(), "UTF-8");
-			id_media = modele.addPdf(Integer.valueOf(id_article), nom_pdf);
+			doit_inscrit = Boolean.valueOf(IOUtils.toString(request.getPart("doit_inscrit").getInputStream(), "UTF-8"));
+			id_media = modele.addPdf(Integer.valueOf(id_article), nom_pdf, doit_inscrit);
 			modele.savePdfOnDisk(getServletContext().getRealPath("/"), Integer.valueOf(id_article), id_media, request.getPart("media"));
 			JSONObject json_pdf = new JSONObject();
 			json_pdf.put("id_media", id_media);
@@ -96,6 +98,17 @@ public class ModificationArticle extends HttpServlet
 			break;
 		case "delete_pdf" :
 			modele.supprimerMedia(getServletContext().getRealPath("/") + "images/pdf/" + id_article + "/" + id_media + ".pdf", id_media);
+			break;
+		case "add_video" :
+			String url_video = IOUtils.toString(request.getPart("media").getInputStream(), "UTF-8");
+			doit_inscrit = Boolean.valueOf(IOUtils.toString(request.getPart("doit_inscrit").getInputStream(), "UTF-8"));
+			id_media = modele.addVideo(url_video, Integer.valueOf(id_article), doit_inscrit);
+			JSONObject json_video = new JSONObject();
+			json_video.put("id_media", id_media);
+			response.getWriter().println(json_video);
+			break;
+		case "delete_video" :
+			modele.deleteVideo(id_media);
 			break;
 		}
 	}
