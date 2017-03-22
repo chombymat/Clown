@@ -1141,4 +1141,24 @@ public class Modele
 		}
 	}
 
+	public void updateDroitMedia(int id_media, boolean doit_inscrit) 
+	{
+		Connection con = null;
+		try
+		{
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("update media set doitinscrit = ? where id_media = ?");
+			statement.setBoolean(1, doit_inscrit);
+			statement.setInt(2, id_media);
+			statement.executeUpdate();
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try{ con.close(); }catch(Exception e){}
+		}
+	}
+
 }

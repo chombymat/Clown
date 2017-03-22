@@ -113,7 +113,7 @@ public class ModificationArticle extends HttpServlet
 			break;
 		case "access_media" :
 			doit_inscrit = Boolean.valueOf(IOUtils.toString(request.getPart("doit_inscrit").getInputStream(), "UTF-8"));
-			// modele.updateDroitMedia(id_media, doit_inscrit);
+			modele.updateDroitMedia(id_media, doit_inscrit);
 			break;
 		}
 	}

@@ -200,12 +200,21 @@
 				{
 					for(Media media : articles.get(1).getMedias())
 					{
-						if(media.getType().equals("pdf"))
+						if(media.getType().equals("pdf") && media.isDoitInscrit())
 						{
 							%>
 							<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
 							<%
 						}
+					}
+				}
+				for(Media media : articles.get(1).getMedias())
+				{
+					if(media.getType().equals("pdf") && !media.isDoitInscrit())
+					{
+						%>
+						<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
+						<%
 					}
 				}
 				%>
@@ -215,9 +224,19 @@
 		<div class="row col-md-12">
 			<div class="col-md-6">
 				<%
+				if(session.getAttribute("user") != null) 
+				{
+					for(Media media : articles.get(1).getMedias())
+					{
+						if(media.getType().equals("video") && media.isDoitInscrit())
+						{
+							%><%= media.getChemin() %><%
+						}
+					}
+				}
 				for(Media media : articles.get(1).getMedias())
 				{
-					if(media.getType().equals("video"))
+					if(media.getType().equals("video") && !media.isDoitInscrit())
 					{
 						%><%= media.getChemin() %><%
 					}
@@ -229,9 +248,19 @@
 				<div class="scroll-bar-wrap">
 					<div class="scroll-box">
 						<% 
+						if(session.getAttribute("user") != null) 
+						{
+							for(Media media : articles.get(1).getMedias())
+							{
+								if(media.getType().equals("photo") && media.isDoitInscrit())
+								{
+									%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+								}
+							}
+						}
 						for(Media media : articles.get(1).getMedias())
 						{
-							if(media.getType().equals("photo"))
+							if(media.getType().equals("photo") && !media.isDoitInscrit())
 							{
 								%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
 							}
@@ -252,13 +281,13 @@
 				<img width="35%" height="auto" src="images/article/2/PHOTO_ILLUSTRATION/lait.jpg" title="image de lait" alt="image de lait">
 			</div>
 			<div class="col-md-5 enfant">
-				<p align="justify"><%= articles.get(2).getContenu() %></p>
+				<p align="justify"><%= articles.get(1).getContenu() %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
 					for(Media media : articles.get(2).getMedias())
 					{
-						if(media.getType().equals("pdf"))
+						if(media.getType().equals("pdf") && media.isDoitInscrit())
 						{
 							%>
 							<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
@@ -266,39 +295,68 @@
 						}
 					}
 				}
+				for(Media media : articles.get(2).getMedias())
+				{
+					if(media.getType().equals("pdf") && !media.isDoitInscrit())
+					{
+						%>
+						<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
+						<%
+					}
+				}
 				%>
 			</div>
 				
 		</div>
-		<div class="row">
-		<div class="col-md-6">
-			<%
+		<div class="row col-md-12">
+			<div class="col-md-6">
+				<%
+				if(session.getAttribute("user") != null) 
+				{
+					for(Media media : articles.get(2).getMedias())
+					{
+						if(media.getType().equals("video") && media.isDoitInscrit())
+						{
+							%><%= media.getChemin() %><%
+						}
+					}
+				}
 				for(Media media : articles.get(2).getMedias())
 				{
-					if(media.getType().equals("video"))
+					if(media.getType().equals("video") && !media.isDoitInscrit())
 					{
 						%><%= media.getChemin() %><%
 					}
 				}
 				%>
-		</div>
-		<div class="col-md-5">
+			</div>
+			<div class="col-md-6">
 				<br>
 				<div class="scroll-bar-wrap">
-				<div class="scroll-box">
-				<% 
-				for(Media media : articles.get(2).getMedias())
-				{
-					if(media.getType().equals("photo"))
-					{
-						%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
-					}
-				}
-				%>
+					<div class="scroll-box">
+						<% 
+						if(session.getAttribute("user") != null) 
+						{
+							for(Media media : articles.get(2).getMedias())
+							{
+								if(media.getType().equals("photo") && media.isDoitInscrit())
+								{
+									%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+								}
+							}
+						}
+						for(Media media : articles.get(2).getMedias())
+						{
+							if(media.getType().equals("photo") && !media.isDoitInscrit())
+							{
+								%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+							}
+						}
+						%>
+					</div>
+					<div class="cover-bar"></div>
 				</div>
-				<div class="cover-bar"></div>
-				</div>
-				</div>
+			</div>
 		</div>
 	</div>
 	
@@ -310,13 +368,13 @@
 				<img width="85%" height="auto" src="images/article/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image des 7 familles" alt="image des 7 familles">
 			</div>
 			<div class="col-md-5 enfant">
-				<p align="justify"><%= articles.get(3).getContenu() %></p>
+				<p align="justify"><%= articles.get(2).getContenu() %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
-					for(Media media : articles.get(3).getMedias())
+					for(Media media : articles.get(2).getMedias())
 					{
-						if(media.getType().equals("pdf"))
+						if(media.getType().equals("pdf") && media.isDoitInscrit())
 						{
 							%>
 							<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
@@ -324,39 +382,68 @@
 						}
 					}
 				}
+				for(Media media : articles.get(2).getMedias())
+				{
+					if(media.getType().equals("pdf") && !media.isDoitInscrit())
+					{
+						%>
+						<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
+						<%
+					}
+				}
 				%>
 			</div>
 				
 		</div>
-		<div class="row">
-		<div class="col-md-6">
-			<%
-				for(Media media : articles.get(3).getMedias())
+		<div class="row col-md-12">
+			<div class="col-md-6">
+				<%
+				if(session.getAttribute("user") != null) 
 				{
-					if(media.getType().equals("video"))
+					for(Media media : articles.get(2).getMedias())
+					{
+						if(media.getType().equals("video") && media.isDoitInscrit())
+						{
+							%><%= media.getChemin() %><%
+						}
+					}
+				}
+				for(Media media : articles.get(2).getMedias())
+				{
+					if(media.getType().equals("video") && !media.isDoitInscrit())
 					{
 						%><%= media.getChemin() %><%
 					}
 				}
 				%>
-		</div>
-		<div class="col-md-5">
+			</div>
+			<div class="col-md-6">
 				<br>
 				<div class="scroll-bar-wrap">
-				<div class="scroll-box">
-				<% 
-				for(Media media : articles.get(3).getMedias())
-				{
-					if(media.getType().equals("photo"))
-					{
-						%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
-					}
-				}
-				%>
+					<div class="scroll-box">
+						<% 
+						if(session.getAttribute("user") != null) 
+						{
+							for(Media media : articles.get(2).getMedias())
+							{
+								if(media.getType().equals("photo") && media.isDoitInscrit())
+								{
+									%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+								}
+							}
+						}
+						for(Media media : articles.get(2).getMedias())
+						{
+							if(media.getType().equals("photo") && !media.isDoitInscrit())
+							{
+								%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+							}
+						}
+						%>
+					</div>
+					<div class="cover-bar"></div>
 				</div>
-				<div class="cover-bar"></div>
-				</div>
-				</div>
+			</div>
 		</div>
 	</div>
 	
@@ -376,7 +463,7 @@
 				{
 					for(Media media : articles.get(4).getMedias())
 					{
-						if(media.getType().equals("pdf"))
+						if(media.getType().equals("pdf") && media.isDoitInscrit())
 						{
 							%>
 							<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
@@ -384,39 +471,68 @@
 						}
 					}
 				}
+				for(Media media : articles.get(4).getMedias())
+				{
+					if(media.getType().equals("pdf") && !media.isDoitInscrit())
+					{
+						%>
+						<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
+						<%
+					}
+				}
 				%>
 			</div>
 				
 		</div>
-		<div class="row">
-		<div class="col-md-6">
-			<%
+		<div class="row col-md-12">
+			<div class="col-md-6">
+				<%
+				if(session.getAttribute("user") != null) 
+				{
+					for(Media media : articles.get(4).getMedias())
+					{
+						if(media.getType().equals("video") && media.isDoitInscrit())
+						{
+							%><%= media.getChemin() %><%
+						}
+					}
+				}
 				for(Media media : articles.get(4).getMedias())
 				{
-					if(media.getType().equals("video"))
+					if(media.getType().equals("video") && !media.isDoitInscrit())
 					{
 						%><%= media.getChemin() %><%
 					}
 				}
 				%>
-		</div>
-		<div class="col-md-5">
+			</div>
+			<div class="col-md-6">
 				<br>
 				<div class="scroll-bar-wrap">
-				<div class="scroll-box">
-				<% 
-				for(Media media : articles.get(4).getMedias())
-				{
-					if(media.getType().equals("photo"))
-					{
-						%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
-					}
-				}
-				%>
+					<div class="scroll-box">
+						<% 
+						if(session.getAttribute("user") != null) 
+						{
+							for(Media media : articles.get(4).getMedias())
+							{
+								if(media.getType().equals("photo") && media.isDoitInscrit())
+								{
+									%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+								}
+							}
+						}
+						for(Media media : articles.get(4).getMedias())
+						{
+							if(media.getType().equals("photo") && !media.isDoitInscrit())
+							{
+								%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+							}
+						}
+						%>
+					</div>
+					<div class="cover-bar"></div>
 				</div>
-				<div class="cover-bar"></div>
-				</div>
-				</div>
+			</div>
 		</div>
 	</div>
 	
@@ -434,7 +550,7 @@
 				{
 					for(Media media : articles.get(5).getMedias())
 					{
-						if(media.getType().equals("pdf"))
+						if(media.getType().equals("pdf") && media.isDoitInscrit())
 						{
 							%>
 							<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
@@ -442,38 +558,68 @@
 						}
 					}
 				}
-				%>
-			</div>
-		</div>
-		<div class="row">
-		<div class="col-md-6">
-			<%
 				for(Media media : articles.get(5).getMedias())
 				{
-					if(media.getType().equals("video"))
+					if(media.getType().equals("pdf") && !media.isDoitInscrit())
+					{
+						%>
+						<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
+						<%
+					}
+				}
+				%>
+			</div>
+				
+		</div>
+		<div class="row col-md-12">
+			<div class="col-md-6">
+				<%
+				if(session.getAttribute("user") != null) 
+				{
+					for(Media media : articles.get(5).getMedias())
+					{
+						if(media.getType().equals("video") && media.isDoitInscrit())
+						{
+							%><%= media.getChemin() %><%
+						}
+					}
+				}
+				for(Media media : articles.get(5).getMedias())
+				{
+					if(media.getType().equals("video") && !media.isDoitInscrit())
 					{
 						%><%= media.getChemin() %><%
 					}
 				}
 				%>
-		</div>
-		<div class="col-md-5">
+			</div>
+			<div class="col-md-6">
 				<br>
 				<div class="scroll-bar-wrap">
-				<div class="scroll-box">
-				<% 
-				for(Media media : articles.get(5).getMedias())
-				{
-					if(media.getType().equals("photo"))
-					{
-						%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
-					}
-				}
-				%>
+					<div class="scroll-box">
+						<% 
+						if(session.getAttribute("user") != null) 
+						{
+							for(Media media : articles.get(5).getMedias())
+							{
+								if(media.getType().equals("photo") && media.isDoitInscrit())
+								{
+									%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+								}
+							}
+						}
+						for(Media media : articles.get(5).getMedias())
+						{
+							if(media.getType().equals("photo") && !media.isDoitInscrit())
+							{
+								%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+							}
+						}
+						%>
+					</div>
+					<div class="cover-bar"></div>
 				</div>
-				<div class="cover-bar"></div>
-				</div>
-				</div>
+			</div>
 		</div>
 	</div>
 	
@@ -491,7 +637,7 @@
 				{
 					for(Media media : articles.get(6).getMedias())
 					{
-						if(media.getType().equals("pdf"))
+						if(media.getType().equals("pdf") && media.isDoitInscrit())
 						{
 							%>
 							<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
@@ -499,41 +645,68 @@
 						}
 					}
 				}
+				for(Media media : articles.get(6).getMedias())
+				{
+					if(media.getType().equals("pdf") && !media.isDoitInscrit())
+					{
+						%>
+						<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
+						<%
+					}
+				}
 				%>
 			</div>
 				
 		</div>
-		<div class="row">
-		<div class="col-md-6">
-			<%
-			if(session.getAttribute("user") != null) {
-			%>
-				<iframe src="https://player.vimeo.com/video/186044683" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-			<%
-			} else {
-			%>
-				<iframe src="https://player.vimeo.com/video/202925050" width="640" height="274" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-			<%
-			}
-			%>
-		</div>
-		<div class="col-md-5">
-				<br>
-				<div class="scroll-bar-wrap">
-				<div class="scroll-box">
-				<% 
+		<div class="row col-md-12">
+			<div class="col-md-6">
+				<%
+				if(session.getAttribute("user") != null) 
+				{
+					for(Media media : articles.get(6).getMedias())
+					{
+						if(media.getType().equals("video") && media.isDoitInscrit())
+						{
+							%><%= media.getChemin() %><%
+						}
+					}
+				}
 				for(Media media : articles.get(6).getMedias())
 				{
-					if(media.getType().equals("photo"))
+					if(media.getType().equals("video") && !media.isDoitInscrit())
 					{
-						%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+						%><%= media.getChemin() %><%
 					}
 				}
 				%>
+			</div>
+			<div class="col-md-6">
+				<br>
+				<div class="scroll-bar-wrap">
+					<div class="scroll-box">
+						<% 
+						if(session.getAttribute("user") != null) 
+						{
+							for(Media media : articles.get(6).getMedias())
+							{
+								if(media.getType().equals("photo") && media.isDoitInscrit())
+								{
+									%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+								}
+							}
+						}
+						for(Media media : articles.get(6).getMedias())
+						{
+							if(media.getType().equals("photo") && !media.isDoitInscrit())
+							{
+								%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+							}
+						}
+						%>
+					</div>
+					<div class="cover-bar"></div>
 				</div>
-				<div class="cover-bar"></div>
-				</div>
-				</div>
+			</div>
 		</div>
 	</div>
 	

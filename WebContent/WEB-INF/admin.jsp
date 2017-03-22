@@ -520,16 +520,17 @@
 				$('.bt_rename').unbind('click');
 				$('.bt_delete_photo').unbind('click');
 				$('.bt_delete_pdf').unbind('click');
-				$('bt_delete_video').unbind('click');
+				$('.bt_delete_video').unbind('click');
 				$('.update_checkbox').unbind('click');
 				
 				initialiserModal();
 				
 				$('.update_checkbox').on('change', function(){
+					console.log($(this).is(":checked"));
 					var id_media = $(this).attr('id_media');
 					var form_data = new FormData();
 					form_data.append('id_media', id_media);
-					form_data.append('doit_inscrit', $(this).checked);
+					form_data.append('doit_inscrit', $(this).is(":checked"));
 					form_data.append('type', 'access_media');
 					
 					$.ajax({
