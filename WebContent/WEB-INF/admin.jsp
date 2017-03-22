@@ -750,6 +750,22 @@
 					$('#id' + current_page).addClass('active');
 				}
 			}
+			
+			// ----------------------	Ajouter clown ------------------------
+			
+			$('#gestion_clowns').hide();
+			
+			$('#bt_gestion_clowns').on('click', function(){
+				if($('#gestion_clowns').is(':visible'))
+					$('#gestion_clowns').hide();
+				else
+				{
+					
+					
+					$('#gestion_clowns').show();
+				}
+			});
+			
 		});
 		
 		function set_display(first, last) {
@@ -776,7 +792,7 @@
 			$('#id' + page_num).addClass('active');
 		}
 	</script>
-	<button id="bt_galerie" class="btn btn-sample">Gestion galerie</button> <button id="bt_modif_article" class="btn btn-sample">Modifier article</button>
+	<button id="bt_galerie" class="btn btn-sample">Gestion galerie</button> <button id="bt_modif_article" class="btn btn-sample">Modifier article</button> <button id="bt_gestion_clowns" class="btn btn-sample">Gestion des clowns</button>
 	
 	<!-- -------------------------------- Gestion galerie -------------------------- -->
 	
@@ -896,8 +912,18 @@
 	
 	<!-- -------------------------------- Fin modifier article -------------------------- -->
 	
-	<!-- -------------------------------- Gestion clowns -------------------------- -->
+	<!-- -------------------------------- Gestion clowns -------------------------------- -->
 	
+	<div id="gestion_clowns">
+		<div class="row">
+			<p>Veuillez sélectionner l'article à modifier.</p>
+			<select id="select_clown" default="">
+				<option disabled selected value hidden></option>
+			</select>
+		</div>
+	</div>
+	
+	<!--  ------------------------------- Fin gestion des clowns ------------------------ -->
 
 	<div id="myModal" class="modal">
 		<span class="close">&times;</span> <img class="modal-content" id="img01">

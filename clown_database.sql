@@ -107,24 +107,24 @@ create table media_clown(
 insert into clown(nom) values('Mademoiselle Lulu');
 insert into clown(nom) values('Chef Ratatouille');
 
-insert into media_clown(id_clown, type, nom, chemin) values(1, 'portrait', 'portrait Claire', 'images/clowns/1/portrait.JPG');
-insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Claire', 'images/clowns/1/Deambulation-clowns-prima-porta-bien-etre-21.jpg');
-insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Claire','images/clowns/1/Deambulation-clowns-prima-porta-bien-etre-32.jpg');
-insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Claire','images/clowns/1/MG_4032.jpg');
-insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Claire','images/clowns/1/MG_4037.jpg');
-insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Claire','images/clowns/1/MG_4204.jpg');
-insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Claire','images/clowns/1/MG_4211.jpg');
+insert into media_clown(id_clown, type, nom, chemin) values(1, 'portrait', 'portrait Mademoiselle Lulu', 'images/clowns/1/1.JPG');
+insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Mademoiselle Lulu', 'images/clowns/1/2.jpg');
+insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Mademoiselle Lulu','images/clowns/1/3.jpg');
+insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Mademoiselle Lulu','images/clowns/1/4.jpg');
+insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Mademoiselle Lulu','images/clowns/1/5.jpg');
+insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Mademoiselle Lulu','images/clowns/1/6.jpg');
+insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Mademoiselle Lulu','images/clowns/1/7.jpg');
 
-insert into media_clown(id_clown, type, nom, chemin) values(2, 'portrait', 'portrait Virginie', 'images/clowns/2/portrait.JPG');
-insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Virginie', 'images/clowns/2/P_20170209_141428.jpg');
-insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Virginie','images/clowns/2/P_20170209_142253.jpg');
-insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Virginie','images/clowns/2/P_20170209_142753.jpg');
-insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Virginie','images/clowns/2/P1060614.JPG');
-insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Virginie','images/clowns/2/P1060617.JPG');
-insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Virginie','images/clowns/2/P1060691.JPG');
-insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Virginie','images/clowns/2/P1060700.JPG');
-insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Virginie','images/clowns/2/P1070070.JPG');
-insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Virginie','images/clowns/2/P1070097.JPG');
+insert into media_clown(id_clown, type, nom, chemin) values(2, 'portrait', 'portrait Chef Ratatouille', 'images/clowns/2/8.JPG');
+insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Chef Ratatouille', 'images/clowns/2/9.jpg');
+insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Chef Ratatouille','images/clowns/2/10.jpg');
+insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Chef Ratatouille','images/clowns/2/11.jpg');
+insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Chef Ratatouille','images/clowns/2/12.JPG');
+insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Chef Ratatouille','images/clowns/2/13.JPG');
+insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Chef Ratatouille','images/clowns/2/14.JPG');
+insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Chef Ratatouille','images/clowns/2/15.JPG');
+insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Chef Ratatouille','images/clowns/2/16.JPG');
+insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Chef Ratatouille','images/clowns/2/17.JPG');
 
 insert into utilisateur(id_utilisateur, nom, prenom, adresse_mail, login, prima_pass) values(1, 'Markey', 'Jeffrey', 'markey.jeffrey@gmail.com', 'Ha8gvAbW3Q1A1U+Duqc/xDa7dCVh1R6W75lms3MTj9o=', 'DH/hPDypUlaFDntpSXvYFCb1HSE6qG1uPMnn61q8YWY=');
 insert into role(id_utilisateur, role) values(1, 'role4');
