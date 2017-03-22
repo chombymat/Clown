@@ -328,7 +328,7 @@ public class Modele
 		try {	
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
 			PreparedStatement statement = con.prepareStatement("select adresse_mail from utilisateur where login = ?");
-			statement.setString(1,cryptPass(login));
+			statement.setString(1, login);
 
 			ResultSet result = statement.executeQuery();
 			if(result.next())

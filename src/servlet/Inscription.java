@@ -19,6 +19,7 @@ public class Inscription extends HttpServlet {
 		try {
 			String logConfirmation = (String)request.getParameter("confirmation");
 			String mailConfirmation =  modele.getMailUtilisateur(logConfirmation);
+			System.out.println(logConfirmation + " " + mailConfirmation);
 			if(logConfirmation != null && mailConfirmation != null){
 				
 					

@@ -58,6 +58,13 @@ create table utilisateur(
 	constraint pk_utilisateur primary key(id_utilisateur)
 );
 
+
+create table validation(
+idUser integer,
+code varchar(10) not null,
+constraint fk_validation foreign key(idUser) references inscrit(idUser) on delete cascade
+);
+
 -- création de la table des rôles : 
 -- 2 : utilisateur
 -- 4 : administrateur
