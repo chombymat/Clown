@@ -39,6 +39,7 @@ public class ModificationArticle extends HttpServlet
 			json_media.put("nom", media.getNom());
 			json_media.put("type", media.getType());
 			json_media.put("id", media.getId());
+			json_media.put("doit_inscrit", media.isDoitInscrit());
 			json_medias.add(json_media);
 		}
 		
@@ -109,6 +110,10 @@ public class ModificationArticle extends HttpServlet
 			break;
 		case "delete_video" :
 			modele.deleteVideo(id_media);
+			break;
+		case "access_media" :
+			doit_inscrit = Boolean.valueOf(IOUtils.toString(request.getPart("doit_inscrit").getInputStream(), "UTF-8"));
+			// modele.updateDroitMedia(id_media, doit_inscrit);
 			break;
 		}
 	}

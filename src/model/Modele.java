@@ -471,13 +471,13 @@ public class Modele
 			{
 				article = new Article(id_article, result.getString("titre"), result.getString("contenu"));
 
-				PreparedStatement statement2 = con.prepareStatement("select id_media, chemin, nom, type from media where id_article = ?");
+				PreparedStatement statement2 = con.prepareStatement("select id_media, chemin, nom, type, doitinscrit from media where id_article = ?");
 				statement2.setInt(1, id_article);
 				result = statement2.executeQuery();
 
 				while(result.next())
 				{
-					article.getMedias().add(new Media(result.getInt("id_media"),result.getString("chemin"), result.getString("nom"), result.getString("type")));
+					article.getMedias().add(new Media(result.getInt("id_media"),result.getString("chemin"), result.getString("nom"), result.getString("type"), result.getBoolean("doitinscrit")));
 				}
 			}
 		}

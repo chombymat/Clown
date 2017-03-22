@@ -275,8 +275,12 @@
 				            	bt_delete.html('Supprimer');
 				            	
 				            	var checkbox = $(document.createElement('input'));
-				            	checkbox.attr('id', 'check_'+array[i].id);
+				            	checkbox.attr('id_media', array[i].id);
+				            	checkbox.attr('class', 'update_checkbox');
 				            	checkbox.attr('type', 'checkbox');
+				            	console.log(array[i].doit_inscrit);
+				            	if(array[i].doit_inscrit === true)
+				            		checkbox.prop('checked', true);
 				            	
 			            		if(array[i].type === "photo")
 			            		{
@@ -517,8 +521,30 @@
 				$('.bt_delete_photo').unbind('click');
 				$('.bt_delete_pdf').unbind('click');
 				$('bt_delete_video').unbind('click');
+				$('.update_checkbox').unbind('click');
 				
 				initialiserModal();
+				
+				$('.update_checkbox').on('change', function(){
+					var id_media = $(this).attr('id_media');
+					var form_data = new FormData();
+					form_data.append('id_media', id_media);
+					form_data.append('doit_inscrit', $(this).checked);
+					form_data.append('type', 'access_media');
+					
+					$.ajax({
+						url: './ModificationArticle',
+						type: 'POST',
+			            mimeType:'multipart/form-data',
+			            contentType: false,
+			            processData: false,
+			            data: form_data,
+			            success : function()
+			            {
+			            	alert('Droit d\'accès modifié');
+			            }
+					});
+				});
 				
 				$('.bt_delete_photo').on('click', function(){
 					var id_media = $(this).attr('id_media');

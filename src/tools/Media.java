@@ -14,6 +14,14 @@ public class Media {
 		this.nom = nom;
 		this.doitInscrit = false;	
 	}
+	
+	public Media(int id, String chemin, String nom, String type, boolean doit_inscrit){
+		this.id = id;
+		this.chemin = chemin;
+		this.type = type;
+		this.nom = nom;
+		this.doitInscrit = doit_inscrit;	
+	}
 
 	public Media(int id, int idArticle, String chemin, String type){
 		this.id = id;
