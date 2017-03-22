@@ -60,8 +60,8 @@ public class Inscription extends HttpServlet {
 				
 				modele.envoyerMailInscription(	
 						nom, prenom , mail, login,
-						"https://localhost:8443/Clown/Inscription?confirmation=" + login,
-						"https://localhost:8443/Clown/Inscription?refus=" + login);
+						"https://localhost:8443/Clown/Inscription?confirmation=" + modele.cryptPass(login),
+						"https://localhost:8443/Clown/Inscription?refus=" + modele.cryptPass(login));
 				modele = new Modele();
 				String retourInscription = modele.ajoutUtilisateur(nom, prenom, login, mail, pass);
 				

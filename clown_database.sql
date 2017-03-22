@@ -52,7 +52,7 @@ create table utilisateur(
 	nom varchar(100) not null,
 	prenom varchar(100) not null,
 	adresse_mail varchar(100) not null unique,
-	login varchar(20) not null unique,
+	login varchar(200) not null unique,
 	prima_pass varchar(100) not null,
 	constraint pk_utilisateur primary key(id_utilisateur)
 );

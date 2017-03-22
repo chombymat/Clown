@@ -43,7 +43,7 @@ public class Modele
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
 			PreparedStatement ps_connection = con.prepareStatement(
 					"select role, utilisateur.id_utilisateur, nom, prenom, adresse_mail from utilisateur, role where role.id_utilisateur = utilisateur.id_utilisateur and login = ? and prima_pass = ?");
-			ps_connection.setString(1, login);
+			ps_connection.setString(1, cryptPass(login));
 			ps_connection.setString(2, cryptPass(pass));
 			ResultSet result = ps_connection.executeQuery();
 
@@ -66,7 +66,7 @@ public class Modele
 		return user;
 	}
 
-	private String cryptPass(String pass)
+	public String cryptPass(String pass)
 	{
 		byte[] salt = new String("Clown").getBytes();
 
@@ -237,7 +237,7 @@ public class Modele
 				return "mail existant";
 
 			PreparedStatement statement2 = con.prepareStatement("select from utilisateur where login = ?");
-			statement2.setString(1, login);
+			statement2.setString(1, cryptPass(login));
 			result = statement2.executeQuery();
 
 			if(result.next())
@@ -246,7 +246,7 @@ public class Modele
 			statement3.setString(1, nom);
 			statement3.setString(2, prenom);
 			statement3.setString(3, mail);
-			statement3.setString(4, login);
+			statement3.setString(4, cryptPass(login));
 			statement3.setString(5, cryptPass(pass));
 
 			statement3.executeUpdate();
@@ -268,7 +268,7 @@ public class Modele
 		try {	
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
 			PreparedStatement statement = con.prepareStatement("select id_utilisateur from utilisateur where login = ?");
-			statement.setString(1,login);
+			statement.setString(1,cryptPass(login));
 			ResultSet result = statement.executeQuery();
 
 			if(result.next()){
@@ -279,7 +279,6 @@ public class Modele
 				statement2.setString(2, "role2");
 
 				statement2.executeUpdate();
-				System.out.println("ajout confirmé de l'utiliateur : " + login);
 			}
 
 		}catch (SQLException e) {
@@ -303,10 +302,9 @@ public class Modele
 		try {	
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
 			PreparedStatement statement = con.prepareStatement("delete from utilisateur where login = ?");
-			statement.setString(1,login);
+			statement.setString(1,cryptPass(login));
 
 			statement.executeUpdate();
-			System.out.println("suppression confirmée de l'utiliateur : " + login);
 
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -330,7 +328,7 @@ public class Modele
 		try {	
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
 			PreparedStatement statement = con.prepareStatement("select adresse_mail from utilisateur where login = ?");
-			statement.setString(1,login);
+			statement.setString(1,cryptPass(login));
 
 			ResultSet result = statement.executeQuery();
 			if(result.next())
@@ -359,7 +357,7 @@ public class Modele
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
 			PreparedStatement statement = con.prepareStatement("update utilisateur set prima_pass = ? where login = ? and adresse_mail = ?");
 			statement.setString(1, cryptPass(pass));
-			statement.setString(2, login);
+			statement.setString(2, cryptPass(login));
 			statement.setString(3, mail);
 			statement.executeUpdate();
 
@@ -1030,4 +1028,8 @@ public class Modele
 		return 0;
 	}
 
+	public Modele getModele(){
+		return this;
+	}
+	
 }
