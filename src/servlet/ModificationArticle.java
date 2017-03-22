@@ -97,6 +97,16 @@ public class ModificationArticle extends HttpServlet
 		case "delete_pdf" :
 			modele.supprimerMedia(getServletContext().getRealPath("/") + "images/pdf/" + id_article + "/" + id_media + ".pdf", id_media);
 			break;
+		case "add_video" :
+			String url_video = IOUtils.toString(request.getPart("media").getInputStream(), "UTF-8");
+			id_media = modele.addVideo(url_video, Integer.valueOf(id_article));
+			JSONObject json_video = new JSONObject();
+			json_video.put("id_media", id_media);
+			response.getWriter().println(json_video);
+			break;
+		case "delete_video" :
+			modele.deleteVideo(id_media);
+			break;
 		}
 	}
 }

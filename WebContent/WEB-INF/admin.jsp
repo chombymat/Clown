@@ -253,6 +253,8 @@
 		            	{
 			            	$('#modif_article_image').html("");
 			            	$('#modif_article_pdf').html("");
+			            	$('#modif_article_video').html("");
+			            	
 			            	for(var i = 0; i < array.length; i++)
 			            	{
 			            		var div = $(document.createElement('div'));
@@ -308,6 +310,16 @@
 					            	div.append(bt_delete);
 					            	
 					            	$('#modif_article_pdf').append(div);
+			            		}
+			            		else if(array[i].type === "video")
+			            		{
+					            	bt_delete.attr('class', 'bt_delete_video btn btn-sample');
+					            	div.attr('class', array[i].id + ' col-md-6');
+					            	div.append(array[i].chemin);
+					            	div.append('<br>');
+					            	div.append(bt_delete);
+					            	
+					            	$('#modif_article_video').append(div);
 			            		}
 			            	}
 			            	
@@ -491,9 +503,10 @@
 			
 			function initialiserUpdateArticle()
 			{
-				$('.bt_delete_photo').unbind('click');
 				$('.bt_rename').unbind('click');
+				$('.bt_delete_photo').unbind('click');
 				$('.bt_delete_pdf').unbind('click');
+				$('bt_delete_video').unbind('click');
 				
 				initialiserModal();
 				
@@ -519,6 +532,25 @@
 			        });
 				});
 				
+				$('.bt_delete_video').on('click', function(){
+					var id_media = $(this).attr('id_media');
+					var form_data = new FormData();
+					form_data.append("type", "delete_video");
+					form_data.append("id_media", id_media);
+					
+					$.ajax({
+			            url: './ModificationArticle',
+			            type: 'POST',
+			            mimeType:'multipart/form-data',
+			            contentType: false,
+			            processData: false,
+			            data: form_data,
+			            success : function()
+			            {
+			            	$('.' + id_media).remove();
+			            }
+			        });
+				});
 
 				$('.bt_rename').on('click', function(e)
 				{
@@ -564,6 +596,48 @@
 			            }
 			        });
 				});
+				
+				$('#bt_update_add_video').on('click', function(){
+					if($('#update_get_video').is(':visible'))
+						$('#update_get_video').hide();
+					else
+						$('#update_get_video').show();
+				});
+				
+				$('#bt_update_submit_video').on('click',function(){
+					var form_data = new FormData();
+					form_data.append('id_article', id_article);
+					form_data.append('media', $('#tb_update_url_video').val());
+					form_data.append('type', 'add_video');
+					
+					$.ajax({
+			            url: './ModificationArticle',
+			            type: 'POST',
+			            mimeType:'multipart/form-data',
+			            contentType: false,
+			            processData: false,
+			            data: form_data,
+			            success : function(json)
+			            {
+			            	json = jQuery.parseJSON(json);
+			            	
+			            	var div = $(document.createElement('div'));
+			            	div.attr('class', json.id_media + ' col-md-6');
+			            	var bt_delete = $(document.createElement('button'));
+			            	bt_delete.attr('id_media', json.id_media);
+			            	bt_delete.attr('class', 'bt_delete_video btn btn-sample');
+			            	bt_delete.html('Supprimer');
+			            	
+			            	div.append($('#tb_update_url_video').val());
+			            	div.append('<br>');
+			            	div.append(bt_delete);
+			            	
+			            	$('#modif_article_video').append(div);
+
+			            	initialiserUpdateArticle();
+			            }
+			        });
+				});
 			}
 			
 			function hideOnglet()
@@ -588,7 +662,7 @@
 				}
 				
 				hideOnglet();
-
+				
 				switch($(this).attr('id'))
 				{
 				case 'onglet_contenu' :
@@ -597,10 +671,11 @@
 				case 'onglet_photo' :
 					$('#update_gestion_photo').show();
 					break;
-				case 'onglet_video' :
-					break;
 				case 'onglet_pdf' :
 					$('#update_pdf').show();
+					break;
+				case 'onglet_video' :
+					$('#update_video').show();
 					break;
 				}
 				
@@ -760,6 +835,18 @@
 			</div>
 			
 			<div id="update_video">
+				<div class="scroll-bar-wrap-admin">
+					<div id="modif_article_video" class="scroll-box-admin">
+					</div>
+					<div class="cover-bar">
+					</div>
+				</div>
+				<button id="bt_update_add_video" class="btn btn-sample">Ajouter vidéo</button>
+				<div id="update_get_video" class="row" hidden>
+					<label for="tb_update_url_video">Lien de la vidéo :</label>
+					<input type="text" id="tb_update_url_video">
+					<button id="bt_update_submit_video" class="btn btn-sample">Valider</button>
+				</div>
 			</div>
 			
 		</div>

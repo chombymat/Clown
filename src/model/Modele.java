@@ -1030,4 +1030,47 @@ public class Modele
 		return 0;
 	}
 
+	public int addVideo(String url_video, Integer id_article)
+	{
+		Connection con = null;
+		try
+		{
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("insert into media (id_article, type, chemin) values(?, ?, ?) returning id_media");
+			statement.setInt(1, id_article);
+			statement.setString(2, "video");
+			statement.setString(3, url_video);
+			ResultSet result = statement.executeQuery();
+			result.next();
+			return result.getInt("id_media");
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try{ con.close(); }catch(Exception e){}
+		}
+		return 0;
+	}
+
+	public void deleteVideo(int id_media) 
+	{
+		Connection con = null;
+		try
+		{
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("delete from media where id_media = ?");
+			statement.setInt(1, id_media);
+			statement.executeUpdate();
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try{ con.close(); }catch(Exception e){}
+		}
+	}
+
 }
