@@ -50,6 +50,7 @@ h3{color: #C21950; font-family: Serif;}
   width: 100%;
   height: 370px;
   overflow-y: scroll;
+  overflow-x: none;
 }
 
 .scroll-box-admin::-webkit-scrollbar {
