@@ -17,6 +17,7 @@ public class Inscription extends HttpServlet {
 		Modele modele = new Modele();
 		
 		try {
+			
 			String tokenConfirmation = (String)request.getParameter("confirmation");
 			String mail = modele.getMailUtilisateur(tokenConfirmation);
 			if(tokenConfirmation != null){
