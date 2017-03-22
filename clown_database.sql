@@ -39,6 +39,7 @@ create table media(
 	chemin text not null,
 	nom text,
 	type varchar(50) not null,
+	doitInscrit boolean default 'false',
 	constraint pk_media primary key(id_media),
 	constraint fk_media_article foreign key(id_article) references article(id_article) on update cascade on delete restrict
 );

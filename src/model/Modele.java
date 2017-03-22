@@ -535,7 +535,7 @@ public class Modele
 			}
 
 			statement.close();
-			String query = "select chemin, id_article, nom, type from media where media.id_article in (";
+			String query = "select chemin, id_article, nom, type, doitInscrit from media where media.id_article in (";
 
 			boolean firstLine = true;					
 			for(Map.Entry<Integer, Article> article : articles.entrySet())
@@ -555,7 +555,7 @@ public class Modele
 
 			while(result.next())
 			{
-				articles.get(result.getInt("id_article")).getMedias().add(new Media(result.getString("chemin"), result.getString("nom"), result.getString("type")));
+				articles.get(result.getInt("id_article")).getMedias().add(new Media(result.getString("chemin"), result.getString("nom"), result.getString("type"), result.getBoolean("doitInscrit")));
 			}
 		} catch (Exception e){
 			e.printStackTrace();
@@ -757,16 +757,17 @@ public class Modele
 	//------------------------------------------------------MEDIA------------------------------------------------------------
 
 
-	public int ajouterMedia(int id_article, String chemin, String nom, String type, String extension){
+	public int ajouterMedia(int id_article, String chemin, String nom, String type, String extension, boolean doit_inscrit){
 		Connection con = null;
 		try{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement = con.prepareStatement("insert into media (chemin, type, id_article, nom) values(? || (select last_value from media_id_media_seq) || ?, ?, ?, ?) returning id_media");
+			PreparedStatement statement = con.prepareStatement("insert into media (chemin, type, id_article, nom, doitInscrit) values(? || (select last_value from media_id_media_seq) || ?, ?, ?, ?, ?) returning id_media");
 			statement.setString(1, chemin);
 			statement.setString(2, extension);
 			statement.setString(3, type);
 			statement.setInt(4, id_article);
 			statement.setString(5, nom);
+			statement.setBoolean(6, doit_inscrit);
 			ResultSet result = statement.executeQuery();
 			
 			result.next();
@@ -844,11 +845,11 @@ public class Modele
 		Connection con = null;
 		try{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement = con.prepareStatement("select chemin, type, nom from media where id_article = ?");
+			PreparedStatement statement = con.prepareStatement("select chemin, type, nom, doitInscrit from media where id_article = ?");
 			statement.setInt(1, idArticle);
 			ResultSet result = statement.executeQuery();
 			while(result.next()){
-				medias.add(new Media(result.getString(1), result.getString(2), result.getString(3)));
+				medias.add(new Media(result.getString("chemin"), result.getString("nom"), result.getString("type"), result.getBoolean("doitInscrit")));
 			}
 			return medias;
 
@@ -1005,17 +1006,18 @@ public class Modele
 		}
 	}
 	
-	public int addPdf(int id_article, String name)
+	public int addPdf(int id_article, String name, boolean doit_inscrit)
 	{
 		Connection con = null;
 		try
 		{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement = con.prepareStatement("insert into media (id_article, type, nom, chemin) values(?, ?, ?, ? || (select last_value from media_id_media_seq) || '.pdf') returning id_media");
+			PreparedStatement statement = con.prepareStatement("insert into media (id_article, type, nom, chemin, doitInscrit) values(?, ?, ?, ? || (select last_value from media_id_media_seq) || '.pdf', ?) returning id_media");
 			statement.setInt(1, id_article);
 			statement.setString(2, "pdf");
 			statement.setString(3, name);
 			statement.setString(4, "images/pdf/" + id_article + "/");
+			statement.setBoolean(5, doit_inscrit);
 			ResultSet result = statement.executeQuery();
 			result.next();
 			return result.getInt("id_media");
@@ -1030,16 +1032,17 @@ public class Modele
 		return 0;
 	}
 
-	public int addVideo(String url_video, Integer id_article)
+	public int addVideo(String url_video, Integer id_article, boolean doit_inscrit)
 	{
 		Connection con = null;
 		try
 		{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement = con.prepareStatement("insert into media (id_article, type, chemin) values(?, ?, ?) returning id_media");
+			PreparedStatement statement = con.prepareStatement("insert into media (id_article, type, chemin, doitInscrit) values(?, ?, ?, ?) returning id_media");
 			statement.setInt(1, id_article);
 			statement.setString(2, "video");
 			statement.setString(3, url_video);
+			statement.setBoolean(4, doit_inscrit);
 			ResultSet result = statement.executeQuery();
 			result.next();
 			return result.getInt("id_media");
