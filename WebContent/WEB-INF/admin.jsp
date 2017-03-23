@@ -722,7 +722,7 @@
 					form_data.append('id_article', id_article);
 					form_data.append('media', url);
 					form_data.append('type', 'add_video');
-					form_data.append('doit_inscrit', $('#check_update_add_video').checked);
+					form_data.append('doit_inscrit', $('#check_update_add_video').is(":checked"));
 					
 					$.ajax({
 			            url: './ModificationArticle',
