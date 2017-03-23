@@ -17,8 +17,34 @@
 <body>
 	<% Article article = (Article)request.getAttribute("article"); %>
 	<%@include file="/WEB-INF/navbar.jsp" %>
-	
-	<div id="pain">
+	<script>
+	$(document).ready(function(){
+		var modal = document.getElementById('myModal');
+		
+		var span = document.getElementsByClassName("close")[0];
+
+		$('.myImg').on('click', function() {
+			$('html, body').css({
+			overflow : 'hidden',
+			height : '100%'
+			});
+			
+			$('#myModal').attr('style', 'display: block');
+			$('#img01').attr('src', $(this).attr('src'));
+			$('#caption').html($(this).attr('alt'));
+		});
+		
+		
+		span.onclick = function() {
+			$('html, body').css({
+				overflow : 'auto',
+				height : 'auto'
+			});
+			modal.style.display = "none";
+		}
+	});
+	</script>
+	<div id="formation">
 		<h2><%= article.getTitre() %></h2><br>
 		<div class="row parent">
 			<div class="col-md-5 enfant">
@@ -99,6 +125,12 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	
+		<!-- The Modal -->
+	<div id="myModal" class="modal">
+		<span class="close">&times;</span> <img class="modal-content" id="img01">
+		<div id="caption"></div>
 	</div>
 	
 	<%@include file="/WEB-INF/footer.html" %>
