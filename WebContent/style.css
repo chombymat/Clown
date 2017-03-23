@@ -6,6 +6,11 @@ h1{text-align:center;color: #C21950;font-family: Serif;}
 h2{color: #C21950; font-family: Serif;font-size: 40px;}
 h3{color: #C21950; font-family: Serif;}
 
+#partenaire
+{
+	font-size: 17px;
+}
+
 #bt_rename{
 	margin-right:10px;
 	margin-left:10px;
