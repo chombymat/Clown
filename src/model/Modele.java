@@ -67,7 +67,7 @@ public class Modele
 
 		return user;
 	}
-	
+
 	public  String generateToken(){
 		String lettreMaj[] = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
 		String lettreMin[] = new String[]{"a", "b", "c", "d", "e" ,"f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
@@ -195,13 +195,13 @@ public class Modele
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void envoyerMailModifPassword(String pseudo, String mail, String lienModifPassword){
 		try{
 
 			String message = "Votre demande de modification de mot de passe sous le login " + pseudo +
-							 " a bien été prise en compte. Veuillez cliquez sur le lien ci-dessous pour modifier ce champ :\n" +
-							 lienModifPassword;
+					" a bien été prise en compte. Veuillez cliquez sur le lien ci-dessous pour modifier ce champ :\n" +
+					lienModifPassword;
 			Session session_mail = (Session)((Context)new InitialContext().lookup("java:comp/env")).lookup("mail/Session");
 			Message msg = new MimeMessage(session_mail);
 			msg.setFrom(new InternetAddress(mailEntreprise));
@@ -214,7 +214,7 @@ public class Modele
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void envoyerMailConfirmPassword(String pseudo, String mail){
 		try{
 
@@ -272,27 +272,27 @@ public class Modele
 
 			if(result.next())
 				return "login existant";
-			
-			
-			
+
+
+
 			PreparedStatement statement3 = con.prepareStatement("insert into utilisateur (nom, prenom, adresse_mail, login, prima_pass) values(?, ?, ?, ?, ?) returning id_utilisateur");
 			statement3.setString(1, nom);
 			statement3.setString(2, prenom);
 			statement3.setString(3, mail);
 			statement3.setString(4, cryptPass(login));
 			statement3.setString(5, cryptPass(pass));
-			
+
 			result = statement3.executeQuery();
 			result.next();
 			int id = result.getInt(1);
-			
+
 			String token = generateToken();
 			PreparedStatement statement4 = con.prepareStatement("insert into validation (id_utilisateur, token) values(?, ?)");
 			statement4.setInt(1, id);
 			statement4.setString(2, token);
 			statement4.executeUpdate();
 			return token;
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "exception";
@@ -304,28 +304,28 @@ public class Modele
 			}
 		}
 	}
-	
-	
+
+
 
 	public void ajoutRoleUtilisateur(String token) throws Exception {
 		Connection con = null;
 		try {	
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			
-			
-			
+
+
+
 			PreparedStatement statement = con.prepareStatement("select id_utilisateur from validation where token = ?");
 			statement.setString(1, token);
 			ResultSet result = statement.executeQuery();
 
 			if(result.next()){
 				int id = result.getInt(1);
-				
+
 				PreparedStatement statement2 = con.prepareStatement("insert into role (id_utilisateur, role) values(?, ?)");
 				statement2.setInt(1, id);
 				statement2.setString(2, "role2");
 				statement2.executeUpdate();
-				
+
 				PreparedStatement statement3 = con.prepareStatement("delete from validation where token = ?");
 				statement3.setString(1, token);
 				statement3.executeUpdate();
@@ -351,11 +351,11 @@ public class Modele
 		Connection con = null;
 		try {	
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			
+
 			PreparedStatement statement = con.prepareStatement("delete from validation where token = ? returning id_utilisateur");
 			statement.setString(1, token);
 			ResultSet result = statement.executeQuery();
-			
+
 			if(result.next()){
 				PreparedStatement statement2 = con.prepareStatement("delete from utilisateur where id_utilisateur = ?");
 				statement2.setInt(1, result.getInt(1));
@@ -379,22 +379,22 @@ public class Modele
 
 
 	public String getMailUtilisateur(String token) throws Exception {
-		
+
 		String mail = null;
 		Connection con = null;
-		
+
 		try {	
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			
+
 			PreparedStatement statement = con.prepareStatement("select id_utilisateur from validation where token = ?");
 			statement.setString(1, token);
 			ResultSet result = statement.executeQuery();
-			
+
 			if(result.next()){
 				PreparedStatement statement2 = con.prepareStatement("select adresse_mail from utilisateur where id_utilisateur = ?");
 				statement2.setInt(1, result.getInt(1));
 				result = statement2.executeQuery();
-				
+
 				if(result.next()){
 					mail = result.getString(1);
 				}
@@ -416,7 +416,7 @@ public class Modele
 			}
 		}
 	}
-	
+
 	public String  modifierPasswordUtilisateur(String login, String mail, String pass) throws Exception {
 		Connection con = null;
 		try {	
@@ -427,7 +427,7 @@ public class Modele
 			statement.setString(3, mail);
 			statement.executeUpdate();
 
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 
@@ -558,7 +558,7 @@ public class Modele
 
 		return article;
 	}
-	
+
 	public HashMap<Integer, tools.Article> getAteliers() 
 	{
 		HashMap<Integer, Article> articles = new HashMap<Integer, Article>();
@@ -637,7 +637,7 @@ public class Modele
 
 		return articles;
 	}
-	
+
 	public HashMap<Integer, tools.Article> getDemarche() 
 	{
 		HashMap<Integer, Article> articles = new HashMap<Integer, Article>();
@@ -647,7 +647,7 @@ public class Modele
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
 			PreparedStatement statement = con.prepareStatement("select article.id_article as id_article, article.titre, contenu from projet, article where projet.id_projet = article.id_projet and projet.id_projet = 2");
 			ResultSet result = statement.executeQuery();
-			
+
 			while(result.next())
 			{
 				switch(result.getInt("id_article"))
@@ -734,7 +734,7 @@ public class Modele
 			statement.close();
 
 			query += ")";
-			
+
 			PreparedStatement statement2 = con.prepareStatement(query);
 			result = statement2.executeQuery();
 
@@ -759,7 +759,7 @@ public class Modele
 
 		return clowns;
 	}
-	
+
 	public Article getArticle(String titre)
 	{
 		Article article = null;
@@ -833,11 +833,11 @@ public class Modele
 			statement.setString(5, nom);
 			statement.setBoolean(6, doit_inscrit);
 			ResultSet result = statement.executeQuery();
-			
+
 			result.next();
-			
+
 			int id_media = result.getInt("id_media");
-			
+
 			return id_media;
 		} catch (Exception e){
 			e.printStackTrace();
@@ -848,7 +848,7 @@ public class Modele
 				e.printStackTrace();
 			}
 		}
-		
+
 		return -1;
 	}
 
@@ -856,14 +856,14 @@ public class Modele
 		Connection con = null;
 		try{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			
+
 			PreparedStatement statement = con.prepareStatement("insert into media (chemin, type, nom) values(? || (select last_value from media_id_media_seq) || ?, ?, ?) returning id_media");
 			statement.setString(1, chemin);
 			statement.setString(2, extension);
 			statement.setString(3, type);
 			statement.setString(4, nom);
 			ResultSet result = statement.executeQuery();
-			
+
 			result.next();
 
 			return result.getInt("id_media");
@@ -876,12 +876,13 @@ public class Modele
 				e.printStackTrace();
 			}
 		}
-		
+
 		return -1;
 	}
 
 
-	public void supprimerMedia(String chemin, int id_media){
+	public void supprimerMedia(String chemin, int id_media)
+	{
 		Connection con = null;
 		File img = new File(chemin);
 		try{
@@ -902,7 +903,7 @@ public class Modele
 			}
 		}
 	}
-	
+
 	public ArrayList<Media> getMedias(int idArticle)
 	{
 		ArrayList<Media> medias = new ArrayList<Media>();
@@ -975,10 +976,10 @@ public class Modele
 	public void saveMediaOnDisk(String chemin, Part media, int id_media)
 	{
 		File file = new File(chemin);
-		
+
 		if(!file.exists())
 			file.mkdirs();
-		
+
 		try 
 		{
 			media.write(chemin + id_media + media.getSubmittedFileName().substring(media.getSubmittedFileName().lastIndexOf(".")));
@@ -1056,10 +1057,10 @@ public class Modele
 	public void savePdfOnDisk(String racine, int id_article, int id_media, Part part) 
 	{
 		File file = new File(racine + "images/pdf/" + id_article + "/");
-		
+
 		if(!file.exists())
 			file.mkdirs();
-		
+
 		try
 		{
 			part.write(file.getAbsolutePath() + "/" + id_media + ".pdf");
@@ -1069,7 +1070,7 @@ public class Modele
 			e.printStackTrace();
 		}
 	}
-	
+
 	public int addPdf(int id_article, String name, boolean doit_inscrit)
 	{
 		Connection con = null;
@@ -1096,7 +1097,7 @@ public class Modele
 		return 0;
 	}
 
-	
+
 	public int addVideo(String url_video, Integer id_article, boolean doit_inscrit)
 	{
 		Connection con = null;
@@ -1161,4 +1162,188 @@ public class Modele
 		}
 	}
 
+	public void renameClown(int id_clown, String new_name)
+	{
+		Connection con = null;
+		try
+		{
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("update clown set nom = ? where id_clown = ?");
+			statement.setString(1, new_name);
+			statement.setInt(2, id_clown);
+			statement.executeUpdate();
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try{ con.close(); }catch(Exception e){}
+		}
+	}
+
+	public void changePortraitClown(String racine, Integer id_clown, Part media) 
+	{
+		Connection con = null;
+		try
+		{
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("select chemin from media_clown where id_clown = ? and type like 'portrait'");
+			statement.setInt(1, id_clown);
+			ResultSet result = statement.executeQuery();
+			result.next();
+			String chemin = result.getString("chemin");
+			media.write(racine + chemin);
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try{ con.close(); }catch(Exception e){}
+		}
+	}
+
+	public Object[] addPhotoClown(Integer id_clown, String racine, String name_media, Part part) 
+	{
+		Object[] return_values = new Object[2];
+		Connection con = null;
+		return_values[1] = "images/clowns/" + id_clown + "/";
+		String extension = part.getSubmittedFileName().substring(part.getSubmittedFileName().lastIndexOf("."));
+		
+		try
+		{
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("insert into media_clown (id_clown, type, nom, chemin) values(?, ?, ?, ? || (select last_value from media_clown_id_media_seq) || ?) returning id_media");
+			statement.setInt(1, id_clown);
+			statement.setString(2, "photo");
+			statement.setString(3, name_media);
+			statement.setString(4, return_values[1].toString());
+			statement.setString(5, extension);
+			ResultSet result = statement.executeQuery();
+			result.next();
+			return_values[0] =  result.getInt("id_media");
+			return_values[1] = return_values[1].toString() + return_values[0].toString() + extension;
+			part.write(racine + return_values[1]);
+			return return_values;
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try{ con.close(); }catch(Exception e){}
+		}
+		return return_values;
+	}
+
+	public void deleteMediaClown(String racine, String chemin, int id_media) 
+	{
+		Connection con = null;
+		File img = new File(racine + chemin);
+		try{
+			img.delete();
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("delete from media_clown where id_media = ?");
+			statement.setInt(1, id_media);
+			statement.executeUpdate();
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				con.close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void renameMediaClown(int id_media, String new_name) 
+	{
+		Connection con = null;
+		try{
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("update media_clown set nom = ? where id_media = ?");
+			statement.setString(1, new_name);
+			statement.setInt(2, id_media);
+			statement.executeUpdate();
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				con.close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void deleteClown(String racine, int id_clown) 
+	{
+		Connection con = null;
+		File file = new File(racine + "images/clowns/" + id_clown);
+		
+		try{
+			if(file.exists())
+			{
+				for(File f : file.listFiles())
+					f.delete();
+				
+				file.delete();
+			}
+			
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("delete from clown where id_clown = ?");
+			statement.setInt(1, id_clown);
+			statement.executeUpdate();
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				con.close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void addClown(String racine, String name_clown, Part part) 
+	{
+		Connection con = null;
+		String extension = part.getSubmittedFileName().substring(part.getSubmittedFileName().lastIndexOf("."));
+		try{
+			
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("insert into clown(nom) values(?) returning id_clown");
+			statement.setString(1, name_clown);
+			ResultSet result = statement.executeQuery();
+			result.next();
+			int id_clown = result.getInt("id_clown");
+			File file = new File(racine + "images/clowns/" + id_clown);
+			
+			if(!file.exists())
+			{
+				file.mkdirs();
+			}
+			
+			PreparedStatement statement2 = con.prepareStatement("insert into media_clown(id_clown, chemin, type, nom) values(?, ?  || (select last_value from media_clown_id_media_seq) || ?, 'portrait', 'portrait') returning id_media");
+			statement2.setInt(1, id_clown);
+			statement2.setString(2, "images/clowns/" + id_clown + "/");
+			statement2.setString(3, extension);
+			result = statement2.executeQuery();
+			result.next();
+			int id_media = result.getInt("id_media");
+			part.write(racine + "images/clowns/" + id_clown + "/" +  id_media + extension);
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				con.close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
 }

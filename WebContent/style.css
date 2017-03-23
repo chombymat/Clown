@@ -29,10 +29,6 @@ h3{color: #C21950; font-family: Serif;}
 	margin-top: 70%;
 }
 
-#modifier_article {
-	margin-top: 3%;
-}
-
 
 /* scrolls*/
 .scroll-bar-wrap {
@@ -255,7 +251,7 @@ h3{color: #C21950; font-family: Serif;}
 .img-thumbnail{
 	background-color: transparent;
 	border-color: transparent;
-	height: auto; 
+	height: 150px; 
     width: auto;
     max-width: 175px; 
     max-height: 150px;

@@ -23,6 +23,9 @@
 			
 			$('#bt_galerie').on('click', function()
 			{
+				if($('#gestion_clowns').is(':visible'))
+					$('#gestion_clowns').hide();
+				
 				if($('#page_modif_article').is(':visible'))
 					$('#page_modif_article').hide();
 				
@@ -42,6 +45,19 @@
 			$('#bt_galerie_add_photo_submit').on('click', function(){
 				var name = $('#tb_galerie_name_new_photo').val();
  				var file = $('#file_galerie_get_photo')[0].files[0];
+ 				
+ 				if(name == null || name == "")
+				{
+					alert("Veuillez saisir un nom pour l'image");
+					return;					
+				}
+				
+				if(file == null)
+				{
+					alert("Veuillez importer un fichier");
+					return;					
+				}
+ 				
 				var form_data = new FormData();
 				form_data.append('type', 'add');
 				form_data.append('media', file);
@@ -151,6 +167,13 @@
 				$('.bt_galerie_rename').on('click', function(){
 					var id_media = $(this).attr('id_media');
 					var new_name = $('#name_' + id_media).val();
+					
+					if(new_name == null || new_name == "")
+					{
+						alert("Veuillez saisir un nom pour l'image");
+						return;
+					}
+					
 					console.log(id_media);
 					console.log(new_name);
 					var form_data = new FormData();
@@ -166,6 +189,7 @@
 			            success : function(data)
 			            {
 			            	$('#img_' + id_media).attr('alt', new_name);
+			            	alert("Modification réussie");
 			            }
 			        });
 				});
@@ -226,6 +250,9 @@
 			var id_article = null;
 			
 			$('#bt_modif_article').on('click', function(){
+				if($('#gestion_clowns').is(':visible'))
+					$('#gestion_clowns').hide();
+				
 				if($('#page_galerie').is(':visible'))
 					$('#page_galerie').hide();
 
@@ -391,13 +418,28 @@
 			});
 			
 			$('#bt_update_add_photo_submit').on('click', function(){
+				var name = $('#tb_update_name_photo').val();			
+				var file = $('#file_update_get_photo')[0].files[0];
+
+				if(name == null || name == "")
+				{
+					alert("Veuillez saisir un nom pour l'image");
+					return;					
+				}
+				
+				if(file == null)
+				{
+					alert("Veuillez importer un fichier");
+					return;					
+				}
+				
 				var form_data = new FormData();
 				console.log(id_article);
 				form_data.append("type", "add_photo");
 				form_data.append("id_article", id_article);
-				form_data.append('nom', $('#tb_update_name_photo').val());
-				form_data.append('media', $('#file_update_get_photo')[0].files[0]);
-				form_data.append('doit_inscrit', $('#check_' + id_media).checked);
+				form_data.append('nom', name);
+				form_data.append('media', file);
+				form_data.append('doit_inscrit', $('#check_update_add_photo').checked);
 				
 				$.ajax({
 		            url: './ModificationArticle',
@@ -434,6 +476,7 @@
 		            	div.append(img);
 		            	div.append('<br>');
 		            	div.append(input);
+		            	div.append('<br>');
 		            	div.append(bt_rename);
 		            	div.append(bt_delete);
 		            	
@@ -460,11 +503,26 @@
 			});
 			
 			$('#bt_update_submit_pdf').on('click', function(){
+				var name = $('#tb_update_name_pdf').val();
+				var file = $('#file_update_get_pdf')[0].files[0];
+				
+				if(name == null || name == "")
+				{
+					alert("Veuillez saisir un nom pour le PDF");
+					return;					
+				}
+				
+				if(file == null)
+				{
+					alert("Veuillez importer un fichier");
+					return;					
+				}
+				
 				var form_data = new FormData();
 				form_data.append("type", "add_pdf");
 				form_data.append("id_article", id_article);
-				form_data.append('nom', $('#tb_update_name_pdf').val());
-				form_data.append('media', $('#file_update_get_pdf')[0].files[0]);
+				form_data.append('nom', name);
+				form_data.append('media', file);
 				form_data.append('doit_inscrit', $('#check_update_add_pdf').checked);
 				
 				$.ajax({
@@ -595,6 +653,12 @@
 					var new_name = $('#name_' + id_media).val();
 					var form_data = new FormData();
 					
+					if(new_name == null || new_name == "")
+					{
+						alert("Veuillez saisir un nom pour l'image/PDF");
+						return;
+					}
+					
 					form_data.append("type", "rename");
 					form_data.append("new_name", new_name);
 					form_data.append("id_media", id_media);
@@ -609,6 +673,7 @@
 			            success : function()
 			            {
 			            	$('#' + id_media).attr('alt', new_name);
+			            	alert("Modification réussie");
 			            }
 			        });
 				});
@@ -642,9 +707,17 @@
 				});
 				
 				$('#bt_update_submit_video').on('click',function(){
+					var url = $('#tb_update_url_video').val();
+					
+					if(url == null || url == "")
+					{
+						alert("Veuillez saisir l'url d'une video");
+						return;
+					}
+					
 					var form_data = new FormData();
 					form_data.append('id_article', id_article);
-					form_data.append('media', $('#tb_update_url_video').val());
+					form_data.append('media', url);
 					form_data.append('type', 'add_video');
 					form_data.append('doit_inscrit', $('#check_update_add_video').checked);
 					
@@ -751,21 +824,470 @@
 				}
 			}
 			
-			// ----------------------	Ajouter clown ------------------------
+			// ----------------------	Gestion clown ------------------------
+			
+			var id_clown;
 			
 			$('#gestion_clowns').hide();
+ 			$('#file_change_portrait_clown').hide();
+ 			$('#file_add_photo_clown').hide();
+ 			$('#add_clown').hide();
 			
 			$('#bt_gestion_clowns').on('click', function(){
 				if($('#gestion_clowns').is(':visible'))
 					$('#gestion_clowns').hide();
 				else
 				{
+					if($('#page_galerie').is(':visible'))
+						$('#page_galerie').hide();
+					
+					if($('#page_modif_article').is(':visible'))
+						$('#page_modif_article').hide();
+					
+					$.ajax({
+			            url: './ModificationClowns',
+			            type: 'GET',
+			            mimeType:'multipart/form-data',
+			            success : function(json)
+			            {
+			            	json = jQuery.parseJSON(json);
+			            	$('#select_clown').html("");
+			            	$('#select_clown').append("<option disabled selected value hidden></option>");
+			            	
+							$('#info_clown').html("");
+
+							$.each(json, function(i)
+							{
+			            		
+								var option = $(document.createElement('option'));
+								option.attr('id_clown', json[i].id_clown);
+								option.attr('id', 'onglet_' + json[i].id_clown);
+								option.html(json[i].nom);
+	
+								$('#select_clown').append(option);
+								
+								var div = $(document.createElement('div'));
+								div.attr('id', 'clown_' + json[i].id_clown);
+								div.attr('class', 'info_clown');
+								
+								var div_medias = $(document.createElement('div'));
+								div_medias.attr('id', 'medias_' + json[i].id_clown);
+								div_medias.attr('class', 'col-md-6');
+								
+								var div_scroll_bar_wrap = $(document.createElement('div'));
+								div_scroll_bar_wrap.attr('class', 'scroll-bar-wrap');
+								
+								var div_scroll_box = $(document.createElement('div'));
+								div_scroll_box.attr('id', 'medias_content_' + json[i].id_clown);
+								div_scroll_box.attr('class', 'scroll-box');
+								
+								var div_cover_bar = $(document.createElement('div'));
+								div_cover_bar.attr('class', 'cover-bar');
+								
+								div_scroll_bar_wrap.append(div_scroll_box);
+								div_scroll_bar_wrap.append(div_cover_bar);
+								div_medias.append(div_scroll_bar_wrap);
+								
+								var div_portrait = $(document.createElement('div'));
+								div_portrait.attr('class', 'col-md-6');
+								
+								
+								
+								$.each(json[i].medias, function(ii)
+								{
+									if(json[i].medias[ii].type === "portrait")
+									{
+										var img = $(document.createElement('img'));
+										img.attr('src', json[i].medias[ii].chemin);
+										img.attr('id', 'portrait_' + json[i].id_clown);
+										img.attr('height', '400px');
+										img.attr('width', 'auto');	
+										var tb = $(document.createElement('input'));
+										tb.attr('type', 'text');
+										tb.attr('id', 'tb_clown_' + json[i].id_clown);
+										tb.val(json[i].nom);
+										
+										var bt_renomer = $(document.createElement('button'));
+										bt_renomer.attr('id_clown', json[i].id_clown);
+										bt_renomer.html('Renommer');
+										bt_renomer.attr('class', 'bt_rename_clown btn btn-sample');
+										
+										var bt_changer_portrait = $(document.createElement('button'));
+										bt_changer_portrait.attr('id_clown', json[i].id_clown);
+										bt_changer_portrait.html('Changer portrait');
+										bt_changer_portrait.attr('class', 'bt_change_portrait_clown btn btn-sample');
+										
+										div_portrait.append(img);
+										div_portrait.append('<br>');
+										div_portrait.append(tb);
+										div_portrait.append('<br>');
+										div_portrait.append(bt_renomer);
+										div_portrait.append(bt_changer_portrait);
+										
+										div.append(div_portrait);
+									}
+									else if(json[i].medias[ii].type === "photo")
+									{
+										var div_media = $(document.createElement('div'));
+										div_media.attr('id', 'clown_media_' + json[i].medias[ii].id_media);
+										div_media.attr('class', 'col-md-4');
+										var img = $(document.createElement('img'));
+										img.attr('id', 'img_clown_' + json[i].medias[ii].id_media);
+										img.attr('src', json[i].medias[ii].chemin);
+										img.attr('class', 'myImg img-thumbnail');
+										var tb = $(document.createElement('input'));
+										tb.attr('type', 'text');
+										tb.attr('id', 'tb_clown_media_' + json[i].medias[ii].id_media);
+										tb.val(json[i].medias[ii].nom);
+										
+										var bt_renomer = $(document.createElement('button'));
+										bt_renomer.attr('id_media', json[i].medias[ii].id_media);
+										bt_renomer.html('Renommer');
+										bt_renomer.attr('class', 'bt_rename_media_clown btn btn-sample');
+										
+										var bt_delete = $(document.createElement('button'));
+										bt_delete.attr('id_media', json[i].medias[ii].id_media);
+										bt_delete.html('Supprimer');
+										bt_delete.attr('class', 'bt_delete_media_clown btn btn-sample');
+										
+										div_media.append(img);
+										div_media.append('<br>');
+										div_media.append(tb);
+										div_media.append('<br>');
+										div_media.append(bt_renomer);
+										div_media.append(bt_delete);
+										
+										div_scroll_box.append(div_media);
+									}
+								});
+								
+								var bt_add_photo = $(document.createElement('button'));
+								bt_add_photo.attr('id_clown', json[i].id_clown);
+								bt_add_photo.attr('class', 'bt_add_photo_clown btn btn-sample');
+								bt_add_photo.html('Ajouter photo');
+								
+								var div_add_photo = $(document.createElement('div'));
+								var lb = $(document.createElement('label'));
+								var tb_name_photo = $(document.createElement('input'));
+								var bt_import_photo = $(document.createElement('button'));
+								var bt_submit_photo = $(document.createElement('button'));
+								
+								div_add_photo.attr('id', 'add_photo_clown_' + json[i].id_clown);
+								div_add_photo.attr('class', 'row');
+								
+								lb.attr('for', 'tb_name_add_photo_clown');
+								lb.html('Nom de la photo ')
+								
+								tb_name_photo.attr('type', 'text');
+								tb_name_photo.attr('id', 'tb_name_add_photo_clown_' + json[i].id_clown);
+								
+								bt_import_photo.attr('class', 'bt_import_photo_clown btn btn-sample');
+								bt_import_photo.html('Import photo');
+								
+								bt_submit_photo.attr('class', 'bt_submit_photo_clown btn btn-sample');
+								bt_submit_photo.html('Valider');
+								
+								div_add_photo.append(lb);
+								div_add_photo.append(tb_name_photo);
+								div_add_photo.append(bt_import_photo);
+								div_add_photo.append(bt_submit_photo);
+								div_add_photo.prop('hidden', true);
+								
+								div_medias.append(bt_add_photo);
+								div_medias.append(div_add_photo);
+								div.append(div_portrait);
+								div.append(div_medias);
+								
+								var bt_delete_clown = $(document.createElement('button'));
+								bt_delete_clown.attr('class', 'bt_clown_delete btn btn-sample');
+								bt_delete_clown.html("Supprimer clown");
+								
+								div_medias.append(div_add_photo);
+								div.append(div_portrait);
+								div.append(div_medias);
+								
+								div.append(bt_delete_clown);
+								
+								div.prop('hidden', true);
+								$('#info_clown').append(div);
+			            	});
+							
+							initialiserClown();
+			            }
+			        });
 					
 					
 					$('#gestion_clowns').show();
 				}
 			});
 			
+			$('#select_clown').change(function(){
+				id_clown = $('option:selected', this).attr('id_clown');
+				$('.info_clown').hide();
+				$('#clown_' + id_clown).show();
+		    });
+			
+			$('#file_change_portrait_clown').on('change', function(){
+				var form_data = new FormData();
+				form_data.append('type', 'change_portrait_clown');
+				form_data.append('id_clown', id_clown);
+				form_data.append('media', this.files[0]);
+				
+				$.ajax({
+		            url: './ModificationClowns',
+		            type: 'POST',
+		            contentType: false,
+		            processData: false,
+		            data: form_data,
+		            mimeType:'multipart/form-data',
+		            success : function(json)
+		            {
+		            	$('#portrait_' + id_clown).attr('src', $('#portrait_' + id_clown).attr('src') + "?1");
+		            }
+		        });
+			});
+			
+			$('#bt_clown_add').on('click', function(){
+				if($('#add_clown').is(':visible'))
+					$('#add_clown').hide();
+				else
+					$('#add_clown').show();
+			});
+			
+			$('#bt_submit_add_clown').on('click', function(){
+				var name_clown = $('#tb_name_add_clown').val();
+				var file = $('#file_add_photo_clown')[0].files[0];
+	
+				if(name_clown == null || name_clown == "")
+				{
+					alert("Veuillez saisir le nom du clown");
+					return;
+				}
+				
+				if(file == null)
+				{
+					alert("Veuillez importer l'image de portrait du clown");
+					return;
+				}
+				
+				var form_data = new FormData();
+				form_data.append('type', 'add_clown');
+				form_data.append('name_clown', name_clown);
+				form_data.append('media', file);
+				
+				$.ajax({
+			        url: './ModificationClowns',
+			        type: 'POST',
+			        contentType: false,
+			        processData: false,
+			        data: form_data,
+			        mimeType:'multipart/form-data',
+			        success : function(json)
+			        {
+						location.reload();
+			        }
+			    });
+			});
+			
+			$('#bt_get_add_clown').on('click', function()
+			{
+				$('#file_add_photo_clown').click();
+			});
+			
+			function initialiserClown()
+			{
+				
+				$('.bt_rename_clown').unbind('click');
+				$('.bt_change_portrait_clown').unbind('click');
+ 				$('.bt_add_photo_clown').unbind('click');
+ 				$('.bt_import_photo_clown').unbind('click');
+ 				$('.bt_submit_photo_clown').unbind('click');
+ 				$('.bt_delete_media_clown').unbind('click');
+ 				$('.bt_rename_media_clown').unbind('click');
+ 				$('.bt_clown_delete').unbind('click');
+				
+				$('.bt_rename_clown').on('click', function(){
+					var id_clown = $(this).attr('id_clown');
+					var new_name = $('#tb_clown_' + id_clown).val();
+					
+					if(new_name == null || new_name == "")
+					{
+						alert("Veuillez saisir un nom pour l'image");
+						return;
+					}
+					
+					var form_data = new FormData();
+					form_data.append('type', 'rename_clown');
+					form_data.append('id_clown', id_clown);
+					form_data.append('new_name', new_name);
+					
+					$.ajax({
+			            url: './ModificationClowns',
+			            type: 'POST',
+			            contentType: false,
+			            processData: false,
+			            data: form_data,
+			            mimeType:'multipart/form-data',
+			            success : function(json)
+			            {
+			            	alert('Clown renommé');
+			            }
+			        });
+				});
+				
+				$('.bt_change_portrait_clown').on('click', function(){
+					$('#file_change_portrait_clown').click();
+				});
+				
+				$('.bt_add_photo_clown').on('click', function(){
+					if($('#add_photo_clown_' + id_clown).is(':visible'))
+						$('#add_photo_clown_' + id_clown).hide();
+					else
+						$('#add_photo_clown_' + id_clown).show();
+				});
+				
+				$('.bt_import_photo_clown').on('click',function(){
+					$('#file_add_photo_clown').click();
+				});
+				
+				$('.bt_submit_photo_clown').on('click', function(){
+					var name = $('#tb_name_add_photo_clown_' + id_clown).val();
+					var file = $('#file_add_photo_clown')[0].files[0];
+					console.log(id_clown);
+					if(name == null || name == "")
+					{
+						alert("Veuillez saisir un nom pour l'image");
+						return;						
+					}
+					
+					if(file == null)
+					{
+						alert("Veuillez importer une image");
+						return;						
+					}
+					
+					var form_data = new FormData();
+					form_data.append('type', 'add_media');
+					form_data.append('id_clown', id_clown);
+					form_data.append('name', name);
+					form_data.append('media', file);
+					
+					$.ajax({
+			            url: './ModificationClowns',
+			            type: 'POST',
+			            contentType: false,
+			            processData: false,
+			            data: form_data,
+			            mimeType:'multipart/form-data',
+			            success : function(json)
+			            {
+			            	json = $.parseJSON(json);
+			            	
+			            	var div_media = $(document.createElement('div'));
+			            	div_media.attr('id', 'clown_media_' + json.id_media);
+							div_media.attr('class', 'col-md-4');
+							var img = $(document.createElement('img'));
+							img.attr('id', 'img_clown_' + json.id_media);
+							img.attr('src', json.chemin);
+							img.attr('class', 'myImg img-thumbnail');
+							var tb = $(document.createElement('input'));
+							tb.attr('type', 'text');
+							tb.attr('id', 'tb_clown_media_' + json.id_media);
+							tb.val(json.name);
+							
+							var bt_renomer = $(document.createElement('button'));
+							bt_renomer.attr('id_media', json.id_media);
+							bt_renomer.html('Renommer');
+							bt_renomer.attr('class', 'bt_rename_media_clown btn btn-sample');
+							
+							var bt_delete = $(document.createElement('button'));
+							bt_delete.attr('id_media', json.id_media);
+							bt_delete.html('Supprimer');
+							bt_delete.attr('class', 'bt_delete_media_clown btn btn-sample');
+							
+							div_media.append(img);
+							div_media.append('<br>');
+							div_media.append(tb);
+							div_media.append('<br>');
+							div_media.append(bt_renomer);
+							div_media.append(bt_delete);
+							
+							$('#medias_content_' + id_clown).append(div_media);
+			            }
+			        });
+				});
+				
+				$('.bt_delete_media_clown').on('click', function(){
+					var id_media = $(this).attr('id_media');
+					var form_data = new FormData();
+					form_data.append('type', 'delete_media');
+					form_data.append('chemin', $('#img_clown_' + id_media).attr('src'));
+					form_data.append('id_media', id_media);
+					
+					$.ajax({
+			            url: './ModificationClowns',
+			            type: 'POST',
+			            contentType: false,
+			            processData: false,
+			            data: form_data,
+			            mimeType:'multipart/form-data',
+			            success : function(json)
+			            {
+							$('#clown_media_' + id_media).remove();
+			            }
+			        });
+				});
+				
+				$('.bt_rename_media_clown').on('click', function(){
+					var id_media = $(this).attr("id_media");
+					var new_name = $('#tb_clown_media_' + id_media);
+					
+					if(new_name == null || new_name == "")
+					{
+						alert("Veuillez saisir un nom pour l'image");
+						return;
+					}
+					
+					var form_data = new FormData();
+					form_data.append('type', 'rename_media');
+					form_data.append('id_media', id_media);
+					form_data.append('new_name', new_name);
+					
+					$.ajax({
+			            url: './ModificationClowns',
+			            type: 'POST',
+			            contentType: false,
+			            processData: false,
+			            data: form_data,
+			            mimeType:'multipart/form-data',
+			            success : function(json)
+			            {
+			            }
+			        });
+				});
+				
+				$('.bt_clown_delete').on('click', function(){
+					if(confirm("Voulez-vous vraiment supprimer le clown sélectionné ?\nLe clown ainsi que toutes les photos associées seront supprimées."))
+					{
+						var form_data = new FormData();
+						form_data.append('type', 'delete_clown');
+						form_data.append('id_clown', id_clown);
+						
+						$.ajax({
+				            url: './ModificationClowns',
+				            type: 'POST',
+				            contentType: false,
+				            processData: false,
+				            data: form_data,
+				            mimeType:'multipart/form-data',
+				            success : function(json)
+				            {
+ 								location.reload();
+				            }
+				        });
+					}
+				});
+			}
 		});
 		
 		function set_display(first, last) {
@@ -821,7 +1343,7 @@
 	<!-- -------------------------------- Modifier article -------------------------- -->
 	
 	<div class="row col-md-12" id="page_modif_article" style="margin-bottom: 2%">
-		<div class="row" id="modifier_article">
+		<div class="row" id="modifier_article"  style="margin-top: 3%">
 			<p>Veuillez sélectionner l'article à modifier.</p>
 			<select id="select" default="">
 				<option disabled selected value hidden></option>
@@ -914,13 +1436,25 @@
 	
 	<!-- -------------------------------- Gestion clowns -------------------------------- -->
 	
-	<div id="gestion_clowns">
-		<div class="row">
-			<p>Veuillez sélectionner l'article à modifier.</p>
+	<div id="gestion_clowns" class="row col-md-12" style="margin-bottom: 2%">
+		<div class="row" style="margin-top: 3%">
+			<p>Veuillez sélectionner le clown à modifier.</p>
 			<select id="select_clown" default="">
 				<option disabled selected value hidden></option>
 			</select>
+			<button id="bt_clown_add" class="btn btn-sample">Ajouter clown</button>
+			<div id="add_clown">
+				<label for="tb_name_add_clown">Nom du clown </label>
+				<input type="text" id="tb_name_add_clown">
+				<button id="bt_get_add_clown" class="btn btn-sample">Importer portrait</button>
+				<button id="bt_submit_add_clown" class="btn btn-sample">Valider</button>
+			</div>
 		</div>
+		<input type="file" id="file_change_portrait_clown" accept="image/*">
+		<input type="file" id="file_add_photo_clown" accept="image/*">
+		<div id="info_clown" class="row col-md-12">
+		</div>
+		
 	</div>
 	
 	<!--  ------------------------------- Fin gestion des clowns ------------------------ -->
