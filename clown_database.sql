@@ -2,10 +2,11 @@ drop table if exists media;
 drop table if exists article;
 drop table if exists projet;
 drop table if exists role;
-drop table if exists utilisateur;
 drop table if exists contact;
 drop table if exists media_clown;
 drop table if exists clown;
+drop table if exists validation;
+drop table if exists utilisateur;
 
 -- création de la table des projets :
 -- titre obligatoire
@@ -107,7 +108,7 @@ create table media_clown(
 insert into clown(nom) values('Mademoiselle Lulu');
 insert into clown(nom) values('Chef Ratatouille');
 
-insert into media_clown(id_clown, type, nom, chemin) values(1, 'portrait', 'portrait Mademoiselle Lulu', 'images/clowns/1/1.JPG');
+insert into media_clown(id_clown, type, nom, chemin) values(1, 'portrait', 'portrait', 'images/clowns/1/1.JPG');
 insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Mademoiselle Lulu', 'images/clowns/1/2.jpg');
 insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Mademoiselle Lulu','images/clowns/1/3.jpg');
 insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Mademoiselle Lulu','images/clowns/1/4.jpg');
@@ -115,7 +116,7 @@ insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo M
 insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Mademoiselle Lulu','images/clowns/1/6.jpg');
 insert into media_clown(id_clown, type, nom, chemin) values(1, 'photo', 'photo Mademoiselle Lulu','images/clowns/1/7.jpg');
 
-insert into media_clown(id_clown, type, nom, chemin) values(2, 'portrait', 'portrait Chef Ratatouille', 'images/clowns/2/8.JPG');
+insert into media_clown(id_clown, type, nom, chemin) values(2, 'portrait', 'portrait', 'images/clowns/2/8.JPG');
 insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Chef Ratatouille', 'images/clowns/2/9.jpg');
 insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Chef Ratatouille','images/clowns/2/10.jpg');
 insert into media_clown(id_clown, type, nom, chemin) values(2, 'photo', 'photo Chef Ratatouille','images/clowns/2/11.jpg');

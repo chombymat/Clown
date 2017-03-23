@@ -63,7 +63,6 @@ $(document).ready(function() {
 	$('#myModal').attr('style', 'display: block');
 		$('#img01').attr('src', $(this).attr('src'));
 		$('#caption').html($(this).attr('alt'));
-		$('#id' + current_page).removeClass('active');
 	});
 	$('#bt_clown').on('click', function(){
 		hideAll();
