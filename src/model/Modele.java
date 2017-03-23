@@ -1162,6 +1162,8 @@ public class Modele
 		}
 	}
 
+	// ---------------------------------------- Gestion clown ----------------------------------------------------
+	
 	public void renameClown(int id_clown, String new_name)
 	{
 		Connection con = null;

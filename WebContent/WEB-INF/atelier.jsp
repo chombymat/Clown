@@ -234,11 +234,14 @@
 						}
 					}
 				}
-				for(Media media : articles.get(1).getMedias())
+				else
 				{
-					if(media.getType().equals("video") && !media.isDoitInscrit())
+					for(Media media : articles.get(1).getMedias())
 					{
-						%><%= media.getChemin() %><%
+						if(media.getType().equals("video") && !media.isDoitInscrit())
+						{
+							%><%= media.getChemin() %><%
+						}
 					}
 				}
 				%>
@@ -321,11 +324,14 @@
 						}
 					}
 				}
-				for(Media media : articles.get(2).getMedias())
+				else
 				{
-					if(media.getType().equals("video") && !media.isDoitInscrit())
+					for(Media media : articles.get(2).getMedias())
 					{
-						%><%= media.getChemin() %><%
+						if(media.getType().equals("video") && !media.isDoitInscrit())
+						{
+							%><%= media.getChemin() %><%
+						}
 					}
 				}
 				%>
@@ -408,11 +414,14 @@
 						}
 					}
 				}
-				for(Media media : articles.get(2).getMedias())
+				else
 				{
-					if(media.getType().equals("video") && !media.isDoitInscrit())
+					for(Media media : articles.get(2).getMedias())
 					{
-						%><%= media.getChemin() %><%
+						if(media.getType().equals("video") && !media.isDoitInscrit())
+						{
+							%><%= media.getChemin() %><%
+						}
 					}
 				}
 				%>
@@ -497,11 +506,14 @@
 						}
 					}
 				}
-				for(Media media : articles.get(4).getMedias())
+				else
 				{
-					if(media.getType().equals("video") && !media.isDoitInscrit())
+					for(Media media : articles.get(4).getMedias())
 					{
-						%><%= media.getChemin() %><%
+						if(media.getType().equals("video") && !media.isDoitInscrit())
+						{
+							%><%= media.getChemin() %><%
+						}
 					}
 				}
 				%>
@@ -567,6 +579,7 @@
 						<%
 					}
 				}
+				
 				%>
 			</div>
 				
@@ -584,13 +597,17 @@
 						}
 					}
 				}
-				for(Media media : articles.get(5).getMedias())
+				else
 				{
-					if(media.getType().equals("video") && !media.isDoitInscrit())
+					for(Media media : articles.get(5).getMedias())
 					{
-						%><%= media.getChemin() %><%
+						if(media.getType().equals("video") && !media.isDoitInscrit())
+						{
+							%><%= media.getChemin() %><%
+						}
 					}
 				}
+				
 				%>
 			</div>
 			<div class="col-md-6">
@@ -671,11 +688,14 @@
 						}
 					}
 				}
-				for(Media media : articles.get(6).getMedias())
+				else
 				{
-					if(media.getType().equals("video") && !media.isDoitInscrit())
+					for(Media media : articles.get(6).getMedias())
 					{
-						%><%= media.getChemin() %><%
+						if(media.getType().equals("video") && !media.isDoitInscrit())
+						{
+							%><%= media.getChemin() %><%
+						}
 					}
 				}
 				%>

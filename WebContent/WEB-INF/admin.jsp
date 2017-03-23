@@ -576,10 +576,13 @@
 			function initialiserUpdateArticle()
 			{
 				$('.bt_rename').unbind('click');
+				$('#bt_update_add_video').unbind('click');
 				$('.bt_delete_photo').unbind('click');
 				$('.bt_delete_pdf').unbind('click');
 				$('.bt_delete_video').unbind('click');
 				$('.update_checkbox').unbind('click');
+				$('#bt_update_add_video').unbind('click');
+				$('#bt_update_submit_video').unbind('click');
 				
 				initialiserModal();
 				
@@ -1314,7 +1317,7 @@
 			$('#id' + page_num).addClass('active');
 		}
 	</script>
-	<button id="bt_galerie" class="btn btn-sample">Gestion galerie</button> <button id="bt_modif_article" class="btn btn-sample">Modifier article</button> <button id="bt_gestion_clowns" class="btn btn-sample">Gestion des clowns</button>
+	<button id="bt_galerie" class="btn btn-sample">Gestion galerie</button> <button id="bt_modif_article" class="btn btn-sample">Modifier article</button> <button id="bt_gestion_clowns" class="btn btn-sample">Gestion des clowns</button> <button id="bt_gestion_users" class="btn btn-sample">Gestion des utilisateurs</button>
 	
 	<!-- -------------------------------- Gestion galerie -------------------------- -->
 	
@@ -1458,6 +1461,14 @@
 	</div>
 	
 	<!--  ------------------------------- Fin gestion des clowns ------------------------ -->
+	
+	<!--  -------------------------------  Gestion des users ---------------------------- -->
+	
+	<div id="gestion_users" class="row col-md-12" style="margin-bottom: 2%">
+				
+	</div>
+	
+	<!--  ------------------------------- Fin gestion des users ------------------------ -->
 
 	<div id="myModal" class="modal">
 		<span class="close">&times;</span> <img class="modal-content" id="img01">
