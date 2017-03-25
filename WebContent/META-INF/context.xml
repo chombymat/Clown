@@ -3,8 +3,8 @@
 
   <Resource name="mabase" auth="Container" type="javax.sql.DataSource"
   maxActive="8" maxIdle="4" maxWait="10000"
-  username="catricea" password="moi" driverClassName="org.postgresql.Driver"
-  url="jdbc:postgresql://psqlserv/da2i" />
+  username="metarion" password="986753421" driverClassName="org.postgresql.Driver"
+  url="jdbc:postgresql://192.168.0.33/clown" />
     
  <Resource name="mail/Session" auth="Container"
 	type="javax.mail.Session"

@@ -1,10 +1,10 @@
 drop table if exists media;
 drop table if exists article;
+drop table if exists media_clown;
+drop table if exists clown;
 drop table if exists projet;
 drop table if exists role;
 drop table if exists contact;
-drop table if exists media_clown;
-drop table if exists clown;
 drop table if exists validation;
 drop table if exists utilisateur;
 
@@ -198,11 +198,11 @@ insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/4
 insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/44.jpg', 'photo enfant - Expression Corporelle', 'photo');
 insert into media(id_article, chemin, nom, type) values(10, 'images/article/10/45.jpg', 'photo enfant - Expression Corporelle', 'photo');
 
-insert into media(id_article, chemin, nom, type, doitinscrit) values(1, 'images/pdf/1/46.pdf', 'Fiche atelier 1 : du blé au pain (.pdf)', 'pdf', 'true');
-insert into media(id_article, chemin, nom, type, doitinscrit) values(2, 'images/pdf/2/47.pdf', 'Fiche atelier 2 : le lait et ses dérivés (.pdf)', 'pdf', 'true');
-insert into media(id_article, chemin, nom, type, doitinscrit) values(3, 'images/pdf/3/48.pdf', 'Fiche atelier 3 : le classement des aliments (.pdf)', 'pdf', 'true');
-insert into media(id_article, chemin, nom, type, doitinscrit) values(4, 'images/pdf/4/49.pdf', 'Fiche atelier 4 : un menu équilibré (.pdf)', 'pdf', 'true');
-insert into media(id_article, chemin, nom, type, doitinscrit) values(5, 'images/pdf/5/50.pdf', 'Fiche atelier 5 : le parcours du yaourt à la fraise (.pdf)', 'pdf', 'true');
+insert into media(id_article, chemin, nom, type, doitinscrit) values(1, 'Pdf?id=46&id_a=1', 'Fiche atelier 1 : du blé au pain (.pdf)', 'pdf', 'true');
+insert into media(id_article, chemin, nom, type, doitinscrit) values(2, 'Pdf?id=47&id_a=2', 'Fiche atelier 2 : le lait et ses dérivés (.pdf)', 'pdf', 'true');
+insert into media(id_article, chemin, nom, type, doitinscrit) values(3, 'Pdf?id=48&id_b=3', 'Fiche atelier 3 : le classement des aliments (.pdf)', 'pdf', 'true');
+insert into media(id_article, chemin, nom, type, doitinscrit) values(4, 'Pdf?id=49&id_a=4', 'Fiche atelier 4 : un menu équilibré (.pdf)', 'pdf', 'true');
+insert into media(id_article, chemin, nom, type, doitinscrit) values(5, 'Pdf?id=50&id_a=5', 'Fiche atelier 5 : le parcours du yaourt à la fraise (.pdf)', 'pdf', 'true');
 
 insert into media(chemin, nom, type) values('images/galerie/51.png', 'galerie 1', 'galerie');
 insert into media(chemin, nom, type) values('images/galerie/52.jpg', 'galerie 2', 'galerie');
