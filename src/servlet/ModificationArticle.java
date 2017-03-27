@@ -98,7 +98,7 @@ public class ModificationArticle extends HttpServlet
 			response.getWriter().println(json_pdf);
 			break;
 		case "delete_pdf" :
-			modele.supprimerMedia(getServletContext().getRealPath("/") + "images/pdf/" + id_article + "/" + id_media + ".pdf", id_media);
+			modele.deletePdf(getServletContext().getRealPath("/"), id_media, Integer.valueOf(id_article));
 			break;
 		case "add_video" :
 			String url_video = IOUtils.toString(request.getPart("media").getInputStream(), "UTF-8");

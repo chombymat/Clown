@@ -305,7 +305,6 @@
 				            	checkbox.attr('id_media', array[i].id);
 				            	checkbox.attr('class', 'update_checkbox');
 				            	checkbox.attr('type', 'checkbox');
-				            	console.log(array[i].doit_inscrit);
 				            	if(array[i].doit_inscrit === true)
 				            		checkbox.prop('checked', true);
 				            	
@@ -523,7 +522,7 @@
 				form_data.append("id_article", id_article);
 				form_data.append('nom', name);
 				form_data.append('media', file);
-				form_data.append('doit_inscrit', $('#check_update_add_pdf').checked);
+				form_data.append('doit_inscrit', $('#check_update_add_pdf').is(':checked'));
 				
 				$.ajax({
 		            url: './ModificationArticle',
@@ -545,6 +544,15 @@
 		            	input.attr('id', 'name_' + json.id_media);
 		            	input.attr('type', 'text');
 		            	input.val($('#tb_update_name_pdf').val());
+		            	
+		            	var checkbox = $(document.createElement('input'));
+		            	checkbox.attr('id_media', json.id_media);
+		            	checkbox.attr('class', 'update_checkbox');
+		            	checkbox.attr('type', 'checkbox');
+		            	
+		            	if($('#check_update_add_pdf').is(':checked') === true)
+		            		checkbox.prop('checked', true);
+		            	
 		            	var bt_rename = $(document.createElement('button'));
 		            	var bt_delete = $(document.createElement('button'));
 		            	bt_rename.attr('id_media', json.id_media);
@@ -557,6 +565,9 @@
 		            	div.append(a);
 		            	div.append('<br><br>');
 		            	div.append(input);
+		            	div.append('<br>');
+		            	div.append(checkbox);
+		            	div.append('Inscription requise<br>');
 		            	div.append(bt_rename);
 		            	div.append(bt_delete);
 		            	

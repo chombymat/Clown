@@ -903,6 +903,29 @@ public class Modele
 			}
 		}
 	}
+	
+	public void deletePdf(String racine, int id_media, int id_article)
+	{
+		Connection con = null;
+		File pdf = new File(racine + "WEB-INF/pdf/" + id_article + "/" + id_media + ".pdf");
+		
+		try{
+			pdf.delete();
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("delete from media where id_media = ?");
+			statement.setInt(1, id_media);
+			statement.executeUpdate();
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try{
+				con.close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
 
 	public ArrayList<Media> getMedias(int idArticle)
 	{
@@ -1056,7 +1079,7 @@ public class Modele
 
 	public void savePdfOnDisk(String racine, int id_article, int id_media, Part part) 
 	{
-		File file = new File(racine + "images/pdf/" + id_article + "/");
+		File file = new File(racine + "WEB-INF/pdf/" + id_article + "/");
 
 		if(!file.exists())
 			file.mkdirs();
@@ -1077,11 +1100,11 @@ public class Modele
 		try
 		{
 			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
-			PreparedStatement statement = con.prepareStatement("insert into media (id_article, type, nom, chemin, doitInscrit) values(?, ?, ?, ? || (select last_value from media_id_media_seq) || '.pdf', ?) returning id_media");
+			PreparedStatement statement = con.prepareStatement("insert into media (id_article, type, nom, chemin, doitInscrit) values(?, ?, ?, 'Pdf?id=' || (select last_value from media_id_media_seq)  || '&id_a=' || ?, ?) returning id_media");
 			statement.setInt(1, id_article);
 			statement.setString(2, "pdf");
 			statement.setString(3, name);
-			statement.setString(4, "images/pdf/" + id_article + "/");
+			statement.setInt(4, id_article);
 			statement.setBoolean(5, doit_inscrit);
 			ResultSet result = statement.executeQuery();
 			result.next();
@@ -1344,8 +1367,42 @@ public class Modele
 			try{
 				con.close();
 			} catch(Exception e){
-				e.printStackTrace();
 			}
 		}
+	}
+	
+	public boolean getMedia(int id_media, int id_article) throws Exception
+	{
+		Connection con = null;
+		try
+		{
+			con = ((DataSource)((Context)new InitialContext().lookup("java:comp/env")).lookup("mabase")).getConnection();
+			PreparedStatement statement = con.prepareStatement("select doitinscrit from media where id_media = ? and id_article = ?");
+			statement.setInt(1, id_media);
+			statement.setInt(2, id_article);
+			ResultSet result = statement.executeQuery();
+			
+			if(result.next())
+			{
+				return result.getBoolean("doitinscrit");
+			}
+			else
+				throw new Exception("Fichier demander introuvable");
+		}
+		catch(Exception e)
+		{
+			if(e.getMessage().equals("Fichier demander introuvable"))
+				throw e;
+			else
+				System.out.println(e.getMessage());
+		}
+		finally
+		{
+			try{
+				con.close();
+			} catch(Exception e){}
+		}
+		
+		return true;
 	}
 }

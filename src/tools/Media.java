@@ -7,6 +7,8 @@ public class Media {
 	private int idArticle;
 	private boolean doitInscrit;
 
+	public Media(){}
+	
 	public Media(int id, String chemin, String nom, String type){
 		this.id = id;
 		this.chemin = chemin;

@@ -1,25 +1,43 @@
 package servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Modele;
+
 @WebServlet("/Pdf")
 public class Pdf extends HttpServlet 
 {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		if(request.getSession().getAttribute("user") != null)
+		try
 		{
 			int id_article = Integer.valueOf(request.getParameter("id_a"));
 			int id_media = Integer.valueOf(request.getParameter("id"));
-			request.getRequestDispatcher("/WEB-INF/pdf/" + id_article + "/" + id_media + ".pdf").forward(request, response);
+			boolean doit_inscrit = new Modele().getMedia(id_media, id_article);
+			
+			if(doit_inscrit)
+			{
+				if(request.getSession().getAttribute("user") != null)
+				{
+					request.getRequestDispatcher("/WEB-INF/pdf/" + id_article + "/" + id_media + ".pdf").forward(request, response);
+				}
+				else
+					response.sendRedirect("connexion.jsp");
+			}
+			else
+				request.getRequestDispatcher("/WEB-INF/pdf/" + id_article + "/" + id_media + ".pdf").forward(request, response);
 		}
-		else
-			response.sendRedirect("connexion.jsp");
+		catch(Exception e)
+		{
+			request.setAttribute("erreur", e.getMessage());
+			request.getRequestDispatcher("/WEB-INF/erreur.jsp").forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {}

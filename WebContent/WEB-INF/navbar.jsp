@@ -10,69 +10,73 @@
 		{
 			$("#name").html("La compagnie la Prima Porta");
 		} 
-		if (page.indexOf('Demarche') != -1)
+		else if (page.indexOf('Demarche') != -1)
 		{
 			$("#name").html("Les démarches");
 		}
-		if (page.indexOf('Atelier') != -1)
+		else if (page.indexOf('Atelier') != -1)
 		{
 			$("#name").html("Les ateliers");
 		}
-		if (page.indexOf('Galerie') != -1)
+		else if (page.indexOf('Galerie') != -1)
 		{
 			$("#name").html("La galerie");
 		}
-		if (page.indexOf('infosup.jsp') != -1)
+		else if (page.indexOf('infosup.jsp') != -1)
 		{
 			$("#name").html("En savoir plus");
 		}
-		if (page.indexOf('partenaires.jsp') != -1)
+		else if (page.indexOf('partenaires.jsp') != -1)
 		{
 			$("#name").html("Nos partenaires");
 		}
-		if (page.indexOf('contact.jsp') != -1)
+		else if (page.indexOf('contact.jsp') != -1)
 		{
 			$("#name").html("Nous contacter");
 		}
-		if (page.indexOf('connexion.jsp') != -1)
+		else if (page.indexOf('connexion.jsp') != -1)
 		{
 			$("#name").html("Se connecter");
 		}
-		if (page.indexOf('inscription.jsp') != -1)
+		else if (page.indexOf('inscription.jsp') != -1)
 		{
 			$("#name").html("S'inscrire");
 		}
-		if (page.indexOf('Formation') != -1)
+		else if (page.indexOf('Formation') != -1)
 		{
 			$("#name").html("Formation");
 		}
-		if (page.indexOf('Administration') != -1)
+		else if (page.indexOf('Administration') != -1)
 		{
 			$("#name").html("Administration");
 		}
-		if (page.indexOf('legale.jsp') != -1)
+		else if (page.indexOf('legale.jsp') != -1)
 		{
 			$("#name").html("Mentions l&eacute;gales");
 		}
-		if (page.indexOf('Article') != -1)
+		else if (page.indexOf('Article') != -1)
 		{
 			$("#name").html("${ requestScope.article.getTitre() }");
 		}
-		if (page.indexOf('forgotPassword.jsp') != -1)
+		else if (page.indexOf('forgotPassword.jsp') != -1)
 		{
 			$("#name").html("Demande de modification de mot de passe");
 		}
-		if (page.indexOf('modifPassword.jsp') != -1)
+		else if (page.indexOf('modifPassword.jsp') != -1)
 		{
 			$("#name").html("Modification du mot de passe");
 		}
-		if (page.indexOf('refusInscription.jsp') != -1)
+		else if (page.indexOf('refusInscription.jsp') != -1)
 		{
 			$("#name").html("Demande d'inscription");
 		}
-		if (page.indexOf('confirmationInscription.jsp') != -1)
+		else if (page.indexOf('confirmationInscription.jsp') != -1)
 		{
 			$("#name").html("Demande d'inscription");
+		}
+		else
+		{
+			$("#name").html("Erreur");
 		}
 		
 		$('#bt_connexion').on('click', function(){
