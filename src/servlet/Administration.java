@@ -12,6 +12,8 @@ import tools.Utilisateur;
 @WebServlet("/Administration")
 public class Administration extends HttpServlet 
 {
+	private static final long serialVersionUID = 1L;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		if(((Utilisateur)request.getSession().getAttribute("user")) == null)

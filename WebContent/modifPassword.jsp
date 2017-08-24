@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="./javascript/sha256.js"></script>
+<script src="./js/sha256.js"></script>
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -28,13 +28,14 @@
 			            url: $form.attr('action'),
 			            type: $form.attr('method'),
 			            data: {
-			            	login : $('#login').val(),
+			            	login : SHA256($('#login').val()),
 			            	mail : $('#mail').val(),
 			            	passwordModified : SHA256($('#passwordModified').val()),
-			            	confirmationModifPassword : "true"
+			            	type : "request"
 			            },
-			            success : function(data, textStatus, jqXHR)
+			            success : function(data)
 			            {
+			            	console.log(data);
 			            	if(data === "ok")
 			            	{
 			            		$('#success_message').show();         	
@@ -56,13 +57,12 @@
 			$('#form').show();
 		});
 	</script>
-	${ user.role }
 	<noscript>
 		<!-- Si pas de javascript pas de formulaire -->
 		<p>Veuillez activer le JavaScript afin de continuer.</p>
 	</noscript>
 	<hr/>
- <form id="form" class="form-horizontal" method="post" action="ForgotPassword" style="display:none">
+ <form id="form" class="form-horizontal" method="post" action="ModifPassword" style="display:none">
     <div class="form-group">
       <label class="control-label col-sm-4">Identifiant :</label>
       <div class="col-sm-4">
@@ -93,7 +93,7 @@
         <button type="submit" class="btn btn-sample">Modifier le mot de passe</button>
       </div>
     </div>
-    <div class="alert alert-success" role="alert" id="success_message"><i class="glyphicon glyphicon-thumbs-up"></i> Votre mot de passe a bien été modifié.</div>
+    <div class="alert alert-success" role="alert" id="success_message"><i class="glyphicon glyphicon-thumbs-up"></i> Une confirmation vous à été envoyé par mail. Veuillez cliqué sur le lien présent dans le mail afin de confirmer la modification.</div>
   </form>
   <%@include file="/WEB-INF/footer.html"%>
 </body>

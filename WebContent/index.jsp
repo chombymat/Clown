@@ -7,6 +7,7 @@
 <meta name="keywords" content="clown, éducatif, théâtre, prima, porta, primaporta, association, enfants, éducatif, ateliers, expression, corporelle, rire, humour, compagnie" />
 <meta name="description" content="Clown Educatif est une compagnie de clown de théâtre créée en 2010 et implantée à Lille (59)." />
 <title>Clown Educatif – Compagnie de clown de théâtre</title>
+<link rel="icon" type="image/png" href="http://www.laprimaporta.com/wp-content/uploads/2016/01/fav.png" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
@@ -63,7 +64,7 @@ Les clowns de La Prima Porta interviennent dans tous les lieux, les espaces afin
 			<div class="col-md-5">
 				<h2 id="film">Le film de 26'</h2>
 				<iframe class="embed-responsive-item" width="560" height="315"
-					src="https://www.youtube.com/embed/_TSZe3mfGYg"></iframe>
+					src="https://www.youtube.com/embed/ZyTw6V5JTwM"></iframe>
 			</div>
 		</div>
 	</div>

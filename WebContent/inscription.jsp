@@ -9,75 +9,16 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="./javascript/sha256.js"></script>
+<script src="./js/sha256.js"></script>
+<script src="./js/inscription.js"></script>
 <link rel="stylesheet" href="style.css" />
 <title>Inscrivez-vous ClownEducatif.com</title>
 </head>
 <body>
 	<%@include file="/WEB-INF/navbar.jsp" %>
-	<script>
-		$(document).ready(function()
-		{
-
-			$("#form").on('submit', function(e)
-			{
-				e.preventDefault();
-				
-				$('#erreur_mail').html("");
-				$('#erreur_login').html("");
-
-				if($('#pass').val() === $('#pass2').val())
-				{
-					var $form = $(this);
-
-			        $.ajax({
-			            url: $form.attr('action'),
-			            type: $form.attr('method'),
-			            data: {
-			            	inscriptionLogin : $('#inscriptionLogin').val(),
-			            	inscriptionPass : SHA256($('#pass').val()),
-			            	inscriptionNom : $('#inscriptionNom').val(),
-			            	inscriptionPrenom : $('#inscriptionPrenom').val(),
-			            	inscriptionMail : $('#mail').val(),
-			            	initialisation : "true"
-			            },
-			            success : function(data, textStatus, jqXHR){
-			            	console.log(data);
-
-			            	if(data === "mail existant"){
-			            		$('#erreur').html("");
-			            		$('#erreur_login').html("");
-			            		$('#erreur_mail').html("Adresse email déjà existante."); 
-			            	} else if(data === "exception"){
-				            		$('#erreur').html("Un problème est survenu lors de l'inscription");
-				            		$('#erreur_login').html("");
-				            		$('#erreur_mail').html("");   
-			            	} else if(data === "login existant"){
-			            		$('#erreur').html("");
-			            		$('#erreur_mail').html("");
-			            		$('#erreur_login').html("Identifiant déjà existant.");
-			            	} else {
-			            		$('#success_message').show();         	
-			            		$("#form")[0].reset();
-			            	}
-			            	
-			            }
-			        });
-				}
-				else
-				{
-            		$('#erreur_login').html("");
-            		$('#erreur_mail').html("");
-					$('#erreur').html("Les mots de passe saisis ne correspondent pas.");
-				}
-			});
-			
-			$('#form').show();
-		});
-	</script>
 	<hr/>
 	<noscript>
-		<!-- Si pas de javascript pas de formulaire -->
+		<!-- Si pas de javascript => pas de formulaire -->
 		<p>Veuillez activer le JavaScript afin de continuer.</p>
 	</noscript>
 	<form id="form" class="form-horizontal form-inscription" method="post" action="./Inscription">

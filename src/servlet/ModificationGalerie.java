@@ -14,17 +14,22 @@ import org.apache.commons.io.IOUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import model.Modele;
+import model.Model;
 import tools.Media;
 
 @WebServlet("/ModificationGalerie")
 @MultipartConfig()
 public class ModificationGalerie extends HttpServlet 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		Modele modele = new Modele();
+		Model modele = new Model();
 		ArrayList<Media> galerie = modele.getGalerie();
 		
 		JSONArray j_array = new JSONArray();
@@ -47,7 +52,7 @@ public class ModificationGalerie extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		String type = IOUtils.toString(request.getPart("type").getInputStream(), "UTF-8"); 
-		Modele modele = new Modele();
+		Model modele = new Model();
 		int id_media = -1;
 		
 		if(request.getPart("id_media") != null)

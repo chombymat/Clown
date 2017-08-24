@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Modele;
+import model.Model;
 import tools.Media;
 
 @SuppressWarnings("serial")
@@ -17,7 +17,7 @@ import tools.Media;
 public class Galerie extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Modele modele = new Modele();
+		Model modele = new Model();
 		try {
 			ArrayList<Media> galerie = modele.getGalerie();
 			request.setAttribute("galerie", galerie);

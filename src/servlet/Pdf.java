@@ -8,18 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Modele;
+import model.Model;
 
 @WebServlet("/Pdf")
 public class Pdf extends HttpServlet 
 {
+	private static final long serialVersionUID = 1L;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		try
 		{
 			int id_article = Integer.valueOf(request.getParameter("id_a"));
 			int id_media = Integer.valueOf(request.getParameter("id"));
-			boolean doit_inscrit = new Modele().getMedia(id_media, id_article);
+			boolean doit_inscrit = new Model().getDoitInscrit(id_media, id_article);
 			
 			if(doit_inscrit)
 			{

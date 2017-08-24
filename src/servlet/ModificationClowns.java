@@ -14,7 +14,7 @@ import org.apache.commons.io.IOUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import model.Modele;
+import model.Model;
 import tools.Clown;
 import tools.Media;
 
@@ -22,10 +22,15 @@ import tools.Media;
 @MultipartConfig()
 public class ModificationClowns extends HttpServlet 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		ArrayList<Clown> clowns = new ArrayList<Clown>(new Modele().getClowns().values());
+		ArrayList<Clown> clowns = new ArrayList<Clown>(new Model().getClowns().values());
 		
 		JSONArray j_array = new JSONArray();
 		
@@ -65,7 +70,7 @@ public class ModificationClowns extends HttpServlet
 		if(request.getPart("id_clown") != null)
 			id_clown = Integer.valueOf(IOUtils.toString(request.getPart("id_clown").getInputStream(), "UTF-8"));
 		int id_media;
-		Modele modele = new Modele();
+		Model modele = new Model();
 		
 		switch(type)
 		{

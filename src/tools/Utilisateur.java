@@ -27,6 +27,9 @@ public class Utilisateur {
 		this.role = role;
 	}
 
+	public Utilisateur() {
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -61,6 +64,14 @@ public class Utilisateur {
 
 	public void setLogin(String login) {
 		this.login = login;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 	

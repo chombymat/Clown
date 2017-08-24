@@ -8,15 +8,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Modele;
+import model.Model;
 import tools.Article;
 
 @WebServlet("/Formation")
 public class Formation extends HttpServlet 
 {
+	private static final long serialVersionUID = 1L;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		Modele modele = new Modele();
+		Model modele = new Model();
 		Article article = modele.getArticle(12);
 		request.setAttribute("article", article);
 		request.getRequestDispatcher("/WEB-INF/formation.jsp").forward(request, response);
@@ -24,5 +26,6 @@ public class Formation extends HttpServlet
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		
 	}
 }

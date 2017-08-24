@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Modele;
+import model.Model;
 import tools.Article;
 import tools.Clown;
 
@@ -20,8 +20,8 @@ public class Demarche extends HttpServlet
 {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		HashMap<Integer, Article> articles = new Modele().getDemarche();
-		HashMap<String, Clown> clowns = new Modele().getClowns();
+		HashMap<Integer, Article> articles = new Model().getDemarche();
+		HashMap<String, Clown> clowns = new Model().getClowns();
 		ArrayList<Clown> list_clowns = new ArrayList<Clown>(clowns.values());
 		
 		request.setAttribute("articles", articles);

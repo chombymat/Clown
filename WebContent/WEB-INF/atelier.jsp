@@ -1,172 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page import="java.util.HashMap,tools.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="keywords" content="clown, éducatif, théâtre, prima, porta, primaporta, association, enfants, éducatif, ateliers, expression, corporelle, rire, humour, compagnie" />
-<meta name="description" content="Clown Educatif est une compagnie de clown de théâtre créée en 2010 et implantée à Lille (59)." />
+<meta name="keywords" content="clown, Ã©ducatif, thÃ©Ã¢tre, prima, porta, primaporta, association, enfants, Ã©ducatif, ateliers, expression, corporelle, rire, humour, compagnie" />
+<meta name="description" content="Clown Educatif est une compagnie de clown de thÃ©Ã¢tre crÃ©Ã©e en 2010 et implantÃ©e Ã  Lille (59)." />
 <title>Les ateliers ClownEducatif.com</title>
 <link rel="icon" type="image/png" href="http://www.laprimaporta.com/wp-content/uploads/2016/01/fav.png" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="./js/atelier.js"></script>
 <link rel="stylesheet" href="style.css" />
 <% HashMap<Integer, Article> articles = (HashMap<Integer, Article>)request.getAttribute("articles");  %>
-<script>
-	var show_per_page = 18;
-	var current_page = 0;
-	
-	function set_display(first, last) {
-		$('#content').children().css('display', 'none');
-		$('#content').children().slice(first, last).css('display', 'block');
-	}
-	
-	function previous() {
-		if ($('.active').prev('.page_link').length)
-			go_to_page(current_page - 1);
-	}
-	
-	function next() {
-		if ($('.active').next('.page_link').length)
-			go_to_page(current_page + 1);
-	}
-	
-	function go_to_page(page_num) {
-		current_page = page_num;
-		start_from = current_page * show_per_page;
-		end_on = start_from + show_per_page;
-		set_display(start_from, end_on);
-		$('.active').removeClass('active');
-		$('#id' + page_num).addClass('active');
-	}
-
-	function hideAll()
-	{
-		$('#textAtelier').hide();
-		$('#pain').hide();
-		$('#lait').hide();
-		$('#familles').hide();
-		$('#menu').hide();
-		$('#alimentation').hide();
-		$('#spectacle').hide();
-	}
-	
-	function hideOnglet()
-	{
-		$('#pain').hide();
-		$('#lait').hide();
-		$('#familles').hide();
-		$('#menu').hide();
-		$('#alimentation').hide();
-		$('#spectacle').hide();
-	}
-
-	$(document).ready(function() 
-	{
-		hideOnglet();
-
-		<%
-		if(request.getParameter("page") != null)
-		{
-			%>hideAll();<%
-			switch(request.getParameter("page"))
-			{
-			case "pain" :
-				%>$('#pain').show();<%
-				break;
-			case "lait" :
-				%>$('#lait').show();<%
-				break;
-			case "menu" :
-				%>$('#menu').show();<%
-				break;
-			case "alimentation" :
-				%>$('#alimentation').show();<%
-				break;
-			case "spectacle" :
-				%>$('#spectacle').show();<%
-				break;
-			case "famille" :
-				%>$('#familles').show();<%
-				break;
-			}
-		}
-		%>
-		
-		var modal = document.getElementById('myModal');
-					
-		var span = document.getElementsByClassName("close")[0];
-
-		$('.myImg').on('click', function() {
-			$('html, body').css({
-			overflow : 'hidden',
-			height : '100%'
-		});
-			
-		$('#myModal').attr('style', 'display: block');
-			$('#img01').attr('src', $(this).attr('src'));
-			$('#caption').html($(this).attr('alt'));
-			$('#id' + current_page).removeClass('active');
-		});
-			
-		$('#bt_pain').on('click', function(){
-			hideAll();
-			$('#pain').show();
-		});
-		
-		$('#bt_lait').on('click', function(){
-			hideAll();
-			$('#lait').show();
-		});
-		
-		$('#bt_alimentation').on('click', function(){
-			hideAll();
-			$('#alimentation').show();
-		});
-		
-		$('#bt_menu').on('click', function(){
-			hideAll();
-			$('#menu').show();
-		});
-		
-		$('#bt_famille').on('click', function(){
-			hideAll();
-			$('#familles').show();
-		});
-		
-		$('#bt_spectacle').on('click', function(){
-			hideAll();
-			$('#spectacle').show();
-		});
-		
-		span.onclick = function() {
-			$('html, body').css({
-				overflow : 'auto',
-				height : 'auto'
-			});
-			modal.style.display = "none";
-			$('#id' + current_page).addClass('active');
-		}
-
-		var number_of_pages = Math.ceil($('#content').children().length	/ show_per_page);
-
-		var nav = '<ul class="pagination"><li><a id="page" href="javascript:previous();">&laquo;</a>';
-
-		var i = -1;
-		while (number_of_pages > ++i) {
-			nav += '<li class="page_link'
-			if (!i)
-				nav += ' active';
-			nav += '" id="id' + i + '">';
-			nav += '<a id="page" href="javascript:go_to_page(' + i + ')">' + (i + 1) + '</a>';
-		}
-		nav += '<li><a id="page" href="javascript:next();">&raquo;</a></ul>';
-
-		$('#page_navigation').html(nav);
-		set_display(0, show_per_page);
-	});
-</script>
 </head>
 <body>
 	<%@include file="/WEB-INF/navbar.jsp"%>
@@ -181,13 +28,13 @@
 			<input id="bt_spectacle" type="image" class="img-circle bt_image" src="images/article/6/PHOTO_ILLUSTRATION/PHOTO_SPECTACLE.png" title="Le spectacle" alt="image de spectacle" width="156" height="156">
 		</div>
 		<div class="row col-md-10 col-sm-offset-1" id="textAtelier">
-			<p align="justify"><%= articles.get(7).getContenu() %></p>
+			<p align="justify" style="text-align: center"><%= articles.get(7).getContenu() %></p>
 		</div>
 	</div>
 	<!----------------------------------- fin de categorie ---------------------------------------->
 	
 	<!----------------------------------- PAIN ---------------------------------------->
-	<div id="pain">
+	<div id="pain" style="display: none">
 		<h2><%= articles.get(1).getTitre() %></h2><br>
 		<div class="row parent col-md-12">
 			<div class="col-md-6">
@@ -222,7 +69,7 @@
 				
 		</div>
 		<div class="row col-md-12">
-			<div class="col-md-6">
+			<div class="container-video col-md-6">
 				<%
 				if(session.getAttribute("user") != null) 
 				{
@@ -277,14 +124,14 @@
 	</div>
 	
 	<!----------------------------------- LAIT ---------------------------------------->
-	<div id="lait">
+	<div id="lait" style="display: none">
 		<h2><%= articles.get(2).getTitre() %></h2><br>
 		<div class="row parent col-md-12">
 			<div class="col-md-6">
 				<img width="35%" height="auto" src="images/article/2/PHOTO_ILLUSTRATION/lait.jpg" title="image de lait" alt="image de lait">
 			</div>
 			<div class="col-md-5 enfant">
-				<p align="justify"><%= articles.get(1).getContenu() %></p>
+				<p align="justify"><%= articles.get(2).getContenu() %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
@@ -312,7 +159,7 @@
 				
 		</div>
 		<div class="row col-md-12">
-			<div class="col-md-6">
+			<div class="container-video col-md-6">
 				<%
 				if(session.getAttribute("user") != null) 
 				{
@@ -367,18 +214,18 @@
 	</div>
 	
 	<!----------------------------------- 7 FAMILLES ---------------------------------------->
-	<div id="familles">
+	<div id="familles" style="display: none">
 		<h2><%= articles.get(3).getTitre() %></h2><br>
 		<div class="row parent col-md-12">
 			<div class="col-md-6">
 				<img width="85%" height="auto" src="images/article/3/PHOTO_ILLUSTRATION/Fotolia_111774771_S.jpg" title="image des 7 familles" alt="image des 7 familles">
 			</div>
 			<div class="col-md-5 enfant">
-				<p align="justify"><%= articles.get(2).getContenu() %></p>
+				<p align="justify"><%= articles.get(3).getContenu() %></p>
 				<%
 				if(session.getAttribute("user") != null) 
 				{
-					for(Media media : articles.get(2).getMedias())
+					for(Media media : articles.get(3).getMedias())
 					{
 						if(media.getType().equals("pdf") && media.isDoitInscrit())
 						{
@@ -388,7 +235,7 @@
 						}
 					}
 				}
-				for(Media media : articles.get(2).getMedias())
+				for(Media media : articles.get(3).getMedias())
 				{
 					if(media.getType().equals("pdf") && !media.isDoitInscrit())
 					{
@@ -402,11 +249,11 @@
 				
 		</div>
 		<div class="row col-md-12">
-			<div class="col-md-6">
+			<div class="container-video col-md-6">
 				<%
 				if(session.getAttribute("user") != null) 
 				{
-					for(Media media : articles.get(2).getMedias())
+					for(Media media : articles.get(3).getMedias())
 					{
 						if(media.getType().equals("video") && media.isDoitInscrit())
 						{
@@ -416,7 +263,7 @@
 				}
 				else
 				{
-					for(Media media : articles.get(2).getMedias())
+					for(Media media : articles.get(3).getMedias())
 					{
 						if(media.getType().equals("video") && !media.isDoitInscrit())
 						{
@@ -433,7 +280,7 @@
 						<% 
 						if(session.getAttribute("user") != null) 
 						{
-							for(Media media : articles.get(2).getMedias())
+							for(Media media : articles.get(3).getMedias())
 							{
 								if(media.getType().equals("photo") && media.isDoitInscrit())
 								{
@@ -441,7 +288,7 @@
 								}
 							}
 						}
-						for(Media media : articles.get(2).getMedias())
+						for(Media media : articles.get(3).getMedias())
 						{
 							if(media.getType().equals("photo") && !media.isDoitInscrit())
 							{
@@ -456,14 +303,13 @@
 		</div>
 	</div>
 	
-	
-	
 	<!----------------------------------- MENU EQUILIBRE ---------------------------------------->
-	<div id="menu">
+	
+	<div id="menu" style="display: none">
 		<h2><%= articles.get(4).getTitre() %></h2><br>
 		<div class="row parent col-md-12">
 			<div class="col-md-6">
-				<img width="85%" height="auto" src="images/article/4/PHOTO_ILLUSTRATION/Fotolia_135759645_S-1.jpg" title="image de fruits et légumes" alt="image de fruits et légumes">
+				<img width="85%" height="auto" src="images/article/4/PHOTO_ILLUSTRATION/Fotolia_135759645_S-1.jpg" title="image de fruits et lÃ©gumes" alt="image de fruits et lÃ©gumes">
 			</div>
 			<div class="col-md-5 enfant">
 				<p align="justify"><%= articles.get(4).getContenu() %></p>
@@ -494,7 +340,7 @@
 				
 		</div>
 		<div class="row col-md-12">
-			<div class="col-md-6">
+			<div class="container-video col-md-6">
 				<%
 				if(session.getAttribute("user") != null) 
 				{
@@ -549,7 +395,7 @@
 	</div>
 	
 	<!----------------------------------- ALIMENTATION ---------------------------------------->
-	<div id="alimentation">
+	<div id="alimentation" style="display: none">
 		<h2><%= articles.get(5).getTitre() %></h2><br>
 		<div class="row parent col-md-12">
 			<div class="col-md-6">
@@ -585,7 +431,7 @@
 				
 		</div>
 		<div class="row col-md-12">
-			<div class="col-md-6">
+			<div class="container-video col-md-6">
 				<%
 				if(session.getAttribute("user") != null) 
 				{
@@ -641,7 +487,7 @@
 	</div>
 	
 	<!----------------------------------- SPECTACLE ---------------------------------------->
-	<div id="spectacle">
+	<div id="spectacle" style="display: none">
 		<h2><%= articles.get(6).getTitre() %></h2><br>
 		<div class="row parent col-md-12">
 			<div class="col-md-6">
@@ -676,7 +522,7 @@
 				
 		</div>
 		<div class="row col-md-12">
-			<div class="col-md-6">
+			<div class="container-video col-md-6">
 				<%
 				if(session.getAttribute("user") != null) 
 				{
@@ -736,5 +582,34 @@
 		<div id="caption"></div>
 	</div>
 	<%@include file="/WEB-INF/footer.html"%>
+	<script>
+	<%
+	if(request.getParameter("page") != null)
+	{
+		%>hideAll();<%
+		switch(request.getParameter("page"))
+		{
+		case "pain" :
+			%>$('#pain').show();<%
+			break;
+		case "lait" :
+			%>$('#lait').show();<%
+			break;
+		case "menu" :
+			%>$('#menu').show();<%
+			break;
+		case "alimentation" :
+			%>$('#alimentation').show();<%
+			break;
+		case "spectacle" :
+			%>$('#spectacle').show();<%
+			break;
+		case "famille" :
+			%>$('#familles').show();<%
+			break;
+		}
+	}
+	%>
+	</script>
 </body>
 </html>

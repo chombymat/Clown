@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ page import="tools.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="tools.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,7 +15,7 @@
 </head>
 <body>
 	<% Article article = (Article)request.getAttribute("article"); %>
-	<%@include file="/WEB-INF/navbar.jsp" %>
+	<%@include file="/WEB-INF/navbar.jsp"%>
 	<script>
 	$(document).ready(function(){
 		var modal = document.getElementById('myModal');
@@ -44,9 +43,10 @@
 		}
 	});
 	</script>
-	<div id="formation">
-		<h2><%= article.getTitre() %></h2><br>
-		<div class="row parent">
+	<div id="formation" style="font-family: serif">
+		<h2><%= article.getTitre() %></h2>
+		<br>
+		<div class="row parent col-md-12">
 			<div class="col-md-5 enfant">
 				<p align="justify"><%= article.getContenu() %></p>
 				<%
@@ -57,8 +57,8 @@
 						if(media.getType().equals("pdf") && media.isDoitInscrit())
 						{
 							%>
-							<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
-							<%
+				<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
+				<%
 						}
 					}
 				}
@@ -67,16 +67,15 @@
 					if(media.getType().equals("pdf") && !media.isDoitInscrit())
 					{
 						%>
-						<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
-						<%
+				<a href="<%= media.getChemin() %>" title="<%= media.getNom() %>"><%= media.getNom() %></a><br>
+				<%
 					}
 				}
 				%>
 			</div>
-				
 		</div>
 		<div class="row col-md-12">
-			<div class="col-md-6">
+			<div class="container-video col-md-6">
 				<%
 				if(session.getAttribute("user") != null) 
 				{
@@ -84,7 +83,8 @@
 					{
 						if(media.getType().equals("video") && media.isDoitInscrit())
 						{
-							%><%= media.getChemin() %><%
+							%><%= media.getChemin() %>
+				<%
 						}
 					}
 				}
@@ -92,7 +92,8 @@
 				{
 					if(media.getType().equals("video") && !media.isDoitInscrit())
 					{
-						%><%= media.getChemin() %><%
+						%><%= media.getChemin() %>
+				<%
 					}
 				}
 				%>
@@ -108,7 +109,8 @@
 							{
 								if(media.getType().equals("photo") && media.isDoitInscrit())
 								{
-									%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+									%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>">
+						<%
 								}
 							}
 						}
@@ -116,7 +118,8 @@
 						{
 							if(media.getType().equals("photo") && !media.isDoitInscrit())
 							{
-								%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>"><%
+								%><img class="myImg img-thumbnail" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>">
+						<%
 							}
 						}
 						%>
@@ -126,13 +129,11 @@
 			</div>
 		</div>
 	</div>
-	
-		<!-- The Modal -->
+	<!-- The Modal -->
 	<div id="myModal" class="modal">
 		<span class="close">&times;</span> <img class="modal-content" id="img01">
 		<div id="caption"></div>
 	</div>
-	
-	<%@include file="/WEB-INF/footer.html" %>
+	<%@include file="/WEB-INF/footer.html"%>
 </body>
 </html>

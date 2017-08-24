@@ -3,15 +3,15 @@
 
   <Resource name="mabase" auth="Container" type="javax.sql.DataSource"
   maxActive="8" maxIdle="4" maxWait="10000"
-  username="metarion" password="986753421" driverClassName="org.postgresql.Driver"
-  url="jdbc:postgresql://192.168.0.33/clown" />
+  username="clown" password="986753421" driverClassName="org.postgresql.Driver"
+  url="jdbc:postgresql://localhost/clown" />
     
- <Resource name="mail/Session" auth="Container"
-	type="javax.mail.Session"
-	mail.smtp.host="mailserv.etudiant.univ-lille1.fr"
-	username="aurelia.catrice" password="password987" /> 
+<!--  <Resource name="mail/Session" auth="Container" -->
+<!-- 	type="javax.mail.Session" -->
+<!-- 	mail.smtp.host="mailserv.etudiant.univ-lille1.fr" -->
+<!-- 	username="aurelia.catrice" password="password987" />  -->
   
-<!--  <Resource name="mail/Session" auth="Container"
+ <Resource name="mail/Session" auth="Container"
         type="javax.mail.Session"
         mail.smtp.user="tweetbookda2i@gmail.com"
         mail.smtp.password="da2i20162017"
@@ -21,7 +21,7 @@
         mail.smtp.host= "smtp.gmail.com"
         mail.smtp.auth= "true"
         mail.smtp.port= "587"
-        mail.smtp.starttls.enable="true"/> -->
+        mail.smtp.starttls.enable="true"/>
 
   <Valve className="org.apache.catalina.valves.AccessLogValve"
            prefix="clown_access." suffix=".txt"

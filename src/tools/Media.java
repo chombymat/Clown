@@ -71,7 +71,15 @@ public class Media {
 	}
 
 	public String getChemin() {
-		return chemin;
+		if("photo".equalsIgnoreCase(type))
+			return "./Media?id=" + this.id;
+		else
+			return chemin;
+	}
+	
+	public String getCheminPhysique()
+	{
+		return this.chemin;
 	}
 
 	public void setChemin(String chemin) {
