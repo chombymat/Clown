@@ -93,7 +93,7 @@
 					{
 						if(media.getType().equals("photo"))
 						{
-							%><img class="myImg img-thumbnail img-responsive" src="<%= media.getChemin() %>" alt="<%= media.getNom() %>">
+							%><img class="myImg img-thumbnail img-responsive" src="<%= media.getCheminPhysique() %>" alt="<%= media.getNom() %>">
 					<%
 						}
 					}

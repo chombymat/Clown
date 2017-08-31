@@ -48,7 +48,7 @@ public class ModificationClowns extends HttpServlet
 				
 				j_media.put("type", media.getType());
 				j_media.put("id_media", media.getId());
-				j_media.put("chemin", media.getChemin());
+				j_media.put("chemin", media.getCheminPhysique());
 				j_media.put("nom", media.getNom());
 				
 				medias.add(j_media);
