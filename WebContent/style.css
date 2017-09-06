@@ -1,3 +1,9 @@
+.wrapperContent {
+	margin-left: 18%;
+	margin-right: 15%;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------ */
 body {
 	background-color: #f0f0e5;
 	text-align: center;
@@ -49,7 +55,7 @@ h3 {
 }
 
 #film {
-	margin-top: 70%;
+	margin-top: 50%;
 }
 
 /* scrolls*/
@@ -203,7 +209,7 @@ h3 {
 
 #logopp {
 	float: left;
-	border: solid 3px;
+	border: solid 2px;
 	border-color: #C21950;
 	margin-left: 4%;
 }
