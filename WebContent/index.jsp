@@ -25,14 +25,13 @@
 		<div class="row">
 			<div class="col-md-6">
 				<h2>Le projet</h2>
-				<p align="justify">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam
-					porta sem malesuada magna mollis euismod. Donec sed odio dui. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut
-					fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus
-					commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Donec id elit non mi porta gravida at eget
-					metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Donec
-					id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
-					mollis euismod. Donec sed odio dui. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet
-					risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+				<p align="justify">Créée en 2009 et implantée dans la région en 2013, la compagnie la Prima Porta intervient auprès des enfants en situation de handicap au sein des IME de la région des Hauts
+					de France. L'histoire ne fait que commencer puisqu'en 2016, la compagnie est lauréate du ministère de l'agriculture grâce à son projet « Je mange mieux ». La compagnie s'inscrit ainsi dans une
+					dynamique d'éducation et de santé pour tous. Notre cycle de 12 séances se compose de 5 ateliers pédagogiques et clownesques mêlant le rire, l'éveil sensoriel et l'expression corporelle, ainsi que
+					d'une restitution sous forme de spectacle reprenant le contenu des ateliers. La compagnie a pour objectif de transmettre aux enfants de manière ludique et innovante des connaissances sur le thème
+					de l'alimentation. Le clown, figure centrale et poétique de l'association entre en contact avec les enfants et l'équipe éducative, permettant ainsi la plus belle des rencontres. C'est pour
+					partager notre démarche et notre envie de la diffuser aux acteurs du secteur éducatif et social que nous avons créer, en collaboration avec un groupe d'étudiants de l'Université de Lille,1 ce
+					site internet. Si des questions demeurent, n'hésitez pas à nous contacter via la rubrique « Contacts ».</p>
 				<h2>L'association</h2>
 				<h3 align="center">La compagnie La Prima Porta est détermi-nez à développer ces 3 axes !</h3>
 				<p>&nbsp;</p>
